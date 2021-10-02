@@ -7,6 +7,10 @@ import { PromotionListComponent } from './promotion/promotion-list/promotion-lis
 import { PromotionDetailComponent } from './promotion/promotion-detail/promotion-detail.component';
 import { ShowtimeListComponent } from './showtime-list/showtime-list.component';
 import {RouterModule, Routes} from '@angular/router';
+import { MovieComponent } from './movie/movie.component';
+import { MovieListComponent } from './movie/movie-list/movie-list.component';
+import { MovieSearchComponent } from './movie/movie-search/movie-search.component';
+import { MovieDetailComponent } from './movie/movie-detail/movie-detail.component';
 
 const guestRoutes: Routes = [];
 
@@ -17,7 +21,11 @@ const guestRoutes: Routes = [];
     PromotionComponent,
     PromotionListComponent,
     PromotionDetailComponent,
-    ShowtimeListComponent
+    ShowtimeListComponent,
+    MovieComponent,
+    MovieListComponent,
+    MovieSearchComponent,
+    MovieDetailComponent
   ],
   imports: [
     CommonModule,

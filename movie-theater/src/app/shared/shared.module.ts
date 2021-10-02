@@ -8,6 +8,10 @@ const sharedRoutes: Routes = [];
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(sharedRoutes)
