@@ -9,10 +9,11 @@ import {GuestModule} from './guest/guest.module';
 import {EmployeeModule} from './employee/employee.module';
 import {AdminModule} from './admin/admin.module';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,7 +23,8 @@ import {AppRoutingModule} from './app-routing.module';
     GuestModule,
     EmployeeModule,
     AdminModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

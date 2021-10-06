@@ -1,1 +1,69 @@
-<p>login works!</p>
+<div class="main">
+<div class="background_img">
+  <div class="content">
+    <header>Đăng Nhập</header>
+    <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="field">
+        <span class="fa fa-user"></span>
+        <input type="text" placeholder="Tên tài khoản"  [(ngModel)]="form.username" #username="ngModel"
+               [ngModelOptions]="{standalone: true}" required>
+      </div>
+      <div class="messageError"  *ngIf="f.submitted && username.invalid">
+        <div *ngIf="username.errors.required">Bạn chưa nhập tài khoản.</div>
+      </div>
+      <div class="field space">
+        <span class="fa fa-lock"></span>
+        <input type="password" class="password" placeholder="Mật khẩu" [(ngModel)]="form.password"
+               [ngModelOptions]="{standalone: true}" required minlength="6"
+               #password="ngModel">
+        <span class="show"><i class="fa fa-eye"></i></span>
+      </div>
+      <div class="messageError" *ngIf="f.submitted && password.invalid">
+        <div *ngIf="password.errors.required">Bạn chưa nhập mật khẩu.</div>
+        <div *ngIf="password.errors.minlength">Mật khẩu ít nhất phải 6 kí tự.</div>
+      </div>
+      <div class="pass">
+        <a href="#"> Quên mật khẩu?</a>
+      </div>
+      <div class="field">
+        <input type="submit" value="Đăng Nhập">
+      </div>
+      <div class="login">
+        Hoặc đăng nhập với
+        <div class="link">
+          <div class="facebook">
+              <i class="fa fa-facebook-f">
+                <span (click)="loginWithFacebook()">Facebook</span>
+              </i>
+          </div>
+          <div class="google">
+              <i class="fa fa-google">
+                <span (click)="loginWithGoogle()">Google</span>
+              </i>
+          </div>
+        </div>
+      </div>
+
+      <div class="signup">Bạn chưa có tài khoản?
+        <a href="#">Đăng kí ngay</a>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<script>
+  const pass_field = document.querySelector('.password');
+  const show_btn = document.querySelector('.show');
+  show_btn.addEventListener('click',function () {
+    if (pass_field.type === "password"){
+      pass_field.type = "text";
+      show_btn.color ="#3498db";
+      show_btn.innerHTML="<i class='fa fa-eye-slash'></i>";
+    }else {
+      pass_field.type = "password";
+      show_btn.color = "#3498db";
+      show_btn.innerHTML="<i class='fa fa-eye'></i>";
+    }
+  });
+</script>

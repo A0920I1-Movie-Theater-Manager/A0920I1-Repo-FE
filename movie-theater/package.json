@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
     "@auth0/angular-jwt": "^5.0.2",
+    "@fortawesome/angular-fontawesome": "^0.9.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fullcalendar/angular": "^5.9.0",
     "@material/snackbar": "^12.0.0",
     "@syncfusion/ej2-angular-charts": "^19.2.59",

@@ -1,1 +1,108 @@
-<p>register works!</p>
+<div class="body">
+  <div class="container">
+    <div class="title">Đăng Kí</div>
+    <form [formGroup]="register" (ngSubmit)="onSubmit(register)">
+      <div class="user-details">
+
+        <div class="input-box">
+          <span class="details">Họ và Tên <span class="star">*</span></span>
+          <input type="text" placeholder="Nhập Họ và Tên" formControlName="fullName" required>
+        </div>
+<!--        <div class="messageError">-->
+<!--          <div>Bạn chưa nhập họ và tên.</div>-->
+<!--        </div>-->
+
+
+        <div class="input-box">
+          <span class="details">Tài Khoản <span class="star">*</span></span>
+          <input type="text" placeholder="Nhập tên tài khoản" formControlName="username" required>
+        </div>
+<!--        <div class="messageError" >-->
+<!--          <div >Bạn chưa nhập tên tài khoản.</div>-->
+<!--        </div>-->
+
+
+        <div class="input-box">
+          <span class="details">Email <span class="star">*</span></span>
+          <input type="text" placeholder="Nhập email" formControlName="email" required>
+        </div>
+<!--        <div class="messageError">-->
+<!--          <div >Bạn chưa nhập email.</div>-->
+<!--        </div>-->
+
+
+        <div class="input-box">
+          <span class="details">Mật Khẩu <span class="star">*</span></span>
+          <input type="password" class="password" placeholder="Nhập mật khẩu" formControlName="password"  required>
+        </div>
+<!--        <div class="messageError" >-->
+<!--          <div >Bạn chưa nhập email.</div>-->
+<!--        </div>-->
+
+
+        <div class="input-box">
+          <span class="details">Số Điện Thoại <span class="star">*</span></span>
+          <input type="text" placeholder="Nhập số điện thoại" formControlName="phone" required>
+        </div>
+<!--        <div class="messageError" >-->
+<!--          <div>Bạn chưa nhập email.</div>-->
+<!--        </div>-->
+
+        <div class="input-box">
+          <span class="details">Xác Nhận Mật Khẩu <span class="star">*</span></span>
+          <input type="password" placeholder="Nhập mật khẩu" formControlName="matchingPassword" required>
+        </div>
+        <div class="input-box">
+          <span class="details">Địa Chỉ </span>
+          <input type="text" placeholder="Nhập địa chỉ" formControlName="address" required>
+        </div>
+
+        <div class="input-box">
+          <span class="details">Ngày Sinh <span class="star">*</span></span>
+          <input type="date" placeholder="dd/MM/yy" formControlName="birthday" required>
+        </div>
+<!--        <div class="messageError" >-->
+<!--          <div >Bạn chưa nhập email.</div>-->
+<!--        </div>-->
+
+
+        <div class="input-box">
+          <span class="details">CMND <span class="star">*</span></span>
+          <input type="text" placeholder="Nhập CMND" formControlName="idCard" required>
+        </div>
+<!--        <div class="messageError" >-->
+<!--          <div >Bạn chưa nhập email.</div>-->
+<!--        </div>-->
+
+      </div>
+      <div class="gender-details">
+        <input type="radio" name="gender" id="dot-1" formControlName="gender">
+        <input type="radio" name="gender" id="dot-2" formControlName="gender" >
+        <input type="radio" name="gender" id="dot-3" formControlName="gender">
+        <span class="gender-title">Giới Tính <span class="star">*</span></span>
+        <div class="category">
+          <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Nam</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Nữ</span>
+          </label>
+
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Khác</span>
+          </label>
+        </div>
+      </div>
+      <div class="button">
+        <div class="row">
+          <input type="button" value="Quay Về">
+          <input type="submit" value="Đăng Kí">
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
