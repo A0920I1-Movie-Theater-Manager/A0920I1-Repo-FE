@@ -1,0 +1,881 @@
+
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>A09 Cinema</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="One Movies Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href="../../assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="../../assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../../assets/css/faqstyle.css" type="text/css" media="all" />
+<link href="../../assets/css/single.css" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="../../assets/css/contactstyle.css" type="text/css" media="all" />
+<!-- news-css -->
+<link rel="stylesheet" href="../../assets/news-css/news.css" type="text/css" media="all" />
+<!-- //news-css -->
+<!-- list-css -->
+<link rel="stylesheet" href="../../assets/list-css/list.css" type="text/css" media="all" />
+<!-- //list-css -->
+<!-- font-awesome icons -->
+<link rel="stylesheet" href="../../assets/css/font-awesome.min.css" />
+<!-- //font-awesome icons -->
+<!-- js -->
+<script type="text/javascript" src="../../assets/js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
+<!-- start-smoth-scrolling -->
+<script type="text/javascript" src="../../assets/js/move-top.js"></script>
+<script type="text/javascript" src="../../assets/js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+</head>
+
+<body>
+<!-- header -->
+<div class="header">
+	<div class="container">
+		<div class="w3layouts_logo">
+			<a href="../../assets/html/page/index.html">
+				<h1>A09<span>Movies</span></h1>
+				<!-- <img src="./images/a07logo.png" alt=""> -->
+			</a>
+		</div>
+		<div class="w3_search">
+			<form action="#" method="post">
+				<input type="text" name="Search" placeholder="Nhập tên phim" required="">
+				<input type="submit" value="Tìm">
+			</form>
+		</div>
+		<div class="w3l_sign_in_register">
+			<ul>
+				<li><a href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- //header -->
+<!-- bootstrap-pop-up -->
+<div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				Đăng nhập & Đăng kí
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<section>
+				<div class="modal-body">
+					<div class="w3_login_module">
+						<div class="module form-module">
+							<div class="toggle"><i class="fa fa-times fa-pencil"></i>
+								<div class="tooltip">Click</div>
+							</div>
+							<div class="form">
+								<h3>Đăng nhập</h3>
+								<form action="#" method="post">
+									<input type="text" name="Username" placeholder="Tài khoản" required="">
+									<input type="password" name="Password" placeholder="Mật khẩu" required="">
+									<input type="submit" value="Đăng nhập">
+								</form>
+							</div>
+							<div class="form">
+								<h3>Tạo tài khoản</h3>
+								<form action="#" method="post">
+									<input type="text" name="Username" placeholder="Tài khoản" required="">
+									<input type="password" name="Password" placeholder="Mật khẩu" required="">
+									<input type="email" name="Email" placeholder="Email" required="">
+									<input type="text" name="Phone" placeholder="Số điện thoại" required="">
+									<input type="submit" value="Đăng kí">
+								</form>
+							</div>
+							<div class="cta"><a href="#">Quên mật khẩu</a></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>
+<script>
+	$('.toggle').click(function () {
+		// Switches the Icon
+		$(this).children('i').toggleClass('fa-pencil');
+		// Switches the forms
+		$('.form').animate({
+			height: "toggle",
+			'padding-top': 'toggle',
+			'padding-bottom': 'toggle',
+			opacity: "toggle"
+		}, "slow");
+	});
+</script>
+<!-- //bootstrap-pop-up -->
+<!-- nav -->
+<div class="movies_nav">
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header navbar-left">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+						data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+				<nav>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="../../assets/html/page/index.html">Trang chủ</a></li>
+						<li><a href="#">Mua vé</a></li>
+						<li><a href="event.html">Sự kiện</a></li>
+						<li><a href="../static-page/news.html">Góc điện ảnh</a></li>
+						<li><a href="#">Thành viên</a></li>
+						<li><a href="#">Giá vé</a></li>
+						<li><a href="faq.html">Hướng dẫn</a></li>
+					</ul>
+				</nav>
+			</div>
+		</nav>
+	</div>
+</div>
+
+<!-- faq-banner -->
+	<div class="faq">
+			<div class="container">
+				<div class="agileits-news-top">
+					<ol class="breadcrumb">
+					  <li><a href="../../assets/html/page/index.html">Home</a></li>
+					  <li class="active">Góc điện ảnh</li>
+					</ol>
+				</div>
+				<div class="agileinfo-news-top-grids">
+					<div class="col-md-8 wthree-top-news-left">
+						<div class="wthree-news-left">
+							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+								<ul id="myTab" class="nav nav-tabs" role="tablist">
+									<li role="presentation" class="active"><a href="#home1" id="home1-tab" role="tab" data-toggle="tab" aria-controls="home1" aria-expanded="true">Mới nhất</a></li>
+									<li role="presentation"><a href="#w3bsd" role="tab" id="w3bsd-tab" data-toggle="tab" aria-controls="w3bsd">Tin phim</a></li>
+								</ul>
+								<div id="myTabContent" class="tab-content">
+									<div role="tabpanel" class="tab-pane fade in active" id="home1" aria-labelledby="home1-tab">
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m1.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Top phim võ thuật đặc sắc phần 2</a></h5>
+													<p>Những màn đánh đấm trong Shang-Chi liệu có đủ làm hài lòng những
+														khán giả đam mê dòng phim võ thuật? Nếu cần tăng độ phấn khích,
+														có thể tham khảo thêm nhiều sự lựa chọn khác.
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2021</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m2.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Phim MCU nào hay nhất phần 12</a></h5>
+													<p>The Avengers là đứa con ấn tượng nhất nhì Marvel Studios, chẳng có gì ngạc nhiên khi một số hãng phim khác đều ít nhiều muốn học hỏi.
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2021</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m3.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Phim MCU nào hay nhất phần 11</a></h5>
+													<p>Guardians Of The Galaxy Vol. 2 dẹp hết mớ luật lệ ngăn cản sáng tạo sang một bên và trở nên đặc biệt.
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2021</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m4.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Phim MCU nào hay nhất phần 10</a></h5>
+													<p>Dù hay, Black Panther vẫn gây nên vô số cuộc tranh cãi khi lọt vào danh sách đề cử Phim xuất sắc nhất Oscar 2019.
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2021</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2999</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m5.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Spider-Man: No Way Home - Trailer Bản
+														IMAX Tiết Lộ Thêm Nhiều Tình Tiết Hấp Dẫn
+													</a></h5>
+													<p>Mới đây nhất, teaser trailer Spider-Man: No Way Home nhiên bản IMAX
+														đã được tung ra, bật mí thêm nhiều tình tiết dù nhỏ nhưng cũng
+														đủ khiến các fan hâm mộ phải bàn luận sôi nổi.
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2021</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m6.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Top phim võ thuật đặc sắc phần 1</a></h5>
+													<p>
+														Những màn đánh đấm trong Shang-Chi liệu có đủ làm hài lòng những
+														khán giả đam mê dòng phim võ thuật? Nếu cần tăng độ phấn khích,
+														có thể tham khảo thêm nhiều sự lựa chọn khác.
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2021</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m7.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lương Triều Vỹ và những tác phẩm để đời</a></h5>
+													<p>
+														Lương Triều Vỹ chính là câu trả lời cho việc để tìm ra kẻ phản
+														diện ấn tượng mới cho các siêu anh hùng Marvel, cách đơn giản
+														chính là chọn một trong những diễn viên vĩ đại nhất lịch sử điện ảnh.
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 23/09/2021</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m8.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Top 30 diễn viên cảm thấy thất vọng vì vai diễn của họ</a></h5>
+													<p>Có một số diễn viên biết rằng họ đang tạo ra một thảm họa ngay chính trong quá trình sản xuất...
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/10/2021</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m9.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+														<h5><a href="news-single.html">Top 30 diễn viên thấy thất vọng vì vai diễn của họ P4</a></h5>
+													<p>“Điều hối tiếc lớn nhất của bạn là gì?” - Đây có thể là một trong
+														những câu hỏi mà các diễn viên thường nhận được tại các cuộc phỏng
+														vấn. Và hầu hết các ngôi sao thường trả lời bằng cách nói về
+														những gì họ đã trải qua khi tham gia một bộ phim
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m10.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Top 30 diễn viên cảm thấy thất vọng vì vai diễn P3</a></h5>
+													<p>
+														Có những diễn viên dù nhân vật mà họ thể hiện đã trở thành biểu tượng,
+														được nhận đề cử Oscar, được vô vàn khán giả yêu mến… nhưng rốt
+														cuộc chính bản thân họ lại không hề hài lòng với nó…
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m11.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Phim MCU nào hay nhất P9</a></h5>
+													<p>
+														The Avengers (2012) đè nặng lên chính đứa con thứ hai – Biệt Đội Siêu Anh Hùng: Kỉ Nguyên Ultron.
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m12.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Ký sự điện ảnh: Kỷ nguyên vàng Hollywood</a></h5>
+													<p>Nhiều bộ phim chất lượng nghệ thuật cao, kịch bản chăm chút, hàng
+														loạt ngôi sao màn bạc tỏa sáng, cuộc cách mạng về phong cách kể
+														chuyện, kỹ thuật dựng phim…, mọi thứ đều giúp Hollywood vươn tới đỉnh cao rực rỡ.
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m13.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Yếu tố văn hóa đóng vai trò như thế nào trong Shang-chi</a></h5>
+													<p>
+														Shang-Chi and the Legend of the Ten Rings không chỉ đánh dấu sự
+														mở đầu hoành tráng của Phase 4 MCU mà còn là dự án đầu tiên của
+														Marvel có sự tham gia của các diễn viên châu Á với tư cách là nhân vật chính.
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m14.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Tản mạn yếu tố điện ảnh Ngô Vũ Sâm và Kungfu Súng</a></h5>
+													<p>Người góp phần đưa tiếng vang của điện ảnh Hongkong lan tỏa ra
+														thế giới, thậm chí khiến cả Hollywood ở trời Tây cũng phải ca tụng,
+														mở ra chương mới cho thể loại phim hành động “made in Hongkong”.
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m15.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Shang-chi có doanh thu mở màn ấn tượng hơn cả Fast 9</a></h5>
+													<p>
+														Tác phẩm làm về siêu anh hùng người châu Á đầu tiên của Marvel
+														đã có doanh thu mở màn vượt hơn mong đợi rất nhiều lần. Sự thành
+														công của phim chắc chắn sẽ tạo ra những ảnh hưởng lớn không chỉ
+														với vũ trụ MCU mà còn liên quan đến chính sách
+
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m16.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Những tình huống có 1-0-2 trên phim trường</a></h5>
+													<p>Hài hước, xấu hổ, khó chịu và thậm chí là cả đau đớn là những cảm
+														xúc mà một số đoàn làm phim, diễn viên đã trải qua khi tham gia
+														một số bộ phim dưới đây...
+													</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="w3bsd" aria-labelledby="w3bsd-tab">
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m17.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m18.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m19.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m20.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m21.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m22.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m1.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m2.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m3.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m4.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m5.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m6.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+										<div class="wthree-news-top-left">
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m7.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="col-md-6 w3-agileits-news-left">
+												<div class="col-sm-5 wthree-news-img">
+													<a href="news-single.html"><img src="../../assets/images/m8.jpg" alt="" /></a>
+												</div>
+												<div class="col-sm-7 wthree-news-info">
+													<h5><a href="news-single.html">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></h5>
+													<p>Sed tristique mattis fermentum. Etiam semper aliquet massa, id tempus massa mattis eget.</p>
+													<ul>
+														<li><i class="fa fa-clock-o" aria-hidden="true"></i> 24/09/2016</li>
+														<li><i class="fa fa-eye" aria-hidden="true"></i> 2642</li>
+													</ul>
+												</div>
+												<div class="clearfix"> </div>
+											</div>
+											<div class="clearfix"> </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 wthree-news-right">
+						<!-- news-right-top -->
+						<div class="news-right-top">
+
+						</div>
+						<!-- //news-right-top -->
+						<!-- news-right-bottom -->
+						<div class="news-right-bottom">
+							<div class="wthree-news-right-heading">
+								<h3>Tin đọc nhiều</h3>
+							</div>
+							<div class="news-right-bottom-bg">
+								<div class="news-grids-bottom">
+									<div class="top-news-grid">
+										<div class="top-news-grid-heading">
+											<a href="news-single.html">
+												Số phận khác biệt của phim Hàn làm từ webtoon trong năm 2021
+											</a>
+										</div>
+										<div class="w3ls-news-t-grid top-t-grid">
+											<ul>
+												<li><a href="#"><i class="fa fa-clock-o"></i> 1h</a></li>
+												<li><a href="#"><i class="fa fa-user"></i> Giang</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="top-news-grid">
+										<div class="top-news-grid-heading">
+											<a href="news-single.html">Kbiz hôm nay: Ji Chang Wook tái xuất và tiếp tục làm trai nghèo khổ</a>
+										</div>
+										<div class="w3ls-news-t-grid top-t-grid">
+											<ul>
+												<li><a href="#"><i class="fa fa-clock-o"></i> 3h</a></li>
+												<li><a href="#"><i class="fa fa-user"></i> Hương Mai</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="top-news-grid">
+										<div class="top-news-grid-heading">
+											<a href="news-single.html">Giải đáp cái kết Squid Game: Tại sao Ki Hoon quay lại trò chơi?</a>
+										</div>
+										<div class="w3ls-news-t-grid top-t-grid">
+											<ul>
+												<li><a href="#"><i class="fa fa-clock-o"></i> 1h</a></li>
+												<li><a href="#"><i class="fa fa-user"></i> Nhật Ánh</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="top-news-grid">
+										<div class="top-news-grid-heading">
+											<a href="news-single.html">Những điều cần biết về The Sandman - siêu phẩm phim DC của Netflix</a>
+										</div>
+										<div class="w3ls-news-t-grid top-t-grid">
+											<ul>
+												<li><a href="#"><i class="fa fa-clock-o"></i> 3h</a></li>
+												<li><a href="#"><i class="fa fa-user"></i> Quốc Anh</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="top-news-grid">
+										<div class="top-news-grid-heading">
+											<a href="news-single.html">5 lý do giúp Squid Game gây sốt toàn cầu: Độ kinh dị vừa đủ xem</a>
+										</div>
+										<div class="w3ls-news-t-grid top-t-grid">
+											<ul>
+												<li><a href="#"><i class="fa fa-clock-o"></i> 1h</a></li>
+												<li><a href="#"><i class="fa fa-user"></i> Phê</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="top-news-grid">
+										<div class="top-news-grid-heading">
+											<a href="news-single.html">Loạt phim Việt đang bốc số ngoài rạp chờ hết giãn cách COVID-19</a>
+										</div>
+										<div class="w3ls-news-t-grid top-t-grid">
+											<ul>
+												<li><a href="#"><i class="fa fa-clock-o"></i> 3h</a></li>
+												<li><a href="#"><i class="fa fa-user"></i> Will</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- //news-right-bottom -->
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+	</div>
+<!-- //faq-banner -->
+<!-- footer -->
+<div class="footer">
+	<div class="container">
+		<div class="w3ls_footer_grid">
+			<div class="col-md-6 w3ls_footer_grid_left">
+				<div class="w3ls_footer_grid_left1">
+					<h2>Đăng ký nhận khuyến mãi</h2>
+					<div class="w3ls_footer_grid_left1_pos">
+						<form action="#" method="post">
+							<input type="email" name="email" placeholder="Nhập email của bạn..." required="">
+							<input type="submit" value="Gửi">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 w3ls_footer_grid_right">
+				<a href="index.html"><h2>A09<span>Movies</span></h2></a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="col-md-5 w3ls_footer_grid1_left">
+			<p>&copy; 2021 A9 Movies. Bản quyền đăng ký và thiết kế lớp A9</p>
+		</div>
+		<div class="col-md-7 w3ls_footer_grid1_right">
+			<ul>
+				<li>
+					<a href="about-us.html">Về chúng tôi</a>
+				</li>
+				<li>
+					<a href="faq.html">Điều khoản sử dụng</a>
+				</li>
+				<li>
+					<a href="privacy.html">Quyền riêng tư</a>
+				</li>
+				<li>
+					<a href="term-customer.html">Chính sách khách hàng</a>
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!-- //footer -->
+<!-- Bootstrap Core JavaScript -->
+<script src="../../assets/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".dropdown").hover(
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideDown("fast");
+            $(this).toggleClass('open');
+        },
+        function() {
+            $('.dropdown-menu', this).stop( true, true ).slideUp("fast");
+            $(this).toggleClass('open');
+        }
+    );
+});
+</script>
+<!-- //Bootstrap Core JavaScript -->
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+				};
+			*/
+
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+			});
+	</script>
+<!-- //here ends scrolling icon -->
+</body>
+</html>

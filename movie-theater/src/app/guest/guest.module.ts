@@ -11,8 +11,14 @@ import { MovieComponent } from './movie/movie.component';
 import { MovieListComponent } from './movie/movie-list/movie-list.component';
 import { MovieSearchComponent } from './movie/movie-search/movie-search.component';
 import { MovieDetailComponent } from './movie/movie-detail/movie-detail.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {CarouselModule} from 'ngx-owl-carousel-o';
 
-const guestRoutes: Routes = [];
+const guestRoutes: Routes = [
+  {path: 'home', component: MovieListComponent},
+  {path: 'movie-detail/:id', component: MovieDetailComponent}
+];
 
 @NgModule({
   declarations: [
@@ -29,7 +35,10 @@ const guestRoutes: Routes = [];
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(guestRoutes)
+    RouterModule.forChild(guestRoutes),
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CarouselModule
   ]
 })
 export class GuestModule { }

@@ -1,1 +1,500 @@
-<p>movie-detail works!</p>
+<div class="single-page-agile-main">
+  <div class="container">
+    <!-- /w3l-medile-movies-grids -->
+    <div class="agileits-single-top">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li class="active">Chi tiết</li>
+      </ol>
+    </div>
+    <div class="single-page-agile-info">
+      <!-- /movie-browse-agile -->
+      <div class="col-sm-8 single-left">
+        <!--begin detail-->
+        <div class="wthree-news-left">
+          <div class="wthree-news-left-img">
+            <div class="song">
+              <div class="song-info">
+                <h2>{{movie.title}}</h2>
+              </div>
+            </div>
+
+            <h4>Thông tin chi tiết</h4>
+            <!-- start description-->
+            <div class="description" style="font-size: 1.2rem">
+              <div class="col-3" style="text-align: center">
+                <img [src]="movie.movieImages[0].imageUrl" alt=""
+                     style="height: 350px; width: 250px"/>
+              </div>
+              <div class="col-6">
+                <p>Nhà sản xuất: {{movie.production}}</p>
+                <p>Thể loại: Hành Động</p>
+                <p>Đạo diễn: {{movie.director}}</p>
+                <p>Diễn viên: {{movie.cast}}</p>
+                <p>Ngày phát hành: {{movie.releaseDate || 'dd/MM/yyyy'}}</p>
+              </div>
+            </div>
+            <!-- end description-->
+
+            <!--chen video-->
+            <h4>Trailer</h4>
+            <div style="text-align: center;">
+              <iframe width="560" height="315" [src]="urlSafe | safe"
+                      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                                        clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+            </div>
+            <!-- chen video-->
+
+            <h4>Nội dung phim</h4>
+            <div class="w3-agile-news-text">
+              <p style="color: #0a0910; font-size: 17px">
+                Bộ phim tiếp theo của vũ trụ điện ảnh Marvel với nhân vật chính là "Bậc Thầy Kung-Fu" Shang-Chi.</p>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--end detail-->
+
+        <!--                start comment-->
+        <div class="all-comments">
+          <p style="color: #0a0910; font-size: 17px">Các đánh giá phim được viết sau khi đăng nhập</p>
+          <br>
+          <div>
+            <input type="submit" value="Đăng nhập">
+          </div>
+          <div class="media-grids">
+            <div class="media">
+              <h5>Tú</h5>
+              <div class="media-left">
+                <a href="#">
+                  <img src="./assets/images/user.jpg" title="One movies" alt=" "/>
+                </a>
+              </div>
+              <div class="media-body">
+                <p style="color: #0a0910; font-size: 17px">Phim hay, các chi tiết đan xen nhau hợp lý, đạo diễn có những cảnh quay phải nói
+                  là tuyệt vời</p>
+                <!--                                    <span>View all posts by :<a href="#"> Admin </a></span>-->
+              </div>
+            </div>
+            <div class="media">
+              <h5>Bình</h5>
+              <div class="media-left">
+                <a href="#">
+                  <img src="./assets/images/user.jpg" title="One movies" alt=" "/>
+                </a>
+              </div>
+              <div class="media-body">
+                <p style="color: #0a0910; font-size: 17px">Như mọi lần đọc đánh giá phim, mình cứ tưởng mod AB14 đánh giá, hết hồn bởi sao
+                  bữa nay ảnh đánh giá như viện hàn lâm điện ảnh quá!!!</p>
+                <!--                                    <span>View all posts by :<a href="#"> Admin </a></span>-->
+              </div>
+            </div>
+            <div class="media">
+              <h5>Rôn</h5>
+              <div class="media-left">
+                <a href="#">
+                  <img src="./assets/images/user.jpg" title="One movies" alt=" "/>
+                </a>
+              </div>
+              <div class="media-body">
+                <p style="color: #0a0910; font-size: 17px">Hôm trước chú ấy chê X-men App tơi tớt,nhưng xem xong thấy chú ấy chê ko
+                  oan...hehe</p>
+                <!--                                    <span>View all posts by :<a href="#"> Admin </a></span>-->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--            end comment-->
+
+      <div class="col-md-4 single-right">
+        <h3>Phim hay</h3>
+        <div class="single-grid-right">
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a href="single.html"><img src="./assets/images/m1.jpg" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a href="single.html" class="title"> War dogs</a>
+              <p class="views">1,614,200 lượt xem</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a href="single.html"><img src="./assets/images/m2.jpg" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a href="single.html" class="title"> Bad Moms</a>
+              <p class="views">1,510,200 lượt xem </p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a href="single.html"><img src="./assets/images/m3.jpg" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a href="single.html" class="title"> Tarzan</a>
+              <p class="views">1,499,200 lượt xem</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a href="single.html"><img src="./assets/images/m4.jpg" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a href="single.html" class="title"> Ben-Hur</a>
+              <p class="views">1,314,200 lượt xem</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a href="single.html"><img src="./assets/images/m5.jpg" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a href="single.html" class="title"> You Know His Name</a>
+              <p class="views">1, 299,200 lượt xem</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a href="single.html"><img src="./assets/images/c5.jpg" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a href="single.html" class="title"> Keanu</a>
+              <p class="views">1, 114,244 lượt xem</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a href="single.html"><img src="./assets/images/m6.jpg" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a href="single.html" class="title"> Megchanic</a>
+              <p class="views">914,200 lượt xem</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a href="single.html"><img src="./assets/images/m15.jpg" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a href="single.html" class="title"> Just Believe</a>
+              <p class="views">814,200 lượt xem</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="clearfix"></div>
+    </div>
+    <!-- //movie-browse-agile -->
+    <!--body wrapper start-->
+    <div class="w3_agile_banner_bottom_grid">
+      <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m13.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">Citizen Soldier</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m11.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">X-Men</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m12.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">Greater</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m7.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">Light B/t Oceans</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m8.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">The BFG</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m9.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">Central Intelligence</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m10.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">Don't Think Twice</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m17.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">Peter</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="w3l-movie-gride-agile w3l-movie-gride-agile1">
+            <a href="single.html" class="hvr-shutter-out-horizontal"><img src="./assets/images/m15.jpg"
+                                                                          title="album-name"
+                                                                          class="img-responsive"
+                                                                          alt=" "/>
+              <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
+            </a>
+            <div class="mid-1 agileits_w3layouts_mid_1_home">
+              <div class="w3l-movie-text">
+                <h6><a href="single.html">God’s Compass</a></h6>
+              </div>
+              <div class="mid-2 agile_mid_2_home">
+                <p>2021</p>
+                <div class="block-stars">
+                  <ul class="w3l-ratings">
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                  </ul>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+            </div>
+            <div class="ribben">
+              <p>Mới</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--body wrapper end-->
+
+
+  </div>
+  <!-- //w3l-latest-movies-grids -->
+</div>
+
