@@ -57,15 +57,17 @@ export class LoginComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.login(data.user);
+        this.router.navigateByUrl('/home');
+
       },
       err => {
         this.errorMessage = err.error.message;
+        console.log(this.errorMessage);
+        this.router.navigateByUrl('/login');
+
         this.isLoginFailed = true;
       }
     );
-    if (!this.isLoginFailed){
-      this.router.navigateByUrl('/home');
-    }
   }
 
   login(user): void {
@@ -73,7 +75,7 @@ export class LoginComponent implements OnInit {
     this.isLoginFailed = false;
     this.isLoggedIn = true;
     this.currentUser = this.tokenStorage.getUser();
-    window.location.reload();
+    // window.location.reload();
   }
 
   loginWithGoogle() {
