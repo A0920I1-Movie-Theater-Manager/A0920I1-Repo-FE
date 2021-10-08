@@ -9,6 +9,7 @@ import {GuestModule} from './guest/guest.module';
 import {EmployeeModule} from './employee/employee.module';
 import {AdminModule} from './admin/admin.module';
 import {AppRoutingModule} from './app-routing.module';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {AppRoutingModule} from './app-routing.module';
     GuestModule,
     EmployeeModule,
     AdminModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,334 @@
-<p>movie-add-admin works!</p>
+<div style="margin-right: 0" class="row">
+  <div class="col-md-2 nav_menu">
+    <ul>
+      <li class="nav_menu_title">
+        <i class="fa fa-film" aria-hidden="true"></i>
+        <a href="">Quản Lý Suất Chiếu</a>
+      </li>
+      <li class="nav_menu_title">
+        <i class="fa fa-ticket" aria-hidden="true"></i>
+        <a href="">Quản Lý Đặt Vé</a>
+      </li>
+      <li class="nav_menu_title">
+        <i class="fa fa-users" aria-hidden="true"></i>
+        <a href="">Quản Lý Nhân Viên</a>
+      </li>
+      <li class="nav_menu_title">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <a href="">Quản Lý Phòng Chiếu</a>
+      </li>
+      <li class="nav_menu_title">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        <a href="">Quản Lý Thành Viên</a>
+      </li>
+      <li class="nav_menu_title">
+        <i class="fa fa-video-camera" aria-hidden="true"></i>
+        <a href="">Quản Lý Phim</a>
+      </li>
+      <li class="nav_menu_title">
+        <i class="fa fa-cc-discover" aria-hidden="true"></i>
+        <a href="">Quản Lý Khuyến Mãi</a>
+      </li>
+      <li class="nav_menu_title">
+        <i class="fa fa-bar-chart" aria-hidden="true"></i>
+        <a href="">Thống Kê</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-10 nav_content">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <h1 style="margin-bottom: 40px; margin-right: 180px; color: #FF8D1B;">THÊM MỚI PHIM
+      </h1>
+      <!-- /.content-header -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid ">
+          <div class="card shadow">
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="">
+
+                  <form class="form-horizontal" [formGroup]="createMovie" (ngSubmit)="onSubmit()">
+                    <div class="row" style="padding-bottom: 30px">
+                      <div class="col-sm-8">
+                        <div class="form-group">
+                          <label for="inputNameMovie" class="col-sm-2 control-label">Tên phim <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8">
+                            <input id="inputNameMovie" type="text" class="form-control" formControlName="title"
+                                   placeholder="Nhập tên phim">
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="inputDateStart" class="col-sm-2 control-label">Từ ngày <span class="star">*</span></label>
+                            <mat-form-field appearance="" style="margin-left: 20px">
+                              <mat-label>Choose a date</mat-label>
+                              <input id="inputDateStart" matInput [matDatepicker]="showingFrom" [min]="dateNow" formControlName="showingFrom">
+                              <mat-datepicker-toggle matSuffix [for]="showingFrom"></mat-datepicker-toggle>
+                              <mat-datepicker #showingFrom></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputDateEnd" class="col-sm-2 control-label">Từ ngày <span class="star">*</span></label>
+                          <mat-form-field appearance="" style="margin-left: 20px">
+                            <mat-label>Choose a date</mat-label>
+                            <input id="inputDateEnd" matInput [matDatepicker]="showingTo" [min]="dateNow" formControlName="showingTo">
+                            <mat-datepicker-toggle matSuffix [for]="showingTo"></mat-datepicker-toggle>
+                            <mat-datepicker #showingTo></mat-datepicker>
+                          </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="inputCast" class="col-sm-2 control-label">Diễn viên <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8">
+                            <input id="inputCast" type="text" class="form-control" formControlName="cast"
+                                   placeholder="Nhập diễn viên">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputFilmStudio" class="col-sm-2 control-label">Hãng phim <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8">
+                            <input id="inputFilmStudio" type="text" class="form-control" formControlName="director"
+                                   placeholder="Nhập hãng phim">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputDirector" class="col-sm-2 control-label">Đạo diễn <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8">
+                            <input id="inputDirector" type="text" class="form-control" formControlName=""
+                                   placeholder="Nhập đạo diễn">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputTime" class="col-sm-2 control-label">Thời lượng <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8">
+                            <input id="inputTime" type="number" class="form-control" formControlName="runningTime"
+                                   placeholder="Nhập thời lượng">
+                          </div>
+                        </div>
+                        <div class="form-group" >
+                          <label class="col-sm-2 control-label">Phiên bản <span class="star">*</span></label>
+                          <mat-radio-group aria-label="Select an option" formControlName="is3D">
+                            <mat-radio-button value="1" style="padding: 0 20px">2D</mat-radio-button>
+                            <mat-radio-button value="2">3D</mat-radio-button>
+                          </mat-radio-group>
+                          <mat-form-field appearance="" style="margin-left: 20px">
+                            <mat-label>Giới hạn tuổi <span class="star">*</span></mat-label>
+                            <mat-select formControlName="rated">
+                              <mat-option>1</mat-option>
+                              <mat-option>2</mat-option>
+                              <mat-option>3</mat-option>
+                              <mat-option>4</mat-option>
+                              <mat-option>5</mat-option>
+                              <mat-option>6</mat-option>
+                              <mat-option>7</mat-option>
+                              <mat-option>8</mat-option>
+                              <mat-option>9</mat-option>
+                              <mat-option>10</mat-option>
+                              <mat-option>11</mat-option>
+                              <mat-option>12</mat-option>
+                              <mat-option>13</mat-option>
+                              <mat-option>14</mat-option>
+                              <mat-option>15</mat-option>
+                              <mat-option>16</mat-option>
+                              <mat-option>17</mat-option>
+                              <mat-option>18</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputTrailer" class="col-sm-2 control-label">Trailer <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8">
+                            <input id="inputTrailer" type="text" class="form-control" formControlName="trailer"
+                                   placeholder="Nhập trailer">
+                          </div>
+                        </div>
+                        <div class="form-group row" style="display: flex; flex-direction: column">
+                          <label class="col-sm-2 control-label">Thể loại <span
+                            class="star">*</span></label>
+                          <div >
+                            <div class="col-sm-3 width-checkbox">
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="1">Hành động
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="2">Hài hước
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="3">Lãng mạn
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="4">Tình cảm
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-sm-3 width-checkbox">
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="5">Viễn tưởng
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="6">Chiến tranh
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="7">Kiếm hiệp
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="8">Âm nhạc
+                                </label>
+                              </div>
+                            </div>
+                            <div class="col-sm-3 width-checkbox">
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="9">Hoạt hình
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="10">Kinh dị
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="11">Phiêu lưu
+                                </label>
+                              </div>
+
+                            </div>
+                            <div class="col-sm-3 width-checkbox">
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="12">Võ thuật
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="10">Kinh điển
+                                </label>
+                              </div>
+                              <div class="checkbox-inline">
+                                <label>
+                                  <input type="checkbox" value="11">Tâm lý
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row" style="padding: 10px 0;display: flex">
+                          <label class="col-sm-2 control-label">Phòng chiếu <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8 ">
+                            <select class="form-control" id="cinemaRoom" formControlName="trailer">
+                              <option selected>Vui lòng chọn phòng chiếu!</option>
+                              <ng-container *ngFor="let screen of screenList">
+                                <option value="{{screen.id}}"> {{screen.name}}</option>
+                              </ng-container>
+
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <label class="col-sm-2 control-label">Lịch chiếu <span
+                            class="star">*</span></label>
+                          <div class="add-showtime-form" [formGroup]="formShowtime">
+                            <ng-container formArrayName="showtimes">
+                              <ng-container *ngFor="let showtimeForm of showtimes.controls; let i = index">
+                                <div class="showtime-form row" [formGroup]="showtimeForm">
+                                  <mat-form-field appearance="">
+                                    <input matInput style="margin: 0 100px" placeholder="Nhập giờ chiếu" formControlName="showtime">
+                                  </mat-form-field>
+                                  <mat-icon class="delete-btn" (click)="deleteShowtime(i)">delete_forever</mat-icon>
+                                </div>
+                              </ng-container>
+                            </ng-container>
+                            <div style="margin-left: 50px">
+                              <button mat-mini-fab (click)="addShowtime()">
+                                <mat-icon class="add-course-btn">add</mat-icon>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                          <label for="inputContent" class="col-sm-2 control-label">Nội dung <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8">
+                            <textarea id="inputContent" class="form-control" formControlName="content"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group" style="display: flex">
+                          <label for="employeeId" class="col-sm-2 control-label">Mã NV <span
+                            class="star">*</span></label>
+                          <div class="col-sm-8">
+                            <select class="form-control" id="employeeId" formControlName="accountId">
+                              <option selected>Vui lòng chọn mã nhân viên!</option>
+                              <ng-container *ngFor="let account of accountList">
+                                <option value="{{account.id}}"> {{account.accountCode}}</option>
+                              </ng-container>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="card card-user">
+                          <div class="card-body">
+                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                              <div class="fileinput-new thumbnail img-raised">
+                                <img [src]="getImageUrl()" style="width: 40%;" alt="..." rel="nofollow">
+                              </div>
+                              <div style="margin-left: 30px">
+                                <label for="flim">Chọn ảnh bìa</label>
+                                <input id="flim" type="file" (change)="showImage($event)" accept=".jpg,.jpeg,.png">
+                                <mat-spinner *ngIf="checkUpLoad"></mat-spinner>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row" style="text-align: center">
+                      <div class="col-sm-6" style="text-align: right">
+                        <button type="button" class="btn btn-primary">Quay lại</button>
+                      </div>
+                      <div class="col-sm-1" style="text-align: left">
+                        <button type="submit" class="btn btn-success">Thêm mới</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

@@ -7,10 +7,14 @@ import {RouterModule, Routes} from '@angular/router';
 const sharedRoutes: Routes = [];
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(sharedRoutes)
-  ]
+    declarations: [HeaderComponent, FooterComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(sharedRoutes)
+    ]
 })
 export class SharedModule { }

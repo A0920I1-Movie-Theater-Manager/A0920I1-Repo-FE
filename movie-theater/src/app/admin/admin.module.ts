@@ -18,8 +18,34 @@ import { PromotionAddAdminComponent } from './manage-promotion/promotion-add-adm
 import { PromotionUpdateAdminComponent } from './manage-promotion/promotion-update-admin/promotion-update-admin.component';
 import { PromotionDeleteAdminComponent } from './manage-promotion/promotion-delete-admin/promotion-delete-admin.component';
 import {RouterModule, Routes} from '@angular/router';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../../environments/environment';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {MatIconModule} from '@angular/material/icon';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatNativeDateModule} from "@angular/material/core";
 
-const adminRoutes: Routes = [];
+const adminRoutes: Routes = [
+  {path: 'list-movie', component: MovieListAdminComponent},
+  {path: 'update-movie/:id', component: MovieUpdateAdminComponent},
+  {path: 'create-movie', component: MovieAddAdminComponent},
+];
 
 @NgModule({
   declarations: [
@@ -41,9 +67,35 @@ const adminRoutes: Routes = [];
     PromotionUpdateAdminComponent,
     PromotionDeleteAdminComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(adminRoutes)
-  ]
+    imports: [
+        CommonModule,
+        ToastrModule.forRoot({
+            timeOut: 3000,
+            positionClass: 'toast-top-right',
+            preventDuplicates: false,
+        }),
+        ReactiveFormsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
+        AngularFireAuthModule, // auth
+        AngularFireDatabaseModule,
+        AngularFireStorageModule,
+        MatIconModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        NgxPaginationModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatNativeDateModule,
+        MatDatepickerModule,
+        MatSnackBarModule,
+        HttpClientModule,
+        RouterModule.forChild(adminRoutes),
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatRadioModule
+    ]
 })
 export class AdminModule { }
