@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Account} from '../../../shared/model/entity/Account';
+import {ManagerUserService} from '../../../services/manager-user.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-detail-user',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailUserComponent implements OnInit {
 
-  constructor() { }
+  idMembers: number;
+  membersDetail: Account;
+  page: 1;
 
-  ngOnInit(): void {
+  constructor(private managerUserService: ManagerUserService,
+              private activatedRoute: ActivatedRoute) {
   }
 
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
+      // tslint:disable-next-line:radix
+      this.idMembers = parseInt(paramMap.get('id'));
+      this.managerUserService.findByIdMember(this.idMembers).subscribe((data) => {
+        // @ts-ignore
+        this.membersDetail = data;
+      });
+    });
+  }
 }

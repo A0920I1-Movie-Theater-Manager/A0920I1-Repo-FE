@@ -1,1 +1,12 @@
-<p>delete-user works!</p>
+<h3 style="text-align: center">Xác nhận xóa tài sản !</h3>
+<hr>
+<p class="my-3" style="text-align: center">Bạn chắc chắn muốn xóa tài sản
+  <span class="text-danger font-weight-bold">{{nameMember}}</span> này không !</p><hr>
+<div>
+  <p style="color: darkorange;text-align: center">Thao tác này không thể hoàn lại được !</p>
+</div>
+<div class="justify-content-center text-center">
+  <button (click)="closeDialog()" class="btn btn-primary mr-3">Hủy</button>
+  <button (click)="deleteEquipment()" class="btn btn-danger m-3" >Xóa</button>
+</div>
+
