@@ -6,6 +6,7 @@ import {Screen} from '../shared/model/entity/Screen';
 import {MovieImage} from '../shared/model/entity/MovieImage';
 import {Account} from '../shared/model/entity/Account';
 import {GenreMovie} from '../shared/model/entity/GenreMovie';
+import {Showtime} from '../shared/model/entity/Showtime';
 
 @Injectable({
   providedIn: 'root'
@@ -55,10 +56,19 @@ export class ManagerMovieService {
     return this.httpClient.get<Account[]>(this.API_URL + '/list-employee');
   }
 
-  // HueHV, phương thức thêm lịch chiếu
+  // HueHV, phương thức thêm thể loại
   public addGenreToMovie(genreMovie: GenreMovie): Observable<void>{
     return this.httpClient.post<void>(this.API_URL + '/add-genre', genreMovie);
   }
 
+  // HueHV, phương thức thêm lịch chiếu
+  public addShowtimeMovie(showtime: Showtime): Observable<void>{
+    return this.httpClient.post<void>(this.API_URL + '/add-show-times', showtime);
+  }
+
+  // HueHV, phương thức tìm kiếm movie theo tên
+  public findMovieByName(title: string): Observable<Movie[]>{
+    return this.httpClient.get<Movie[]>(this.API_URL + '/list-movie?title=' + title);
+  }
 
 }

@@ -40,6 +40,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatNativeDateModule} from "@angular/material/core";
+import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
 
 const adminRoutes: Routes = [
   {path: 'list-movie', component: MovieListAdminComponent},
@@ -65,7 +66,8 @@ const adminRoutes: Routes = [
     PromotionListAdminComponent,
     PromotionAddAdminComponent,
     PromotionUpdateAdminComponent,
-    PromotionDeleteAdminComponent
+    PromotionDeleteAdminComponent,
+    NavbarLeftComponent
   ],
     imports: [
         CommonModule,
