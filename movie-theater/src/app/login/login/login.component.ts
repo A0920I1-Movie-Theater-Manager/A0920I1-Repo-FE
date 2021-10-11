@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {AppConstants} from '../../common/app.constants';
-import {AuthService} from '../../services/authe.service';
-import {TokenStorageService} from '../../services/token-storage.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,78 +6,10 @@ import {UserService} from '../../services/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  content: string;
 
-
-  form: any = {};
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  currentUser: any;
-  googleURL = AppConstants.GOOGLE_AUTH_URL;
-  facebookURL = AppConstants.FACEBOOK_AUTH_URL;
-  constructor(private authService: AuthService,
-              private tokenStorage: TokenStorageService,
-              private route: ActivatedRoute,
-              private router: Router,
-              private userService: UserService) {
-  }
+  constructor() { }
 
   ngOnInit(): void {
-    const token: string = this.route.snapshot.queryParamMap.get('token');
-    console.log(token);
-    const error: string = this.route.snapshot.queryParamMap.get('error');
-    if (this.tokenStorage.getToken()) {
-      this.isLoggedIn = true;
-      this.currentUser = this.tokenStorage.getUser();
-    } else if (token) {
-      this.tokenStorage.saveToken(token);
-      this.userService.getCurrentUser().subscribe(
-        data => {
-          console.log(data);
-          this.login(data);
-        },
-        err => {
-          this.errorMessage = err.error.message;
-          this.isLoginFailed = true;
-        }
-      );
-    } else if (error) {
-      this.errorMessage = error;
-      this.isLoginFailed = true;
-    }
-  }
-
-  onSubmit(): void {
-    this.authService.login(this.form).subscribe(
-      data => {
-        this.tokenStorage.saveToken(data.accessToken);
-        this.login(data.user);
-        this.router.navigateByUrl('/home');
-
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        console.log(this.errorMessage);
-        this.router.navigateByUrl('/login');
-
-        this.isLoginFailed = true;
-      }
-    );
-  }
-
-  login(user): void {
-    this.tokenStorage.saveUser(user);
-    this.isLoginFailed = false;
-    this.isLoggedIn = true;
-    this.currentUser = this.tokenStorage.getUser();
-    // window.location.reload();
-  }
-
-  loginWithGoogle() {
-    window.location.href = this.googleURL;
-  }
-  loginWithFacebook() {
-    window.location.href = this.facebookURL;
-
   }
 }

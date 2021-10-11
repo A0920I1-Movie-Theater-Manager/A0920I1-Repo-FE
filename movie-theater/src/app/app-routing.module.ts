@@ -1,19 +1,20 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {LoginModule} from './login/login.module';
-import {HeaderComponent} from './shared/layout/header/header.component';
-import {AppComponent} from './app.component';
+import {LoginnComponent} from './loginn/loginn.component';
+import {HomeComponent} from './home/home.component';
+import {RegisterComponent} from './guest/register/register.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'home', component: HeaderComponent}
+  {path: 'home', component: HomeComponent},
+  { path: 'login', component: LoginnComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    LoginModule
   ],
 
   exports: [RouterModule]

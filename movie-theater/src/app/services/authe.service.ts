@@ -24,4 +24,17 @@ export class AuthService {
   register(user: SignUp): Observable<any> {
     return this.http.post(AppConstants.AUTH_API + 'signup', user, httpOptions);
   }
+
+  checkEmail(email: string): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'check-email', email, httpOptions);
+  }
+
+  checkPhone(phone: any): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'check-phone', phone, httpOptions);
+  }
+
+  checkUsername(username: any): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API + 'check-username', username, httpOptions);
+
+  }
 }

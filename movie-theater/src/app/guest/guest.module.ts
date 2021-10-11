@@ -8,6 +8,9 @@ import { PromotionDetailComponent } from './promotion/promotion-detail/promotion
 import { ShowtimeListComponent } from './showtime-list/showtime-list.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { NotificationRegisterComponent } from './register/notification-register/notification-register.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 const guestRoutes: Routes = [
   {path: 'register' , component: RegisterComponent}
@@ -20,13 +23,16 @@ const guestRoutes: Routes = [
     PromotionComponent,
     PromotionListComponent,
     PromotionDetailComponent,
-    ShowtimeListComponent
+    ShowtimeListComponent,
+    NotificationRegisterComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(guestRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule
   ]
 })
 export class GuestModule { }
