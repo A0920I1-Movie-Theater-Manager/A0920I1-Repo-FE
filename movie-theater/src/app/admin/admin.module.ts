@@ -18,32 +18,45 @@ import { PromotionAddAdminComponent } from './manage-promotion/promotion-add-adm
 import { PromotionUpdateAdminComponent } from './manage-promotion/promotion-update-admin/promotion-update-admin.component';
 import { PromotionDeleteAdminComponent } from './manage-promotion/promotion-delete-admin/promotion-delete-admin.component';
 import {RouterModule, Routes} from '@angular/router';
+import {NgxPaginationModule} from "ngx-pagination";
+import {MatDialogModule} from "@angular/material/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
+import { EmployeeDetailAdminComponent } from './manage-employee/employee-detail-admin/employee-detail-admin.component';
 
 const adminRoutes: Routes = [];
 
 @NgModule({
-  declarations: [
-    ManageEmployeeComponent,
-    EmployeeListAdminComponent,
-    EmployeeAddAdminComponent,
-    EmployeeUpdateAdminComponent,
-    EmployeeDeleteAdminComponent,
-    ManageScreenComponent,
-    ScreenListComponent,
-    SeatDetailComponent,
-    ManageMovieComponent,
-    MovieListAdminComponent,
-    MovieAddAdminComponent,
-    MovieUpdateAdminComponent,
-    ManagePromotionComponent,
-    PromotionListAdminComponent,
-    PromotionAddAdminComponent,
-    PromotionUpdateAdminComponent,
-    PromotionDeleteAdminComponent
-  ],
+    declarations: [
+        ManageEmployeeComponent,
+        EmployeeListAdminComponent,
+        EmployeeAddAdminComponent,
+        EmployeeUpdateAdminComponent,
+        EmployeeDeleteAdminComponent,
+        ManageScreenComponent,
+        ScreenListComponent,
+        SeatDetailComponent,
+        ManageMovieComponent,
+        MovieListAdminComponent,
+        MovieAddAdminComponent,
+        MovieUpdateAdminComponent,
+        ManagePromotionComponent,
+        PromotionListAdminComponent,
+        PromotionAddAdminComponent,
+        PromotionUpdateAdminComponent,
+        PromotionDeleteAdminComponent,
+        EmployeeDetailAdminComponent
+    ],
+    exports: [
+        EmployeeListAdminComponent,
+        EmployeeAddAdminComponent,
+        EmployeeDetailAdminComponent
+    ],
   imports: [
     CommonModule,
-    RouterModule.forChild(adminRoutes)
+    RouterModule.forChild(adminRoutes),
+    NgxPaginationModule,
+    MatDialogModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

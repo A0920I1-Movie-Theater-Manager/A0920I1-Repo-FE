@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "movie-theater"
+    }
+  },
+  "defaultProject": "movie-theater",
+  "cli": {
+    "analytics": false
+  }
 }
