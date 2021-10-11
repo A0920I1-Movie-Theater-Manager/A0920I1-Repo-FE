@@ -1,1 +1,44 @@
-<p>movie-search works!</p>
+<div class="faq">
+  <h4 class="latest-text w3_faq_latest_text w3_latest_text">Phim</h4>
+  <div class="container">
+    <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+      <div id="myTabContent" class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+          <div class="agile-news-table">
+            <div class="w3ls-news-result">
+              <h4>Kết quả : <span>5</span></h4>
+            </div>
+            <table id="table-breakpoint">
+              <thead>
+              <tr>
+                <th>STT</th>
+                <th>Tên phim</th>
+                <th>Năm phát hành</th>
+                <th>Trạng thái</th>
+                <th>Quốc gia</th>
+                <th>Thể loại</th>
+                <th>Đánh giá</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let movie of movies">
+                <td>1</td>
+                <td class="w3-list-img"><a routerLink="movie-detail/{{movie.id}}">
+                  <img [src]="movie.movieImages[0].imageUrl" alt="" width="100px" height="150px"/>
+                  <span>{{movie.title}}</span></a>
+                </td>
+                <td>{{movie.releaseDate | date: 'yyyy'}}</td>
+                <td>Phim đang chiếu</td>
+                <td class="w3-list-info"><a href="genres.html">Anh</a></td>
+                <td class="w3-list-info"><a href="comedy.html">Hài hước, chính kịch</a></td>
+                <td>7.0</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -19,37 +19,59 @@
               </div>
             </div>
 
-            <h4>Thông tin chi tiết</h4>
+            <h4 style="margin: 1em 0">Thông tin chi tiết</h4>
             <!-- start description-->
             <div class="description" style="font-size: 1.2rem">
-              <div class="col-3" style="text-align: center">
+              <div>
                 <img [src]="movie.movieImages[0].imageUrl" alt=""
                      style="height: 350px; width: 250px"/>
               </div>
-              <div class="col-6">
-                <p>Nhà sản xuất: {{movie.production}}</p>
-                <p>Thể loại: Hành Động</p>
-                <p>Đạo diễn: {{movie.director}}</p>
-                <p>Diễn viên: {{movie.cast}}</p>
-                <p>Ngày phát hành: {{movie.releaseDate || 'dd/MM/yyyy'}}</p>
+              <div style="color: #0a0910">
+                <table class="table table-borderless">
+                  <tbody>
+                  <tr>
+                    <th scope="row" style="width: 30%">Nhà sản xuất:</th>
+                    <td>{{movie.production}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Thể loại:</th>
+                    <td *ngFor="let genre of movie.genres">
+                    <span>{{genre.name}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Đạo diễn: </th>
+                    <td>{{movie.director}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Diễn viên: </th>
+                    <td>{{movie.cast}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Ngày phát hành: </th>
+                    <td>{{movie.releaseDate | date: 'dd/MM/yyyy'}}</td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
             <!-- end description-->
 
             <!--chen video-->
-            <h4>Trailer</h4>
+            <h4 style="margin: 2em 0 1em">Trailer</h4>
             <div style="text-align: center;">
-              <iframe width="560" height="315" [src]="urlSafe | safe"
+              <iframe width="560" height="315" [src]="videoURL()"
                       title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
                                         clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowfullscreen></iframe>
             </div>
             <!-- chen video-->
 
-            <h4>Nội dung phim</h4>
+            <h4 style="margin: 2em 0 1em 0">Nội dung phim</h4>
             <div class="w3-agile-news-text">
               <p style="color: #0a0910; font-size: 17px">
-                Bộ phim tiếp theo của vũ trụ điện ảnh Marvel với nhân vật chính là "Bậc Thầy Kung-Fu" Shang-Chi.</p>
+              {{movie.content}}
+              </p>
             </div>
           </div>
         </div>
@@ -111,88 +133,17 @@
 
       <div class="col-md-4 single-right">
         <h3>Phim hay</h3>
-        <div class="single-grid-right">
+        <div class="single-grid-right" *ngFor="let movie of movieTopFives">
           <div class="single-right-grids">
             <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="./assets/images/m1.jpg" alt=""/></a>
+              <a routerLink="/movie-detail/{{movie.id}}"><img [src] = "movie.movieImages[0].imageUrl" alt=""/></a>
             </div>
             <div class="col-md-8 single-right-grid-right">
-              <a href="single.html" class="title"> War dogs</a>
+              <a routerLink="/movie-detail/{{movie.id}}" class="title">{{movie.title}}</a>
               <p class="views">1,614,200 lượt xem</p>
             </div>
             <div class="clearfix"></div>
           </div>
-          <div class="single-right-grids">
-            <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="./assets/images/m2.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-8 single-right-grid-right">
-              <a href="single.html" class="title"> Bad Moms</a>
-              <p class="views">1,510,200 lượt xem </p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="single-right-grids">
-            <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="./assets/images/m3.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-8 single-right-grid-right">
-              <a href="single.html" class="title"> Tarzan</a>
-              <p class="views">1,499,200 lượt xem</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="single-right-grids">
-            <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="./assets/images/m4.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-8 single-right-grid-right">
-              <a href="single.html" class="title"> Ben-Hur</a>
-              <p class="views">1,314,200 lượt xem</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="single-right-grids">
-            <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="./assets/images/m5.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-8 single-right-grid-right">
-              <a href="single.html" class="title"> You Know His Name</a>
-              <p class="views">1, 299,200 lượt xem</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="single-right-grids">
-            <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="./assets/images/c5.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-8 single-right-grid-right">
-              <a href="single.html" class="title"> Keanu</a>
-              <p class="views">1, 114,244 lượt xem</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="single-right-grids">
-            <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="./assets/images/m6.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-8 single-right-grid-right">
-              <a href="single.html" class="title"> Megchanic</a>
-              <p class="views">914,200 lượt xem</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-          <div class="single-right-grids">
-            <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="./assets/images/m15.jpg" alt=""/></a>
-            </div>
-            <div class="col-md-8 single-right-grid-right">
-              <a href="single.html" class="title"> Just Believe</a>
-              <p class="views">814,200 lượt xem</p>
-            </div>
-            <div class="clearfix"></div>
-          </div>
-
         </div>
       </div>
 

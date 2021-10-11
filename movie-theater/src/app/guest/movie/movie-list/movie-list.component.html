@@ -41,11 +41,18 @@
             <ng-container *ngFor="let movie of movieShowings">
               <ng-template carouselSlide>
                 <a class="hvr-shutter-out-horizontal">
-                  <img [src]="movie.movieImages[0].imageUrl" style="height: 300px; width: auto">
+                  <a routerLink="/movie-detail/{{movie.id}}">
+                    <img [src]="movie.movieImages[0].imageUrl" style="height: 300px; width: auto">
+                  </a>
+
                   <button class="btn-on-image-left">Đặt vé</button>
-                  <a routerLink="/movie-detail/{{movie.id}}"><button class="btn-on-image-right">Chi tiết</button></a>
+                  <a routerLink="/movie-detail/{{movie.id}}">
+                    <button class="btn-on-image-right">Chi tiết</button>
+                  </a>
                 </a>
-                <p>{{movie.title}}</p>
+                <a routerLink="/movie-detail/{{movie.id}}">
+                  <p>{{movie.title}}</p>
+                </a>
               </ng-template>
               <div class="clearfix"></div>
             </ng-container>
@@ -70,37 +77,31 @@
       </ul>
       <div id="myTabContent" class="tab-content">
         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
-          <div class="w3_agile_featured_movies">
+          <div class="w3_agile_featured_movies" *ngFor="let movie of movieTopFives; let i = index">
             <div class="col-md-2 w3l-movie-gride-agile">
-              <a href="single.html" class="hvr-shutter-out-horizontal">
-                <img src="/assets/images/m15.jpg" title="album-name" class="img-responsive" alt=" "/>
+              <a href="#" class="hvr-shutter-out-horizontal">
+                <a routerLink="/movie-detail/{{movie.id}}">
+                  <img [src]="movie.movieImages[0].imageUrl" title="album-name" class="img-responsive" alt=" "/>
+                </a>
                 <button class="btn-on-image-left">Đặt vé</button>
-                <button class="btn-on-image-right">Chi tiết</button>
+                <a routerLink="/movie-detail/{{movie.id}}">
+                  <button class="btn-on-image-right">Chi tiết</button>
+                </a>
               </a>
               <div class="mid-1 agileits_w3layouts_mid_1_home">
                 <div class="w3l-movie-text">
-                  <h6><a href="single.html">God's a</a></h6>
+                  <h6><a routerLink="/movie-detail/{{movie.id}}">{{movie.title}}</a></h6>
                 </div>
-                <div class="mid-2 agile_mid_2_home">
-                  <p>2021</p>
-                  <div class="block-stars">
-                    <ul class="w3l-ratings">
-                      <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                      <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                      <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                      <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                      <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="clearfix"></div>
+                <div class="mid-2 agile_mid_2_home" style="align-content: center">
+                  <p>{{movie.releaseDate | date: 'yyyy'}}</p>
                 </div>
+                <div class="clearfix"></div>
+
               </div>
               <div class="ribben">
-                <p>1</p>
+                <p>{{i + 1}}</p>
               </div>
             </div>
-            <div class="clearfix"></div>
           </div>
         </div>
       </div>
@@ -117,50 +118,57 @@
       <ng-container *ngFor="let movie of movieComings">
         <ng-template carouselSlide>
           <a class="hvr-shutter-out-horizontal">
-            <img [src]="movie.movieImages[0].imageUrl" style="height: 300px; width: auto">
+            <a routerLink="/movie-detail/{{movie.id}}">
+              <img [src]="movie.movieImages[0].imageUrl" style="height: 300px; width: auto">
+            </a>
             <button class="btn-on-image-left">Đặt vé</button>
-            <a routerLink="/movie-detail/{{movie.id}}"><button class="btn-on-image-right">Chi tiết</button></a>
+            <a routerLink="/movie-detail/{{movie.id}}">
+              <button class="btn-on-image-right">Chi tiết</button>
+            </a>
           </a>
-          <p>{{movie.title}}</p>
+          <a routerLink="/movie-detail/{{movie.id}}">
+            <p>{{movie.title}}</p>
+          </a>
         </ng-template>
         <div class="clearfix"></div>
       </ng-container>
     </owl-carousel-o>
-<!-- //PHIM SAP CHIEU -->
+    <!-- //PHIM SAP CHIEU -->
 
 
-<!-- Bootstrap Core JavaScript -->
-<script src="/assets/js/bootstrap.min.js"></script>
-<script>
-  $(document).ready(function () {
-    $(".dropdown").hover(
-      function () {
-        $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-        $(this).toggleClass('open');
-      },
-      function () {
-        $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-        $(this).toggleClass('open');
-      }
-    );
-  });
-</script>
-<!-- //Bootstrap Core JavaScript -->
-<!-- here stars scrolling icon -->
-<script type="text/javascript">
-  $(document).ready(function () {
-    /*
-        var defaults = {
-        containerID: 'toTop', // fading element id
-        containerHoverID: 'toTopHover', // fading element hover id
-        scrollSpeed: 1200,
-        easingType: 'linear'
-        };
-    */
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".dropdown").hover(
+          function () {
+            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+            $(this).toggleClass('open');
+          },
+          function () {
+            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+            $(this).toggleClass('open');
+          }
+        );
+      });
+    </script>
+    <!-- //Bootstrap Core JavaScript -->
+    <!-- here stars scrolling icon -->
+    <script type="text/javascript">
+      $(document).ready(function () {
+        /*
+            var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+            };
+        */
 
-    $().UItoTop({easingType: 'easeOutQuart'});
+        $().UItoTop({easingType: 'easeOutQuart'});
 
-  });
-</script>
-<!-- //here ends scrolling icon -->
-
+      });
+    </script>
+    <!-- //here ends scrolling icon -->
+  </div>
+</div>

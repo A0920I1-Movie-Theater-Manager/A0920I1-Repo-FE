@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const sharedRoutes: Routes = [];
 
@@ -14,7 +17,10 @@ const sharedRoutes: Routes = [];
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(sharedRoutes)
+    RouterModule.forChild(sharedRoutes),
+    FormsModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule
   ]
 })
 export class SharedModule { }

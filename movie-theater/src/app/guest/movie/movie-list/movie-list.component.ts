@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MovieService} from '../../../services/movie.service';
 import {Movie} from '../../../shared/model/entity/Movie';
 import {OwlOptions} from 'ngx-owl-carousel-o';
+import {JsogService, JsonProperty} from 'jsog-typescript';
+import {Class} from 'jsog-typescript/dist/support/Class';
+
 
 @Component({
   selector: 'app-movie-list',
@@ -9,18 +12,25 @@ import {OwlOptions} from 'ngx-owl-carousel-o';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
-  constructor(private movieService: MovieService) { }
-  movieShowings: Movie[];
-  movieComings: Movie[];
+  constructor(private movieService: MovieService,
+              private jsog: JsogService) {
+  }
 
-  customOptions: OwlOptions  = {
+  movieShowings: Movie[] = [];
+  movieComings: Movie[];
+  movieTopFives: Movie[];
+  movieSearches: Movie[];
+  keyword = '';
+
+  customOptions: OwlOptions = {
+    merge: true,
     center: true,
     autoplay: true,
     loop: true,
     mouseDrag: false,
     touchDrag: false,
     pullDrag: false,
-    dots: false,
+    dots: true,
     navSpeed: 700,
     navText: ['', ''],
     // margin: 20,
@@ -37,19 +47,19 @@ export class MovieListComponent implements OnInit {
       940: {
         items: 4
       }
-    },
-    nav: true
+    }
   };
+
   ngOnInit(): void {
-    this.movieService.getAllMovie().subscribe(data => {
-      Object.keys(data).forEach(key => {
-        if (key === 'movieShowings'){
-          this.movieShowings = data[key];
-        }else if (key === 'movieComings') {
-          this.movieComings = data[key];
-        }
-      });
+    this.movieService.getMovieShowing().subscribe(data => {
+      this.movieShowings = this.jsog.deserializeArray(data, Movie);
       // console.log(this.movieShowings);
+    });
+    this.movieService.getMovieComingSoon().subscribe(data => {
+      this.movieComings = this.jsog.deserializeArray(data, Movie);
+    });
+    this.movieService.getMovieTopFive().subscribe(data => {
+      this.movieTopFives = this.jsog.deserializeArray(data, Movie);
     });
   }
 }

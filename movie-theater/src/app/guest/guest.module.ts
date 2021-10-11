@@ -14,10 +14,12 @@ import { MovieDetailComponent } from './movie/movie-detail/movie-detail.componen
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {CarouselModule} from 'ngx-owl-carousel-o';
+import {JsogService} from 'jsog-typescript';
 
 const guestRoutes: Routes = [
   {path: 'home', component: MovieListComponent},
-  {path: 'movie-detail/:id', component: MovieDetailComponent}
+  {path: 'movie-detail/:id', component: MovieDetailComponent},
+  {path: 'movie-search', component: MovieSearchComponent}
 ];
 
 @NgModule({
@@ -35,10 +37,13 @@ const guestRoutes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(guestRoutes),
     BrowserAnimationsModule,
     HttpClientModule,
-    CarouselModule
+    CarouselModule,
+    RouterModule.forChild(guestRoutes)
+  ],
+  providers: [
+    JsogService
   ]
 })
 export class GuestModule { }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {MovieService} from '../../../services/movie.service';
+import {Movie} from '../../../shared/model/entity/Movie';
+import {JsogService} from 'jsog-typescript';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-movie-search',
@@ -6,10 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie-search.component.css']
 })
 export class MovieSearchComponent implements OnInit {
-
-  constructor() { }
+  movies: Movie[];
+  keyword: string;
+  constructor(private movieService: MovieService, private jsog: JsogService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.keyword = this.activatedRoute.snapshot.queryParams.keyword;
+    console.log(this.keyword);
+    this.movieService.searchMovie(this.keyword).subscribe(data => {
+      this.movies = this.jsog.deserializeArray(data, Movie);
+    });
   }
 
 }
