@@ -16,7 +16,7 @@
               <div class="table-responsive">
                 <div class="">
 
-                  <form class="form-horizontal" [formGroup]="createMovie" (ngSubmit)="onSubmit()">
+                  <form class="form-horizontal" [formGroup]="createMovie" (ngSubmit)="onSubmitCreate()">
                     <div class="row" style="padding-bottom: 30px">
                       <div class="col-sm-8">
                         <div class="form-group">
@@ -24,7 +24,7 @@
                             class="star">*</span></label>
                           <div class="col-sm-8">
                             <input id="inputNameMovie" type="text" class="form-control" formControlName="title"
-                                   placeholder="Nhập tên phim">
+                                   placeholder="Nhập tên phim" (change)="getIdMovieByName(createMovie.get('title'))">
                             <ng-container *ngFor="let validation of validation_messages.title">
                               <small class="form-text text-danger"
                                      *ngIf="createMovie.get('title').hasError(validation.type)&&(createMovie.get('title').dirty || createMovie.get('title').touched)">
@@ -36,7 +36,7 @@
 
                         <div class="form-group row" style="display: flex; align-items: center">
                             <label for="inputDateStart" class="col-sm-2 control-label">Từ ngày <span class="star">*</span></label>
-                          <mat-form-field appearance="" style="margin-left: 20px; width: 60%">
+                          <mat-form-field appearance="" style=" width: 60%">
                               <mat-label>Chọn ngày bắt đầu</mat-label>
                               <input id="inputDateStart" matInput [matDatepicker]="showingFrom" [min]="dateNow" formControlName="showingFrom">
                               <mat-datepicker-toggle matSuffix [for]="showingFrom"></mat-datepicker-toggle>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group row" style="display: flex; align-items: center">
                           <label for="inputDateEnd" class="col-sm-2 control-label">Đến ngày <span class="star">*</span></label>
-                          <mat-form-field appearance="" style="margin-left: 20px; width: 60%">
+                          <mat-form-field appearance="" style=" width: 60%">
                             <mat-label>Chọn ngày kết thúc</mat-label>
                             <input id="inputDateEnd" matInput [matDatepicker]="showingTo" [min]="dateNow" formControlName="showingTo">
                             <mat-datepicker-toggle matSuffix [for]="showingTo"></mat-datepicker-toggle>
@@ -180,108 +180,15 @@
                         <div class="form-group row" style="display: flex; flex-direction: column">
                           <label class="col-sm-2 control-label">Thể loại <span
                             class="star">*</span></label>
-                          <div >
-                            <div class="col-sm-3 width-checkbox">
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="1">Hành động
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="2">Hài hước
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="3">Lãng mạn
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="4">Tình cảm
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-3 width-checkbox">
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="5">Viễn tưởng
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="6">Chiến tranh
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="7">Kiếm hiệp
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="8">Âm nhạc
-                                </label>
-                              </div>
-                            </div>
-                            <div class="col-sm-3 width-checkbox">
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="9">Hoạt hình
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="10">Kinh dị
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="11">Phiêu lưu
-                                </label>
-                              </div>
-
-                            </div>
-                            <div class="col-sm-3 width-checkbox">
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="12">Võ thuật
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="10">Kinh điển
-                                </label>
-                              </div>
-                              <div class="checkbox-inline">
-                                <label>
-                                  <input type="checkbox" value="11">Tâm lý
-                                </label>
-                              </div>
-                            </div>
+                          <div class="" style="padding-left: 150px">
+                            <ng-container *ngFor="let genre of genreList; let i = index" formArrayName="genres">
+                              <label>
+                                <input type="checkbox" [value]="genre.id" (change)="onCheckChange($event)">{{genre.name}}
+                              </label>
+                            </ng-container>
                           </div>
-<!--                          <ng-container *ngFor="let validation of validation_messages.floors">-->
-<!--                            <small class="form-text text-danger"-->
-<!--                                   *ngIf="createMovie.get('floors').hasError(validation.type)&&(createMovie.get('floors').dirty || createMovie.get('floors').touched)">-->
-<!--                              {{validation.message}}-->
-<!--                            </small>-->
-<!--                          </ng-container>-->
                         </div>
-<!--                        <div class="row" style="padding: 10px 0;display: flex">-->
-<!--                          <label class="col-sm-2 control-label">Phòng chiếu <span-->
-<!--                            class="star">*</span></label>-->
-<!--                          <div class="col-sm-8 ">-->
-<!--                            <select class="form-control" id="cinemaRoom" >-->
-<!--                              <option selected>Vui lòng chọn phòng chiếu!</option>-->
-<!--                              <ng-container *ngFor="let screen of screenList">-->
-<!--                                <option value="{{screen.id}}"> {{screen.name}}</option>-->
-<!--                              </ng-container>-->
-
-<!--                            </select>-->
-<!--                          </div>-->
-<!--                        </div>-->
-                        <div class="row" style="display: flex; align-items: center">
+                        <div class="row" style="display: flex; align-items: center; flex-wrap: wrap">
                             <label for="inputReleaseDate" class="col-sm-2 control-label">Lịch chiếu <span class="star">*</span></label>
                             <mat-form-field appearance="" style="margin-left: 20px; width: 60%">
                               <mat-label>Chọn ngày khởi chiếu</mat-label>
@@ -295,25 +202,31 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
-                          <div class="add-showtime-form" [formGroup]="formShowtime">
-                            <ng-container formArrayName="showtimes">
-                              <ng-container *ngFor="let showtimeForm of showtimes.controls; let i = index">
-                                <div class="showtime-form row" [formGroup]="showtimeForm">
-                                  <mat-form-field appearance="" style="margin-left:40px">
-                                    <input matInput placeholder="Nhập giờ chiếu (hh:mm:ss)" formControlName="showtime" width="200px">
-                                  </mat-form-field>
-                                  <mat-icon class="delete-btn" (click)="deleteShowtime(i)">delete_forever</mat-icon>
-                                </div>
+                          <div class="row">
+                            <div class="add-showtime-form" >
+                              <ng-container formArrayName="showtimes">
+                                <ng-container *ngFor="let showtimeForms of showtimes.controls; let i = index">
+                                  <div class="showtime-form row" [formGroup]="showtimeForms">
+                                    <mat-form-field appearance="" >
+                                      <input matInput placeholder="Nhập giờ chiếu (hh:mm:ss)" formControlName="showtime" width="300px">
+                                    </mat-form-field>
+                                    <mat-form-field style="margin-left: 30px">
+                                      <mat-select formControlName="price">
+                                        <mat-option *ngFor="let price of priceList" [value]="price.id">{{price.price}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
+                                    <mat-icon class="delete-btn" (click)="deleteShowtime(i)">delete_forever</mat-icon>
+                                  </div>
+                                </ng-container>
                               </ng-container>
-                            </ng-container>
-                            <div style="margin-left: 50px">
-                              <button type="button" mat-mini-fab (click)="addShowtime()">
-                                <mat-icon class="add-course-btn">add</mat-icon>
-                              </button>
+                              <div style="margin-left: 50px;">
+                                <button type="button" mat-mini-fab (click)="addShowtime()">
+                                  <mat-icon class="add-course-btn">add</mat-icon>
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
-
 
 
                         <div class="form-group">
@@ -352,21 +265,25 @@
                         <div class="card card-user" style="height: 40%">
                           <div class="card-body">
                             <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                              <div class="fileinput-new thumbnail img-raised">
-                                <img [src]="getImageUrl()" style="width: 40%;" alt="..." rel="nofollow">
-                              </div>
-<!--                              <ng-container *ngFor="let validation of validation_messages.imageUrl">-->
-<!--                                <small class="form-text text-danger"-->
-<!--                                       *ngIf="createMovie.get('imageUrl').hasError(validation.type)&&(createMovie.get('imageUrl').dirty || createMovie.get('imageUrl').touched)">-->
-<!--                                  {{validation.message}}-->
-<!--                                </small>-->
-<!--                              </ng-container>-->
-                              <div style="margin-left: 30px">
-                                <label for="flim">Chọn ảnh bìa</label>
-                                <input id="flim" type="file" (change)="showImage($event)" accept=".jpg,.jpeg,.png">
-                                <mat-spinner *ngIf="checkUpLoad"></mat-spinner>
-                              </div>
-
+                              <ng-container formArrayName="imageUrls">
+                                <div class="fileinput-new thumbnail img-raised">
+                                    <img *ngFor="let image of imageUrl; let i = index" [src]="image" style="width: 40%; padding: 10px 0; border: 2px solid darkgoldenrod" alt="..." rel="nofollow">
+<!--                                    <button type="button" mat-mini-fab (click)="deleteImage(i)">-->
+<!--                                      <mat-icon class="delete-btn">remove_circle_outline</mat-icon>-->
+<!--                                    </button>-->
+                                </div>
+                                <div style="margin-left: 30px">
+                                  <label for="flim">Chọn ảnh bìa</label>
+                                  <input id="flim" type="file" (change)="selectFiles($event)" accept=".jpg,.jpeg,.png" multiple>
+                                  <mat-spinner *ngIf="checkUpLoad"></mat-spinner>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngFor="let validation of validation_messages.imageUrl">
+                                <small class="form-text text-danger"
+                                       *ngIf="imageUrl[1] == null">
+                                  {{validation.message}}
+                                </small>
+                              </ng-container>
                             </div>
                           </div>
                         </div>
@@ -378,7 +295,7 @@
                         <button type="button" class="btn btn-primary">Quay lại</button>
                       </div>
                       <div class="col-sm-1" style="text-align: left">
-                        <button type="submit" class="btn btn-success">Thêm mới</button>
+                        <input type="submit" class="btn btn-success" value="Thêm mới">
                       </div>
                     </div>
                   </form>

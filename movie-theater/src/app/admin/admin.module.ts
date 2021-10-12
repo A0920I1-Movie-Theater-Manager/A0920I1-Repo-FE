@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ManageEmployeeComponent } from './manage-employee/manage-employee.component';
 import { EmployeeListAdminComponent } from './manage-employee/employee-list-admin/employee-list-admin.component';
 import { EmployeeAddAdminComponent } from './manage-employee/employee-add-admin/employee-add-admin.component';
@@ -39,8 +38,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatNativeDateModule} from "@angular/material/core";
+import {MatNativeDateModule} from '@angular/material/core';
 import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
+import {BrowserModule} from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 const adminRoutes: Routes = [
   {path: 'list-movie', component: MovieListAdminComponent},
@@ -83,6 +84,7 @@ const adminRoutes: Routes = [
         AngularFireDatabaseModule,
         AngularFireStorageModule,
         MatIconModule,
+        BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
         NgxPaginationModule,

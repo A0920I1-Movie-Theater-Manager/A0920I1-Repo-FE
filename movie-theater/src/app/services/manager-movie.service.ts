@@ -7,6 +7,8 @@ import {MovieImage} from '../shared/model/entity/MovieImage';
 import {Account} from '../shared/model/entity/Account';
 import {GenreMovie} from '../shared/model/entity/GenreMovie';
 import {Showtime} from '../shared/model/entity/Showtime';
+import {Genre} from '../shared/model/entity/Genre';
+import {Price} from '../shared/model/entity/Price';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +71,21 @@ export class ManagerMovieService {
   // HueHV, phương thức tìm kiếm movie theo tên
   public findMovieByName(title: string): Observable<Movie[]>{
     return this.httpClient.get<Movie[]>(this.API_URL + '/list-movie?title=' + title);
+  }
+
+  // HueHV, laays id movie theo title
+  public getIdMovieByTitle(title: string):Observable<Movie> {
+    return this.httpClient.get<Movie>(this.API_URL + '/get-id?title= ' + title);
+  }
+
+  // HueHV
+  public getAllListGenre(): Observable<Genre[]>{
+    return this.httpClient.get<Genre[]>(this.API_URL + '/list-genre');
+  }
+
+  // HueHV
+  public getAllListPrice(): Observable<Price[]>{
+    return this.httpClient.get<Price[]>(this.API_URL + '/list-price');
   }
 
 }

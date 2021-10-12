@@ -9,13 +9,14 @@ import {GuestModule} from './guest/guest.module';
 import {EmployeeModule} from './employee/employee.module';
 import {AdminModule} from './admin/admin.module';
 import {AppRoutingModule} from './app-routing.module';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     UserModule,
     SharedModule,
@@ -24,7 +25,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     EmployeeModule,
     AdminModule,
     AppRoutingModule,
-    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
