@@ -3,7 +3,6 @@ import {MovieService} from '../../../services/movie.service';
 import {Movie} from '../../../shared/model/entity/Movie';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {JsogService, JsonProperty} from 'jsog-typescript';
-import {Class} from 'jsog-typescript/dist/support/Class';
 
 
 @Component({
@@ -19,8 +18,6 @@ export class MovieListComponent implements OnInit {
   movieShowings: Movie[] = [];
   movieComings: Movie[];
   movieTopFives: Movie[];
-  movieSearches: Movie[];
-  keyword = '';
 
   customOptions: OwlOptions = {
     merge: true,
@@ -50,15 +47,44 @@ export class MovieListComponent implements OnInit {
     }
   };
 
+  customBanner: OwlOptions = {
+    merge: true,
+    center: true,
+    autoplay: true,
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    navSpeed: 700,
+    navText: ['<<', '>>' ],
+    // margin: 20,
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 4
+      }
+    }
+  };
+
   ngOnInit(): void {
     this.movieService.getMovieShowing().subscribe(data => {
+      // @ts-ignore
       this.movieShowings = this.jsog.deserializeArray(data, Movie);
-      // console.log(this.movieShowings);
     });
     this.movieService.getMovieComingSoon().subscribe(data => {
+      // @ts-ignore
       this.movieComings = this.jsog.deserializeArray(data, Movie);
     });
     this.movieService.getMovieTopFive().subscribe(data => {
+      // @ts-ignore
       this.movieTopFives = this.jsog.deserializeArray(data, Movie);
     });
   }

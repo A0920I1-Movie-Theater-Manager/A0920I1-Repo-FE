@@ -1,6 +1,7 @@
 import {AccountRole} from './AccountRole';
 import {Comment} from './Comment';
 import {JsonProperty} from 'jsog-typescript';
+import {MovieShowtime} from './MovieShowtime';
 
 export class Account {
   id: number;

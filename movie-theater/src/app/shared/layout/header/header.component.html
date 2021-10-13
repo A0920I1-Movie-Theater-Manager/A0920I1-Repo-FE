@@ -22,7 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         [(ngModel)]="keyword" (ngModelChange)="suggestMovie()" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let movie of movieSearches" [value]="movie.title">
-            {{movie.title}}
+            {{movie.title | titlecase}}
           </mat-option>
         </mat-autocomplete>
         <input type="submit" value="Tìm" (click)="searchMovie()">
@@ -58,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <ul class="nav navbar-nav">
             <li><a routerLink="home">Trang chủ</a></li>
             <li><a href="#">Mua vé</a></li>
-            <li><a href="#">Sự kiện</a></li>
+            <li><a href="./event.html">Sự kiện</a></li>
             <li><a href="#">Góc điện ảnh</a></li>
             <li><a href="#">Thành viên</a></li>
             <li><a href="#">Giá vé</a></li>

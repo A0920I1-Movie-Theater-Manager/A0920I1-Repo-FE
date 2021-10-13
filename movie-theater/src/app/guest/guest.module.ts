@@ -15,11 +15,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {JsogService} from 'jsog-typescript';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 const guestRoutes: Routes = [
   {path: 'home', component: MovieListComponent},
   {path: 'movie-detail/:id', component: MovieDetailComponent},
-  {path: 'movie-search', component: MovieSearchComponent}
+  {path: 'movie-search', component: MovieSearchComponent},
 ];
 
 @NgModule({
@@ -40,7 +42,8 @@ const guestRoutes: Routes = [
     BrowserAnimationsModule,
     HttpClientModule,
     CarouselModule,
-    RouterModule.forChild(guestRoutes)
+    RouterModule.forChild(guestRoutes),
+    MatIconModule
   ],
   providers: [
     JsogService

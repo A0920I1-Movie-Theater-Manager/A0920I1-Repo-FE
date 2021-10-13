@@ -15,24 +15,28 @@ export class MovieService {
 
   constructor(private httpClient: HttpClient) {
   }
-  // TuHC
+  // TuHC - lay phim dang chieu
   public getMovieShowing(): Observable<any>{
     return this.httpClient.get(this.MOVIE_URL + '/movie-showing');
   }
-  // TuHC
+  // TuHC - lay phim sap chieu
   public getMovieComingSoon(): Observable<any>{
     return this.httpClient.get(this.MOVIE_URL + '/movie-coming');
   }
-  // TuHC
+  // TuHC - lay phim top 5
   public getMovieTopFive(): Observable<any>{
     return this.httpClient.get(this.MOVIE_URL + '/movie-top5');
   }
-  // TuHC
+  // TuHC - chi tiet phim
   public getDetailMovie(id: number): Observable<any>{
     return this.httpClient.get(this.MOVIE_URL + '/detail-movie/' + id);
   }
-  // TuHC
+  // TuHC - search phim
   public searchMovie(keyword: string): Observable<any>{
     return this.httpClient.get(this.MOVIE_URL + '/search-movie?keyword=' + keyword);
+  }
+//  TuHC - lay comment cua 1 bo phim
+  public getCommentByMovieId(id: number): Observable<any>{
+    return this.httpClient.get(this.MOVIE_URL + '/get-comment/' + id);
   }
 }

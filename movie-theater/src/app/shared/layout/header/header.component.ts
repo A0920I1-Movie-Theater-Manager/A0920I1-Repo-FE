@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   }
   suggestMovie(){
     this.movieService.searchMovie(this.keyword).subscribe(data => {
+      // @ts-ignore
       this.movieSearches = this.jsog.deserializeArray(data, Movie);
     });
   }

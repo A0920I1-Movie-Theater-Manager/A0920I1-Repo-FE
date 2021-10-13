@@ -4,9 +4,9 @@
     <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
       <div id="myTabContent" class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-          <div class="agile-news-table">
-            <div class="w3ls-news-result">
-              <h4>Kết quả : <span>5</span></h4>
+          <div class="agile-news-table" *ngIf="movies?.length > 0">
+            <div class="w3ls-news-result" style="margin-bottom: 2em">
+              <h4>Kết quả : <span>{{movies?.length}}</span></h4>
             </div>
             <table id="table-breakpoint">
               <thead>
@@ -14,31 +14,36 @@
                 <th>STT</th>
                 <th>Tên phim</th>
                 <th>Năm phát hành</th>
-                <th>Trạng thái</th>
-                <th>Quốc gia</th>
+                <th>Đạo diễn</th>
+                <th>Diễn viên</th>
                 <th>Thể loại</th>
                 <th>Đánh giá</th>
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let movie of movies">
-                <td>1</td>
-                <td class="w3-list-img"><a routerLink="movie-detail/{{movie.id}}">
+              <tr *ngFor="let movie of movies; let i = index">
+                <td>{{i + 1}}</td>
+                <td class="w3-list-img"><a routerLink="/movie-detail/{{movie.id}}" style="color: inherit">
                   <img [src]="movie.movieImages[0].imageUrl" alt="" width="100px" height="150px"/>
-                  <span>{{movie.title}}</span></a>
+                  <br><br>
+                  <span style="font-size: medium; font-weight: bold">{{movie.title | titlecase}}</span></a>
                 </td>
                 <td>{{movie.releaseDate | date: 'yyyy'}}</td>
-                <td>Phim đang chiếu</td>
-                <td class="w3-list-info"><a href="genres.html">Anh</a></td>
-                <td class="w3-list-info"><a href="comedy.html">Hài hước, chính kịch</a></td>
+                <td>{{movie.director}}</td>
+                <td class="w3-list-info" width="20%">{{movie.cast}}</td>
+                <td class="w3-list-info" *ngFor="let genre of movie.genres">
+                  <span>{{genre.name}}</span>
+                </td>
                 <td>7.0</td>
               </tr>
               </tbody>
             </table>
+          </div>
+          <div class="agile-news-table" *ngIf="movies?.length == null">
+            <p>Không tìm thấy kết quả tìm kiếm</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-

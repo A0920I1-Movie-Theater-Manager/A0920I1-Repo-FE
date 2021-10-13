@@ -19,6 +19,7 @@ export class MovieSearchComponent implements OnInit {
     this.keyword = this.activatedRoute.snapshot.queryParams.keyword;
     console.log(this.keyword);
     this.movieService.searchMovie(this.keyword).subscribe(data => {
+      // @ts-ignore
       this.movies = this.jsog.deserializeArray(data, Movie);
     });
   }

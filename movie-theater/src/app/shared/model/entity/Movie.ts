@@ -3,6 +3,8 @@ import {Comment} from './Comment';
 import {MovieImage} from './MovieImage';
 import {Showtime} from './Showtime';
 import {Genre} from './Genre';
+import {JsonProperty} from 'jsog-typescript';
+import {Class} from 'jsog-typescript/dist/support/Class';
 
 export class Movie {
   id: number;

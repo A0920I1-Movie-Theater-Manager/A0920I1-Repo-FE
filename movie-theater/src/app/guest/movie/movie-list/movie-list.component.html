@@ -1,33 +1,23 @@
 <!--slide-->
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
+<owl-carousel-o [options]="customBanner">
+      <ng-template carouselSlide [dataMerge]=5>
+        <img src="./assets/images/kingsman.png">
+      </ng-template>
+      <ng-template carouselSlide [dataMerge]=5>
+        <img src="./assets/images/lotte.png">
+      </ng-template>
+      <ng-template carouselSlide [dataMerge]=5>
+        <img src="./assets/images/venom.png">
+      </ng-template>
+      <ng-template carouselSlide [dataMerge]=5>
+        <img src="./assets/images/eternal.png">
+      </ng-template>
+      <ng-template carouselSlide [dataMerge]=5>
+        <img src="./assets/images/lotte.png">
+      </ng-template>
+    <div class="clearfix"></div>
+</owl-carousel-o>
 
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="/assets/images/venom.png" alt="Venom">
-    </div>
-
-    <div class="item">
-      <img src="/assets/images/kingsman.png" alt="Kingsman">
-    </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#carouselExampleIndicators" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carouselExampleIndicators" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 <!--//slide-->
 
 <!-- PHIM DANG CHIEU -->
@@ -50,8 +40,8 @@
                     <button class="btn-on-image-right">Chi tiết</button>
                   </a>
                 </a>
-                <a routerLink="/movie-detail/{{movie.id}}">
-                  <p>{{movie.title}}</p>
+                <a routerLink="/movie-detail/{{movie.id}}" style="color: inherit">
+                  <h3>{{movie.title | titlecase}}</h3>
                 </a>
               </ng-template>
               <div class="clearfix"></div>
@@ -90,10 +80,7 @@
               </a>
               <div class="mid-1 agileits_w3layouts_mid_1_home">
                 <div class="w3l-movie-text">
-                  <h6><a routerLink="/movie-detail/{{movie.id}}">{{movie.title}}</a></h6>
-                </div>
-                <div class="mid-2 agile_mid_2_home" style="align-content: center">
-                  <p>{{movie.releaseDate | date: 'yyyy'}}</p>
+                  <h3><a routerLink="/movie-detail/{{movie.id}}" style="color: inherit">{{movie.title | titlecase}}</a></h3>
                 </div>
                 <div class="clearfix"></div>
 
@@ -114,7 +101,7 @@
 <div class="Latest-tv-series">
   <h4 class="latest-text w3_latest_text w3_home_popular">Phim sắp chiếu</h4>
   <div class="container">
-    <owl-carousel-o [options]="customOptions">
+    <owl-carousel-o [options]="customOptions" style="text-align: center">
       <ng-container *ngFor="let movie of movieComings">
         <ng-template carouselSlide>
           <a class="hvr-shutter-out-horizontal">
@@ -126,49 +113,13 @@
               <button class="btn-on-image-right">Chi tiết</button>
             </a>
           </a>
-          <a routerLink="/movie-detail/{{movie.id}}">
-            <p>{{movie.title}}</p>
+          <a routerLink="/movie-detail/{{movie.id}}" style="color: inherit">
+            <h3>{{movie.title | titlecase}}</h3>
           </a>
         </ng-template>
         <div class="clearfix"></div>
       </ng-container>
     </owl-carousel-o>
     <!-- //PHIM SAP CHIEU -->
-
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $(".dropdown").hover(
-          function () {
-            $('.dropdown-menu', this).stop(true, true).slideDown("fast");
-            $(this).toggleClass('open');
-          },
-          function () {
-            $('.dropdown-menu', this).stop(true, true).slideUp("fast");
-            $(this).toggleClass('open');
-          }
-        );
-      });
-    </script>
-    <!-- //Bootstrap Core JavaScript -->
-    <!-- here stars scrolling icon -->
-    <script type="text/javascript">
-      $(document).ready(function () {
-        /*
-            var defaults = {
-            containerID: 'toTop', // fading element id
-            containerHoverID: 'toTopHover', // fading element hover id
-            scrollSpeed: 1200,
-            easingType: 'linear'
-            };
-        */
-
-        $().UItoTop({easingType: 'easeOutQuart'});
-
-      });
-    </script>
-    <!-- //here ends scrolling icon -->
   </div>
 </div>
