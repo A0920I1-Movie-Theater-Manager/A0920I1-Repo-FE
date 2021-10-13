@@ -5,13 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: 'AIzaSyCGQgxgB-_Sl9Rv1kxbfwSDs3ADPdnlfkA',
-    authDomain: 'movie-theater-project.firebaseapp.com',
-    projectId: 'movie-theater-project',
-    storageBucket: 'movie-theater-project.appspot.com',
-    messagingSenderId: '378220738721',
-    appId: '1:378220738721:web:9f65ad0ed1842984ef18e0',
-    measurementId: 'G-VSZXE1E7V5'
+    apiKey : 'AIzaSyCGQgxgB-_Sl9Rv1kxbfwSDs3ADPdnlfkA' ,
+    authDomain : 'movie-theater-project.firebaseapp.com' ,
+    databaseURL : 'https://movie-theater-project-default-rtdb.firebaseio.com' ,
+    projectId : 'movie-theater-project' ,
+    storageBucket : 'movie-theater-project.appspot.com' ,
+    messagingSenderId : '378220738721' ,
+    appId : '1: 378220738721: web: 9f65ad0ed1842984ef18e0' ,
+    measurementId : 'G-VSZXE1E7V5'
   }
 };
 

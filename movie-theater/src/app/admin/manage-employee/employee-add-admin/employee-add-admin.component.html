@@ -45,14 +45,14 @@
       <!-- End content-header -->
 
       <!-- Main Content -->
-      <form form [formGroup]="employeeCreateForm" (ngSubmit)="onSubmit()">
+      <form  [formGroup]="employeeCreateForm" (ngSubmit)="onSubmit()">
         <div class="card-body">
           <div class="form-group">
             <div class="col-md-2 pr-1"><label for="exampleInputFile">Hình ảnh<span></span>:</label></div>
             <div class="card"  id="exampleInputFile">
               <img style="width: 20%" [src]="getImageUrl()" class="card-img-top" alt="...">
               <div class="card-body" style="margin: 0 230px">
-                <input formControlName="imageUrl" type="file" name="..." (change)="selectImage($event)"  value="Chọn ảnh" accept=".jpg,.jpeg,.png"/>
+                <input type="file" name="..." (change)="selectImage($event)"  value="Chọn ảnh" accept=".jpg,.jpeg,.png"/>
               </div>
             </div>
 
@@ -61,42 +61,84 @@
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="accountCode">Mã nhân viên<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="accountCode" placeholder="Mã nhân viên" formControlName="accountCode"></div>
+              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="accountCode" placeholder="Mã nhân viên" formControlName="accountCode">
+                <ng-container *ngFor="let validation of validationMessage.accountCode">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('accountCode').hasError(validation.type)&& employeeCreateForm.get('accountCode').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="exampleInputUseName">Tên tài khoản<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="exampleInputUseName" placeholder="Tên tài khoảng" formControlName="username"></div>
+              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="exampleInputUseName" placeholder="Tên tài khoảng" formControlName="username">
+                <ng-container *ngFor="let validation of validationMessage.username">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('username').hasError(validation.type)&& employeeCreateForm.get('username').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="exampleInputPassword">Mật khẩu<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="password" class="form-control" id="exampleInputPassword" formControlName="password" placeholder="Nhập mật khẩu"></div>
+              <div class="col-md-6  pr-1"> <input type="password" class="form-control" id="exampleInputPassword" formControlName="password" placeholder="Nhập mật khẩu">
+                <ng-container *ngFor="let validation of validationMessage.password">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('password').hasError(validation.type)&& employeeCreateForm.get('password').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="exampleInputPassword1">Nhập lại mật khẩu<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập lại mật khẩu"></div>
+              <div class="col-md-6  pr-1"> <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập lại mật khẩu" formControlName="password">
+<!--                <div *ngIf="f.password.errors.MustMatch">Nhập sai mật khẩu</div>-->
+<!--                <ng-container *ngFor="let validation of validationMessage.phone">-->
+<!--                  <small class="form-text text-danger"-->
+<!--                         *ngIf="employeeCreateForm.get('phone').hasError(validation.type)&& employeeCreateForm.get('phone').touched">-->
+<!--                    {{validation.message}}-->
+<!--                  </small>-->
+<!--                </ng-container>-->
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="exampleInputFullName">Họ và tên<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="exampleInputFullName" placeholder="Họ và tên" formControlName="fullname"></div>
+              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="exampleInputFullName" placeholder="Họ và tên" formControlName="fullname">
+                <ng-container *ngFor="let validation of validationMessage.fullname">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('fullname').hasError(validation.type)&& employeeCreateForm.get('fullname').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="exampleInputBirthday">Ngày sinh<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="date" class="form-control" id="exampleInputBirthday" placeholder="Tên tài khoảng" formControlName="birthday"></div>
+              <div class="col-md-6  pr-1"> <input type="date" class="form-control" id="exampleInputBirthday" placeholder="Tên tài khoảng" formControlName="birthday">
+                <ng-container *ngFor="let validation of validationMessage.birthday">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('birthday').hasError(validation.type)&& employeeCreateForm.get('birthday').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container></div>
             </div>
           </div>
 
@@ -115,6 +157,12 @@
                     <input type="radio" name="gender" id="inlineRadio3" value="Khác"  formControlName="gender"> Khác
                   </label>
                 </div>
+                <ng-container *ngFor="let validation of validationMessage.gender">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('gender').hasError(validation.type)&& employeeCreateForm.get('gender').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -122,28 +170,56 @@
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="exampleInputEmail1">Email<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" formControlName="email"></div>
+              <div class="col-md-6  pr-1"> <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" formControlName="email">
+                <ng-container *ngFor="let validation of validationMessage.email">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('email').hasError(validation.type)&& employeeCreateForm.get('email').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="exampleInputIdCard">CMND<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="exampleInputIdCard" placeholder="CMND" formControlName="idCard"></div>
+              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="exampleInputIdCard" placeholder="CMND" formControlName="idCard">
+                <ng-container *ngFor="let validation of validationMessage.idCard">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('idCard').hasError(validation.type)&& employeeCreateForm.get('idCard').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="exampleInputNumberPhone">Số điện thoại<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="exampleInputNumberPhone" placeholder="Số điện thoại" formControlName="phone"></div>
+              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="exampleInputNumberPhone" placeholder="Số điện thoại" formControlName="phone">
+                <ng-container *ngFor="let validation of validationMessage.phone">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('phone').hasError(validation.type)&& employeeCreateForm.get('phone').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
             </div>
           </div>
 
           <div class="form-group">
             <div class="row">
               <div class="col-md-2  pr-1"> <label for="address">Địa chỉ<span>*</span>:</label></div>
-              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="address" placeholder="Địa chỉ" formControlName="address"></div>
+              <div class="col-md-6  pr-1"> <input type="text" class="form-control" id="address" placeholder="Địa chỉ" formControlName="address">
+                <ng-container *ngFor="let validation of validationMessage.address">
+                  <small class="form-text text-danger"
+                         *ngIf="employeeCreateForm.get('address').hasError(validation.type)&& employeeCreateForm.get('address').touched">
+                    {{validation.message}}
+                  </small>
+                </ng-container>
+              </div>
             </div>
           </div>
 

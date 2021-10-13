@@ -49,7 +49,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
       phone: this.formBuilder.control('', [Validators.required]),
       email: this.formBuilder.control('', [Validators.required]),
       gender: this.formBuilder.control('', [Validators.required]),
-      imageUrl: this.formBuilder.control(null, [Validators.required])
+      imageUrl: this.formBuilder.control('', [Validators.required])
     });
 
 
@@ -57,6 +57,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
       // tslint:disable-next-line:radix
       this.idEmployee = parseInt(paramMap.get('id'));
       this.employeeService.getEmployeeById(this.idEmployee).subscribe((data) => {
+        // @ts-ignore
         this.employee = data;
         this.filePath = this.employee.imageUrl;
         console.log(this.employeeUpdateForm);
@@ -77,7 +78,6 @@ export class EmployeeUpdateAdminComponent implements OnInit {
       });
     });
   }
-
 
 
   selectImage(event) {
@@ -108,18 +108,65 @@ export class EmployeeUpdateAdminComponent implements OnInit {
   }
   onSubmit(){
     // const nameImage = this.getCurrentDateTime() + this.inputImage.name;
-    //     // const fileRef = this.storage.ref(nameImage);
-    //     //
-    //     // // chưa set name khi up firebase
-    //     // this.storage.upload(nameImage, this.inputImage).snapshotChanges().pipe(
-    //     //   finalize(() => {
-    //     //     fileRef.getDownloadURL().subscribe((url) => {
-    //     //       this.employeeUpdateForm.patchValue({imageUrl: url});
-    //     //       this.update();
-    //     //     });
-    //     //   })
-    //     // ).subscribe();
-    this.update();
+    // const fileRef = this.storage.ref(nameImage);
+    //
+    //     // chưa set name khi up firebase
+    // this.storage.upload(nameImage, this.inputImage).snapshotChanges().pipe(
+    //       finalize(() => {
+    //         fileRef.getDownloadURL().subscribe((url) => {
+    //           this.employeeUpdateForm.patchValue({imageUrl: url});
+    //           this.update();
+    //         });
+    //       })
+    //     ).subscribe();
+    // // this.update();
+    if (this.inputImage != null) {
+      const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
+      const fileRef = this.storage.ref(imageName);
+      this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+
+            this.employeeService.updateEmployee({...this.employeeUpdateForm.value, imageUrl: url}).subscribe(
+              () => {
+                this.router.navigateByUrl('/').then(
+                  r => this.toastrService.success(
+                    'Chỉnh sửa thành công',
+                    'Thông báo',
+                    {timeOut: 3000, extendedTimeOut: 1500})
+                );
+              },
+              (error: HttpErrorResponse) => {
+                this.router.navigateByUrl('/').then(
+                  r => this.toastrService.error(
+                    'Chỉnh sửa thất bại',
+                    'Thông báo',
+                    {timeOut: 3000, extendedTimeOut: 1500})
+                );
+              });
+          });
+        })
+      ).subscribe();
+    }else {
+      this.employeeService.updateEmployee(this.employeeUpdateForm.value).subscribe(
+        () => {
+          this.router.navigateByUrl('/').then(
+            r => this.toastrService.success(
+              'Chỉnh sửa thành công',
+              'Thông báo',
+              {timeOut: 3000, extendedTimeOut: 1500})
+          );
+        },
+        (error: HttpErrorResponse) => {
+          this.router.navigateByUrl('/').then(
+            r => this.toastrService.error(
+              'Chỉnh sửa thất bại',
+              'Thông báo',
+              {timeOut: 3000, extendedTimeOut: 1500})
+          );
+        });
+    }
+
   }
 
   getCurrentDateTime(): string {
