@@ -3,8 +3,12 @@ import {Account} from '../../../shared/model/entity/Account';
 import {ManagerMovieService} from '../../../services/manager-movie.service';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FormArray, FormBuilder, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {formatDate} from "@angular/common";
+import {Genre} from "../../../shared/model/entity/Genre";
+import {Price} from "../../../shared/model/entity/Price";
+import {Movie} from "../../../shared/model/entity/Movie";
 
 @Component({
   selector: 'app-movie-update-admin',
@@ -12,11 +16,12 @@ import {AngularFireStorage} from '@angular/fire/storage';
   styleUrls: ['./movie-update-admin.component.css']
 })
 export class MovieUpdateAdminComponent implements OnInit {
+  genreList: Genre[];
   accountList: Account[];
-  filePath: string = null;
   defaultImage = 'https://cdn.tgdd.vn/Files/2020/01/14/1231516/top-10-bo-phim-hanh-dong-dang-xem-nhat-moi-thoi-dai--cap-nhat-2020-7.jpg';
-  inputImage: any;
   checkUpLoad = false;
+  priceList: Price[];
+  movie: Movie;
 
   public dateNow = new Date();
 
@@ -70,7 +75,7 @@ export class MovieUpdateAdminComponent implements OnInit {
     ],
     content: [
       {type: 'required', message: 'Vui lòng nội dung mô tả của phim.'},
-      {type: 'pattern', message: 'Nhập tên đạo diễn không hợp lệ, không được nhập số, kí tự đặc biệt. (abc, abc xyz)'}
+      {type: 'pattern', message: 'Nhập nội dung mô tả không hợp lệ, không được nhập kí tự đặc biệt. (abc, abc xyz)'}
     ],
     is3D: [
       {type: 'required', message: 'Vui lòng chọn phiên bản.'}
@@ -84,49 +89,131 @@ export class MovieUpdateAdminComponent implements OnInit {
   };
 
   updateMovie = this.form.group({
-    title: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]],
+    id: [''],
+    title: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/),
+      Validators.minLength(3), Validators.maxLength(50)]],
     showingFrom: ['', [Validators.required]],
     showingTo: ['', [Validators.required]],
-    cast: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]],
-    director: ['', [Validators.required], Validators.pattern('')],
+    cast: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/),
+      Validators.minLength(3), Validators.maxLength(50)]],
+    director: ['', [Validators.required, Validators.pattern(''),
+      Validators.minLength(3), Validators.maxLength(50)]],
     releaseDate: ['', [Validators.required]],
     rated: ['', [Validators.required]],
     runningTime: ['', [Validators.required, Validators.pattern('^[1-9]{1,10}$'),
-      Validators.min(1), Validators.maxLength(10)]],
-    production: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]],
+      Validators.min(1), Validators.maxLength(6)]],
+    production: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;]*$/),
+      Validators.minLength(3), Validators.maxLength(50)]],
     trailerUrl: ['', [Validators.required]],
-    content: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]],
+    content: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;]*$/),
+      Validators.minLength(3), Validators.maxLength(200)]],
     is3D: ['', [Validators.required]],
     accountId: ['', [Validators.required]],
-  });
-
-  formShowtime = this.form.group({
+    genres: this.form.array([]),
     showtime: this.form.array([], Validators.required)
   });
 
-  formImageMovie = this.form.group({
-    imageUrl: this.form.array([], Validators.required)
-  });
+  // nhớ trừ ra phần tử đầu tiên
+  imageUrl = [];
+  // get imageUrls(){
+  //   return this.createMovie.controls.imageUrl as FormArray;
+  // }
+  // xử lí thêm nhiều lịch chiếu
+  selectFiles(e) {
+    if (e.target.files) {
+      this.checkUpLoad = true;
+      for (let i = 0; File.length; i++) {
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[i]);
 
+        // tslint:disable-next-line:no-shadowed-variable
+        reader.onload = (e: any) => {
+          this.checkUpLoad = false;
+          this.imageUrl.push(e.target.result);
+        };
+      }
+    }
+  }
+
+  onCheckChange(e: any) {
+    const genres: FormArray = this.updateMovie.get('genres') as FormArray;
+    if (e.target.checked) {
+      genres.push(new FormControl(e.target.value));
+    } else {
+      let i: number = 0;
+      genres.controls.forEach((item: FormControl) => {
+        if (item.value == e.target.value) {
+          genres.removeAt(i);
+          return;
+        }
+        i++;
+      });
+    }
+  }
+idMovie: number;
+  movieUpdate: Movie;
   ngOnInit(): void {
     this.getListAllEmployee();
+    this.getAllListGenre();
+    this.getListALlPrice();
 
+    this.active.paramMap.subscribe((paramMap) => {
+      this.idMovie = parseInt(paramMap.get('id'));
+      console.log(this.idMovie);
+
+      this.movieService.getMovieById(this.idMovie).subscribe((data) => {
+        this.movieUpdate = data;
+        // this.updateMovie.setValue(this.movieUpdate);
+        this.updateMovie.patchValue({
+          id: this.movieUpdate.id,
+          title: this.movieUpdate.title,
+          showingFrom: this.movieUpdate.showingFrom,
+          showingTo: this.movieUpdate.showingTo,
+          cast: this.movieUpdate.cast,
+          director: this.movieUpdate.director,
+          releaseDate: this.movieUpdate.releaseDate,
+          rated: this.movieUpdate.rated,
+          runningTime: this.movieUpdate.runningTime,
+          production: this.movieUpdate.production,
+          trailerUrl: this.movieUpdate.trailerUrl,
+          content: this.movieUpdate.content,
+          is3D: this.movieUpdate.is3D,
+          accountId: this.movieUpdate.accountId,
+          genres: this.movieUpdate.genres,
+          showtime: this.movieUpdate.showtimes,
+        });
+        console.log(this.movieUpdate.movieImages)
+        this.imageUrl = this.movieUpdate.movieImages;
+
+        // this.imageUrl: this.movieUpdate.movieImages;
+      })
+    });
   }
 
   onSubmit(){
     console.log(this.showtimes.value);
     console.log(this.updateMovie.value);
+    console.log(this.imageUrl);
 
 
   }
 
-  // xử lí thêm nhiều lịch chiếu
-  get showtimes(){
-    return this.formShowtime.controls.showtime as FormArray;
+  getIdMovieByName(title){
+    console.log(title.value);
+    this.movieService.getIdMovieByTitle(title.value).subscribe((data) => {
+      this.movie = data;
+      console.log(this.movie);
+    })
   }
+
+  get showtimes() {
+    return this.updateMovie.controls.showtime as FormArray;
+  }
+
   addShowtime(){
     const showtimeForm = this.form.group({
-      showtime: ['', Validators.required]
+      showtime: ['', Validators.required],
+      price: ['', Validators.required]
     });
     this.showtimes.push(showtimeForm);
   }
@@ -134,11 +221,24 @@ export class MovieUpdateAdminComponent implements OnInit {
     this.showtimes.removeAt(index);
   }
 
-  getListAllEmployee(){
+  getCurrentDateTime(): string {
+    return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
+  }
+  getListAllEmployee() {
     this.movieService.getListAccountByCodeEmployee().subscribe((data) => {
       this.accountList = data;
-      console.log(this.accountList);
     });
   }
+  getListALlPrice(){
+    this.movieService.getAllListPrice().subscribe((data) => {
+      this.priceList = data;
+    });
+  }
+  getAllListGenre() {
+    this.movieService.getAllListGenre().subscribe((data) => {
+      this.genreList = data;
+    });
+  }
+
 
 }

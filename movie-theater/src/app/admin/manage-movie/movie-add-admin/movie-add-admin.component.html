@@ -24,7 +24,7 @@
                             class="star">*</span></label>
                           <div class="col-sm-8">
                             <input id="inputNameMovie" type="text" class="form-control" formControlName="title"
-                                   placeholder="Nhập tên phim" (change)="getIdMovieByName(createMovie.get('title'))">
+                                   placeholder="Nhập tên phim" (change)="getIdMovieByName(createMovie.get('title'))" [(ngModel)]="name">
                             <ng-container *ngFor="let validation of validation_messages.title">
                               <small class="form-text text-danger"
                                      *ngIf="createMovie.get('title').hasError(validation.type)&&(createMovie.get('title').dirty || createMovie.get('title').touched)">
@@ -265,7 +265,7 @@
                         <div class="card card-user" style="height: 40%">
                           <div class="card-body">
                             <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                              <ng-container formArrayName="imageUrls">
+                              <ng-container >
                                 <div class="fileinput-new thumbnail img-raised">
                                     <img *ngFor="let image of imageUrl; let i = index" [src]="image" style="width: 40%; padding: 10px 0; border: 2px solid darkgoldenrod" alt="..." rel="nofollow">
 <!--                                    <button type="button" mat-mini-fab (click)="deleteImage(i)">-->
@@ -278,12 +278,12 @@
                                   <mat-spinner *ngIf="checkUpLoad"></mat-spinner>
                                 </div>
                               </ng-container>
-                              <ng-container *ngFor="let validation of validation_messages.imageUrl">
-                                <small class="form-text text-danger"
-                                       *ngIf="imageUrl[1] == null">
-                                  {{validation.message}}
-                                </small>
-                              </ng-container>
+<!--                              <ng-container *ngFor="let validation of validation_messages.imageUrl">-->
+<!--                                <small class="form-text text-danger"-->
+<!--                                       *ngIf="imageUrl[1] == null">-->
+<!--                                  {{validation.message}}-->
+<!--                                </small>-->
+<!--                              </ng-container>-->
                             </div>
                           </div>
                         </div>
@@ -295,7 +295,7 @@
                         <button type="button" class="btn btn-primary">Quay lại</button>
                       </div>
                       <div class="col-sm-1" style="text-align: left">
-                        <input type="submit" class="btn btn-success" value="Thêm mới">
+                        <input [disabled]="createMovie" type="submit" class="btn btn-success" value="Thêm mới">
                       </div>
                     </div>
                   </form>

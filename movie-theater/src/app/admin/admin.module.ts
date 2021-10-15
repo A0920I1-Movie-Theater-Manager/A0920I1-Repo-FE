@@ -42,11 +42,14 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
 import {BrowserModule} from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { MovieDetailsAdminComponent } from './manage-movie/movie-details-admin/movie-details-admin.component';
+import {NgbAlertModule, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 
 const adminRoutes: Routes = [
   {path: 'list-movie', component: MovieListAdminComponent},
   {path: 'update-movie/:id', component: MovieUpdateAdminComponent},
   {path: 'create-movie', component: MovieAddAdminComponent},
+  {path: 'show-details-movie/:id', component: MovieDetailsAdminComponent},
 ];
 
 @NgModule({
@@ -68,7 +71,8 @@ const adminRoutes: Routes = [
     PromotionAddAdminComponent,
     PromotionUpdateAdminComponent,
     PromotionDeleteAdminComponent,
-    NavbarLeftComponent
+    NavbarLeftComponent,
+    MovieDetailsAdminComponent
   ],
     imports: [
         CommonModule,
@@ -99,7 +103,9 @@ const adminRoutes: Routes = [
         MatFormFieldModule,
         MatInputModule,
         MatSelectModule,
-        MatRadioModule
+        MatRadioModule,
+      NgbPaginationModule,
+      NgbAlertModule
     ]
 })
 export class AdminModule { }

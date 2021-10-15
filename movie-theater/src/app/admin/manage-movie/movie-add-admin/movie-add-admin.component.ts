@@ -89,18 +89,23 @@ export class MovieAddAdminComponent implements OnInit {
   };
 
   createMovie = this.form.group({
-    title: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]],
+    title: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/),
+      Validators.minLength(3), Validators.maxLength(50)]],
     showingFrom: ['', [Validators.required]],
     showingTo: ['', [Validators.required]],
-    cast: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]],
-    director: ['', [Validators.required], Validators.pattern('')],
+    cast: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/),
+      Validators.minLength(3), Validators.maxLength(50)]],
+    director: ['', [Validators.required, Validators.pattern(''),
+      Validators.minLength(3), Validators.maxLength(50)]],
     releaseDate: ['', [Validators.required]],
     rated: ['', [Validators.required]],
     runningTime: ['', [Validators.required, Validators.pattern('^[1-9]{1,10}$'),
-      Validators.min(1), Validators.maxLength(10)]],
-    production: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;]*$/)]],
+      Validators.min(1), Validators.maxLength(6)]],
+    production: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;]*$/),
+  Validators.minLength(3), Validators.maxLength(50)]],
     trailerUrl: ['', [Validators.required]],
-    content: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;]*$/)]],
+    content: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;]*$/),
+      Validators.minLength(3), Validators.maxLength(200)]],
     is3D: ['', [Validators.required]],
     accountId: ['', [Validators.required]],
     genres: this.form.array([]),
@@ -173,6 +178,7 @@ export class MovieAddAdminComponent implements OnInit {
 
   }
 
+  name: string;
   getIdMovieByName(title){
     console.log(title.value);
     this.movieService.getIdMovieByTitle(title.value).subscribe((data) => {
