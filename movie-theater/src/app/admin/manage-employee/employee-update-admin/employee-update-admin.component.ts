@@ -18,7 +18,13 @@ import {UpdateEmployeeDTO} from "../../../shared/model/dto/manage-employee/Updat
 export class EmployeeUpdateAdminComponent implements OnInit {
 
   idEmployee: number;
-
+  employeeUpdateForm: FormGroup;
+  filePath: string = null;
+  inputImage: any = null;
+  employeeUpdate: UpdateEmployeeDTO = null;
+  employee: UpdateEmployeeDTO;
+  id: number;
+  defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private employeeService: EmployeeAccountService,
@@ -27,13 +33,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
               @Inject(AngularFireStorage) private storage: AngularFireStorage) {
   }
 
-  employeeUpdateForm: FormGroup;
-  filePath: string = null;
-  inputImage: any = null;
-  employeeUpdate: UpdateEmployeeDTO = null;
-  employee: UpdateEmployeeDTO;
-  id: number;
-  defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
+
 
 
   ngOnInit(): void {

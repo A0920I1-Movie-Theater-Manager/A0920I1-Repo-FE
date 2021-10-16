@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {CreateEmployeeDTO} from '../../../shared/model/dto/manage-employee/CreateEmployeeDTO';
 import {EmployeeAccountService} from '../../../services/employee-account.service';
@@ -7,6 +7,8 @@ import {formatDate} from '@angular/common';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Router} from '@angular/router';
+import {compareValidator} from '../../../common/ConfirmedValidator';
+
 
 @Component({
   selector: 'app-employee-add-admin',
@@ -20,30 +22,41 @@ export class EmployeeAddAdminComponent implements OnInit {
   filePath: string = null;
   inputImage: any = null;
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
+  clickSubmit = false;
 
-  constructor(private formBuilder: FormBuilder,
-              private employeeAccountService: EmployeeAccountService,
-              private toastrService: ToastrService,
-              private router: Router,
-              @Inject(AngularFireStorage) private storage: AngularFireStorage) {
+  constructor(
+    private employeeAccountService: EmployeeAccountService,
+    private toastrService: ToastrService,
+    private router: Router,
+    @Inject(AngularFireStorage) private storage: AngularFireStorage) {
   }
 
   validationMessage = {
-    username: [
-      {type: 'required', message: 'Tên đăng nhập không được để trống!'},
-      {type: 'minlength', message: 'Tên đăng nhập tối thiểu 4 ký tự'},
-      {type: 'maxlength', message: 'Tên đăng nhập tối đa 32 ký tự'},
-      {type: 'pattern', message: 'Tên đăng nhập không chứa dấu ký tự đặc biệt hoặc khoảng trắng'}
-    ],
+
     accountCode: [
       {type: 'required', message: 'Mã nhân viên không được để trống!'},
     ],
-    password:[
+
+    username: [
+      {type: 'required', message: 'Tên đăng nhập không được để trống!'},
+      {type: 'minlength', message: 'Tên đăng nhập tối thiểu 4 ký tự'},
+      {type: 'maxlength', message: 'Tên đăng nhập tối đa 32 ký tự!  '},
+      {type: 'pattern', message: 'Tên đăng nhập không chứa  ký tự đặc biệt'}
+    ],
+
+    password: [
       {type: 'required', message: 'Mật khẩu không được để trống!'},
       {type: 'minlength', message: 'Mật khẩu tối thiểu 4 ký tự'},
       {type: 'maxlength', message: 'Mật khẩu tối đa 32 ký tự'}
     ],
-    birthday:[
+
+    matchingPassword: [
+      {type: 'required', message: 'Vui lòng nhập xác nhận mật khẩu.'},
+      {type: 'minlength', message: 'Mật khẩu tối thiểu 4 ký tự'},
+      {type: 'maxlength', message: 'Mật khẩu tối đa 32 ký tự'}
+    ],
+
+    birthday: [
       {type: 'required', message: 'Ngày sinh không được để trống!'}
     ],
     fullname: [
@@ -59,76 +72,77 @@ export class EmployeeAddAdminComponent implements OnInit {
       {type: 'required', message: 'Giới tính không được để trống!'}
     ],
     idCard: [
-      {type: 'required', message: 'Email không được để trống!'}
+      {type: 'required', message: 'Vui lòng nhập số CMND.'},
+      {type: 'pattern', message: 'Số CMND gồm 9 số.'},
     ],
     address: [
       {type: 'required', message: 'Đia chỉ không được để trống!'},
+      {type: 'maxlength', message: 'Địa chỉ tối đa 50 kí tự.'},
+      {type: 'pattern', message: 'Không được nhập kí tự đặc biệt. (!@#$%^&)'}
     ],
     phone: [
-      {type: 'required', message: 'Số điện thoại không được để trống!'},
+      {type: 'required', message: 'Vui lòng nhập số điện thoại.'},
+      {type: 'pattern', message: 'Số số điện thoại gồm 10 số'}
     ],
     imageUrl: [
-      {type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg'}
+      {type: 'required', message: 'Hình ảnh không được để trống!'}
     ]
   };
 
 
   ngOnInit(): void {
-    this.initForm();
-  }
-
-  initForm() {
-    this.employeeCreateForm = this.formBuilder.group({
-        username: this.formBuilder.control('', [
-            Validators.required,
-            Validators.minLength(4),
-            Validators.maxLength(32)]),
-        accountCode: this.formBuilder.control('', [
-          Validators.required]),
-        password: this.formBuilder.control('', [
+    this.employeeCreateForm = new FormGroup({
+        accountCode: new FormControl(null,
+          [Validators.required]),
+        username: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(32),
+          Validators.pattern(/^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$/)
+        ]),
+        password: new FormControl(null, [
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(32)]),
-        fullname: this.formBuilder.control('', [
+        matchingPassword: new FormControl(null, [
           Validators.required,
-          Validators.maxLength(100)]),
-        birthday: this.formBuilder.control('', [
-          Validators.required]),
-        idCard: this.formBuilder.control('', [
-          Validators.required]),
-        address: this.formBuilder.control('', [
-          Validators.required]),
-        phone: this.formBuilder.control('', [
-          Validators.required]),
-        email: this.formBuilder.control('', [
-          Validators.required]),
-        gender: this.formBuilder.control('', [
-          Validators.required]),
-        imageUrl: this.formBuilder.control(null, [
-          Validators.required])
-      }
-      // ,
-      // {
-      //   Validators: this.MustMatch('password', 'password')
-      // }
+          Validators.minLength(4),
+          Validators.maxLength(32),
+          compareValidator('password')]),
+        fullname: new FormControl(null, [
+          Validators.required,
+          Validators.maxLength(32),
+          Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)
+        ]),
+        birthday: new FormControl(null, Validators.required),
+        idCard: new FormControl(null, [
+          Validators.required,
+          Validators.pattern('^[0-9]{9,9}$')
+        ]),
+        address: new FormControl(null, [
+          Validators.required,
+          Validators.maxLength(50)
+        ]),
+        phone: new FormControl(null,
+          [Validators.required,
+            Validators.pattern('^[0-9]{9,9}$')
+          ]),
+        email: new FormControl(null, [
+          Validators.email,
+          Validators.required
+        ]),
+        gender: new FormControl(null,
+          [Validators.required]),
+        imageUrl: new FormControl(null,
+          [Validators.required])
+      },
     );
   }
 
-  // MustMatch(password: string, confirmPassword: string) {
-  //   return (formGroup: FormGroup) => {
-  //     console.log(password, confirmPassword)
-  //     const  control = formGroup.controls[password];
-  //     const matchingControl = formGroup.controls[confirmPassword];
-  //
-  //     if(control.value !== matchingControl.value){
-  //       matchingControl.setErrors({MustMatch: true});
-  //     }else {
-  //       matchingControl.setErrors(null);
-  //     }
-  //   };
-  // }
 
-  onSubmit() {
+  // submit form
+  onSubmit(employeeCreateForm: FormGroup) {
+    this.clickSubmit = true;
     console.log(this.filePath);
     const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
     const fileRef = this.storage.ref(imageName);
@@ -136,12 +150,19 @@ export class EmployeeAddAdminComponent implements OnInit {
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           this.employeeCreateForm.patchValue({imageUrl: url});
-          this.create();
+          this.employeeAccountService.createEmployeeAccount(employeeCreateForm.value).subscribe(data => {
+              // this.employeeCreateForm = data;
+              this.toastrService.success('Bạn đã thêm thành công!');
+              this.router.navigateByUrl('');
+            }
+          );
         });
       })
     ).subscribe();
   }
 
+
+  // lấy và lưu địa chỉ ảnh vào firebase
   selectImage(event) {
     this.inputImage = event.target.files[0];
     this.employeeCreateForm.get('imageUrl').updateValueAndValidity();
@@ -152,6 +173,8 @@ export class EmployeeAddAdminComponent implements OnInit {
     reader.readAsDataURL(this.inputImage);
   }
 
+
+  // hiển thị ảnh từ firebase
   getImageUrl() {
     if (this.filePath != null) {
       return this.filePath;
@@ -162,15 +185,6 @@ export class EmployeeAddAdminComponent implements OnInit {
     return this.defaultImage;
   }
 
-  create() {
-    this.employeeAccountService.createEmployeeAccount(this.employeeCreateForm.value).subscribe(data => {
-        this.employeeCreateForm = data;
-        this.toastrService.success('Bạn đã thêm thành công!');
-        this.router.navigateByUrl('');
-        // this.snackBar.open('Đã sữa thành công !', 'xong',{duration:2000});
-      }
-    );
-  }
-
+  // them moi nhan vien
 
 }
