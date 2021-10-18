@@ -48,9 +48,9 @@
                     <tr *ngFor="let movie of movieList| paginate: {itemsPerPage:10, currentPage: page}; index as i">
                       <td scope="row">{{i + 1}}</td>
                       <td>{{movie.title | titlecase}}</td>
-                      <td>{{movie.releaseDate | date: 'dd/MM/yyyy'}}</td>
+                      <td align="center">{{movie.releaseDate | date: 'dd/MM/yyyy'}}</td>
                       <td>{{movie.production}}</td>
-                      <td align="center">{{movie.runningTime}}</td>
+                      <td align="center">{{movie.runningTime}} phút</td>
                       <td align="center" *ngIf="movie.is3D === true">3D</td>
                       <td align="center" *ngIf="movie.is3D === false">2D</td>
                       <td class="text-center">

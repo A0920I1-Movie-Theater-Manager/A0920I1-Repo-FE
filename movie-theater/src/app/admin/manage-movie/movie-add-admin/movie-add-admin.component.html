@@ -24,7 +24,7 @@
                             class="star">*</span></label>
                           <div class="col-sm-8">
                             <input id="inputNameMovie" type="text" class="form-control" formControlName="title"
-                                   placeholder="Nhập tên phim" (change)="getIdMovieByName(createMovie.get('title'))" [(ngModel)]="name">
+                                   placeholder="Nhập tên phim" (change)="getIdMovieByName(createMovie.get('title'))">
                             <ng-container *ngFor="let validation of validation_messages.title">
                               <small class="form-text text-danger"
                                      *ngIf="createMovie.get('title').hasError(validation.type)&&(createMovie.get('title').dirty || createMovie.get('title').touched)">
@@ -35,10 +35,10 @@
                         </div>
 
                         <div class="form-group row" style="display: flex; align-items: center">
-                            <label for="inputDateStart" class="col-sm-2 control-label">Từ ngày <span class="star">*</span></label>
+                            <label for="inputDateStart" class="col-sm-2 control-label" style="padding-right: 30px;">Từ ngày <span class="star">*</span></label>
                           <mat-form-field appearance="" style=" width: 60%">
                               <mat-label>Chọn ngày bắt đầu</mat-label>
-                              <input id="inputDateStart" matInput [matDatepicker]="showingFrom" [min]="dateNow" formControlName="showingFrom">
+                              <input id="inputDateStart" matInput [matDatepicker]="showingFrom" [min]="dateNow" formControlName="showingFrom" [(ngModel)]="showingFroms">
                               <mat-datepicker-toggle matSuffix [for]="showingFrom"></mat-datepicker-toggle>
                               <mat-datepicker #showingFrom></mat-datepicker>
                             </mat-form-field>
@@ -50,12 +50,12 @@
                           </ng-container>
                         </div>
                         <div class="form-group row" style="display: flex; align-items: center">
-                          <label for="inputDateEnd" class="col-sm-2 control-label">Đến ngày <span class="star">*</span></label>
-                          <mat-form-field appearance="" style=" width: 60%">
+                          <label for="inputDateEnd" class="col-sm-2 control-label" style="padding-right: 30px;">Đến ngày <span class="star">*</span></label>
+                          <mat-form-field appearance="" style=" width: 60%" >
                             <mat-label>Chọn ngày kết thúc</mat-label>
-                            <input id="inputDateEnd" matInput [matDatepicker]="showingTo" [min]="dateNow" formControlName="showingTo">
-                            <mat-datepicker-toggle matSuffix [for]="showingTo"></mat-datepicker-toggle>
-                            <mat-datepicker #showingTo></mat-datepicker>
+                            <input id="inputDateEnd" matInput [matDatepicker]="showingTo" [min]="dateNow" formControlName="showingTo"  [(ngModel)]="showingTos">
+                            <mat-datepicker-toggle matSuffix [for]="showingTo" ></mat-datepicker-toggle>
+                            <mat-datepicker #showingTo  (change)="checkDate()"></mat-datepicker>
                           </mat-form-field>
                           <ng-container *ngFor="let validation of validation_messages.showingTo">
                             <small class="form-text text-danger"
@@ -178,7 +178,7 @@
                           </div>
                         </div>
                         <div class="form-group row" style="display: flex; flex-direction: column">
-                          <label class="col-sm-2 control-label">Thể loại <span
+                          <label class="col-sm-2 control-label" style="padding-right: 30px;">Thể loại <span
                             class="star">*</span></label>
                           <div class="" style="padding-left: 150px">
                             <ng-container *ngFor="let genre of genreList; let i = index" formArrayName="genres">
@@ -189,7 +189,7 @@
                           </div>
                         </div>
                         <div class="row" style="display: flex; align-items: center; flex-wrap: wrap">
-                            <label for="inputReleaseDate" class="col-sm-2 control-label">Lịch chiếu <span class="star">*</span></label>
+                            <label for="inputReleaseDate" class="col-sm-2 control-label" style="padding-right: 30px;">Lịch chiếu <span class="star">*</span></label>
                             <mat-form-field appearance="" style="margin-left: 20px; width: 60%">
                               <mat-label>Chọn ngày khởi chiếu</mat-label>
                               <input id="inputReleaseDate" matInput [matDatepicker]="releaseDate" [min]="dateNow" formControlName="releaseDate">
@@ -208,11 +208,11 @@
                                 <ng-container *ngFor="let showtimeForms of showtimes.controls; let i = index">
                                   <div class="showtime-form row" [formGroup]="showtimeForms">
                                     <mat-form-field appearance="" >
-                                      <input matInput placeholder="Nhập giờ chiếu (hh:mm:ss)" formControlName="showtime" width="300px">
+                                      <input matInput placeholder="Nhập giờ chiếu (hh:mm:ss)" formControlName="showtime" width="300px" type="time">
                                     </mat-form-field>
                                     <mat-form-field style="margin-left: 30px">
                                       <mat-select formControlName="price">
-                                        <mat-option *ngFor="let price of priceList" [value]="price.id">{{price.price}}</mat-option>
+                                        <mat-option *ngFor="let price of priceList" [value]="price.id">{{price.price}} đồng</mat-option>
                                       </mat-select>
                                     </mat-form-field>
                                     <mat-icon class="delete-btn" (click)="deleteShowtime(i)">delete_forever</mat-icon>
@@ -262,28 +262,50 @@
                         </div>
                       </div>
                       <div class="col-sm-4">
-                        <div class="card card-user" style="height: 40%">
-                          <div class="card-body">
-                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                              <ng-container >
-                                <div class="fileinput-new thumbnail img-raised">
-                                    <img *ngFor="let image of imageUrl; let i = index" [src]="image" style="width: 40%; padding: 10px 0; border: 2px solid darkgoldenrod" alt="..." rel="nofollow">
-<!--                                    <button type="button" mat-mini-fab (click)="deleteImage(i)">-->
-<!--                                      <mat-icon class="delete-btn">remove_circle_outline</mat-icon>-->
-<!--                                    </button>-->
-                                </div>
-                                <div style="margin-left: 30px">
-                                  <label for="flim">Chọn ảnh bìa</label>
-                                  <input id="flim" type="file" (change)="selectFiles($event)" accept=".jpg,.jpeg,.png" multiple>
-                                  <mat-spinner *ngIf="checkUpLoad"></mat-spinner>
-                                </div>
-                              </ng-container>
-<!--                              <ng-container *ngFor="let validation of validation_messages.imageUrl">-->
-<!--                                <small class="form-text text-danger"-->
-<!--                                       *ngIf="imageUrl[1] == null">-->
-<!--                                  {{validation.message}}-->
-<!--                                </small>-->
+                        <div class="row">
+
+<!--                          <div class="add-imageUrl-form">-->
+<!--                            <ng-container formArrayName="imageUrls">-->
+<!--                              <ng-container *ngFor="let imageUrlForm of imageUrls.controls; let i = index">-->
+<!--                                <div class="" [formGroup]="imageUrlForm">-->
+<!--                                  <mat-form-field>-->
+<!--                                    <input matInput type="file" formControlName="imageUrl" (change)="selectFiles($event)" width="400">-->
+<!--                                  </mat-form-field>-->
+<!--                                  <div class="">-->
+<!--                                      <mat-icon class="delete-btn" (click)="deleteImage(i)">remove_circle_outline</mat-icon>-->
+<!--                                  </div>-->
+<!--                                </div>-->
 <!--                              </ng-container>-->
+<!--                            </ng-container>-->
+<!--                            <div style="margin-left: 50px;">-->
+<!--                              <button type="button" mat-mini-fab (click)="addImageUrls()">-->
+<!--                                <mat-icon class="add-course-btn">add</mat-icon>-->
+<!--                              </button>-->
+<!--                            </div>-->
+<!--                          </div>-->
+                          <div class="card card-user" style="height: 40%">
+                            <div class="card-body">
+                              <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                <ng-container >
+                                  <div class="fileinput-new thumbnail img-raised">
+                                    <img *ngFor="let image of imageUrl; let i = index" [src]="image" style="width: 40%; padding: 10px 0; border: 2px solid darkgoldenrod" alt="..." rel="nofollow">
+                                    <!--                                    <button type="button" mat-mini-fab (click)="deleteImage(i)">-->
+                                    <!--                                      <mat-icon class="delete-btn">remove_circle_outline</mat-icon>-->
+                                    <!--                                    </button>-->
+                                  </div>
+                                  <div style="margin-left: 30px">
+                                    <label for="flim">Chọn ảnh bìa</label>
+                                    <input id="flim" type="file" (change)="selectFiles($event)" accept=".jpg,.jpeg,.png" multiple>
+                                    <mat-spinner *ngIf="checkUpLoad"></mat-spinner>
+                                  </div>
+                                </ng-container>
+                                <ng-container *ngFor="let validation of validation_messages.imageUrl">
+                                  <small class="form-text text-danger"
+                                         *ngIf="!imageUrl">
+                                    {{validation.message}}
+                                  </small>
+                                </ng-container>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -292,10 +314,10 @@
 
                     <div class="row" style="text-align: center">
                       <div class="col-sm-6" style="text-align: right">
-                        <button type="button" class="btn btn-primary">Quay lại</button>
+                        <button type="button" class="btn btn-primary" routerLink="/list-movie">Quay lại</button>
                       </div>
                       <div class="col-sm-1" style="text-align: left">
-                        <input [disabled]="createMovie" type="submit" class="btn btn-success" value="Thêm mới">
+                        <input  type="submit" class="btn btn-success" value="Thêm mới">
                       </div>
                     </div>
                   </form>

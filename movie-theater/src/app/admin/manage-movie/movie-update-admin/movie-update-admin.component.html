@@ -212,7 +212,7 @@
                                     </mat-form-field>
                                     <mat-form-field style="margin-left: 30px">
                                       <mat-select formControlName="price">
-                                        <mat-option *ngFor="let price of priceList" [value]="price.id">{{price.price}}</mat-option>
+                                        <mat-option *ngFor="let price of priceList" [value]="price.id">{{price.price}} đồng</mat-option>
                                       </mat-select>
                                     </mat-form-field>
                                     <mat-icon class="delete-btn" (click)="deleteShowtime(i)">delete_forever</mat-icon>
@@ -280,7 +280,7 @@
                               </ng-container>
                               <ng-container *ngFor="let validation of validation_messages.imageUrl">
                                 <small class="form-text text-danger"
-                                       *ngIf="imageUrl[1] == null">
+                                       *ngIf="!imageUrl">
                                   {{validation.message}}
                                 </small>
                               </ng-container>
@@ -295,7 +295,7 @@
                         <button type="button" class="btn btn-primary">Quay lại</button>
                       </div>
                       <div class="col-sm-1" style="text-align: left">
-                        <input type="submit" class="btn btn-success" value="Thêm mới">
+                        <input type="submit" class="btn btn-success" value="Chỉnh sửa">
                       </div>
                     </div>
                   </form>

@@ -17,7 +17,7 @@
                       <h4 class="mb-0">Tên phim:</h4>
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      {{movieDetail.title}}
+                      {{movieDetail.title| titlecase}}
                     </div>
                   </div>
                   <hr>
@@ -26,7 +26,7 @@
                       <h4 class="mb-0">Ngày ra mắt:</h4>
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      {{movieDetail.showingFrom}}
+                      {{movieDetail.showingFrom | date: 'dd/MM/yyyy'}}
                     </div>
                   </div>
                   <hr>
@@ -35,7 +35,7 @@
                       <h4 class="mb-0">Ngày kết thúc:</h4>
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      {{movieDetail.showingTo}}
+                      {{movieDetail.showingTo| date: 'dd/MM/yyyy'}}
                     </div>
                   </div>
                   <hr>
@@ -44,7 +44,7 @@
                       <h4 class="mb-0">Diễn viên chính:</h4>
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      {{movieDetail.cast}}
+                      {{movieDetail.cast | titlecase}}
                     </div>
                   </div>
                   <hr>
@@ -53,7 +53,7 @@
                       <h4 class="mb-0">Đạo diễn:</h4>
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      {{movieDetail.director}}
+                      {{movieDetail.director | titlecase}}
                     </div>
                   </div>
                   <hr>
@@ -62,7 +62,7 @@
                       <h4 class="mb-0">Hãng phim:</h4>
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      {{movieDetail.production}}
+                      {{movieDetail.production | titlecase}}
                     </div>
                   </div>
                   <hr>
@@ -71,7 +71,7 @@
                       <h4 class="mb-0">Thời lượng:</h4>
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      {{movieDetail.runningTime}}
+                      {{movieDetail.runningTime}} phút
                     </div>
                   </div>
                   <hr>
@@ -100,11 +100,11 @@
                       <h4 class="mb-0">Lịch chiếu:</h4>
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      {{movieDetail.releaseDate}}
+                      {{movieDetail.releaseDate | date: 'dd/MM/yyyy'}}
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
                       <ul *ngFor="let items of showtimes">
-                        <li>{{items.showTime}}: {{items.price.price}}</li>
+                        <li>{{items.showTime}}: {{items.price.price}} đồng</li>
                       </ul>
                     </div>
                   </div>
@@ -133,20 +133,22 @@
                   <ngb-carousel *ngIf="movieDetail.trailerUrl">
                     <ng-template ngbSlide>
                       <div class="picsum-img-wrapper">
-                        <img [src]="movieDetail.trailerUrl" style="width: 680px" alt="Random first slide">
+                        <video width="600" controls>
+                          <source [src]="movieDetail.trailerUrl" type="video/mp4">
+                        </video>
                       </div>
                       <div class="carousel-caption">
-                        <h3>Phòng họp {{movieDetail.title}}</h3>
+                        <h3>{{movieDetail.title | titlecase}}</h3>
                         <p></p>
                       </div>
                     </ng-template>
                     <ng-template ngbSlide *ngFor="let image of images">
                       <div class="picsum-img-wrapper">
-                        <img [src]="image.imageUrl" style="width: 650px">
+                        <img [src]="image.imageUrl" style="width: 500px">
                       </div>
-<!--                      <div class="carousel-caption">-->
-<!--                        <h3>{{image.equipment.name}}</h3>-->
-<!--                      </div>-->
+                      <!--                      <div class="carousel-caption">-->
+                      <!--                        <h3>{{image.equipment.name}}</h3>-->
+                      <!--                      </div>-->
                     </ng-template>
 
                   </ngb-carousel>

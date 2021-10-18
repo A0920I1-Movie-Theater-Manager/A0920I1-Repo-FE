@@ -43,7 +43,8 @@ import { NavbarLeftComponent } from './navbar-left/navbar-left.component';
 import {BrowserModule} from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { MovieDetailsAdminComponent } from './manage-movie/movie-details-admin/movie-details-admin.component';
-import {NgbAlertModule, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbAlertModule, NgbCarouselModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatCardModule} from '@angular/material/card';
 
 const adminRoutes: Routes = [
   {path: 'list-movie', component: MovieListAdminComponent},
@@ -74,38 +75,40 @@ const adminRoutes: Routes = [
     NavbarLeftComponent,
     MovieDetailsAdminComponent
   ],
-    imports: [
-        CommonModule,
-        ToastrModule.forRoot({
-            timeOut: 3000,
-            positionClass: 'toast-top-right',
-            preventDuplicates: false,
-        }),
-        ReactiveFormsModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFirestoreModule,
-        AngularFireAuthModule, // auth
-        AngularFireDatabaseModule,
-        AngularFireStorageModule,
-        MatIconModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        NgxPaginationModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatNativeDateModule,
-        MatDatepickerModule,
-        MatSnackBarModule,
-        HttpClientModule,
-        RouterModule.forChild(adminRoutes),
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSelectModule,
-        MatRadioModule,
-      NgbPaginationModule,
-      NgbAlertModule
-    ]
+  imports: [
+    CommonModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule, // auth
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    MatIconModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    NgxPaginationModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatSnackBarModule,
+    HttpClientModule,
+    RouterModule.forChild(adminRoutes),
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatRadioModule,
+    NgbPaginationModule,
+    NgbAlertModule,
+    NgbCarouselModule,
+    MatCardModule
+  ]
 })
 export class AdminModule { }

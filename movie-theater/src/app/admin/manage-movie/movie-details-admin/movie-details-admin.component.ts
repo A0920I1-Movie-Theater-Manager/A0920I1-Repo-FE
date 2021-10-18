@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {Movie} from "../../../shared/model/entity/Movie";
-import {Showtime} from "../../../shared/model/entity/Showtime";
-import {MovieImage} from "../../../shared/model/entity/MovieImage";
-import {ManagerMovieService} from "../../../services/manager-movie.service";
-import {ActivatedRoute} from "@angular/router";
-import {Genre} from "../../../shared/model/entity/Genre";
+import {Movie} from '../../../shared/model/entity/Movie';
+import {Showtime} from '../../../shared/model/entity/Showtime';
+import {MovieImage} from '../../../shared/model/entity/MovieImage';
+import {ManagerMovieService} from '../../../services/manager-movie.service';
+import {ActivatedRoute} from '@angular/router';
+import {Genre} from '../../../shared/model/entity/Genre';
+import {JsogService} from 'jsog-typescript';
 
 @Component({
   selector: 'app-movie-details-admin',
@@ -19,7 +20,8 @@ export class MovieDetailsAdminComponent implements OnInit {
 
   constructor(
     private movieService: ManagerMovieService,
-    private acctive: ActivatedRoute
+    private acctive: ActivatedRoute,
+    private jSogService: JsogService
   ) { }
 
   ngOnInit(): void {
@@ -31,16 +33,17 @@ export class MovieDetailsAdminComponent implements OnInit {
 
   getMovieById(){
     this.movieService.getMovieById(this.acctive.snapshot.params.id).subscribe((data) => {
-      this.movieDetail = data;
+      // @ts-ignore
+      this.movieDetail = this.jSogService.deserializeObject(data, Movie);
       console.log(this.movieDetail);
       this.genres = this.movieDetail.genres;
       this.showtimes = this.movieDetail.showtimes;
       this.images = this.movieDetail.movieImages;
 
-      console.log(this.genres)
-      console.log(this.showtimes)
-      console.log(this.images)
-    })
+      console.log(this.genres);
+      console.log(this.showtimes);
+      console.log(this.images);
+    });
   }
 
 }

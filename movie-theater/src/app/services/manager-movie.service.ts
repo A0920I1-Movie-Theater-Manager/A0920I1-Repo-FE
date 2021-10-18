@@ -2,13 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Movie} from '../shared/model/entity/Movie';
 import {Observable} from 'rxjs';
-import {Screen} from '../shared/model/entity/Screen';
 import {MovieImage} from '../shared/model/entity/MovieImage';
-import {Account} from '../shared/model/entity/Account';
-import {GenreMovie} from '../shared/model/entity/GenreMovie';
-import {Showtime} from '../shared/model/entity/Showtime';
-import {Genre} from '../shared/model/entity/Genre';
-import {Price} from '../shared/model/entity/Price';
 
 @Injectable({
   providedIn: 'root'
@@ -33,14 +27,13 @@ export class ManagerMovieService {
     return this.httpClient.post<void>(this.API_URL + '/create-movie', movie);
   }
 
-  // HueHV, phương thức chỉnh sửa 1 bộ phim
-  public updateMovie(movie: Movie): Observable<void>{
-    return this.httpClient.patch<void>(this.API_URL + '/update-movie' + movie.id, movie);
+  public createMovies(movie: Movie, url: any): Observable<void>{
+    return this.httpClient.post<void>(this.API_URL + '/create-movie/'+ url, movie);
   }
 
-  // HueHV, phương thức lấy danh sách phòng chiếu
-  public getListAllScreen(): Observable<Screen[]>{
-    return this.httpClient.get<Screen[]>(this.API_URL + '/list-screen');
+  // HueHV, phương thức chỉnh sửa 1 bộ phim
+  public updateMovie(movie: Movie): Observable<void>{
+    return this.httpClient.patch<void>(this.API_URL + '/update-movie/' + movie.id, movie);
   }
 
   // HueHV, phương thức lấy tất cả ảnh của bộ phim theo id của phim
@@ -54,18 +47,8 @@ export class ManagerMovieService {
   }
 
   // HueHV, phương thức lấy danh sách account của nhân viên
-  public getListAccountByCodeEmployee(): Observable<Account[]>{
-    return this.httpClient.get<Account[]>(this.API_URL + '/list-employee');
-  }
-
-  // HueHV, phương thức thêm thể loại
-  public addGenreToMovie(genreMovie: GenreMovie): Observable<void>{
-    return this.httpClient.post<void>(this.API_URL + '/add-genre', genreMovie);
-  }
-
-  // HueHV, phương thức thêm lịch chiếu
-  public addShowtimeMovie(showtime: Showtime): Observable<void>{
-    return this.httpClient.post<void>(this.API_URL + '/add-show-times', showtime);
+  public getListAccountByCodeEmployee(): Observable<any>{
+    return this.httpClient.get<any>(this.API_URL + '/list-employee');
   }
 
   // HueHV, phương thức tìm kiếm movie theo tên
@@ -73,19 +56,19 @@ export class ManagerMovieService {
     return this.httpClient.get<Movie[]>(this.API_URL + '/list-movie?title=' + title);
   }
 
-  // HueHV, laays id movie theo title
+  // HueHV, lấy id movie theo title
   public getIdMovieByTitle(title: string):Observable<Movie> {
     return this.httpClient.get<Movie>(this.API_URL + '/get-id?title= ' + title);
   }
 
   // HueHV
-  public getAllListGenre(): Observable<Genre[]>{
-    return this.httpClient.get<Genre[]>(this.API_URL + '/list-genre');
+  public getAllListGenre(): Observable<any>{
+    return this.httpClient.get<any>(this.API_URL + '/list-genre');
   }
 
   // HueHV
-  public getAllListPrice(): Observable<Price[]>{
-    return this.httpClient.get<Price[]>(this.API_URL + '/list-price');
+  public getAllListPrice(): Observable<any>{
+    return this.httpClient.get<any>(this.API_URL + '/list-price');
   }
 
 }
