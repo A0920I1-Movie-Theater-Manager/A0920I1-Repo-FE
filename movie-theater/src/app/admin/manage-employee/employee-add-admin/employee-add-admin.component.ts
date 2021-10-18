@@ -1,13 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
-import {CreateEmployeeDTO} from '../../../shared/model/dto/manage-employee/CreateEmployeeDTO';
 import {EmployeeAccountService} from '../../../services/employee-account.service';
 import {formatDate} from '@angular/common';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {compareValidator} from '../../../common/ConfirmedValidator';
+import {HttpErrorResponse} from '@angular/common/http';
 
 
 @Component({
@@ -18,7 +18,6 @@ import {compareValidator} from '../../../common/ConfirmedValidator';
 export class EmployeeAddAdminComponent implements OnInit {
 
   employeeCreateForm: FormGroup;
-  employee: CreateEmployeeDTO;
   filePath: string = null;
   inputImage: any = null;
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
@@ -82,7 +81,9 @@ export class EmployeeAddAdminComponent implements OnInit {
     ],
     phone: [
       {type: 'required', message: 'Vui lòng nhập số điện thoại.'},
-      {type: 'pattern', message: 'Số số điện thoại gồm 10 số'}
+      {type: 'minlength', message: 'Số điện thoại có 10 chữ số'},
+      {type: 'maxlength', message: 'Số điện thoại có 10 chữ số'},
+      {type: 'pattern', message: 'Vui lòng nhập số điện thoại.'}
     ],
     imageUrl: [
       {type: 'required', message: 'Hình ảnh không được để trống!'}
@@ -98,7 +99,7 @@ export class EmployeeAddAdminComponent implements OnInit {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(32),
-          Validators.pattern(/^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}[a-zA-Z0-9]$/)
+          Validators.pattern(/^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}$/)
         ]),
         password: new FormControl(null, [
           Validators.required,
@@ -125,7 +126,9 @@ export class EmployeeAddAdminComponent implements OnInit {
         ]),
         phone: new FormControl(null,
           [Validators.required,
-            Validators.pattern('^[0-9]{9,9}$')
+            Validators.minLength(10),
+            Validators.maxLength(10),
+            Validators.pattern('^[0-9]{10}$')
           ]),
         email: new FormControl(null, [
           Validators.email,
@@ -152,8 +155,20 @@ export class EmployeeAddAdminComponent implements OnInit {
           this.employeeCreateForm.patchValue({imageUrl: url});
           this.employeeAccountService.createEmployeeAccount(employeeCreateForm.value).subscribe(data => {
               // this.employeeCreateForm = data;
-              this.toastrService.success('Bạn đã thêm thành công!');
-              this.router.navigateByUrl('');
+            this.router.navigateByUrl('/').then(
+              r => this.toastrService.success(
+                'Thêm mới thành công',
+                'Thông báo',
+                {timeOut: 3000, extendedTimeOut: 1500})
+            );
+            },
+            (error: HttpErrorResponse) => {
+              this.router.navigateByUrl('/').then(
+                r => this.toastrService.error(
+                  'Thêm mới thất bại',
+                  'Thông báo',
+                  {timeOut: 3000, extendedTimeOut: 1500})
+              );
             }
           );
         });
@@ -185,6 +200,5 @@ export class EmployeeAddAdminComponent implements OnInit {
     return this.defaultImage;
   }
 
-  // them moi nhan vien
 
 }

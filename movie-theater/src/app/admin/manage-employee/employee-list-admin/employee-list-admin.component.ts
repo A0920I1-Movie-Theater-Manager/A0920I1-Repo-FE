@@ -3,6 +3,7 @@ import {EmployeeAccountService} from '../../../services/employee-account.service
 import {Account} from '../../../shared/model/entity/Account';
 import {MatDialog} from "@angular/material/dialog";
 import {EmployeeDeleteAdminComponent} from "../employee-delete-admin/employee-delete-admin.component";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-employee-list-admin',
@@ -10,11 +11,12 @@ import {EmployeeDeleteAdminComponent} from "../employee-delete-admin/employee-de
   styleUrls: ['./employee-list-admin.component.css']
 })
 export class EmployeeListAdminComponent implements OnInit {
-  employeeList: Account[];
-  page: 1;
-
+    employeeList: Account[];
+    page: 1;
+    keyWord = null;
   constructor( private employeeAccountService: EmployeeAccountService ,
-               private dialog: MatDialog ) { }
+               private dialog: MatDialog,
+               private toastService: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -38,4 +40,16 @@ export class EmployeeListAdminComponent implements OnInit {
     });
   }
 
+  searchKeyWord(){
+    console.log(this.keyWord);
+    this.employeeAccountService.searchEmployee(this.keyWord).subscribe((data) => {
+      console.log(data);
+      this.employeeList = data ;
+      this.page = 1;
+      if (this.employeeList.length === 0) {
+        this.toastService.error('Không tìm thấy', 'Thông báo');
+      }
+    });
+
+  }
 }

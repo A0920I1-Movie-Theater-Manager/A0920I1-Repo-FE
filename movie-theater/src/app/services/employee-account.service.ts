@@ -13,6 +13,7 @@ export class EmployeeAccountService {
   private readonly API_URL_EMPLOYEE_ACCOUNT_UPDATE = 'http://localhost:8080/api/employee-account-edit';
   private readonly API_URL_EMPLOYEE_ACCOUNT_DELETE = 'http://localhost:8080/api/employee-account-delete';
   private readonly API_URL_EMPLOYEE_ACCOUNT_BY_ID = 'http://localhost:8080/api/employee-account';
+  private readonly API_URL_EMPLOYEE_ACCOUNT_SEARCH = 'http://localhost:8080/api/';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -41,4 +42,7 @@ export class EmployeeAccountService {
     return this.httpClient.put<any>(this.API_URL_EMPLOYEE_ACCOUNT_UPDATE , employee);
   }
 
+  searchEmployee(keyWord: string): Observable<Account[]> {
+    return this.httpClient.get<Account[]>(this.API_URL_EMPLOYEE_ACCOUNT_SEARCH + '/search?keyWord=' + keyWord);
+  }
 }

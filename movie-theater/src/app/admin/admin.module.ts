@@ -20,7 +20,7 @@ import { PromotionDeleteAdminComponent } from './manage-promotion/promotion-dele
 import {RouterModule, Routes} from '@angular/router';
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatDialogModule} from "@angular/material/dialog";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EmployeeDetailAdminComponent } from './manage-employee/employee-detail-admin/employee-detail-admin.component';
 
 const adminRoutes: Routes = [];
@@ -51,12 +51,13 @@ const adminRoutes: Routes = [];
         EmployeeAddAdminComponent,
         EmployeeDetailAdminComponent
     ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(adminRoutes),
-    NgxPaginationModule,
-    MatDialogModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule.forChild(adminRoutes),
+        NgxPaginationModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        FormsModule
+    ]
 })
 export class AdminModule { }
