@@ -1,7 +1,5 @@
-import {AccountRole} from './AccountRole';
-import {Comment} from './Comment';
 
-export class Account {
+export class AccountMemberDTO {
   id: number;
   username: string;
   accountCode: string;
@@ -16,6 +14,6 @@ export class Account {
   totalPoint: number;
   imageUrl: string;
   deleted: boolean;
-  accountRoles: AccountRole[];
-  comments: Comment[];
+  roleId: number;
+  newPassword: string;
 }

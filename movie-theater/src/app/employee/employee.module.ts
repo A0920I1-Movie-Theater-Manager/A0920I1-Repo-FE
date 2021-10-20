@@ -26,11 +26,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {ChartModule} from '@syncfusion/ej2-angular-charts';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
-import {JwtModule} from '@auth0/angular-jwt';
 import {AppRoutingModule} from '../app-routing.module';
-
+import {OrderModule} from 'ngx-order-pipe';
 const employeeRoutes: Routes = [
-  {path: "listMember", component: ListUserComponent}
+  {path: "list-member", component: ListUserComponent},
+  {path:"update-member/:id", component: UpdateUserComponent},
+  {path: "create-member", component: AddUserComponent},
+  {path: "detail-member/:id", component: DetailUserComponent}
 ];
 
 @NgModule({
@@ -41,7 +43,8 @@ const employeeRoutes: Routes = [
     UpdateUserComponent,
     DeleteUserComponent,
     ListUserComponent,
-    DetailUserComponent],
+    DetailUserComponent
+  ],
 
 
   imports: [
@@ -49,15 +52,9 @@ const employeeRoutes: Routes = [
     AppRoutingModule,
     FormsModule,
     RouterModule.forChild(employeeRoutes),
-    HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter:  () => sessionStorage.getItem('toke')
-      }
-    }),
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-right',
       preventDuplicates: false,
     }),
     ReactiveFormsModule,
@@ -68,7 +65,6 @@ const employeeRoutes: Routes = [
     AngularFireStorageModule,
     MatIconModule,
     BrowserAnimationsModule,
-    FormsModule,
     NgxPaginationModule,
     MatDialogModule,
     MatButtonModule,
@@ -77,6 +73,8 @@ const employeeRoutes: Routes = [
     HttpClientModule,
     MatInputModule,
     MatNativeDateModule,
+    OrderModule,
+
   ]
 })
 export class EmployeeModule { }

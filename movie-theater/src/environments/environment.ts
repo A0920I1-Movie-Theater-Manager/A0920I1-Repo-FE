@@ -4,16 +4,16 @@
 
 export const environment = {
   production: false,
-  firebaseConfig: {
-    apiKey: 'AIzaSyB0u8Pt16u1iTGFj1YU5ujjKFC_SlOAjRw',
-    authDomain: 'meeting-room-f8f95.firebaseapp.com',
-    projectId: 'meeting-room-f8f95',
-    storageBucket: 'meeting-room-f8f95.appspot.com',
-    messagingSenderId: '1025020962163',
-    appId: '1:1025020962163:web:241e191fb7a0527a2cd106',
-    measurementId: 'G-9YR208PGNM'
+  firebaseConfig : {
+    apiKey: "AIzaSyCGQgxgB-_Sl9Rv1kxbfwSDs3ADPdnlfkA",
+    authDomain: "movie-theater-project.firebaseapp.com",
+    databaseURL: "https://movie-theater-project-default-rtdb.firebaseio.com",
+    projectId: "movie-theater-project",
+    storageBucket: "movie-theater-project.appspot.com",
+    messagingSenderId: "378220738721",
+    appId: "1:378220738721:web:9f65ad0ed1842984ef18e0",
+    measurementId: "G-VSZXE1E7V5"
   }
-
 };
 
 /*

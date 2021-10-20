@@ -20,7 +20,7 @@ export class DeleteUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.nameMember = this.data.data1.name;
+    this.nameMember = this.data.data1.fullname;
     this.idMember = this.data.data1.id;
   }
   deleteEquipment() {

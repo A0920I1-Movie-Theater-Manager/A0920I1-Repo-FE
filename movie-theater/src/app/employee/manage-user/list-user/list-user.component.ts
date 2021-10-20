@@ -41,10 +41,10 @@ export class ListUserComponent implements OnInit {
 
   searchName(): void {
     this.managerUserService.searchByNameMember(this.nameMember).subscribe(data => {
+      console.log(this.nameMember);
       if(data.length==0){
         this.toastrService.info('Vui lòng nhập tên phù hợp với danh sách!', 'Thông báo');
       }
-      // @ts-ignore
       this.members = data;
       this.page = 1;
 
@@ -55,6 +55,13 @@ export class ListUserComponent implements OnInit {
       this.page = page;
       this.ngOnInit();
     }
+  }
+
+  key: string = 'id';
+  reverse: boolean =false;
+  sort(key){
+    this.key = key;
+    this.reverse = !this.reverse;
   }
 
 }

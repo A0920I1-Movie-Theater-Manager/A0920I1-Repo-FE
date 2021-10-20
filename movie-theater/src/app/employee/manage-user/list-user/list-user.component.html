@@ -1,60 +1,27 @@
+<div style="margin-right: 0px;" class="row" style="display: flex">
 
-<div style="margin-right: 0px;" class="row">
-  <div class="col-md-2 nav_menu">
-    <ul>
-      <li class="nav_menu_title">
-        <i class="fa fa-film" aria-hidden="true"></i>
-        <a href="">Quản Lý Suất Chiếu</a>
-      </li>
-      <li class="nav_menu_title">
-        <i class="fa fa-ticket" aria-hidden="true"></i>
-        <a href="">Quản Lý Đặt Vé</a>
-      </li>
-      <li class="nav_menu_title">
-        <i class="fa fa-users" aria-hidden="true"></i>
-        <a href="">Quản Lý Nhân Viên</a>
-      </li>
-      <li class="nav_menu_title">
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <a href="">Quản Lý Phòng Chiếu</a>
-      </li>
-      <li class="nav_menu_title">
-        <i class="fa fa-user-plus" aria-hidden="true"></i>
-        <a href="">Quản Lý Thành Viên</a>
-      </li>
-      <li class="nav_menu_title">
-        <i class="fa fa-video-camera" aria-hidden="true"></i>
-        <a href="">Quản Lý Phim</a>
-      </li>
-      <li class="nav_menu_title">
-        <i class="fa fa-cc-discover" aria-hidden="true"></i>
-        <a href="">Quản Lý Khuyến Mãi</a>
-      </li>
-      <li class="nav_menu_title">
-        <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <a href="">Thống Kê</a>
-      </li>
-    </ul>
-  </div>
-  <div class="col-md-10 nav_content">
-    <h1 style="margin-bottom: 40px;margin-top: 40px; text-align: center;  color: #FF8D1B;">DANH SÁCH THÔNG TIN THÀNH VIÊN
-    </h1>
+  <div class="col-md-12 nav_content">
     <div class="content-wrapper">
+      <h1 style="margin-bottom: 40px;margin-top: 15px; text-align: center;  color: #FF8D1B;">DANH SÁCH THÔNG TIN THÀNH
+        VIÊN
+      </h1>
       <section class="content">
         <div class="container-fluid ">
           <div class="card shadow">
             <div class="col-12 card-header d-flex justify-content-between content_search" style="display: flex">
-              <div style="margin-left: 50px;" class="col-6 mt-auto mb-auto">
-                <button type="button" class="btn btn-success"><i style="margin-right: 5px"
-                                                                 class="fa fa-plus-circle" aria-hidden="true"></i><b
+              <div style="margin-left: 10%;" class="col-6 mt-auto mb-auto">
+                <button type="button" class="btn btn-success" routerLink="/create-member"><i style="margin-right: 5px"
+                                                                                             class="fa fa-plus-circle"
+                                                                                             aria-hidden="true"></i><b
                   style="font-size: 17px;">Thêm Mới</b></button>
               </div>
-              <div class="col-4 input-group mt-auto mb-auto search_icon" style="display: flex; margin-left: 300px">
+              <div class="col-4 input-group mt-auto mb-auto search_icon" style="display: flex; margin-left:45%">
                 <input type="search" class="form-control" style="width: 20rem; border-radius: 20px;"
-                       placeholder="Nhập thông tin mà bạn muốn tìm kiếm">
+                       [(ngModel)]="nameMember"
+                       placeholder="Nhập thông tin mà bạn muốn tìm kiếm" (keydown.enter)="searchName()">
                 <div class="input-group-append">
                   <button type="submit" class="btn btn-default"
-                          style="border: none; background: none;">
+                          style="border: none; background: none;" (click)="searchName()">
                     <i style="font-size: 23px; color: cornflowerblue;" class="fa fa-search"></i>
                   </button>
                 </div>
@@ -66,36 +33,50 @@
                   <thead class="bg-secondary">
                   <tr>
                     <th class="text-center">STT</th>
-                    <th class="text-center">Mã Thành Viên</th>
-                    <th class="text-center">Tên Thành Viên<i class="fa fa-sort" aria-hidden="true"></i></th>
-                    <th class="text-center">Email<i class="fa fa-sort" aria-hidden="true"></i></th>
-                    <th class="text-center">Số CMND<i class="fa fa-sort" aria-hidden="true"></i></th>
-                    <th class="text-center">Số Điện Thoại <i class="fa fa-sort" aria-hidden="true"></i></th>
-                    <th class="text-center">Địa Chỉ<i class="fa fa-sort" aria-hidden="true"></i></th>
-                    <th class="text-center">Xóa</th>
-                    <th class="text-center">Sửa</th>
+                    <th class="text-center" (click)="sort('accountCode')">Mã Thành Viên<i class="fa fa-sort"
+                                                                                          aria-hidden="true"></i></th>
+                    <th class="text-center" (click)="sort('username')">Tên Đăng Nhập<i class="fa fa-sort"
+                                                                                       aria-hidden="true"></i></th>
+                    <th class="text-center" (click)="sort('fullname')">Tên Thành Viên<i class="fa fa-sort"
+                                                                                        aria-hidden="true"></i></th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Số CMND</th>
+                    <th class="text-center">Số Điện Thoại</th>
+                    <th class="text-center">Địa Chỉ</th>
+                    <th class="text-center">Hành động</th>
+
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let men of members; let i = index">
+                  <tr *ngFor="let men of members | paginate: {itemsPerPage:5, currentPage: page}; let i = index">
                     <td class="text-right">{{i + 1}}</td>
                     <td class="text-left">{{men.accountCode}}</td>
                     <td class="text-left">{{men.username}}</td>
+                    <td class="text-left">{{men.fullname | titlecase}}</td>
                     <td class="text-left">{{men.email}}</td>
                     <td class="text-left">{{men.idCard}}</td>
                     <td class="text-left">{{men.phone}}</td>
                     <td class="text-left">{{men.address}}</td>
                     <td class="text-center">
-                      <a href="#myModal" class="trigger-btn" data-toggle="modal">
+                      <a (click)="openDialogDelete(men.id)" class="trigger-btn" data-toggle="modal">
                         <button type="button" class="btn btn-danger"><i
                           class="fa fa-trash" aria-hidden="true"></i></button>
                       </a>
-                    </td>
-                    <td class="text-center">
-                      <a href="">
+
+                      <a [routerLink]="['/update-member/',men.id]" style="margin: 0 10px 0 10px">
                         <button type="button" class="btn btn-warning"><i
                           class="fa fa-pencil-square-o"
                           aria-hidden="true"></i></button>
+                      </a>
+                      <a [routerLink]="['/detail-member/',men.id]">
+                        <button class="btn btn-info">
+                          <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                               fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path
+                              d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                          </svg>
+                        </button>
                       </a>
                     </td>
                   </tr>
@@ -103,9 +84,19 @@
                 </table>
               </div>
             </div>
+            <pagination-controls (pageChange)="page = $event" style="text-align:center"
+                                 previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>
+            <div>
+              <ng-container *ngIf="members.length === 0">
+                <div class="text-center">
+                  <h3>Không tìm thấy <b style="color: red">{{nameMember}}</b> trong danh sách.</h3>
+                </div>
+              </ng-container>
+            </div>
           </div>
         </div>
       </section>
     </div>
   </div>
 </div>
+

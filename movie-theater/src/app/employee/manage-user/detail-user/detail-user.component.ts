@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Account} from '../../../shared/model/entity/Account';
 import {ManagerUserService} from '../../../services/manager-user.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {AccountMemberDTO} from '../../../shared/model/dto/AccountMemberDTO';
 
 @Component({
   selector: 'app-detail-user',
@@ -11,7 +12,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 export class DetailUserComponent implements OnInit {
 
   idMembers: number;
-  membersDetail: Account;
+  membersDetail: AccountMemberDTO;
   page: 1;
 
   constructor(private managerUserService: ManagerUserService,

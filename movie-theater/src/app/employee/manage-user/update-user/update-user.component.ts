@@ -5,9 +5,12 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {ToastrService} from 'ngx-toastr';
 import {ManagerUserService} from '../../../services/manager-user.service';
 import {Account} from '../../../shared/model/entity/Account';
-import {formatDate} from '@angular/common';
-import {finalize} from 'rxjs/operators';
 import {HttpErrorResponse} from '@angular/common/http';
+import {finalize} from 'rxjs/operators';
+import {formatDate} from '@angular/common';
+import {AccountMemberDTO} from '../../../shared/model/dto/AccountMemberDTO';
+import {compareValidator} from '../ValidateCustomMembers/checkPassword';
+import {checkDateOfBirth} from '../ValidateCustomMembers/checkBirthday';
 
 @Component({
   selector: 'app-update-user',
@@ -17,15 +20,19 @@ import {HttpErrorResponse} from '@angular/common/http';
 export class UpdateUserComponent implements OnInit {
 
   updateMembers: FormGroup;
-  members: Account;
+  members: AccountMemberDTO;
   filePath: string = null;
   inputImage: any = null;
   listError: any = '';
-  defaultImage: string;
-  idMember: number;
+  defaultImage = 'https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg';
+  id: number;
+  roles: [{id: 1, name: 'ADMIN'},
+    {id: 2, name: 'USER'}];
 
-  constructor(private managerUserService: ManagerUserService, private router: Router,
-              @Inject(AngularFireStorage) private storage: AngularFireStorage, private activatedRoute: ActivatedRoute,
+  constructor(private managerUserService: ManagerUserService,
+              private router: Router,
+              @Inject(AngularFireStorage) private storage: AngularFireStorage,
+              private activatedRoute: ActivatedRoute,
               private toastrService: ToastrService,
               private formBuilder: FormBuilder,) {
   }
@@ -44,7 +51,7 @@ export class UpdateUserComponent implements OnInit {
     ],
     password: [
       {type: 'required', message: 'Mật khẩu không được để trống.'},
-      {type: 'pattern', message: 'Vui lòng nhập mật khẩu đúng định dạng.'}
+      {type: 'pattern', message: 'Vui lòng nhập mật khẩu đúng định dạng trên 8 ký tự gồm chữ hoa,thường và ký tự đặc biệt.'}
 
     ],
     fullname: [
@@ -54,7 +61,7 @@ export class UpdateUserComponent implements OnInit {
     ],
     birthday: [
       {type: 'required', message: 'Ngày sinh không được để trống.'},
-      {type: 'pattern', message: 'Vui lòng nhập đúng định dạng.'}
+      {type: 'checkAge', message: 'Tuổi phải trên 16.'}
 
     ],
     idCard: [
@@ -68,17 +75,20 @@ export class UpdateUserComponent implements OnInit {
     ],
     phone: [
       {type: 'required', message: 'Số điện thoại không được để trống.'},
-      {type: 'pattern', message: 'Vui lòng nhập đúng định dạng số di động.'}
+      {type: 'pattern', message: 'Vui lòng nhập đúng định dạng số di động 0xxxxxxxxxx.'}
 
     ],
     email: [
       {type: 'required', message: 'Email không được để trống.'},
-      {type: 'pattern', message: 'Vui lòng nhập email đúng định dạng.'}
+      {type: 'pattern', message: 'Vui lòng nhập email đúng định dạng abc@abc.'}
 
     ],
     gender: [
-      {type: 'required', message: 'Giới tính không được để trống.'}
+      {type: 'required', message: 'Vui lòng chọn giới tính.'}
 
+    ],
+    roleId: [
+      {type: 'required', message: 'Vui lòng chọn quyền truy cập.'},
     ]
   };
 
@@ -88,22 +98,23 @@ export class UpdateUserComponent implements OnInit {
       username: ['', [Validators.required,
         Validators.minLength(4),
         Validators.maxLength(32),
-        Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]],
-      accountCode: ['', [Validators.required, Validators.pattern('[a-zA-Z][0-9]*')]],
+        Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]],
+      accountCode: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')]],
-      fullname: ['',[Validators.required,Validators.pattern('[a-zA-Z]')]],
-      birthday: ['',[Validators.required]],
-      idCard: ['',[Validators.required,Validators.pattern('^\\\\d{9}$')]],
+      fullname: ['',[Validators.required,Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]],
+      birthday: ['',[Validators.required, checkDateOfBirth]],
+      idCard: ['',[Validators.required,Validators.pattern('^[0-9]*$')]],
       address: ['',[Validators.required]],
-      phone: ['',[Validators.required,Validators.pattern('(\'^(090|091|\\\\(\\\\+84\\\\)90|\\\\(\\\\+84\\\\)91)\\\\d{7}$\')])')]],
+      phone: ['',[Validators.required,Validators.pattern('^(0|\\(\\+84\\))\\d{9}$')]],
       email: ['',[Validators.required,Validators.pattern('^[a-zA-Z0-9_!#$%&\'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$')]],
       gender: ['',[Validators.required]],
-      imageUrl: ['']
+      imageUrl: [''],
+      newPassword:['',[compareValidator('password')]]
     });
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      // tslint:disable-next-line:radix
-      this.idMember = parseInt(paramMap.get('id'));
-      this.managerUserService.findByIdMember(this.idMember).subscribe((data) => {
+      this.id = parseInt(paramMap.get('id'));
+      console.log(this.id);
+      this.managerUserService.findByIdMember(this.id).subscribe((data) => {
         // @ts-ignore
         this.members = data;
         this.updateMembers.patchValue({
@@ -118,12 +129,12 @@ export class UpdateUserComponent implements OnInit {
           phone: this.members.phone,
           email: this.members.email,
           gender: this.members.gender,
-          imageUrl: this.members.imageUrl
+          imageUrl: this.members.imageUrl,
+          newPassword: this.members.newPassword,
         });
       });
     });
   }
-
 
   onSubmit() {
     if (this.inputImage != null) {
@@ -135,7 +146,7 @@ export class UpdateUserComponent implements OnInit {
 
             this.managerUserService.updateMember({...this.updateMembers.value, imageUrl: url}).subscribe(
               () => {
-                this.router.navigateByUrl('/listMember').then(
+                this.router.navigateByUrl('/list-member').then(
                   re => this.toastrService.success(
                     'Bạn đã cập nhật thành công',
                     'Thông báo',
@@ -160,7 +171,7 @@ export class UpdateUserComponent implements OnInit {
     } else {
       this.managerUserService.updateMember(this.updateMembers.value).subscribe(
         () => {
-          this.router.navigateByUrl('/listMember').then(
+          this.router.navigateByUrl('/list-member').then(
             r => this.toastrService.success(
               'Bạn đã cập nhật thành công',
               'Thông báo',
@@ -200,5 +211,6 @@ export class UpdateUserComponent implements OnInit {
     if (this.members.imageUrl) {
       return this.members.imageUrl;
     }
+    return this.defaultImage;
   }
 }
