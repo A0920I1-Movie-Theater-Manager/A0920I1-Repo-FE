@@ -7,9 +7,9 @@ import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {compareValidator} from '../validateCustomEmployee/ConfirmedValidator';
-import {Role} from '../../../shared/model/entity/Role';
 import {NotifyEmployeeComponent} from '../notifyEmployee/notify-employee/notify-employee.component';
 import {MatDialog} from '@angular/material/dialog';
+import {checkDateOfBirth} from "../validateCustomEmployee/checkDateOfBirth";
 
 
 @Component({
@@ -19,13 +19,13 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class EmployeeAddAdminComponent implements OnInit {
 
-
+  isSuccessful = false;
+  isSignUpFailed = false;
   employeeCreateForm: FormGroup;
   filePath: string = null;
   inputImage: any = null;
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
   clickSubmit = false;
-  role: Role[];
   errorMessage = '';
 
 
@@ -101,7 +101,7 @@ export class EmployeeAddAdminComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getRole();
+
     this.employeeCreateForm = new FormGroup({
         accountCode: new FormControl(null,
           [Validators.required,
@@ -127,7 +127,7 @@ export class EmployeeAddAdminComponent implements OnInit {
           Validators.maxLength(32),
           Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)
         ]),
-        birthday: new FormControl(null, Validators.required),
+        birthday: new FormControl('', Validators.required),
         idCard: new FormControl(null, [
           Validators.required,
           Validators.pattern('^[0-9]{9,9}$')
@@ -149,51 +149,63 @@ export class EmployeeAddAdminComponent implements OnInit {
         gender: new FormControl(null,
           [Validators.required]),
         imageUrl: new FormControl(null,
-          [Validators.required]),
-        role: new FormControl(null, Validators.required)
+          [Validators.required])
       },
     );
   }
 
 
   // submit form
-  onSubmit(employeeCreateForm: FormGroup) {
+  onSubmit(employeeCreateForm: FormGroup): any {
     this.clickSubmit = true;
     console.log(this.filePath);
+    if (employeeCreateForm.get('email').value != null) {
+      this.employeeAccountService.checkEmail(employeeCreateForm.get('email').value).subscribe(data => {
+        console.log(data);
+
+        if (data === true) {
+          this.notification('Email đã tồn tại');
+          stop();
+        }
+      });
+    }
+    if (employeeCreateForm.get('accountCode').value != null) {
+      this.employeeAccountService.checkAccountCode(employeeCreateForm.get('accountCode').value).subscribe(data => {
+        console.log(data);
+
+        if (data === true) {
+          this.notification('Mã nhân viên đã tồn tại');
+          stop();
+        }
+      });
+    }
+    if (employeeCreateForm.get('username').value != null) {
+      this.employeeAccountService.checkUsername(employeeCreateForm.get('username').value).subscribe(data => {
+        console.log(data);
+
+        if (data === true) {
+          this.notification('Tên khoảng đã tồn tại');
+          stop();
+        }
+      });
+    }
     const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
     const fileRef = this.storage.ref(imageName);
     this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           this.employeeCreateForm.patchValue({imageUrl: url});
+
           this.employeeAccountService.createEmployeeAccount(employeeCreateForm.value).subscribe(data => {
               // this.employeeCreateForm = data;
-              this.router.navigateByUrl('/create').then(
-                r => this.toastrService.success(
-                  'Thêm mới thành công',
-                  'Thông báo',
-                  {timeOut: 5000, extendedTimeOut: 2500})
-              );
+              this.isSuccessful = true;
+              this.isSignUpFailed = false;
+              this.notification('Đăng kí thành công!');
             },
-              err => {
-                console.log("bbb");
-                this.errorMessage = err.error.message;
-                if (employeeCreateForm.get('email').value != null){
-                  this.employeeAccountService.checkEmail(employeeCreateForm.get('email').value).subscribe( data => {
-                    console.log(data);
-
-                    if (data === true) {
-                      // this.toastrService.error(
-                      //   'Email đã tồn tại',
-                      //   'Thông báo',
-                      //   {timeOut: 5000, extendedTimeOut: 2500});
-                      this.notification('Email đã tồn tại');
-                      stop();
-                    }
-                  });
-                }
-              }
-
+            err => {
+              console.log('bbb');
+              this.errorMessage = err.error.message;
+            }
           );
         });
       })
@@ -224,11 +236,6 @@ export class EmployeeAddAdminComponent implements OnInit {
     return this.defaultImage;
   }
 
-  getRole(){
-    this.employeeAccountService.getAllRole().subscribe(data => {
-      this.role = data ;
-    });
-  }
 
   notification(message: string) {
     const dialogRef = this.dialog.open(NotifyEmployeeComponent,

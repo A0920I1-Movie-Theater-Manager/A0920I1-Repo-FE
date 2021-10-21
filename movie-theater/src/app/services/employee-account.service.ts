@@ -62,10 +62,8 @@ export class EmployeeAccountService {
   checkUsername(username: any): Observable<any> {
     return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-username', username);
   }
-
-
-  // Lấy tất cả roleHoangLV)
-  getAllRole(): Observable<Role[]> {
-    return this.httpClient.get<Role[]>(this.API_URL_ROLE);
+  checkAccountCode(accountCode: any): Observable<any> {
+    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-accountCode', accountCode);
   }
+
 }
