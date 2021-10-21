@@ -1,13 +1,15 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {EmployeeAccountService} from '../../../services/employee-account.service';
 import {formatDate} from '@angular/common';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {finalize} from 'rxjs/operators';
 import {Router} from '@angular/router';
-import {compareValidator} from '../../../common/ConfirmedValidator';
-import {HttpErrorResponse} from '@angular/common/http';
+import {compareValidator} from '../validateCustomEmployee/ConfirmedValidator';
+import {Role} from '../../../shared/model/entity/Role';
+import {NotifyEmployeeComponent} from '../notifyEmployee/notify-employee/notify-employee.component';
+import {MatDialog} from '@angular/material/dialog';
 
 
 @Component({
@@ -17,23 +19,29 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class EmployeeAddAdminComponent implements OnInit {
 
+
   employeeCreateForm: FormGroup;
   filePath: string = null;
   inputImage: any = null;
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
   clickSubmit = false;
+  role: Role[];
+  errorMessage = '';
+
 
   constructor(
     private employeeAccountService: EmployeeAccountService,
     private toastrService: ToastrService,
     private router: Router,
-    @Inject(AngularFireStorage) private storage: AngularFireStorage) {
+    @Inject(AngularFireStorage) private storage: AngularFireStorage,
+    public dialog: MatDialog) {
   }
 
   validationMessage = {
 
     accountCode: [
       {type: 'required', message: 'Mã nhân viên không được để trống!'},
+      {type: 'pattern', message: 'Mã nhân viên là NV-XXXX.'}
     ],
 
     username: [
@@ -45,7 +53,7 @@ export class EmployeeAddAdminComponent implements OnInit {
 
     password: [
       {type: 'required', message: 'Mật khẩu không được để trống!'},
-      {type: 'minlength', message: 'Mật khẩu tối thiểu 4 ký tự'},
+      {type: 'minlength', message: 'Mật khẩu tối thiểu 6 ký tự'},
       {type: 'maxlength', message: 'Mật khẩu tối đa 32 ký tự'}
     ],
 
@@ -56,7 +64,8 @@ export class EmployeeAddAdminComponent implements OnInit {
     ],
 
     birthday: [
-      {type: 'required', message: 'Ngày sinh không được để trống!'}
+      {type: 'required', message: 'Ngày sinh không được để trống!'},
+      {type: 'checkAge', message: 'Tuổi phải trên 16.'}
     ],
     fullname: [
       {type: 'required', message: 'Họ và tên không được để trống!'},
@@ -92,18 +101,21 @@ export class EmployeeAddAdminComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getRole();
     this.employeeCreateForm = new FormGroup({
         accountCode: new FormControl(null,
-          [Validators.required]),
+          [Validators.required,
+            Validators.pattern(/NV-\d{4}/)
+          ]),
         username: new FormControl(null, [
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(32),
-          Validators.pattern(/^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}$/)
+          Validators.pattern(/^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){2,32}$/)
         ]),
         password: new FormControl(null, [
           Validators.required,
-          Validators.minLength(4),
+          Validators.minLength(6),
           Validators.maxLength(32)]),
         matchingPassword: new FormControl(null, [
           Validators.required,
@@ -137,7 +149,8 @@ export class EmployeeAddAdminComponent implements OnInit {
         gender: new FormControl(null,
           [Validators.required]),
         imageUrl: new FormControl(null,
-          [Validators.required])
+          [Validators.required]),
+        role: new FormControl(null, Validators.required)
       },
     );
   }
@@ -155,21 +168,32 @@ export class EmployeeAddAdminComponent implements OnInit {
           this.employeeCreateForm.patchValue({imageUrl: url});
           this.employeeAccountService.createEmployeeAccount(employeeCreateForm.value).subscribe(data => {
               // this.employeeCreateForm = data;
-            this.router.navigateByUrl('/').then(
-              r => this.toastrService.success(
-                'Thêm mới thành công',
-                'Thông báo',
-                {timeOut: 3000, extendedTimeOut: 1500})
-            );
-            },
-            (error: HttpErrorResponse) => {
-              this.router.navigateByUrl('/').then(
-                r => this.toastrService.error(
-                  'Thêm mới thất bại',
+              this.router.navigateByUrl('/create').then(
+                r => this.toastrService.success(
+                  'Thêm mới thành công',
                   'Thông báo',
-                  {timeOut: 3000, extendedTimeOut: 1500})
+                  {timeOut: 5000, extendedTimeOut: 2500})
               );
-            }
+            },
+              err => {
+                console.log("bbb");
+                this.errorMessage = err.error.message;
+                if (employeeCreateForm.get('email').value != null){
+                  this.employeeAccountService.checkEmail(employeeCreateForm.get('email').value).subscribe( data => {
+                    console.log(data);
+
+                    if (data === true) {
+                      // this.toastrService.error(
+                      //   'Email đã tồn tại',
+                      //   'Thông báo',
+                      //   {timeOut: 5000, extendedTimeOut: 2500});
+                      this.notification('Email đã tồn tại');
+                      stop();
+                    }
+                  });
+                }
+              }
+
           );
         });
       })
@@ -200,5 +224,24 @@ export class EmployeeAddAdminComponent implements OnInit {
     return this.defaultImage;
   }
 
+  getRole(){
+    this.employeeAccountService.getAllRole().subscribe(data => {
+      this.role = data ;
+    });
+  }
 
+  notification(message: string) {
+    const dialogRef = this.dialog.open(NotifyEmployeeComponent,
+      {
+        data: {
+          message
+        },
+        width: '400px'
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.ngOnInit();
+    });
+  }
 }

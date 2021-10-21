@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Account} from '../shared/model/entity/Account';
+import {Role} from "../shared/model/entity/Role";
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,20 @@ export class EmployeeAccountService {
   private readonly API_URL_EMPLOYEE_ACCOUNT_DELETE = 'http://localhost:8080/api/employee-account-delete';
   private readonly API_URL_EMPLOYEE_ACCOUNT_BY_ID = 'http://localhost:8080/api/employee-account';
   private readonly API_URL_EMPLOYEE_ACCOUNT_SEARCH = 'http://localhost:8080/api/';
+  private readonly API_URL_EMPLOYEE_ACCOUNT_CHECK = 'http://localhost:8080/api/';
+  private readonly API_URL_ROLE = 'http://localhost:8080/api/role';
+
 
   constructor(private httpClient: HttpClient) {
   }
 
   // Lấy thông tin nhân viên theo id (HoangLV)
-  getEmployeeById(id: number): Observable<Account>{
+  getEmployeeById(id: number): Observable<Account> {
     return this.httpClient.get<Account>(this.API_URL_EMPLOYEE_ACCOUNT_BY_ID + '/' + (id));
   }
+
   // Lấy tất cả thông tin nhân viên (HoangLV)
-  getAllEmployee(): Observable<Account[]>{
+  getAllEmployee(): Observable<Account[]> {
     return this.httpClient.get<Account[]>(this.API_URL_EMPLOYEE_ACCOUNT_LIST);
   }
 
@@ -38,11 +43,29 @@ export class EmployeeAccountService {
   }
 
   // Sửa thông tin nhân viên theo id (HoangLV)
-  updateEmployee(employee: any){
-    return this.httpClient.put<any>(this.API_URL_EMPLOYEE_ACCOUNT_UPDATE , employee);
+  updateEmployee(employee: any) {
+    return this.httpClient.put<any>(this.API_URL_EMPLOYEE_ACCOUNT_UPDATE, employee);
   }
 
   searchEmployee(keyWord: string): Observable<Account[]> {
-    return this.httpClient.get<Account[]>(this.API_URL_EMPLOYEE_ACCOUNT_SEARCH + '/search?keyWord=' + keyWord);
+    return this.httpClient.get<Account[]>(this.API_URL_EMPLOYEE_ACCOUNT_SEARCH + '/search-employee?keyWord=' + keyWord);
+  }
+
+  checkEmail(email: string): Observable<any> {
+    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-email', email);
+  }
+
+  checkPhone(phone: any): Observable<any> {
+    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-phone', phone);
+  }
+
+  checkUsername(username: any): Observable<any> {
+    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-username', username);
+  }
+
+
+  // Lấy tất cả roleHoangLV)
+  getAllRole(): Observable<Role[]> {
+    return this.httpClient.get<Role[]>(this.API_URL_ROLE);
   }
 }

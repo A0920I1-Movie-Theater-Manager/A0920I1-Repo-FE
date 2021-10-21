@@ -60,7 +60,7 @@
               <div class="card-body">
                 <label class="custom-file-upload">
                   <input type="file" (change)="selectImage($event)" accept=".jpg,.jpeg,.png"/>
-                  Custom Upload
+                  Chọn ảnh
                 </label>
               </div>
             </div>
@@ -122,7 +122,7 @@
         <div class="form-group">
           <label for="password" class="col-sm-2 control-label">Mật khẩu<span>*</span>:</label>
           <div class="col-sm-7">
-            <input type="password" class="form-control" id="password" formControlName="password">
+            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Nhập mật khẩu">
             <!--        <ng-container *ngFor="let validation of validationMessage.password">-->
             <!--          <small class="form-text text-danger"-->
             <!--                 *ngIf="employeeCreateForm.get('password').hasError(validation.type)&& employeeCreateForm.get('password').touched">-->
@@ -146,7 +146,7 @@
         <div class="form-group">
           <label for="matchingPassword" class="col-sm-2 control-label">Nhập lại mật khẩu<span>*</span>:</label>
           <div class="col-sm-7">
-            <input type="password" class="form-control" id="matchingPassword" formControlName="matchingPassword">
+            <input type="password" class="form-control" id="matchingPassword" formControlName="matchingPassword" placeholder="Xác nhận mật khẩu">
             <!--        <ng-container *ngFor="let validation of validationMessage.matchingPassword">-->
             <!--          <small class="form-text text-danger"-->
             <!--                 *ngIf="employeeCreateForm.get('matchingPassword').hasError(validation.type)&& (employeeCreateForm.get('matchingPassword').touched ||-->
@@ -157,7 +157,7 @@
             <small class="form-text text-danger"
                    *ngIf="employeeCreateForm.get('matchingPassword').invalid
           && (employeeCreateForm.get('matchingPassword').dirty|| employeeCreateForm.get('matchingPassword').touched)">
-              <span *ngIf="employeeCreateForm.get('matchingPassword').errors['compare']"> Mật khẩu không khớp.</span>
+              <span *ngIf="employeeCreateForm.get('matchingPassword').errors['compare']  && employeeCreateForm.get('matchingPassword').dirty"> Mật khẩu không khớp.</span>
             </small>
 
             <div *ngIf="employeeCreateForm.get('matchingPassword').value == null && clickSubmit ">
@@ -166,6 +166,20 @@
           </div>
         </div>
 
+
+        <div class="form-group">
+          <label for="role" class="col-sm-2 control-label">Chức vụ<span>*</span>:</label>
+          <div class="col-sm-7">
+            <select class="form-control" id="role" formControlName="role">
+              <option selected>Chọn...</option>
+              <ng-container *ngFor="let role of role">
+                <option value="{{role.id}}"> {{role.name}}</option>
+              </ng-container>
+<!--              <option *ngFor="let role of role" [ngValue]="role.id"-->
+<!--                      [selected]="role.name == employeeCreateForm.controls.role.value.name">{{role.name}}</option>-->
+            </select>
+          </div>
+        </div>
 
         <div class="form-group">
           <label for="fullname" class="col-sm-2 control-label">Họ và tên<span>*</span>:</label>
@@ -194,7 +208,7 @@
         <div class="form-group">
           <label for="birthday" class="col-sm-2 control-label">Ngày sinh<span>*</span>:</label>
           <div class="col-sm-7">
-            <input type="date" class="form-control" id="birthday" placeholder="Ngày sinh" formControlName="birthday">
+            <input type="date" class="form-control" id="birthday" placeholder="Ngày sinh" formControlName="birthday" >
             <!--        <ng-container *ngFor="let validation of validationMessage.birthday">-->
             <!--          <small class="form-text text-danger"-->
             <!--                 *ngIf="employeeCreateForm.get('birthday').hasError(validation.type)&& employeeCreateForm.get('birthday').touched">-->

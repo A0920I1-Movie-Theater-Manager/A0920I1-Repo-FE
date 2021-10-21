@@ -14,21 +14,28 @@ export class EmployeeDeleteAdminComponent implements OnInit {
 
   accountCode: any;
   idEmployeeAccount: any;
+  fullname: any;
 
   constructor( public dialogRef: MatDialogRef<EmployeeDeleteAdminComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any,
                private employeeAccountService: EmployeeAccountService ,
-               private snackBar: MatSnackBar) { }
+               private snackBar: MatSnackBar,
+               private toastService: ToastrService) { }
 
   ngOnInit(): void {
     this.accountCode = this.data.data1.accountCode;
     this.idEmployeeAccount = this.data.data1.id;
+    this.fullname = this.data.data1.fullname;
   }
 
   delete(){
     this.employeeAccountService.deleteEmployee(this.idEmployeeAccount).subscribe( data => {
       this.dialogRef.close();
-      this.snackBar.open('Đã xóa thành công!', 'Oke',{duration: 2000});
+      // this.snackBar.open('Đã xóa thành công!', 'Oke',{duration: 2000});
+      this.toastService.success(
+        'Xóa thành công',
+        'Thông báo',
+        {timeOut: 3000, extendedTimeOut: 1500});
     });
   }
 }

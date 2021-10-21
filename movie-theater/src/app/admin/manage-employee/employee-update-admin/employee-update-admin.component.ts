@@ -8,7 +8,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
 import {UpdateEmployeeDTO} from '../../../shared/model/dto/manage-employee/UpdateEmployeeDTO';
-import {compareValidator} from '../../../common/ConfirmedValidator';
+import {compareValidator} from '../validateCustomEmployee/ConfirmedValidator';
 
 @Component({
   selector: 'app-employee-update-admin',
@@ -39,6 +39,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
 
     accountCode: [
       {type: 'required', message: 'Mã nhân viên không được để trống!'},
+      {type: 'pattern', message: 'Mã nhân viên là NV-XXXX.'}
     ],
 
     username: [
@@ -50,7 +51,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
 
     password: [
       {type: 'required', message: 'Mật khẩu không được để trống!'},
-      {type: 'minlength', message: 'Mật khẩu tối thiểu 4 ký tự'},
+      {type: 'minlength', message: 'Mật khẩu tối thiểu 6 ký tự'},
       {type: 'maxlength', message: 'Mật khẩu tối đa 32 ký tự'}
     ],
 
@@ -103,12 +104,12 @@ export class EmployeeUpdateAdminComponent implements OnInit {
         Validators.required,
         Validators.minLength(4),
         Validators.maxLength(32),
-        Validators.pattern(/^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){6,18}$/)
+        Validators.pattern(/^[a-zA-Z0-9](_(?!(\.|_))|\.(?!(_|\.))|[a-zA-Z0-9]){2,32}$/)
       ]),
-      accountCode: this.formBuilder.control('', [Validators.required]),
+      accountCode: this.formBuilder.control('', [Validators.required, Validators.pattern(/NV-\d{4}/)]),
       password: this.formBuilder.control('', [
         Validators.required,
-        Validators.minLength(4),
+        Validators.minLength(6),
         Validators.maxLength(32)]),
       matchingPassword: new FormControl(null, [
         Validators.required,
@@ -203,7 +204,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
                   r => this.toastrService.success(
                     'Chỉnh sửa thành công',
                     'Thông báo',
-                    {timeOut: 3000, extendedTimeOut: 1500})
+                    {timeOut: 5000, extendedTimeOut: 2500})
                 );
               },
               (error: HttpErrorResponse) => {

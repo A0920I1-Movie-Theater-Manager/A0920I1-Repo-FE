@@ -45,7 +45,7 @@
       <!-- End content-header -->
 
       <!-- Main Content -->
-      <form [formGroup]="employeeUpdateForm" (ngSubmit)="onSubmit(employeeUpdateForm)" class="form-horizontal">
+      <form [formGroup]="employeeUpdateForm" (ngSubmit)="onSubmit(employeeUpdateForm)" (keydown.enter)="onSubmit(employeeUpdateForm)" class="form-horizontal">
 
         <div class="form-group">
           <label for="exampleInputFile" class="col-sm-2 control-label">Hình ảnh<span>*</span>:</label>
@@ -60,7 +60,7 @@
               <div class="card-body">
                 <label class="custom-file-upload">
                   <input type="file" (change)="selectImage($event)" accept=".jpg,.jpeg,.png"/>
-                  Custom Upload
+                  Chọn ảnh
                 </label>
               </div>
             </div>
@@ -349,7 +349,7 @@
             <button type="button" class="btn btn-primary" routerLink="/">Quay lại</button>
           </div>
           <div class="col-sm-1" style="text-align: left">
-            <button type="submit" class="btn btn-success">Chỉnh Sửa</button>
+            <button type="submit" class="btn btn-success" >Chỉnh Sửa</button>
           </div>
         </div>
       </form>

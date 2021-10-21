@@ -22,6 +22,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EmployeeDetailAdminComponent } from './manage-employee/employee-detail-admin/employee-detail-admin.component';
+import { NotifyEmployeeComponent } from './manage-employee/notifyEmployee/notify-employee/notify-employee.component';
 
 const adminRoutes: Routes = [];
 
@@ -44,7 +45,8 @@ const adminRoutes: Routes = [];
         PromotionAddAdminComponent,
         PromotionUpdateAdminComponent,
         PromotionDeleteAdminComponent,
-        EmployeeDetailAdminComponent
+        EmployeeDetailAdminComponent,
+        NotifyEmployeeComponent
     ],
     exports: [
         EmployeeListAdminComponent,

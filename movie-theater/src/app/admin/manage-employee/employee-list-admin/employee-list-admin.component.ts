@@ -34,7 +34,6 @@ export class EmployeeListAdminComponent implements OnInit {
         data: {data1: data}
       });
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
         this.ngOnInit();
       });
     });
