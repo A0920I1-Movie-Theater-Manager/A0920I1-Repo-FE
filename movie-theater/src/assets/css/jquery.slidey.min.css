@@ -34,6 +34,7 @@ table.slidey-list-table {
 @media (max-width: 800px){
 	.slidey-row {
 		height: 321px;
+<<<<<<< HEAD
 	}
 	.slidey-row .slidey-image .slidey-overlay {
 		padding: 1.5em 4em;
@@ -163,6 +164,9 @@ table.slidey-list-table {
 	.slidey-row {
 		height: 321px;
 	}
+=======
+	}	
+>>>>>>> VietNT_Account_user
 	.slidey-row .slidey-image .slidey-overlay {
 		padding: 1.5em 4em;
 	}
@@ -238,7 +242,11 @@ table.slidey-list-table {
 	.slidey-row .slidey-image .slidey-overlay .slidey-overlay-title {
 		width: 45%;
 	}
+<<<<<<< HEAD
 }
+=======
+}	
+>>>>>>> VietNT_Account_user
 @media (max-width: 384px){
 	.slidey-row .slidey-image {
 		background-position: -64px 0px;
@@ -253,4 +261,8 @@ table.slidey-list-table {
 	.slidey-row .slidey-image .slidey-overlay .slidey-overlay-title {
 		width: 65%;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> VietNT_Account_user

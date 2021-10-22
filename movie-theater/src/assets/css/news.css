@@ -137,7 +137,11 @@ ol.breadcrumb li a{
     padding: 1em;
     background: #ff9800;
 }
+<<<<<<< HEAD
 .wthree-news-right-heading h3{
+=======
+.wthree-news-right-heading h4{
+>>>>>>> VietNT_Account_user
 	color: #ffffff;
     margin: 0;
     font-size: 1.5em;
@@ -214,5 +218,8 @@ ol.breadcrumb li a{
     font-size: .9em;
 	text-decoration:none;
 }
+<<<<<<< HEAD
 >>>>>>> movie
+=======
+>>>>>>> VietNT_Account_user
 /*-- //news-right-bottom --*/

@@ -122,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "movie-theater"
+    }
+  },
+  "defaultProject": "movie-theater",
+  "cli": {
+    "analytics": "8d936fbd-ad27-4f60-ac49-9d7d6f4bdbb6"
+  }
 }

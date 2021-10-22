@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> VietNT_Account_user
 /*--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -17,7 +20,11 @@ p{
 	margin:0;
 	font-size:0.9em;
 }
+<<<<<<< HEAD
 h1,h2,h3,h4,h5,h6,a{
+=======
+h1,h2,h4,h4,h5,h6,a{
+>>>>>>> VietNT_Account_user
 	font-family: 'Roboto Condensed', sans-serif;
 	margin:0;
 }
@@ -118,5 +125,8 @@ a.pa_italic:focus {
 	.panel-body {
 		padding: 1em;
 	}
+<<<<<<< HEAD
 >>>>>>> movie
+=======
+>>>>>>> VietNT_Account_user
 }

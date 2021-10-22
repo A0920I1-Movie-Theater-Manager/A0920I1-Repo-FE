@@ -7,12 +7,41 @@ import {ManageBookingUserComponent} from './account-user/manage-booking-user/man
 import {HistoryPointUserComponent} from './account-user/history-point-user/history-point-user.component';
 import {RouterModule, Routes} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+<<<<<<< HEAD
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 
 const userRoutes: Routes = [
   {path: 'booking', component: BookingUserComponent}
+=======
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ChangePasswordComponent } from './account-user/change-password/change-password.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+const userRoutes: Routes = [
+  {
+    path: 'booking/:idAccount', component: BookingUserComponent
+  },
+  {
+    path: 'booking', component: BookingUserComponent
+  },
+  {
+    path: 'updateAccount/:idUpdate', component: UpdateAccountUserComponent
+  },
+  {
+    path: 'updateAccount', component: UpdateAccountUserComponent
+  },
+  {
+    path: 'changePassword/:idUpdate', component: ChangePasswordComponent
+  },
+  {
+    path: 'changePassword', component: ChangePasswordComponent
+  }
+>>>>>>> VietNT_Account_user
 ];
 
 @NgModule({
@@ -21,16 +50,38 @@ const userRoutes: Routes = [
     AccountUserComponent,
     UpdateAccountUserComponent,
     ManageBookingUserComponent,
-    HistoryPointUserComponent
+    HistoryPointUserComponent,
+    ChangePasswordComponent
+  ],
+  exports: [
+    UpdateAccountUserComponent,
+    AccountUserComponent
   ],
   imports: [
+
     CommonModule,
+<<<<<<< HEAD
     RouterModule.forChild(userRoutes),
     ReactiveFormsModule,
     MatFormFieldModule,
     MatDatepickerModule,
     FormsModule,
     MatInputModule
+=======
+    FormsModule,
+    RouterModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(userRoutes),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
+    BrowserModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule,
+>>>>>>> VietNT_Account_user
   ]
 })
 export class UserModule {

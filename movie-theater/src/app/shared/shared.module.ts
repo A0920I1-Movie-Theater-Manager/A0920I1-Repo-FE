@@ -10,6 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 const sharedRoutes: Routes = [];
 
 @NgModule({
+<<<<<<< HEAD
   declarations: [HeaderComponent, FooterComponent],
   exports: [
     HeaderComponent,
@@ -21,6 +22,17 @@ const sharedRoutes: Routes = [];
     FormsModule,
     MatAutocompleteModule
   ]
+=======
+    declarations: [HeaderComponent, FooterComponent],
+  exports: [
+    FooterComponent,
+    HeaderComponent
+  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(sharedRoutes)
+    ]
+>>>>>>> VietNT_Account_user
 })
 export class SharedModule {
 }

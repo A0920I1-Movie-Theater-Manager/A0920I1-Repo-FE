@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> VietNT_Account_user
 /*--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -17,7 +20,11 @@ p{
 	margin:0;
 	font-size:0.9em;
 }
+<<<<<<< HEAD
 h1,h2,h3,h4,h5,h6,a{
+=======
+h1,h2,h4,h4,h5,h6,a{
+>>>>>>> VietNT_Account_user
 	font-family: 'Roboto Condensed', sans-serif;
 	margin:0;
 }
@@ -560,7 +567,11 @@ p.fexi_header_para1 a i {
 .form-module .form:nth-child(2) {
   display: block;
 }
+<<<<<<< HEAD
 .form-module h3 {
+=======
+.form-module h4 {
+>>>>>>> VietNT_Account_user
     margin: 0 0 1.5em;
     color: #212121;
     font-size: 1.2em;
@@ -653,7 +664,11 @@ li.list-group-item1 {
 .grid_3{
 	margin-bottom:2em;
 }
+<<<<<<< HEAD
 .xs h3, h3.m_1{
+=======
+.xs h4, h4.m_1{
+>>>>>>> VietNT_Account_user
 	color:#000;
 	font-size:1.7em;
 	font-weight:300;
@@ -677,7 +692,11 @@ li.list-group-item1 {
 	background:none;
 	padding:2em 0;
 }
+<<<<<<< HEAD
 .grid_5 h3, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h3.hdg, h3.bars {
+=======
+.grid_5 h4, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h4.hdg, h4.bars {
+>>>>>>> VietNT_Account_user
 	margin-bottom: 1em;
     color: #212121;
     font-weight: bold;
@@ -746,7 +765,11 @@ section#tables  p {
 .alert {
 	font-size: 0.85em;
 }
+<<<<<<< HEAD
 h1.t-button,h2.t-button,h3.t-button,h4.t-button,h5.t-button {
+=======
+h1.t-button,h2.t-button,h4.t-button,h4.t-button,h5.t-button {
+>>>>>>> VietNT_Account_user
 	line-height:2em;
 	margin-top:0.5em;
 	margin-bottom: 0.5em;
@@ -781,11 +804,19 @@ h2.typoh2{
 	}
 }
 @media (max-width:640px){
+<<<<<<< HEAD
 	h1, .h1, h2, .h2, h3, .h3 {
 		margin-top: 0px;
 		margin-bottom: 0px;
 	}
 	.grid_5 h3, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h3.hdg, h3.bars {
+=======
+	h1, .h1, h2, .h2, h4, .h4 {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
+	.grid_5 h4, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h4.hdg, h4.bars {
+>>>>>>> VietNT_Account_user
 		margin-bottom: .5em;
 	}
 	.progress {
@@ -816,7 +847,11 @@ h2.typoh2{
 	}
 }
 @media (max-width:480px){
+<<<<<<< HEAD
 	.grid_5 h3, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h3.hdg, h3.bars {
+=======
+	.grid_5 h4, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h4.hdg, h4.bars {
+>>>>>>> VietNT_Account_user
 		font-size: 1.2em;
 	}
 	.table h1 {
@@ -825,7 +860,11 @@ h2.typoh2{
 	.table h2 {
 		font-size: 23px;
 	}
+<<<<<<< HEAD
 	.table h3 {
+=======
+	.table h4 {
+>>>>>>> VietNT_Account_user
 		font-size: 20px;
 	}
 	.label {
@@ -845,7 +884,11 @@ h2.typoh2{
 	.grid_4 {
 		margin-top: 18px;
 	}
+<<<<<<< HEAD
 	h3.title {
+=======
+	h4.title {
+>>>>>>> VietNT_Account_user
 		font-size: 1.6em;
 	}
 	.alert, p,ol.breadcrumb li, .grid_3 p,.well, ul.list-group li, li.list-group-item1,a.list-group-item {
@@ -939,12 +982,20 @@ h2.typoh2{
     text-align: center;
     word-wrap: break-word;
 }
+<<<<<<< HEAD
 h3.icon-subheading {
+=======
+h4.icon-subheading {
+>>>>>>> VietNT_Account_user
 	font-size: 28px;
     color: #ff8d1b !important;
     margin: 30px 0 15px;
 }
+<<<<<<< HEAD
 h3.agileits-icons-title {
+=======
+h4.agileits-icons-title {
+>>>>>>> VietNT_Account_user
     text-align: center;
     font-size: 36px;
     color: #000;
@@ -993,7 +1044,11 @@ h3.agileits-icons-title {
     word-wrap: break-word;
 }
 /*-- //icons --*/
+<<<<<<< HEAD
 h3.head {
+=======
+h4.head {
+>>>>>>> VietNT_Account_user
     text-align: center;
     font-size: 2.5em;
     color: #ff8d1b;
@@ -1157,6 +1212,7 @@ h3.head {
 	.w3ls_footer_grid_left1 h2 {
 		font-size: 1.7em;
 	}
+<<<<<<< HEAD
 	h3.head {
 		font-size: 2.2em;
 	}
@@ -1165,6 +1221,16 @@ h3.head {
 		font-size: 28px;
 	}
 	h3.icon-subheading {
+=======
+	h4.head {
+		font-size: 2.2em;
+	}
+	/*-- icons --*/
+	h4.agileits-icons-title {
+		font-size: 28px;
+	}
+	h4.icon-subheading {
+>>>>>>> VietNT_Account_user
 		font-size: 25px;
 	}
 	.row {
@@ -1372,6 +1438,7 @@ h3.head {
 	h4.latest-text {
 		font-size: 1.4em !important;
 	}
+<<<<<<< HEAD
 	h3.head {
 		font-size: 2em;
 	}
@@ -1380,6 +1447,16 @@ h3.head {
 		font-size: 23px;
 	}
 	h3.icon-subheading {
+=======
+	h4.head {
+		font-size: 2em;
+	}
+	/*-- icons --*/
+	h4.agileits-icons-title {
+		font-size: 23px;
+	}
+	h4.icon-subheading {
+>>>>>>> VietNT_Account_user
 		font-size: 18px;
 	}
 	.icons .bs-glyphicons li {
@@ -1466,7 +1543,11 @@ h3.head {
 	.modal-header {
 		font-size: 1.5em;
 	}
+<<<<<<< HEAD
 	.form-module h3{
+=======
+	.form-module h4{
+>>>>>>> VietNT_Account_user
 		margin: 0 0 1em;
 		font-size: 1.1em;
 	}
@@ -1522,7 +1603,11 @@ h3.head {
 	.w3ls_footer_grid_left1 h2 {
 		font-size: 1.3em;
 	}
+<<<<<<< HEAD
 	h3.head {
+=======
+	h4.head {
+>>>>>>> VietNT_Account_user
 		font-size: 1.8em;
 	}
 }
@@ -1588,5 +1673,8 @@ h3.head {
   }
   .btn-3 span:hover:after {
 	width: 100%;
+<<<<<<< HEAD
 >>>>>>> movie
+=======
+>>>>>>> VietNT_Account_user
   }

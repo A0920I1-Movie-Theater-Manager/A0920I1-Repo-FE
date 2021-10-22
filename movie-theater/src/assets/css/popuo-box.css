@@ -254,7 +254,11 @@ button::-moz-focus-inner {
   padding-right: 6px;
   width: 100%;
 }
+<<<<<<< HEAD
 .login h3,.signup h3{
+=======
+.login h4,.signup h4{
+>>>>>>> VietNT_Account_user
 	margin:1em 0;
 	color: #a63d56;
 }
