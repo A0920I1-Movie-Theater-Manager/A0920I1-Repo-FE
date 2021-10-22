@@ -18,12 +18,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  // TuHC - goi y tim kiem
   suggestMovie(){
     this.movieService.searchMovie(this.keyword).subscribe(data => {
       // @ts-ignore
       this.movieSearches = this.jsog.deserializeArray(data, Movie);
     });
   }
+  // TuHC - tim kiem phim
   searchMovie(){
     this.router.navigateByUrl('/movie-search?keyword=' + this.keyword);
   }

@@ -10,6 +10,10 @@ import {EmployeeModule} from './employee/employee.module';
 import {AdminModule} from './admin/admin.module';
 import {AppRoutingModule} from './app-routing.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {JsogService} from 'jsog-typescript';
+import {StaticPageModule} from './static-page/static-page.module';
 
 @NgModule({
   declarations: [
@@ -23,10 +27,15 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     GuestModule,
     EmployeeModule,
     AdminModule,
-    AppRoutingModule,
-    NgbModule
+    StaticPageModule,
+    NgbModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    JsogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

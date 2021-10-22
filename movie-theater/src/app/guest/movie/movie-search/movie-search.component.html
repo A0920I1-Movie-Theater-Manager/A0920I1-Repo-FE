@@ -31,8 +31,10 @@
                 <td>{{movie.releaseDate | date: 'yyyy'}}</td>
                 <td>{{movie.director}}</td>
                 <td class="w3-list-info" width="20%">{{movie.cast}}</td>
-                <td class="w3-list-info" *ngFor="let genre of movie.genres">
-                  <span>{{genre.name}}</span>
+                <td class="w3-list-info">
+                  <li *ngFor="let genre of movie.genres" style="list-style-type: none">
+                    <span>{{genre.name}}</span>
+                  </li>
                 </td>
                 <td>7.0</td>
               </tr>

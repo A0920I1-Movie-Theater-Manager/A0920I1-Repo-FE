@@ -5,6 +5,8 @@ import {Movie} from '../../../shared/model/entity/Movie';
 import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 import {JsogService} from 'jsog-typescript';
 import {Comment} from '../../../shared/model/entity/Comment';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {map, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-movie-detail',
@@ -16,27 +18,50 @@ export class MovieDetailComponent implements OnInit {
   movie: Movie;
   movieTopFives: Movie[];
   comments: Comment[];
+  commentForm: FormGroup;
+  comment: Comment;
 
-  constructor(private movieService: MovieService,  private activatedRoute: ActivatedRoute,
-              public sanitizer: DomSanitizer, private jsog: JsogService) { }
+  constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute,
+              public sanitizer: DomSanitizer, private jsogService: JsogService,
+              private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
-    this.id = this.activatedRoute.snapshot.params.id;
-    this.movieService.getDetailMovie(this.id).subscribe(data => {
+    // TuHC
+    this.activatedRoute.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
       // @ts-ignore
-      this.movie = this.jsog.deserializeObject(data, Movie);
+      this.movieService.findMovieById(id).subscribe(
+        data => this.movie = this.jsogService.deserializeObject(data, Movie)
+      );
+      this.movieService.getCommentByMovieId(id).subscribe(data => {
+        // @ts-ignore
+        this.comments = this.jsogService.deserializeArray(data, Comment);
+      });
     });
     this.movieService.getMovieTopFive().subscribe(data => {
       // @ts-ignore
-      this.movieTopFives = this.jsog.deserializeArray(data, Movie);
+      this.movieTopFives = this.jsogService.deserializeArray(data, Movie);
     });
-    this.movieService.getCommentByMovieId(this.id).subscribe(data => {
-      // @ts-ignore
-      this.comments = this.jsog.deserializeArray(data, Comment);
+    // Form comment
+    this.commentForm = this.formBuilder.group({
+      content: this.formBuilder.control(''),
+      account: this.formBuilder.control(''),
+      movie: this.formBuilder.control(this.id),
+      seen: this.formBuilder.control('')
     });
   }
+
   // TuHC - nhung video trailer hop le
   videoURL() {
     return this.sanitizer.bypassSecurityTrustResourceUrl(this.movie.trailerUrl);
+  }
+
+  // TuHC - them moi comment
+  addComment() {
+    this.comment = this.commentForm.value;
+    this.movieService.addComment(this.comment).subscribe(data => {
+      console.log('success');
+    });
   }
 }

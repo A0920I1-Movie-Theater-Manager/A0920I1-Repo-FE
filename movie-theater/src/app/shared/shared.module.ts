@@ -19,8 +19,7 @@ const sharedRoutes: Routes = [];
     CommonModule,
     RouterModule.forChild(sharedRoutes),
     FormsModule,
-    MatAutocompleteModule,
-    BrowserAnimationsModule
+    MatAutocompleteModule
   ]
 })
 export class SharedModule { }

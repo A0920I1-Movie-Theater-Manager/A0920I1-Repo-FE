@@ -1,1 +1,58 @@
-<p>booking-user works!</p>
+<body>
+<div class="container-fluid">
+  <div class="rows">
+    <div class="" style="width: 50%">
+      <div class="movie-container ">
+        <div>
+          <label>Chọn phim</label>
+          <select [ngModel]="movieId" class="movie" (ngModelChange)="onChangeMovie($event)">
+            <option *ngFor="let movie of movies" style="color: crimson" value="{{movie.id}}">{{movie.title}}</option>
+          </select>
+        </div>
+        <div>
+          <label>Ngày chiếu</label>
+          <mat-form-field appearance="fill">
+            <mat-label></mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <label>Suất chiếu</label>
+          <select [ngModel]="showtimeId" class="movie" (ngModelChange)="onChangeShowtime($event)">
+            <option *ngFor="let showtime of showtimes" style="color: crimson" value="{{showtime.id}}"
+            >{{showtime.showTime}}</option>
+          </select>
+        </div>
+        <form [formGroup]="bookingForm" (ngSubmit)="booking()">
+
+        </form>
+      </div>
+    </div>
+    <div class="" style="width: 50%">
+      <ul class="showcase">
+        <li>
+          <div class="seat"></div>
+          <small>Ghế trống</small>
+        </li>
+        <li>
+          <div class="seat selected"></div>
+          <small>Ghế đang chọn</small>
+        </li>
+        <li>
+          <div class="seat occupied"></div>
+          <small>Ghế đã bán</small>
+        </li>
+      </ul>
+      <div class="container">
+        <div class="screen"></div>
+        <div class="rows" *ngFor="let seat of seats">
+          <div class="seat" style="text-align: center" [ngClass]="{'green':selectedTasks[seat.id]}"
+               (click)="selectedTasks[seat.id]= !selectedTasks[seat.id]">{{seat.name}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

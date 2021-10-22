@@ -3,6 +3,7 @@ import {MovieService} from '../../../services/movie.service';
 import {Movie} from '../../../shared/model/entity/Movie';
 import {JsogService} from 'jsog-typescript';
 import {ActivatedRoute} from '@angular/router';
+import {Comment} from '../../../shared/model/entity/Comment';
 
 @Component({
   selector: 'app-movie-search',
@@ -12,15 +13,16 @@ import {ActivatedRoute} from '@angular/router';
 export class MovieSearchComponent implements OnInit {
   movies: Movie[];
   keyword: string;
-  constructor(private movieService: MovieService, private jsog: JsogService,
+  constructor(private movieService: MovieService, private jsogService: JsogService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.keyword = this.activatedRoute.snapshot.queryParams.keyword;
-    console.log(this.keyword);
-    this.movieService.searchMovie(this.keyword).subscribe(data => {
+    this.activatedRoute.paramMap.subscribe(params => {
+      const keyword = params.get('keyword');
+      console.log(keyword);
       // @ts-ignore
-      this.movies = this.jsog.deserializeArray(data, Movie);
+      this.movieService.searchMovie(keyword).subscribe(
+        data => this.movies = this.jsogService.deserializeArray(data, Movie));
     });
   }
 

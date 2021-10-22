@@ -27,30 +27,30 @@
                      style="height: 350px; width: 250px"/>
               </div>
               <div>
-                <table class="table table-borderless">
+                <table class="table table-borderless" style="background: whitesmoke; color: #2d2d2d">
                   <tbody>
                   <tr>
-                    <th scope="row" style="width: 30%">Nhà sản xuất:</th>
+                    <th scope="row" style="width: 30%; background: whitesmoke">Nhà sản xuất:</th>
                     <td>{{movie.production}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Thể loại:</th>
+                    <th scope="row" style="background: white">Thể loại:</th>
                     <td>
-                      <li *ngFor="let genre of movie.genres">
+                      <li *ngFor="let genre of movie.genres" style="list-style-type: none">
                         <span>{{genre.name}}</span>
                       </li>
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">Đạo diễn:</th>
+                    <th scope="row" style="background: whitesmoke">Đạo diễn:</th>
                     <td>{{movie.director}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Diễn viên:</th>
+                    <th scope="row" style="background: white">Diễn viên:</th>
                     <td>{{movie.cast}}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Ngày phát hành:</th>
+                    <th scope="row" style="background: whitesmoke">Ngày phát hành:</th>
                     <td>{{movie.releaseDate | date: 'dd/MM/yyyy'}}</td>
                   </tr>
                   </tbody>
@@ -102,8 +102,8 @@
             </div>
           </div>
           <div class="agile-info-wthree-box">
-            <form>
-              <textarea placeholder="Bình luận" required=""></textarea>
+            <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+              <textarea placeholder="Bình luận" required="" formControlName="content"></textarea>
               <input type="submit" value="Gửi">
               <div class="clearfix"> </div>
             </form>

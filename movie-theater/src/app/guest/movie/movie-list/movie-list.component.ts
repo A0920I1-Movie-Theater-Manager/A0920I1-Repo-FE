@@ -3,6 +3,7 @@ import {MovieService} from '../../../services/movie.service';
 import {Movie} from '../../../shared/model/entity/Movie';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {JsogService, JsonProperty} from 'jsog-typescript';
+import {MovieTopFive} from '../../../shared/model/dto/MovieTopFive';
 
 
 @Component({
@@ -12,10 +13,10 @@ import {JsogService, JsonProperty} from 'jsog-typescript';
 })
 export class MovieListComponent implements OnInit {
   constructor(private movieService: MovieService,
-              private jsog: JsogService) {
+              private jsogService: JsogService) {
   }
 
-  movieShowings: Movie[] = [];
+  movieShowings: Movie[];
   movieComings: Movie[];
   movieTopFives: Movie[];
 
@@ -77,15 +78,15 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
     this.movieService.getMovieShowing().subscribe(data => {
       // @ts-ignore
-      this.movieShowings = this.jsog.deserializeArray(data, Movie);
+      this.movieShowings = this.jsogService.deserializeArray(data, Movie);
     });
     this.movieService.getMovieComingSoon().subscribe(data => {
       // @ts-ignore
-      this.movieComings = this.jsog.deserializeArray(data, Movie);
+      this.movieComings = this.jsogService.deserializeArray(data, Movie);
     });
     this.movieService.getMovieTopFive().subscribe(data => {
       // @ts-ignore
-      this.movieTopFives = this.jsog.deserializeArray(data, Movie);
+      this.movieTopFives = this.jsogService.deserializeArray(data, Movie);
     });
   }
 }
