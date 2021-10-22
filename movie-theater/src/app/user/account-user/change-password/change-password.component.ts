@@ -1,23 +1,20 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {AccountUserServiceService} from '../../../services/account-user-service.service';
 import {ToastrService} from 'ngx-toastr';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Account} from '../../../shared/model/entity/Account';
-import {AngularFireStorage} from '@angular/fire/storage';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, Validators} from '@angular/forms';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {Account} from '../../../shared/model/entity/Account';
 import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
 import {HttpErrorResponse} from '@angular/common/http';
-import {checkDateOfBirth} from '../Validator_User/validatorBirthday';
-import {compareValidator} from '../Validator_User/validatePassword';
 
 @Component({
-  selector: 'app-update-account-user',
-  templateUrl: './update-account-user.component.html',
-  styleUrls: ['./update-account-user.component.css']
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.css']
 })
-export class UpdateAccountUserComponent implements OnInit {
-
+export class ChangePasswordComponent implements OnInit {
 
   constructor(private  accountUserService: AccountUserServiceService,
               private  toastrService: ToastrService,
@@ -40,61 +37,18 @@ export class UpdateAccountUserComponent implements OnInit {
   defaultImage = 'https://epicattorneymarketing.com/wp-content/uploads/2016/07/Headshot-Placeholder-1.png';
 
   validationMessage = {
-    fullname: [
-      {type: 'required', message: 'Họ và tên không được để trống.'},
-      {type: 'minlength', message: 'Họ và têntối thiểu 4 ký tự.'},
-      {type: 'maxlength', message: 'Họ và tên tối đa 20 ký tự.'},
-      {type: 'pattern', message: 'Họ và tên không chứa dấu ký tự đặc biệt hoặc Số.'}
-    ],
-    birthday: [
-      {type: 'required', message: 'Vui lòng chọn ngày sinh, không được để trống.'},
-      {type: 'checkAge', message: 'Tuổi phải trên 14 tuổi.'}
-    ],
-    gender: [
-      {type: 'required', message: 'Vui lòng chọn giới tính.'},
-    ],
     password: [
-      {type: 'compare', message: 'pass trùng với mk cũ'},
-    ],
-    email: [
-      {type: 'required', message: 'Email không được để trống.'},
-      {type: 'email', message: 'Email không đúng định dạng.'},
-      {type: 'pattern', message: 'Email có  định dạng là abcd@gmail.com.'}
-    ],
-    idCard: [
-      {type: 'required', message: 'CMND không được để trống.'},
-      {type: 'pattern', message: 'không được nhập chữ và số điện thoại có 9 kí tự.'},
-      {type: 'minlength', message: 'CMND có  9 số.'},
-      {type: 'maxlength', message: 'CMND có  9 số.'},
-    ],
-    phone: [
-      {type: 'required', message: 'Số điện thoại không được để trống.'},
-      {type: 'maxlength', message: 'Số điện thoại có 10 kí tự.'},
-      {type: 'pattern', message: 'không được nhập chữ và số điện thoại có 10 kí tự.'},
-    ],
-    address: [
-      {type: 'required', message: 'Đia chỉ không được để trống.'},
-      {type: 'minlength', message: 'Họ và tên tối thiểu 4 ký tự.'},
-      {type: 'maxlength', message: 'Họ và tên tối đa 20 ký tự.'},
-    ],
-    imageUrl: [
-      {type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg'}
-    ]
+      {type: 'required', message: 'Mật khẩu không được để trống.'},
+      {type: 'pattern', message: 'Mật khẩu bao gồm chữ cái đầu viết hoa vsố và phải có kí tự đặc biệt.'},
+      ]
   };
-
   accountUpdateForm = this.formBuilder.group({
     id: [('')],
     accountCode: [('')],
     username: [('')],
-    password: [(''), ],
+    password: ['', Validators.required , Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/)],
     totalPoint: [('')],
     fullname: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/), Validators.minLength(4), Validators.maxLength(20)]],
-    birthday: [(''), [Validators.required]],
-    gender: [(''), [Validators.required]],
-    email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
-    idCard: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9), Validators.pattern('^[0-9]{1,10}$')]],
-    phone: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]{1,10}$')]],
-    address: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     imageUrl: [''],
   });
 
@@ -103,21 +57,11 @@ export class UpdateAccountUserComponent implements OnInit {
     console.log(this.idUpdate);
     this.accountUserService.findAccountUserId(this.idUpdate).subscribe((data) => {
       this.accountUpdate = data;
-
       this.accountUpdateForm = this.formBuilder.group({
         id: [(this.accountUpdate.id)],
         accountCode: [this.accountUpdate.accountCode],
         username: [this.accountUpdate.username],
-        password: [(''), ],
-   /*     password: [this.accountUpdate.password, compareValidator('12345')],*/
-        totalPoint: [this.accountUpdate.totalPoint],
-        fullname: [this.accountUpdate.fullname, [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/), Validators.minLength(3), Validators.maxLength(250)]],
-        birthday: [this.accountUpdate.birthday, [Validators.required,  checkDateOfBirth]],
-        gender: [this.accountUpdate.gender],
-        email: [this.accountUpdate.email, [Validators.required]],
-        idCard: [this.accountUpdate.idCard, [Validators.required, Validators.maxLength(9), Validators.minLength(9), Validators.pattern('^[0-9]{1,10}$')]],
-        phone: [this.accountUpdate.phone, [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]{1,10}$')]],
-        address: [this.accountUpdate.address, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+        password: ['', Validators.required , Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/)],
         imageUrl: [this.accountUpdate.imageUrl],
       });
       this.name = this.accountUpdate.fullname;
@@ -137,7 +81,7 @@ export class UpdateAccountUserComponent implements OnInit {
     } else {return this.defaultImage; }
   }
 
-  updateAccount() {
+  changepassword() {
     if (this.inputImage != null) {
       const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
       const fileRef = this.storage.ref(imageName);
@@ -190,8 +134,3 @@ export class UpdateAccountUserComponent implements OnInit {
     this.storage.upload('/files' + Math.random() + this.inputImage, this.inputImage);
   }*/
 }
-
-
-
-
-

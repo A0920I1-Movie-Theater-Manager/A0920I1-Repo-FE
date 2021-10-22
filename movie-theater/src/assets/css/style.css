@@ -16,7 +16,7 @@ p{
 	margin:0;
 	font-size:0.9em;
 }
-h1,h2,h3,h4,h5,h6,a{
+h1,h2,h4,h4,h5,h6,a{
 	font-family: 'Roboto Condensed', sans-serif;
 	margin:0;
 }
@@ -38,7 +38,7 @@ input[type="submit"],.agileinfo_chat a,.w3ls_footer_grid1_left p a,.w3l_sign_in_
 .header {
     padding: 1em 0;
 	border-top: 3px solid #FF8D1B;
-}	
+}
 .w3layouts_logo{
 	float:left;
 }
@@ -559,7 +559,7 @@ p.fexi_header_para1 a i {
 .form-module .form:nth-child(2) {
   display: block;
 }
-.form-module h3 {
+.form-module h4 {
     margin: 0 0 1.5em;
     color: #212121;
     font-size: 1.2em;
@@ -652,7 +652,7 @@ li.list-group-item1 {
 .grid_3{
 	margin-bottom:2em;
 }
-.xs h3, h3.m_1{
+.xs h4, h4.m_1{
 	color:#000;
 	font-size:1.7em;
 	font-weight:300;
@@ -671,12 +671,12 @@ li.list-group-item1 {
 .label {
 	font-weight: 300 !important;
 	border-radius:4px;
-}  
+}
 .grid_5{
 	background:none;
 	padding:2em 0;
 }
-.grid_5 h3, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h3.hdg, h3.bars {
+.grid_5 h4, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h4.hdg, h4.bars {
 	margin-bottom: 1em;
     color: #212121;
     font-weight: bold;
@@ -745,7 +745,7 @@ section#tables  p {
 .alert {
 	font-size: 0.85em;
 }
-h1.t-button,h2.t-button,h3.t-button,h4.t-button,h5.t-button {
+h1.t-button,h2.t-button,h4.t-button,h4.t-button,h5.t-button {
 	line-height:2em;
 	margin-top:0.5em;
 	margin-bottom: 0.5em;
@@ -780,11 +780,11 @@ h2.typoh2{
 	}
 }
 @media (max-width:640px){
-	h1, .h1, h2, .h2, h3, .h3 {
+	h1, .h1, h2, .h2, h4, .h4 {
 		margin-top: 0px;
 		margin-bottom: 0px;
 	}
-	.grid_5 h3, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h3.hdg, h3.bars {
+	.grid_5 h4, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h4.hdg, h4.bars {
 		margin-bottom: .5em;
 	}
 	.progress {
@@ -815,7 +815,7 @@ h2.typoh2{
 	}
 }
 @media (max-width:480px){
-	.grid_5 h3, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h3.hdg, h3.bars {
+	.grid_5 h4, .grid_5 h2, .grid_5 h1, .grid_5 h4, .grid_5 h5, h4.hdg, h4.bars {
 		font-size: 1.2em;
 	}
 	.table h1 {
@@ -824,7 +824,7 @@ h2.typoh2{
 	.table h2 {
 		font-size: 23px;
 	}
-	.table h3 {
+	.table h4 {
 		font-size: 20px;
 	}
 	.label {
@@ -844,7 +844,7 @@ h2.typoh2{
 	.grid_4 {
 		margin-top: 18px;
 	}
-	h3.title {
+	h4.title {
 		font-size: 1.6em;
 	}
 	.alert, p,ol.breadcrumb li, .grid_3 p,.well, ul.list-group li, li.list-group-item1,a.list-group-item {
@@ -891,7 +891,7 @@ h2.typoh2{
     -ms-transition: 0.5s all;
     -moz-transition: 0.5s all;
     cursor: pointer;
-} 
+}
 .icon-box:hover {
     background: #000;
 	transition:0.5s all;
@@ -910,11 +910,11 @@ h2.typoh2{
     float: left;
     width: 12.5%;
     height: 115px;
-    padding: 10px; 
+    padding: 10px;
     line-height: 1.4;
-    text-align: center;  
+    text-align: center;
     font-size: 12px;
-    list-style-type: none;	
+    list-style-type: none;
 }
 .codes .bs-glyphicons .glyphicon {
     margin-top: 5px;
@@ -932,18 +932,18 @@ h2.typoh2{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 	color: #777;
-} 
+}
 .codes .bs-glyphicons .glyphicon-class {
     display: block;
     text-align: center;
     word-wrap: break-word;
 }
-h3.icon-subheading {
+h4.icon-subheading {
 	font-size: 28px;
     color: #ff8d1b !important;
     margin: 30px 0 15px;
 }
-h3.agileits-icons-title {
+h4.agileits-icons-title {
     text-align: center;
     font-size: 36px;
     color: #000;
@@ -985,14 +985,14 @@ h3.agileits-icons-title {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 	color: #777;
-} 
+}
 .icons .bs-glyphicons .glyphicon-class {
     display: block;
     text-align: center;
     word-wrap: break-word;
 }
 /*-- //icons --*/
-h3.head {
+h4.head {
     text-align: center;
     font-size: 2.5em;
     color: #ff8d1b;
@@ -1005,7 +1005,7 @@ h3.head {
 	bottom: 20px;
 	right: 2%;
 	overflow: hidden;
-	z-index: 999; 
+	z-index: 999;
 	width: 32px;
 	height: 32px;
 	border: none;
@@ -1156,14 +1156,14 @@ h3.head {
 	.w3ls_footer_grid_left1 h2 {
 		font-size: 1.7em;
 	}
-	h3.head {
+	h4.head {
 		font-size: 2.2em;
 	}
 	/*-- icons --*/
-	h3.agileits-icons-title {
+	h4.agileits-icons-title {
 		font-size: 28px;
 	}
-	h3.icon-subheading {
+	h4.icon-subheading {
 		font-size: 25px;
 	}
 	.row {
@@ -1371,14 +1371,14 @@ h3.head {
 	h4.latest-text {
 		font-size: 1.4em !important;
 	}
-	h3.head {
+	h4.head {
 		font-size: 2em;
 	}
 	/*-- icons --*/
-	h3.agileits-icons-title {
+	h4.agileits-icons-title {
 		font-size: 23px;
 	}
-	h3.icon-subheading {
+	h4.icon-subheading {
 		font-size: 18px;
 	}
 	.icons .bs-glyphicons li {
@@ -1465,7 +1465,7 @@ h3.head {
 	.modal-header {
 		font-size: 1.5em;
 	}
-	.form-module h3{
+	.form-module h4{
 		margin: 0 0 1em;
 		font-size: 1.1em;
 	}
@@ -1521,7 +1521,7 @@ h3.head {
 	.w3ls_footer_grid_left1 h2 {
 		font-size: 1.3em;
 	}
-	h3.head {
+	h4.head {
 		font-size: 1.8em;
 	}
 }

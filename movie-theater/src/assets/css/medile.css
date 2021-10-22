@@ -14,7 +14,7 @@ p,ul li,ol li{
 	margin:0;
 	font-size:14px;
 }
-h1,h2,h3,h4,h5,h6{
+h1,h2,h4,h4,h5,h6{
 	margin:0;
 }
 ul,label{
@@ -257,9 +257,9 @@ i.glyphicon.glyphicon-play-circle {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-	-webkit- border-radius: 50%;
-	-0- border-radius: 50%;
-	-moz- border-radius: 50%;
+	/*-webkit- border-radius: 50%;*/
+	/*-0- border-radius: 50%;*/
+	/*-moz- border-radius: 50%;*/
 }
 .ribben p {
     font-size:0.9em;
@@ -370,7 +370,7 @@ ol.breadcrumb li a {
 	.w3l-movie-gride-agile1 {
 		width: 94% !important;
 	}
-	
+
 }
 @media (max-width:991px){
 	.w3l-movie-gride-agile {
@@ -406,7 +406,7 @@ ol.breadcrumb li a {
 			margin-bottom: 4%;
 			float: left;
 			width: 47%;
-		  
+
 	}
 	.blog-pagenat-wthree ul li a {
 		padding: 8px 0.9em;
@@ -420,7 +420,7 @@ ol.breadcrumb li a {
 			float: left;
 			width: 48%;
 			padding:0;
-		  
+
 	}
 }
 @media (max-width:384px){

@@ -2,6 +2,7 @@ import {GenreMovie} from './GenreMovie';
 import {Comment} from './Comment';
 import {MovieImage} from './MovieImage';
 import {Showtime} from './Showtime';
+import {Genre} from './Genre';
 
 export class Movie {
   id: number;
@@ -17,14 +18,14 @@ export class Movie {
   trailerUrl: string;
   content: string;
   is3D: boolean;
-  genreMovies: GenreMovie[];
+  genres: Genre;
   comments: Comment[];
   movieImages: MovieImage[];
   showtimes: Showtime[];
 
   constructor(id: number, title: string, showingFrom: string, showingTo: string, cast: string, director: string, releaseDate: string,
               rated: string, runningTime: number, production: string, trailerUrl: string, content: string, is3D: boolean,
-              genreMovies: GenreMovie[], comments: Comment[], movieImages: MovieImage[], showtimes: Showtime[]) {
+              genreMovies: Genre[], comments: Comment[], movieImages: MovieImage[], showtimes: Showtime[]) {
     this.id = id;
     this.title = title;
     this.showingFrom = showingFrom;
@@ -38,7 +39,8 @@ export class Movie {
     this.trailerUrl = trailerUrl;
     this.content = content;
     this.is3D = is3D;
-    this.genreMovies = genreMovies;
+    // @ts-ignore
+    this.genres = Genre;
     this.comments = comments;
     this.movieImages = movieImages;
     this.showtimes = showtimes;

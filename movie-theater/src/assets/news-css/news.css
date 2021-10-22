@@ -1,4 +1,4 @@
-/*--A Design by W3layouts 
+/*--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -159,7 +159,7 @@ ol.breadcrumb li a{
     padding: 1em;
     background: #ff9800;
 }
-.wthree-news-right-heading h3{
+.wthree-news-right-heading h4{
 	color: #ffffff;
     margin: 0;
     font-size: 1.5em;
@@ -351,7 +351,7 @@ ol.breadcrumb li a{
 	.wthree-news-right-top {
 		min-height: 660px;
 	}
-	
+
 	h4.news-latest-text {
 		font-size: 1.7em !important;
 	}

@@ -1,13 +1,39 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BookingUserComponent } from './booking-user/booking-user.component';
-import { AccountUserComponent } from './account-user/account-user.component';
-import { UpdateAccountUserComponent } from './account-user/update-account-user/update-account-user.component';
-import { ManageBookingUserComponent } from './account-user/manage-booking-user/manage-booking-user.component';
-import { HistoryPointUserComponent } from './account-user/history-point-user/history-point-user.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {BookingUserComponent} from './booking-user/booking-user.component';
+import {AccountUserComponent} from './account-user/account-user.component';
+import {UpdateAccountUserComponent} from './account-user/update-account-user/update-account-user.component';
+import {ManageBookingUserComponent} from './account-user/manage-booking-user/manage-booking-user.component';
+import {HistoryPointUserComponent} from './account-user/history-point-user/history-point-user.component';
 import {RouterModule, Routes} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ChangePasswordComponent } from './account-user/change-password/change-password.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
-const userRoutes: Routes = [];
+const userRoutes: Routes = [
+  {
+    path: 'booking/:idAccount', component: BookingUserComponent
+  },
+  {
+    path: 'booking', component: BookingUserComponent
+  },
+  {
+    path: 'updateAccount/:idUpdate', component: UpdateAccountUserComponent
+  },
+  {
+    path: 'updateAccount', component: UpdateAccountUserComponent
+  },
+  {
+    path: 'changePassword/:idUpdate', component: ChangePasswordComponent
+  },
+  {
+    path: 'changePassword', component: ChangePasswordComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -15,11 +41,30 @@ const userRoutes: Routes = [];
     AccountUserComponent,
     UpdateAccountUserComponent,
     ManageBookingUserComponent,
-    HistoryPointUserComponent
+    HistoryPointUserComponent,
+    ChangePasswordComponent
+  ],
+  exports: [
+    UpdateAccountUserComponent,
+    AccountUserComponent
   ],
   imports: [
+
     CommonModule,
-    RouterModule.forChild(userRoutes)
-    ]
+    FormsModule,
+    RouterModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(userRoutes),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
+    BrowserModule,
+    BrowserAnimationsModule,
+    NgxPaginationModule,
+  ]
 })
-export class UserModule { }
+export class UserModule {
+}

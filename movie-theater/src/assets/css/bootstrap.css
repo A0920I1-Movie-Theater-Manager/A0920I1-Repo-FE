@@ -231,12 +231,12 @@ th {
   }
   p,
   h2,
-  h3 {
+  h4 {
     orphans: 3;
     widows: 3;
   }
   h2,
-  h3 {
+  h4 {
     page-break-after: avoid;
   }
   select {
@@ -1178,13 +1178,13 @@ hr {
 }
 h1,
 h2,
-h3,
+h4,
 h4,
 h5,
 h6,
 .h1,
 .h2,
-.h3,
+.h4,
 .h4,
 .h5,
 .h6 {
@@ -1195,25 +1195,25 @@ h6,
 }
 h1 small,
 h2 small,
-h3 small,
+h4 small,
 h4 small,
 h5 small,
 h6 small,
 .h1 small,
 .h2 small,
-.h3 small,
+.h4 small,
 .h4 small,
 .h5 small,
 .h6 small,
 h1 .small,
 h2 .small,
-h3 .small,
+h4 .small,
 h4 .small,
 h5 .small,
 h6 .small,
 .h1 .small,
 .h2 .small,
-.h3 .small,
+.h4 .small,
 .h4 .small,
 .h5 .small,
 .h6 .small {
@@ -1225,8 +1225,8 @@ h1,
 .h1,
 h2,
 .h2,
-h3,
-.h3 {
+h4,
+.h4 {
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -1234,14 +1234,14 @@ h1 small,
 .h1 small,
 h2 small,
 .h2 small,
-h3 small,
-.h3 small,
+h4 small,
+.h4 small,
 h1 .small,
 .h1 .small,
 h2 .small,
 .h2 .small,
-h3 .small,
-.h3 .small {
+h4 .small,
+.h4 .small {
   font-size: 65%;
 }
 h4,
@@ -1275,8 +1275,8 @@ h2,
 .h2 {
   font-size: 30px;
 }
-h3,
-.h3 {
+h4,
+.h4 {
   font-size: 24px;
 }
 h4,
