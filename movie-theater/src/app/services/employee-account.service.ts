@@ -52,18 +52,18 @@ export class EmployeeAccountService {
   }
 
   checkEmail(email: string): Observable<any> {
-    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-email', email);
+    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-email-employee', email);
   }
 
   checkPhone(phone: any): Observable<any> {
-    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-phone', phone);
+    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-phone-employee', phone);
   }
 
   checkUsername(username: any): Observable<any> {
-    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-username', username);
+    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-username-employee', username);
   }
   checkAccountCode(accountCode: any): Observable<any> {
-    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-accountCode', accountCode);
+    return this.httpClient.post(this.API_URL_EMPLOYEE_ACCOUNT_CHECK + 'check-accountCode-employee', accountCode);
   }
 
 }

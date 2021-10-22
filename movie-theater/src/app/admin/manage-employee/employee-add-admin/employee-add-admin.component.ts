@@ -102,6 +102,10 @@ export class EmployeeAddAdminComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     this.employeeCreateForm = new FormGroup({
         accountCode: new FormControl(null,
           [Validators.required,
@@ -160,56 +164,54 @@ export class EmployeeAddAdminComponent implements OnInit {
     this.clickSubmit = true;
     console.log(this.filePath);
     if (employeeCreateForm.get('email').value != null) {
-      this.employeeAccountService.checkEmail(employeeCreateForm.get('email').value).subscribe(data => {
-        console.log(data);
-
-        if (data === true) {
+      this.employeeAccountService.checkEmail(employeeCreateForm.get('email').value).subscribe(email => {
+        console.log(email);
+        if (email === true) {
           this.notification('Email đã tồn tại');
-          stop();
+          this.router.navigateByUrl('/create');
+          // stop();
+        }else {
+          if (employeeCreateForm.get('accountCode').value != null) {
+            this.employeeAccountService.checkAccountCode(employeeCreateForm.get('accountCode').value).subscribe(accountCode => {
+              console.log(accountCode);
+              if (accountCode === true) {
+                this.notification('Mã nhân viên đã tồn tại');
+                // stop();
+              }else{
+                if (employeeCreateForm.get('username').value != null) {
+                  this.employeeAccountService.checkUsername(employeeCreateForm.get('username').value).subscribe(username => {
+                    console.log(username);
+                    if (username === true) {
+                      this.notification('Tên tài khoảng đã tồn tại');
+                      // stop();
+                    }else {
+                      const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
+                      const fileRef = this.storage.ref(imageName);
+                      this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
+                        finalize(() => {
+                          fileRef.getDownloadURL().subscribe((url) => {
+                            this.employeeCreateForm.patchValue({imageUrl: url});
+
+                            this.employeeAccountService.createEmployeeAccount(employeeCreateForm.value).subscribe(data => {
+                                // this.employeeCreateForm = data;
+                                this.isSuccessful = true;
+                                this.isSignUpFailed = false;
+                                this.notification('Đăng kí thành công!');
+                                this.router.navigateByUrl('');
+                              }
+                            );
+                          });
+                        })
+                      ).subscribe();
+                    }
+                  });
+                }
+              }
+            });
+          }
         }
       });
     }
-    if (employeeCreateForm.get('accountCode').value != null) {
-      this.employeeAccountService.checkAccountCode(employeeCreateForm.get('accountCode').value).subscribe(data => {
-        console.log(data);
-
-        if (data === true) {
-          this.notification('Mã nhân viên đã tồn tại');
-          stop();
-        }
-      });
-    }
-    if (employeeCreateForm.get('username').value != null) {
-      this.employeeAccountService.checkUsername(employeeCreateForm.get('username').value).subscribe(data => {
-        console.log(data);
-
-        if (data === true) {
-          this.notification('Tên khoảng đã tồn tại');
-          stop();
-        }
-      });
-    }
-    const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
-    const fileRef = this.storage.ref(imageName);
-    this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe((url) => {
-          this.employeeCreateForm.patchValue({imageUrl: url});
-
-          this.employeeAccountService.createEmployeeAccount(employeeCreateForm.value).subscribe(data => {
-              // this.employeeCreateForm = data;
-              this.isSuccessful = true;
-              this.isSignUpFailed = false;
-              this.notification('Đăng kí thành công!');
-            },
-            err => {
-              console.log('bbb');
-              this.errorMessage = err.error.message;
-            }
-          );
-        });
-      })
-    ).subscribe();
   }
 
 
