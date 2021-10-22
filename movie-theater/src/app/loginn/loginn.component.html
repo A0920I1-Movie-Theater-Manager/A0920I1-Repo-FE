@@ -6,10 +6,11 @@
         <div class="field">
           <span class="fa fa-user"></span>
           <input type="text" placeholder="Tên email"  [(ngModel)]="form.username" #username="ngModel"
-                 [ngModelOptions]="{standalone: true}" required>
+                 [ngModelOptions]="{standalone: true}" required pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$">
         </div>
         <div class="messageError"  *ngIf="f.submitted && username.invalid" style="">
-          <div *ngIf="username.errors.required">Bạn chưa nhập tài khoản.</div>
+          <div *ngIf="username.errors.required">Bạn chưa nhập email.</div>
+          <div *ngIf="username.errors.pattern">Email không hợp lệ.</div>
         </div>
         <div class="field space">
           <span class="fa fa-lock"></span>

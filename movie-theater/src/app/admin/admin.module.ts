@@ -18,8 +18,14 @@ import { PromotionAddAdminComponent } from './manage-promotion/promotion-add-adm
 import { PromotionUpdateAdminComponent } from './manage-promotion/promotion-update-admin/promotion-update-admin.component';
 import { PromotionDeleteAdminComponent } from './manage-promotion/promotion-delete-admin/promotion-delete-admin.component';
 import {RouterModule, Routes} from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
 
-const adminRoutes: Routes = [];
+const adminRoutes: Routes = [
+  {path: 'screens' , component: ScreenListComponent},
+  {path: 'screens/screen-details/:id' , component: ManageScreenComponent}
+];
 
 @NgModule({
   declarations: [
@@ -43,7 +49,14 @@ const adminRoutes: Routes = [];
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(adminRoutes)
+    RouterModule.forChild(adminRoutes),
+    FormsModule,
+    NgxPaginationModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
   ]
 })
 export class AdminModule { }

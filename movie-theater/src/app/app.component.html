@@ -5,18 +5,18 @@
            width="200" height="50" alt="JavaChinna">
     </a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item"><a  class="nav-link" href="/">Home </a></li>
+      <li class="nav-item"><a  class="nav-link" href="/">Trang Chủ </a></li>
       <li class="nav-item" *ngIf="showAdminBoard"><a href="/" class="nav-link" >Admin Board</a></li>
       <li class="nav-item" *ngIf="showModeratorBoard"><a href="/" class="nav-link" >Moderator Board</a></li>
       <li class="nav-item"><a href="/" class="nav-link" *ngIf="isLoggedIn">User</a></li>
     </ul>
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item"><a class="nav-link" routerLink="register">Sign Up</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="login" >Login</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="register">Đăng Kí</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="login" >Đăng Nhập</a></li>
     </ul>
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item"><a class="nav-link">{{ username }}</a></li>
-      <li class="nav-item"><a href class="nav-link" (click)="logout()">LogOut</a></li>
+      <li class="nav-item"><a href class="nav-link" (click)="logout()">Đăng Xuất</a></li>
     </ul>
   </nav>
   <div class="main">

@@ -16,6 +16,8 @@ import { HomeComponent } from './home/home.component';
 import {authInterceptorProviders} from './_helpers/auth.interceptor';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
+import {JsogService} from 'jsog-typescript';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,14 @@ import {MatDialogModule} from '@angular/material/dialog';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,
+  JsogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

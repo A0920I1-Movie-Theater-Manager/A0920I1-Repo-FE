@@ -5,6 +5,7 @@ import {compareValidator} from '../../common/ConfirmedValidator';
 import {MatDialog} from '@angular/material/dialog';
 import {NotificationRegisterComponent} from './notification-register/notification-register.component';
 import {Location} from '@angular/common';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
   clickSubmit = false;
   constructor(private authService: AuthService,
               public dialog: MatDialog,
-              private location: Location
+              private location: Location,
+              private router: Router
   ) {
   }
 
@@ -28,13 +30,13 @@ export class RegisterComponent implements OnInit {
     fullName: [
       {type: 'required', message: 'Vui lòng nhập họ và tên.'},
       {type: 'maxlength', message: 'Họ và tên nhập tối đa 50 kí tự bao gồm khoảng trắng.'},
-      {type: 'minlength', message: 'Vui lòng nhập ít nhất 5 kí tự bao gồm khoảng trắng.'},
-      {type: 'pattern', message: 'Nhập họ và tên không hợp lệ, không được nhập số, kí tự đặc biệt.'}
+      {type: 'minlength', message: 'Họ và tên ít nhất 5 kí tự bao gồm khoảng trắng.'},
+      {type: 'pattern', message: 'Họ và tên không hợp lệ, không được nhập số, kí tự đặc biệt.'}
     ],
     username: [
-      {type: 'required', message: 'Vui lòng nhập tên người dùng.'},
-      {type: 'minlength', message: 'tên người dùng tối thiểu 6 kí tự.'},
-      {type: 'maxlength', message: 'Nhập tối đa 20 kí tự.'}
+      {type: 'required', message: 'Vui lòng nhập tên tài khoản.'},
+      {type: 'minlength', message: 'Tên tài khoản tối thiểu 6 kí tự.'},
+      {type: 'maxlength', message: 'Tài khoản tối đa 20 kí tự.'}
 
     ],
     phone: [
@@ -43,17 +45,17 @@ export class RegisterComponent implements OnInit {
       //     VinaPhone: 09, 08
       //     Vietnamobile và Gmobile: 09, 05
       {type: 'required', message: 'Vui lòng nhập số điện thoại.'},
-      {type: 'minlength', message: 'Số điện thoại gồm 10 số.'},
-      {type: 'maxlength', message: 'Số điện thoại gồm 10 số.'},
-      {type: 'pattern', message: 'Bắt đầu là 0xxxxxxxxx.'}
+      // {type: 'minlength', message: 'Số điện thoại gồm 10 số.'},
+      // {type: 'maxlength', message: 'Số điện thoại gồm 10 số.'},
+      {type: 'pattern', message: 'Số điện thoại không hợp lệ. (10 số)'}
     ],
     address: [
-      {type: 'maxlength', message: 'Địa chỉ tối đa 50 kí tự.'},
+      {type: 'maxlength', message: 'Địa chỉ tối đa 150 kí tự.'},
       {type: 'pattern', message: 'Không được nhập kí tự đặc biệt. (!@#$%^&)'}
     ],
     idCard: [
       {type: 'required', message: 'Vui lòng nhập số CMND.'},
-      {type: 'pattern', message: 'Không được nhập kí tự đặc biệt hoặc chữ.'},
+      {type: 'pattern', message: 'CMND không hợp lệ.'},
       // {type: 'length', message: 'CMND có 8 hoặc 12 số.'}
     ],
     password: [
@@ -74,8 +76,7 @@ export class RegisterComponent implements OnInit {
     ],
     email: [
       {type: 'required', message: 'Vui lòng nhập email.'},
-      {type: 'patten', message: 'Email không đúng định dạng. (zxc123@gmail.com)'},
-      {type: 'boolean', message: 'Email đã tồn tại.'}
+      {type: 'pattern', message: 'Email không đúng định dạng. (zxc123@gmail.com)'},
     ]
   };
 
@@ -91,22 +92,21 @@ export class RegisterComponent implements OnInit {
         phone: new FormControl(null,
           [Validators.required,
             Validators.pattern(/((09|03|07|08|05)+([0-9]{8})\b)/),
-            Validators.minLength(10),
-            Validators.maxLength(10)]),
-        address: new FormControl(null,
-          [Validators.maxLength(50),
-            Validators.pattern(/^[a-zA-Z0-9]*$/), Validators.maxLength(50)]),
+            // Validators.minLength(10),
+            // Validators.maxLength(10)
+          ]),
+        address: new FormControl(null),
         idCard: new FormControl(null,
           [Validators.required,
-            Validators.pattern(/\d/)]),  // id card 12 or 8 number
+            Validators.pattern(/^[0-9]{12}$/)]),  // id card 12
         gender: new FormControl(null,
           [Validators.required]),
         username: new FormControl(null,
           [Validators.required, Validators.maxLength(20), Validators.minLength(6)]),
         password: new FormControl(null,
-          [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
+          [Validators.required, Validators.minLength(6)]),
         matchingPassword: new FormControl(null,
-          [Validators.required, Validators.minLength(6), Validators.maxLength(15), compareValidator('password')]),
+          [Validators.required, Validators.minLength(6), compareValidator('password')]),
         birthday: new FormControl(null, Validators.required)
       },
     );
@@ -115,13 +115,14 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(register: FormGroup): any {
     this.clickSubmit = true;
-    console.log(register.value);
+    console.log(register.get('idCard').value);
     this.authService.register(register.value).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;
         this.isSignUpFailed = false;
         this.notification('Đăng kí thành công!');
+        this.router.navigateByUrl('');
       },
       err => {
         this.errorMessage = err.error.message;
