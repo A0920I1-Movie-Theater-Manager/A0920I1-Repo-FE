@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {EmployeeAccountService} from "../../../services/employee-account.service";
+import {EmployeeAccountService} from '../../../services/employee-account.service';
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -31,7 +31,6 @@ export class EmployeeDeleteAdminComponent implements OnInit {
   delete(){
     this.employeeAccountService.deleteEmployee(this.idEmployeeAccount).subscribe( data => {
       this.dialogRef.close();
-      // this.snackBar.open('Đã xóa thành công!', 'Oke',{duration: 2000});
       this.toastService.success(
         'Xóa thành công',
         'Thông báo',

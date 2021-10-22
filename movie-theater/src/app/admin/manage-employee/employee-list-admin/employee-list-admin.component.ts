@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {EmployeeAccountService} from '../../../services/employee-account.service';
 import {Account} from '../../../shared/model/entity/Account';
-import {MatDialog} from "@angular/material/dialog";
-import {EmployeeDeleteAdminComponent} from "../employee-delete-admin/employee-delete-admin.component";
-import {ToastrService} from "ngx-toastr";
+import {MatDialog} from '@angular/material/dialog';
+import {EmployeeDeleteAdminComponent} from '../employee-delete-admin/employee-delete-admin.component';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-list-admin',
