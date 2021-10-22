@@ -1,3 +1,4 @@
+
 html, body{
     font-size: 100%;
 font-family: 'Roboto Condensed', sans-serif;
@@ -253,7 +254,7 @@ font-family: 'Roboto Condensed', sans-serif;
 #myList ul{
 margin:0;
 }
-#myList li{ 
+#myList li{
 	display:none;
 	list-style-type:none;
 }
@@ -309,7 +310,7 @@ width:100%;
 	color: #9E9E9E;
 	margin:0;
 	line-height: 1.8em;
-}	
+}
 .load-grid a{
     font-size: 14px;
     color: #0076CC;
@@ -473,7 +474,7 @@ width:100%;
 }
 /*-----start-responsive-design------*/
 @media (max-width:1280px){
-	
+
 }
 @media (max-width:1080px){
 	#play {
@@ -578,7 +579,7 @@ width:100%;
 		padding: 1.5em 0 0 1em;
 		width: 80%;
 	}
-	
+
 }
 @media (max-width:384px){
 	.all-comments-buttons ul li a.top {
@@ -629,3 +630,4 @@ width:100%;
 		width: 100%;
 	}
 }
+>>>>>>> movie

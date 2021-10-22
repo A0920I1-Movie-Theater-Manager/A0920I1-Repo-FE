@@ -9,8 +9,12 @@ import {GuestModule} from './guest/guest.module';
 import {EmployeeModule} from './employee/employee.module';
 import {AdminModule} from './admin/admin.module';
 import {AppRoutingModule} from './app-routing.module';
-import {CommonModule} from '@angular/common';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {JsogService} from 'jsog-typescript';
+import {StaticPageModule} from './static-page/static-page.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,9 +29,15 @@ import {JsogService} from 'jsog-typescript';
     GuestModule,
     EmployeeModule,
     AdminModule,
-    AppRoutingModule,
+    StaticPageModule,
+    NgbModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    AppRoutingModule
   ],
-  providers: [JsogService],
+  providers: [
+    JsogService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

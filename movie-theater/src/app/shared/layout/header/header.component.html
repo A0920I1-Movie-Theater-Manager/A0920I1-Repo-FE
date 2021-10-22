@@ -1,31 +1,28 @@
-<head>
-  <title>A09 Cinema</title>
-  <!-- for-mobile-apps -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-  <meta name="keywords" content="One Movies Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
-</head>
-
-
 <!-- header -->
 <div class="header">
   <div class="container">
     <div class="w3layouts_logo">
-      <a href="../page/index.html">
+      <a routerLink="home">
         <h1>A09<span>Movies</span></h1>
-        <!-- <img src="./images/a07logo.png" alt=""> -->
       </a>
     </div>
     <div class="w3_search">
-      <form action="#" method="post">
-        <input type="text" name="Search" placeholder="Nhập tên phim" required="">
-        <input type="submit" value="Tìm">
+      <form>
+        <input type="text" name="name" placeholder="Nhập tên phim"
+        [(ngModel)]="keyword" (ngModelChange)="suggestMovie()" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let movie of movieSearches" [value]="movie.title">
+            {{movie.title | titlecase}}
+          </mat-option>
+        </mat-autocomplete>
+        <input type="submit" value="Tìm" (click)="searchMovie()">
       </form>
     </div>
     <div class="w3l_sign_in_register">
       <ul>
         <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
+
+        <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng ký</a></li>
       </ul>
     </div>
     <div class="clearfix"></div>
@@ -74,20 +71,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
   </div>
 </div>
-<script>
-  $('.toggle').click(function () {
-    // Switches the Icon
-    $(this).children('i').toggleClass('fa-pencil');
-    // Switches the forms
-    $('.form').animate({
-      height: "toggle",
-      'padding-top': 'toggle',
-      'padding-bottom': 'toggle',
-      opacity: "toggle"
-    }, "slow");
-  });
-</script>
-<!-- //dang nhap-pop-up -->
 <!-- nav -->
 <div class="movies_nav">
   <div class="container">
@@ -105,13 +88,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
         <nav>
           <ul class="nav navbar-nav">
-            <li><a href="#">Trang chủ</a></li>
-            <li><a href="#">Mua vé</a></li>
-            <li><a href="#">Sự kiện</a></li>
-            <li><a href="#">Góc điện ảnh</a></li>
-            <li><a href="#">Thành viên</a></li>
+            <li><a routerLink="home">Trang chủ</a></li>
+            <li><a routerLink="booking">Mua vé</a></li>
+            <li><a routerLink="event">Sự kiện</a></li>
+            <li><a routerLink="news">Góc điện ảnh</a></li>
+            <li><a routerLink="term-customer">Thành viên</a></li>
             <li><a href="#">Giá vé</a></li>
-            <li><a href="#">Hướng dẫn</a></li>
+            <li><a routerLink="faq">Hướng dẫn</a></li>
           </ul>
         </nav>
       </div>

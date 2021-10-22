@@ -7,6 +7,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Genre} from '../../../shared/model/entity/Genre';
 import {JsogService} from 'jsog-typescript';
 import {NgbCarousel, NgbSlideEvent, NgbSlideEventSource} from '@ng-bootstrap/ng-bootstrap';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-details-admin',
@@ -18,7 +19,8 @@ export class MovieDetailsAdminComponent implements OnInit {
   constructor(
     private movieService: ManagerMovieService,
     private active: ActivatedRoute,
-    private jSogService: JsogService
+    private jSogService: JsogService,
+    public sanitizer: DomSanitizer
   ) { }
   movieDetail: Movie;
   genres: Genre[];
@@ -76,4 +78,7 @@ export class MovieDetailsAdminComponent implements OnInit {
     }
   }
 
+  videoURL() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.movieDetail.trailerUrl);
+  }
 }

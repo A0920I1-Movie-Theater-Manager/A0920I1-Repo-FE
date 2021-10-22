@@ -1,5 +1,6 @@
 import {Movie} from './Movie';
 import {Showtime} from './Showtime';
+import {JsonProperty} from 'jsog-typescript';
 
 export class MovieShowtime {
   movie: Movie;

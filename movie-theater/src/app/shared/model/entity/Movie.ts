@@ -1,8 +1,9 @@
 import {Comment} from './Comment';
 import {MovieImage} from './MovieImage';
 import {Showtime} from './Showtime';
-import {Account} from "./Account";
-import {Genre} from "./Genre";
+import {Account} from './Account';
+import {Genre} from './Genre';
+
 
 export class Movie {
   id: number;

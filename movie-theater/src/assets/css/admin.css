@@ -1,3 +1,4 @@
+
 html, body{
     font-size: 100%;
 	font-family: 'Roboto Condensed', sans-serif;
@@ -32,7 +33,7 @@ input[type="submit"],.agileinfo_chat a,.w3ls_footer_grid1_left p a,.w3l_sign_in_
 .header {
     padding: 1em 0;
 	border-top: 3px solid #FF8D1B;
-}	
+}
 .w3layouts_logo{
 	float:left;
 }
@@ -398,13 +399,13 @@ p.fexi_header_para1 a i {
     /* padding-left: 40px; */
     font-weight: bold;
     /* display: block; */
-    
-} 
+
+}
 
 .nav_menu ul li i {
     margin-right: 10px;
     size: 50px;
-} 
+}
 
 /* Content Css */
 .nav_content{
@@ -546,3 +547,4 @@ p.fexi_header_para1 a i {
 }
 
 /*-- //footer --*/
+>>>>>>> movie

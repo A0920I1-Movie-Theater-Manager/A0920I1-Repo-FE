@@ -1,3 +1,4 @@
+
 /*--
 Author: W3layouts
 Author URL: http://w3layouts.com
@@ -90,14 +91,14 @@ input[type="submit"],.agileinfo_chat a,.w3_customer_email_right a,ul.dropdown-me
 }
 .social-w3l ul li.twt .fa{
 	background:#4D9CD8;
-	padding:10px;	
+	padding:10px;
 }
 .social-w3l ul li.ggp {
     background-color:#dc4e41;
 }
 .social-w3l ul li.ggp .fa {
 	background:#D64639;
-	padding:10px;	
+	padding:10px;
 }
 .social-w3l ul li a {
     display: block;
@@ -209,7 +210,7 @@ li.twt {
 	.mail-wthree {
 		margin-right:0;
 	}
-	
+
 	.icon-w3 {
 		top: -21px;
 		left: 44%;
@@ -262,4 +263,5 @@ li.twt {
 		top: -21px;
 		left: 41%;
 	}
+>>>>>>> movie
 }

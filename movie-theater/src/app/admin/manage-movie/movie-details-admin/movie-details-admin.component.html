@@ -133,9 +133,10 @@
                   <ngb-carousel *ngIf="movieDetail.trailerUrl">
                     <ng-template ngbSlide>
                       <div class="picsum-img-wrapper">
-                        <video width="600" controls>
-                          <source [src]="movieDetail.trailerUrl" type="video/mp4">
-                        </video>
+                        <iframe width="560" height="315" [src]="videoURL()"
+                                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                                        clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
                       </div>
                       <div class="carousel-caption">
                         <h3>{{movieDetail.title | titlecase}}</h3>

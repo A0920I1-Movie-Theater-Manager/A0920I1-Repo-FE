@@ -145,5 +145,8 @@ input[type=file] {
 #searchIs3D{
 
 }
-
+th{
+  color: white;
+  font-weight: bold;
+}
 
