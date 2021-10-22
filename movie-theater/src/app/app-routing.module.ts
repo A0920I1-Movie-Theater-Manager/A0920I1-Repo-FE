@@ -7,10 +7,10 @@ import {EmployeeDetailAdminComponent} from "./admin/manage-employee/employee-det
 
 
 const routes: Routes = [
-  {path: '', component: EmployeeListAdminComponent },
-  {path: 'create', component: EmployeeAddAdminComponent },
-  {path: 'update/:id', component: EmployeeUpdateAdminComponent },
-  {path: 'detail/:id', component: EmployeeDetailAdminComponent }
+  {path: 'employee-list', component: EmployeeListAdminComponent },
+  {path: 'employee-create', component: EmployeeAddAdminComponent },
+  {path: 'employee-update/:id', component: EmployeeUpdateAdminComponent },
+  {path: 'employee-detail/:id', component: EmployeeDetailAdminComponent }
 ];
 
 @NgModule({

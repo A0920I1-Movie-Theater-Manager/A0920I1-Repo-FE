@@ -44,7 +44,7 @@
           <div class="card shadow">
             <div class="col-12 card-header d-flex justify-content-between content_search" style="display: flex; justify-content: space-between">
               <div style="margin-left: 50px" class="col-8 mt-auto mb-auto">
-                <button type="button" class="btn btn-success" routerLink="/create">
+                <button type="button" class="btn btn-success" routerLink="/employee-create">
                   <i style="margin-right: 5px" class="fa fa-plus-circle" aria-hidden="true"></i><b style="font-size: 17px;">
                   Thêm mới</b>
                 </button>
@@ -89,14 +89,14 @@
                         </a>
                       </td>
                       <td >
-                        <a [routerLink]="['/update/' , employeeList.id]">
+                        <a [routerLink]="['/employee-update/' , employeeList.id]">
                           <button type="button" class="btn btn-warning"><i
                             class="fa fa-pencil-square-o"
                             aria-hidden="true"></i></button>
                         </a>
                       </td>
                       <td>
-                        <a [routerLink]="['/detail/' , employeeList.id]">
+                        <a [routerLink]="['/employee-detail/' , employeeList.id]">
                           <button type="button" class="btn btn-warning">  <i class="fa fa-info-circle" aria-hidden="true"></i></button>
                         </a>
                       </td>

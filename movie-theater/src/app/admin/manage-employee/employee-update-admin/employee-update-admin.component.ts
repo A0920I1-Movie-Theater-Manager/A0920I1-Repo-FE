@@ -200,7 +200,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
 
             this.employeeService.updateEmployee({...employeeUpdateForm.value, imageUrl: url}).subscribe(
               () => {
-                this.router.navigateByUrl('/').then(
+                this.router.navigateByUrl('/employee-list').then(
                   r => this.toastrService.success(
                     'Chỉnh sửa thành công',
                     'Thông báo',
@@ -208,7 +208,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
                 );
               },
               (error: HttpErrorResponse) => {
-                this.router.navigateByUrl('/').then(
+                this.router.navigateByUrl('/employee-list').then(
                   r => this.toastrService.error(
                     'Chỉnh sửa thất bại',
                     'Thông báo',
@@ -221,7 +221,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
     } else {
       this.employeeService.updateEmployee(employeeUpdateForm.value).subscribe(
         () => {
-          this.router.navigateByUrl('/').then(
+          this.router.navigateByUrl('/employee-list').then(
             r => this.toastrService.success(
               'Chỉnh sửa thành công',
               'Thông báo',
@@ -229,7 +229,7 @@ export class EmployeeUpdateAdminComponent implements OnInit {
           );
         },
         (error: HttpErrorResponse) => {
-          this.router.navigateByUrl('/').then(
+          this.router.navigateByUrl('/employee-list').then(
             r => this.toastrService.error(
               'Chỉnh sửa thất bại',
               'Thông báo',

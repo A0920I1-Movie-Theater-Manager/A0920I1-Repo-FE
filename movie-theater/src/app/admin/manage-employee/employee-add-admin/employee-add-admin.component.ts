@@ -168,7 +168,7 @@ export class EmployeeAddAdminComponent implements OnInit {
         console.log(email);
         if (email === true) {
           this.notification('Email đã tồn tại');
-          this.router.navigateByUrl('/create');
+          this.router.navigateByUrl('/employee-create');
           // stop();
         }else {
           if (employeeCreateForm.get('accountCode').value != null) {
@@ -197,7 +197,7 @@ export class EmployeeAddAdminComponent implements OnInit {
                                 this.isSuccessful = true;
                                 this.isSignUpFailed = false;
                                 this.notification('Đăng kí thành công!');
-                                this.router.navigateByUrl('');
+                                this.router.navigateByUrl('employee-list');
                               }
                             );
                           });
