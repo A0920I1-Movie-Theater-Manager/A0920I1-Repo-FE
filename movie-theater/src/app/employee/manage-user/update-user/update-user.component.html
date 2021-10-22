@@ -18,13 +18,13 @@
                           <div class="form-group">
                             <label>Mã thành viên <span class="infomation__required" style="color: red">*</span></label>
                             <input type="text" class="form-control" placeholder="Nhập mã thành viên"
-                                   formControlName="accountCode">
-                            <ng-container *ngFor="let validation of validationMessage.accountCode">
-                              <small class="form-text text-danger"
-                                     *ngIf="updateMembers.get('accountCode').hasError(validation.type)&& updateMembers.get('accountCode').touched">
-                                {{validation.message}}
-                              </small>
-                            </ng-container>
+                                   formControlName="accountCode" readonly>
+<!--                            <ng-container *ngFor="let validation of validationMessage.accountCode">-->
+<!--                              <small class="form-text text-danger"-->
+<!--                                     *ngIf="updateMembers.get('accountCode').hasError(validation.type)&& updateMembers.get('accountCode').touched">-->
+<!--                                {{validation.message}}-->
+<!--                              </small>-->
+<!--                            </ng-container>-->
                           </div>
                         </div>
                       </div>
@@ -40,6 +40,9 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
+                            <div *ngIf="updateMembers.get('username').value == null && clickUpdate">
+                              <small class="form-text text-danger">Vui lòng nhập họ và tên.</small>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -55,6 +58,9 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
+                            <div *ngIf="updateMembers.get('password').value == null && clickUpdate">
+                              <small class="form-text text-danger">Vui lòng nhập mật khẩu.</small>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -64,21 +70,18 @@
                             <label>Xác nhận lại Mật khẩu <span class="infomation__required" style="color: red">*</span></label>
                             <input type="password" class="form-control" placeholder="Nhập mật khẩu"
                                    formControlName="newPassword">
-<!--                            <ng-container *ngFor="let validation of validationMessage.newPassword">-->
-<!--                              <small class="form-text text-danger"-->
-<!--                                     *ngIf="updateMembers.get('newPassword').hasError(validation.type)&& updateMembers.get('newPassword').touched">-->
-<!--                                {{validation.message}}-->
-<!--                              </small>-->
-<!--                            </ng-container>-->
+                            <!--                            <ng-container *ngFor="let validation of validationMessage.newPassword">-->
+                            <!--                              <small class="form-text text-danger"-->
+                            <!--                                     *ngIf="updateMembers.get('newPassword').hasError(validation.type)&& updateMembers.get('newPassword').touched">-->
+                            <!--                                {{validation.message}}-->
+                            <!--                              </small>-->
+                            <!--                            </ng-container>-->
                             <small class="form-text text-danger"
                                    *ngIf="updateMembers.get('newPassword').invalid
           && (updateMembers.get('newPassword').dirty|| updateMembers.get('newPassword').touched)">
                               <span *ngIf="updateMembers.get('newPassword').errors['compare']"> Mật khẩu không trùng khớp.</span>
                             </small>
 
-                            <!--                            <div *ngIf="createMembers.get('newPassword').value == null && clickSubmit ">-->
-                            <!--                              <small class="form-text text-danger">Vui lòng xác nhận lại mật khẩu.</small>-->
-                            <!--                            </div>-->
                           </div>
                         </div>
                       </div>
@@ -95,6 +98,9 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
+                            <div *ngIf="updateMembers.get('fullname').value == null && clickUpdate">
+                              <small class="form-text text-danger">Vui lòng nhập tên thành viên.</small>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -110,6 +116,9 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
+                            <div *ngIf="updateMembers.get('birthday').value == null && clickUpdate">
+                              <small class="form-text text-danger">Vui lòng nhập ngày sinh.</small>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -125,6 +134,9 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
+                            <div *ngIf="updateMembers.get('email').value == null && clickUpdate">
+                              <small class="form-text text-danger">Vui lòng nhập email.</small>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -140,6 +152,9 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
+                            <div *ngIf="updateMembers.get('idCard').value == null && clickUpdate">
+                              <small class="form-text text-danger">Vui lòng nhập số chứng minh.</small>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -155,6 +170,9 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
+                            <div *ngIf="updateMembers.get('phone').value == null && clickUpdate">
+                              <small class="form-text text-danger">Vui lòng nhập số điện thoại.</small>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -170,21 +188,26 @@
                                 {{validation.message}}
                               </small>
                             </ng-container>
+                            <div *ngIf="updateMembers.get('address').value == null && clickUpdate">
+                              <small class="form-text text-danger">Vui lòng nhập địa chỉ.</small>
+                            </div>
                           </div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <div class="form-group" >
+                          <div class="form-group">
                             <label>Giới tính <span class="infomation__required" style="color: red">*</span></label>
                             <div style="margin-top: 12px">
                               <input type="radio" formControlName="gender" value="Nam" style="width: 18px;height: 18px">
                               <span for="nam">Nam</span>
 
-                              <input type="radio" class="radios" formControlName="gender" value="Nữ" style="width: 18px;height: 18px">
+                              <input type="radio" class="radios" formControlName="gender" value="Nữ"
+                                     style="width: 18px;height: 18px">
                               <span style="margin-left: 0px">Nữ</span>
 
-                              <input type="radio" class="radios" formControlName="gender" value="Khác" style="width: 18px;height: 18px">
+                              <input type="radio" class="radios" formControlName="gender" value="Khác"
+                                     style="width: 18px;height: 18px">
                               <span style="margin-left: 0px">Khác</span>
                             </div>
                           </div>
@@ -194,6 +217,9 @@
                               {{validation.message}}
                             </small>
                           </ng-container>
+                          <div *ngIf="updateMembers.get('gender').value == null && clickUpdate">
+                            <small class="form-text text-danger">Vui lòng nhập giới tính.</small>
+                          </div>
                         </div>
                       </div>
 
@@ -203,8 +229,8 @@
                           </button>
                         </div>
                         <div class="">
-                          <button class="btn btn-warning" [disabled]="updateMembers.invalid" style="margin: 0 30px">
-                           Cập nhật
+                          <button class="btn btn-warning" style="margin: 0 30px" [disabled]="updateMembers.invalid">
+                            Cập nhật
                           </button>
                         </div>
                       </div>
@@ -216,7 +242,7 @@
                     <div class="card-body">
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail img-raised">
-                          <img [src]="getImageUrl()" style="width:300px; height: 320px" alt="..." rel="nofollow">
+                          <img [src]="getImageUrl()" style="width:370px; height: 320px" alt="..." rel="nofollow">
                         </div>
                         <!--                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>-->
                         <div>

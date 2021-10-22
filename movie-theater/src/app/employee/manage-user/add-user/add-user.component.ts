@@ -11,6 +11,10 @@ import {formatDate} from '@angular/common';
 import {finalize} from 'rxjs/operators';
 import {compareValidator} from '../ValidateCustomMembers/checkPassword';
 import {checkDateOfBirth} from '../ValidateCustomMembers/checkBirthday';
+import {AccountRole} from '../../../shared/model/entity/AccountRole';
+import {NotificationMemberComponent} from '../notification-member/notification-member.component';
+import {MatDialog} from '@angular/material/dialog';
+
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -24,10 +28,15 @@ export class AddUserComponent implements OnInit {
   listError: any = '';
   roles = [];
   clickSubmit: false;
-  defaultImage ='https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg';
+  roleList: AccountRole[];
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+  defaultImage = 'https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg';
 
   constructor(private managerUserService: ManagerUserService, private router: Router,
               @Inject(AngularFireStorage) private storage: AngularFireStorage, private activatedRoute: ActivatedRoute,
+              public dialog: MatDialog,
               private toastrService: ToastrService,
               private formBuilder: FormBuilder,) {
   }
@@ -51,6 +60,7 @@ export class AddUserComponent implements OnInit {
     ],
     fullname: [
       {type: 'required', message: 'Tên thành viên không được để trống.'},
+      {type: 'maxlength', message: 'Tên thành viên tối đa 32 ký tự.'},
       {type: 'pattern', message: 'Tên thành viên không được nhập ký tự đặc biệt và số.'}
 
     ],
@@ -98,81 +108,61 @@ export class AddUserComponent implements OnInit {
       {id: 2, name: 'USER'}];
 
     this.createMembers = this.formBuilder.group({
-      username:this.formBuilder.control( '', [Validators.required,
+      username: this.formBuilder.control('', [Validators.required,
         Validators.minLength(4),
         Validators.maxLength(32),
         Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]),
-      accountCode:this.formBuilder.control( '', [Validators.required,Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]),
-      password: this.formBuilder.control( '', [Validators.required,Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')]),
-      fullname: this.formBuilder.control( '', [Validators.required,Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]),
-      birthday: this.formBuilder.control( '', [Validators.required,checkDateOfBirth]),
-      idCard: this.formBuilder.control( '', [Validators.required,Validators.pattern('^[0-9]*$')]),
-      address: this.formBuilder.control( '', [Validators.required]),
-      phone: this.formBuilder.control( '', [Validators.required,Validators.pattern('^(0|\\(\\+84\\))\\d{9}$')]),
-      email: this.formBuilder.control( '', [Validators.required,Validators.pattern('^[a-zA-Z0-9_!#$%&\'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$')]),
-      gender: this.formBuilder.control( '', [Validators.required]),
+      accountCode: this.formBuilder.control('', [Validators.required,
+        Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]),
+      password: this.formBuilder.control('', [Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')]),
+      fullname: this.formBuilder.control('', [Validators.required, Validators.maxLength(32),
+        Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/)]),
+      birthday: this.formBuilder.control('', [Validators.required, checkDateOfBirth]),
+      idCard: this.formBuilder.control('', [Validators.required, Validators.pattern('^[0-9]*$')]),
+      address: this.formBuilder.control('', [Validators.required]),
+      phone: this.formBuilder.control('', [Validators.required, Validators.pattern('^(0|\\(\\+84\\))\\d{9}$')]),
+      email: this.formBuilder.control('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_!#$%&\'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$')]),
+      gender: this.formBuilder.control('', [Validators.required]),
       roleId: this.formBuilder.control('', [Validators.required]),
-      imageUrl:this.formBuilder.control( 'https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg'),
-      newPassword: this.formBuilder.control('',[compareValidator('password')])
+      imageUrl: this.formBuilder.control('https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg'),
+      newPassword: this.formBuilder.control('', [compareValidator('password')])
     });
   }
 
-code: string;
-  onSubmit() {
-      if (this.inputImage != null) {
-        const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
-        const fileRef = this.storage.ref(imageName);
-        this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
-          finalize(() => {
-            fileRef.getDownloadURL().subscribe((url) => {
-              this.managerUserService.createNewMember({...this.createMembers.value, imageUrl: url}).subscribe(
-                () => {
-                  this.router.navigateByUrl('/list-member').then(
-                    re => this.toastrService.success(
-                      'Bạn đã thêm mới thành công',
-                      'Thông báo',
-                      {timeOut: 3000, extendedTimeOut: 1500})
-                  );
-                },
-                (error: HttpErrorResponse) => {
-                  console.log(error);
-                  if (error.status === 400) {
-                    console.log(error.error);
-                    this.listError = error.error;
+  onSubmit(createNewMembers: FormGroup) {
+    const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
+    const fileRef = this.storage.ref(imageName);
+    this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+          this.createMembers.patchValue({imageUrl: url});
+          this.managerUserService.createNewMember(createNewMembers.value).subscribe(data => {
+              this.router.navigateByUrl('/list-member').then(
+                r => this.toastrService.success(
+                  'Thêm mới thành công',
+                  'Thông báo',
+                  {timeOut: 5000, extendedTimeOut: 2500})
+              );
+            },
+            err => {
+              this.errorMessage = err.error.message;
+              if (createNewMembers.get('email').value != null){
+                this.managerUserService.checkEmail(createNewMembers.get('email').value).subscribe( data => {
+                  if (data) {
+                    this.notification('Email đã tồn tại');
+                    stop();
                   }
-                  this.toastrService.error(
-                    'Bạn đã thêm mới thất bại',
-                    'Thông báo',
-                    {timeOut: 3000, extendedTimeOut: 1500});
-
                 });
-            });
-          })
-        ).subscribe();
-      } else {
-        this.managerUserService.createNewMember(this.createMembers.value).subscribe(
-          () => {
-            this.router.navigateByUrl('/list-member').then(
-              r => this.toastrService.success(
-                'Bạn đã thêm mới thành công',
-                'Thông báo',
-                {timeOut: 3000, extendedTimeOut: 1500})
-            );
-          },
-          (error: HttpErrorResponse) => {
-            console.log(error);
-            // tslint:disable-next-line:triple-equals
-            if (error.status == 400) {
-              console.log(error.error);
-              this.listError = error.error;
+              }
             }
-            this.toastrService.error(
-              'Bạn đã thêm mới thất bại',
-              'Thông báo',
-            );
-          });
-      }
+
+          );
+        });
+      })
+    ).subscribe();
   }
+
   selectImage(event) {
     this.inputImage = event.target.files[0];
     this.createMembers.get('imageUrl').updateValueAndValidity();
@@ -186,10 +176,29 @@ code: string;
   getImageUrl() {
     if (this.filePath != null) {
       return this.filePath;
-  }
-    if(this.createMembers.value.imageUrl != null){
+    }
+    if (this.createMembers.value.imageUrl != null) {
       return this.createMembers.value.imageUrl;
     }
     return this.defaultImage;
-}
+  }
+
+  notification(message: string) {
+    const dialogRef = this.dialog.open(NotificationMemberComponent,
+      {
+        data: {
+          message
+        },
+        width: '400px'
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.ngOnInit();
+    });
+  }
+
+  // back() {
+  //   this.location.back();
+  // }
 }

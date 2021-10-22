@@ -26,6 +26,7 @@ export class UpdateUserComponent implements OnInit {
   listError: any = '';
   defaultImage = 'https://vnn-imgs-f.vgcloud.vn/2020/03/23/11/trend-avatar-1.jpg';
   id: number;
+  clickUpdate : false;
   roles: [{id: 1, name: 'ADMIN'},
     {id: 2, name: 'USER'}];
 
@@ -56,6 +57,7 @@ export class UpdateUserComponent implements OnInit {
     ],
     fullname: [
       {type: 'required', message: 'Tên thành viên không được để trống.'},
+      {type: 'maxlength', message: 'Tên thành viên tối đa 32 ký tự.'},
       {type: 'pattern', message: 'Tên thành viên không được nhập ký tự đặc biệt và số.'}
 
     ],
@@ -101,7 +103,8 @@ export class UpdateUserComponent implements OnInit {
         Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]],
       accountCode: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')]],
-      fullname: ['',[Validators.required,Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]],
+      fullname: ['',[Validators.required,Validators.maxLength(32),
+        Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:]*$/)]],
       birthday: ['',[Validators.required, checkDateOfBirth]],
       idCard: ['',[Validators.required,Validators.pattern('^[0-9]*$')]],
       address: ['',[Validators.required]],
@@ -137,13 +140,14 @@ export class UpdateUserComponent implements OnInit {
   }
 
   onSubmit() {
+    // @ts-ignore
+    this.clickUpdate = true;
     if (this.inputImage != null) {
       const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
       const fileRef = this.storage.ref(imageName);
       this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
-
             this.managerUserService.updateMember({...this.updateMembers.value, imageUrl: url}).subscribe(
               () => {
                 this.router.navigateByUrl('/list-member').then(
@@ -163,7 +167,6 @@ export class UpdateUserComponent implements OnInit {
                   'Bạn đã cập nhật thất bại',
                   'Thông báo',
                   {timeOut: 3000, extendedTimeOut: 1500});
-
               });
           });
         })

@@ -49,7 +49,7 @@
                   </thead>
                   <tbody>
                   <tr *ngFor="let men of members | paginate: {itemsPerPage:5, currentPage: page}; let i = index">
-                    <td class="text-right">{{i + 1}}</td>
+                    <td class="text-right">{{i++1}}</td>
                     <td class="text-left">{{men.accountCode}}</td>
                     <td class="text-left">{{men.username}}</td>
                     <td class="text-left">{{men.fullname | titlecase}}</td>

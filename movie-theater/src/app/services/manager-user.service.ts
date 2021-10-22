@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Account} from '../shared/model/entity/Account';
 import {AccountMemberDTO} from '../shared/model/dto/AccountMemberDTO';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 
 @Injectable({
   providedIn: 'root'
@@ -36,4 +41,14 @@ export class ManagerUserService {
   searchByNameMember(nameSearch: string): Observable<Account[]>{
     return this.httpClient.get<Account[]>(this.API_MEMBER + '/searchName-member?name=' + nameSearch);
   }
+  checkEmail(email: string): Observable<any> {
+    return this.httpClient.post(this.API_MEMBER + 'check-emailMember', email,httpOptions);
+  }
+  checkPhone(phone: string): Observable<any> {
+    return this.httpClient.post(this.API_MEMBER + 'check-phoneMember', phone);
+  }
+  checkUsername(username: string): Observable<any> {
+    return this.httpClient.post(this.API_MEMBER + 'check-usernameMember', username);
+  }
+
 }

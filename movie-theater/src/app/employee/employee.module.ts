@@ -28,6 +28,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule} from '@angular/material/core';
 import {AppRoutingModule} from '../app-routing.module';
 import {OrderModule} from 'ngx-order-pipe';
+import { NotificationMemberComponent } from './manage-user/notification-member/notification-member.component';
 const employeeRoutes: Routes = [
   {path: "list-member", component: ListUserComponent},
   {path:"update-member/:id", component: UpdateUserComponent},
@@ -43,7 +44,8 @@ const employeeRoutes: Routes = [
     UpdateUserComponent,
     DeleteUserComponent,
     ListUserComponent,
-    DetailUserComponent
+    DetailUserComponent,
+    NotificationMemberComponent
   ],
 
 

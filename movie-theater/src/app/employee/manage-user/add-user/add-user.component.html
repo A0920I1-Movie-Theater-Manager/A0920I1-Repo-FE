@@ -5,7 +5,7 @@
       <div class="content">
         <section class="content" style="font-family: 'Poppins', sans-serif;">
           <div class="container-fluid" style="margin-top: 50px">
-            <form [formGroup]="createMembers" (ngSubmit)="onSubmit()">
+            <form [formGroup]="createMembers" (ngSubmit)="onSubmit(createMembers)">
               <div class="row content_style">
                 <div class="col-md-6">
                   <div class="card-user">
@@ -222,7 +222,7 @@
                           </button>
                         </div>
                         <div class="">
-                          <button class="btn btn-warning" [disabled]="createMembers.invalid" style="margin: 0 30px">
+                          <button class="btn btn-warning" style="margin: 0 30px">
                             Thêm Mới
                           </button>
                         </div>
@@ -235,7 +235,7 @@
                     <div class="card-body">
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                         <div class="fileinput-new thumbnail img-raised">
-                          <img [src]="getImageUrl()" style="width:300px; height: 320px" alt="..." rel="nofollow">
+                          <img [src]="getImageUrl()" style="width:370px; height: 320px" alt="..." rel="nofollow">
                         </div>
 <!--                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>-->
                         <div>
