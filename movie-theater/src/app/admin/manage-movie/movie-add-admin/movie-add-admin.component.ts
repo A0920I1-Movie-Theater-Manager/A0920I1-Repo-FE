@@ -36,7 +36,7 @@ export class MovieAddAdminComponent implements OnInit {
   showingTos: any;
 
   public dateNow = new Date();
-
+  public min = new Date();
   // tslint:disable-next-line:variable-name
   validation_messages = {
     title: [
@@ -147,6 +147,12 @@ export class MovieAddAdminComponent implements OnInit {
     this.imageUrls.removeAt(i);
   }
 
+  changeDate(e){
+    console.log(e.value);
+    this.min = new Date(e.value);
+    this.checkDate();
+  }
+
   selectFiles(e) {
     if (e.target.files) {
       this.checkUpLoad = true;
@@ -164,11 +170,20 @@ export class MovieAddAdminComponent implements OnInit {
   }
 
   checkDate(){
+    // @ts-ignore
     const startDate = new Date(document.querySelector('#inputDateStart').value);
+    // @ts-ignore
     const endDate = new Date(document.querySelector('#inputDateEnd').value);
 
     console.log(startDate);
     console.log(endDate);
+    if (startDate < this.dateNow){
+      this.toastService.error('Không được chọn ngày trong quá khứ', 'Thông báo');
+    }
+
+    if (endDate < startDate){
+      this.toastService.error('Ngày kết thúc phải lớn hơn ngày bắt đầu', 'Thông báo');
+    }
 
   }
 
@@ -203,18 +218,11 @@ export class MovieAddAdminComponent implements OnInit {
     console.log(this.imageUrl);
     this.checkUpLoad = true;
 
-    const startDate = new Date(document.querySelector('#inputDateStart').value);
-    const endDate = new Date(document.querySelector('#inputDateEnd').value);
-
-    if (endDate < startDate){
-      alert('Nhập ngày kết thúc phải lớn hơn ngày bắt đầu');
-    }
-
-    this.createMovie.controls.imageUrl = this.imageUrl;
-    console.log(this.createMovie.controls.imageUrl);
 
     this.movieService.createMovie(this.createMovie.value).subscribe(() => {
       this.checkUpLoad = false;
+      this.createMovie.controls.imageUrl = this.imageUrl;
+      console.log(this.createMovie.controls.imageUrl);
       this.toastService.success('Thêm mới thành công!', 'Thông báo');
       this.router.navigateByUrl('/list-movie');
     }, error => {
@@ -230,11 +238,6 @@ export class MovieAddAdminComponent implements OnInit {
 
   getIdMovieByName(title){
     console.log(title.value);
-    this.movieService.getIdMovieByTitle(title.value).subscribe((data) => {
-      // @ts-ignore
-      this.movie = this.jSogService.deserializeObject(data, Movie);
-      console.log(this.movie);
-    });
     this.movieService.getListAllMovie().subscribe((data) => {
       // @ts-ignore
       this.movieCheck = this.jSogService.deserializeArray(data, Movie);

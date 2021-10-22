@@ -38,9 +38,8 @@
                             <label for="inputDateStart" class="col-sm-2 control-label" style="padding-right: 30px;">Từ ngày <span class="star">*</span></label>
                           <mat-form-field appearance="" style=" width: 60%">
                               <mat-label>Chọn ngày bắt đầu</mat-label>
-                              <input id="inputDateStart" matInput [matDatepicker]="showingFrom" [min]="dateNow" formControlName="showingFrom" [(ngModel)]="showingFroms">
-                              <mat-datepicker-toggle matSuffix [for]="showingFrom"></mat-datepicker-toggle>
-                              <mat-datepicker #showingFrom></mat-datepicker>
+                              <input id="inputDateStart" matInput type="date"  [min]="dateNow" formControlName="showingFrom" [(ngModel)]="showingFroms" (change)="changeDate(createMovie.get('showingFrom'))">
+
                             </mat-form-field>
                           <ng-container *ngFor="let validation of validation_messages.showingFrom">
                             <small class="form-text text-danger"
@@ -53,9 +52,7 @@
                           <label for="inputDateEnd" class="col-sm-2 control-label" style="padding-right: 30px;">Đến ngày <span class="star">*</span></label>
                           <mat-form-field appearance="" style=" width: 60%" >
                             <mat-label>Chọn ngày kết thúc</mat-label>
-                            <input id="inputDateEnd" matInput [matDatepicker]="showingTo" [min]="dateNow" formControlName="showingTo"  [(ngModel)]="showingTos">
-                            <mat-datepicker-toggle matSuffix [for]="showingTo" ></mat-datepicker-toggle>
-                            <mat-datepicker #showingTo  (change)="checkDate()"></mat-datepicker>
+                            <input id="inputDateEnd" matInput type="date" [min]="min" formControlName="showingTo" [(ngModel)]="showingTos" (change)="checkDate()">
                           </mat-form-field>
                           <ng-container *ngFor="let validation of validation_messages.showingTo">
                             <small class="form-text text-danger"
@@ -124,8 +121,8 @@
                         <div class="form-group" >
                           <label class="col-sm-2 control-label">Phiên bản <span class="star">*</span></label>
                           <mat-radio-group aria-label="Select an option" formControlName="is3D">
-                            <mat-radio-button value="true" style="padding: 0 20px">2D</mat-radio-button>
-                            <mat-radio-button value="false">3D</mat-radio-button>
+                            <mat-radio-button value="false" style="padding: 0 20px">2D</mat-radio-button>
+                            <mat-radio-button value="true">3D</mat-radio-button>
                           </mat-radio-group>
                           <ng-container *ngFor="let validation of validation_messages.is3D">
                             <small class="form-text text-danger"

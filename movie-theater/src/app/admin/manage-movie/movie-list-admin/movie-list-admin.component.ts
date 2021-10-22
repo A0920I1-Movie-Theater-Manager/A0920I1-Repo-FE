@@ -3,6 +3,8 @@ import {ManagerMovieService} from '../../../services/manager-movie.service';
 import {Movie} from '../../../shared/model/entity/Movie';
 import {ToastrService} from 'ngx-toastr';
 import {JsogService} from 'jsog-typescript';
+import {SearchMovieDTO} from '../../../shared/model/dto/SearchMovieDTO';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-movie-list-admin',
@@ -12,11 +14,13 @@ import {JsogService} from 'jsog-typescript';
 export class MovieListAdminComponent implements OnInit {
   public movieList: Movie[];
   public page = 1;
-  public titleSearch = null;
+  searchMovie: SearchMovieDTO;
+  formSearch: FormGroup;
 
   constructor(private toastService: ToastrService,
               private movieService: ManagerMovieService,
-              private jSogService: JsogService) { }
+              private jSogService: JsogService,
+              private form: FormBuilder) { }
 
   ngOnInit(): void {
     this.movieService.getListAllMovie().subscribe((data) => {
@@ -24,11 +28,16 @@ export class MovieListAdminComponent implements OnInit {
       this.movieList = this.jSogService.deserializeArray(data, Movie);
       console.log(this.movieList);
     });
+    this.formSearch = this.form.group({
+      title: [],
+      production: [],
+      releaseDate: [],
+      is3D: []
+    });
   }
 
-  searchMovieByName(){
-    console.log(this.titleSearch);
-    this.movieService.findMovieByName(this.titleSearch).subscribe((data) => {
+  search(){
+    this.movieService.search(this.formSearch.value).subscribe((data) => {
       // @ts-ignore
       this.movieList = this.jSogService.deserializeArray(data, Movie);
       this.page = 1;
@@ -38,6 +47,10 @@ export class MovieListAdminComponent implements OnInit {
       }
     });
 
+  }
+
+  reset(){
+    window.location.reload();
   }
 
 

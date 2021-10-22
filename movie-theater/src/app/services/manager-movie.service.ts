@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Movie} from '../shared/model/entity/Movie';
 import {Observable} from 'rxjs';
 import {MovieImage} from '../shared/model/entity/MovieImage';
+import {SearchMovieDTO} from '../shared/model/dto/SearchMovieDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -28,19 +29,13 @@ export class ManagerMovieService {
   }
 
   public createMovies(movie: Movie, url: any): Observable<void>{
-    return this.httpClient.post<void>(this.API_URL + '/create-movie/'+ url, movie);
+    return this.httpClient.post<void>(this.API_URL + '/create-movie/' + url, movie);
   }
 
   // HueHV, phương thức chỉnh sửa 1 bộ phim
   public updateMovie(movie: Movie): Observable<void>{
     return this.httpClient.patch<void>(this.API_URL + '/update-movie/' + movie.id, movie);
   }
-
-  // HueHV, phương thức lấy tất cả ảnh của bộ phim theo id của phim
-  public getImageByIdMovie(id: number): Observable<MovieImage[]>{
-    return this.httpClient.get<MovieImage[]>(this.API_URL + '/get-image' + id);
-  }
-
   // HueHV, phương thức thêm ảnh cho 1 bộ phim
   public addImageMovie(movieImage: MovieImage): Observable<void>{
     return this.httpClient.post<void>(this.API_URL + '/add-image-movie', movieImage);
@@ -56,8 +51,15 @@ export class ManagerMovieService {
     return this.httpClient.get<Movie[]>(this.API_URL + '/list-movie?title=' + title);
   }
 
+  // HueHV
+  public search(searchMovieDTO: SearchMovieDTO): Observable<any>{
+    console.log(searchMovieDTO);
+    // @ts-ignore
+    return this.httpClient.put<any>(this.API_URL + '/search', searchMovieDTO);
+  }
+
   // HueHV, lấy id movie theo title
-  public getIdMovieByTitle(title: string):Observable<Movie> {
+  public getIdMovieByTitle(title: string): Observable<Movie> {
     return this.httpClient.get<Movie>(this.API_URL + '/get-id?title= ' + title);
   }
 

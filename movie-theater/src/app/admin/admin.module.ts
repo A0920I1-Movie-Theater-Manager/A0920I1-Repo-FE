@@ -108,7 +108,7 @@ const adminRoutes: Routes = [
     NgbPaginationModule,
     NgbAlertModule,
     NgbCarouselModule,
-    MatCardModule
+    MatCardModule,
   ]
 })
 export class AdminModule { }
