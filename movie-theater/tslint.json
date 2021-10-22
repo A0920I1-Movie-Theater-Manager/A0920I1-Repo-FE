@@ -144,5 +144,9 @@
   },
   "rulesDirectory": [
     "codelyzer"
-  ]
+  ],
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
 }

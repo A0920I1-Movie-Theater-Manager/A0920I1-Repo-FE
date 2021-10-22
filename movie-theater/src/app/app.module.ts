@@ -9,12 +9,15 @@ import {GuestModule} from './guest/guest.module';
 import {EmployeeModule} from './employee/employee.module';
 import {AdminModule} from './admin/admin.module';
 import {AppRoutingModule} from './app-routing.module';
+import {CommonModule} from '@angular/common';
+import {JsogService} from 'jsog-typescript';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     UserModule,
     SharedModule,
@@ -22,9 +25,9 @@ import {AppRoutingModule} from './app-routing.module';
     GuestModule,
     EmployeeModule,
     AdminModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [JsogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
