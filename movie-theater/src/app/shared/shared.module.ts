@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './layout/header/header.component';
-import { FooterComponent } from './layout/footer/footer.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {HeaderComponent} from './layout/header/header.component';
+import {FooterComponent} from './layout/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
 
 const sharedRoutes: Routes = [];
@@ -17,4 +17,5 @@ const sharedRoutes: Routes = [];
     RouterModule.forChild(sharedRoutes)
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
