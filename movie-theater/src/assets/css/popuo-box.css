@@ -41,7 +41,6 @@ a.play-icon.popup-with-zoom-anim img:hover {
   text-align:justify;
 }
 /**
-
 /**
  * Fade-zoom animation for first dialog
  */
@@ -261,8 +260,8 @@ button::-moz-focus-inner {
 .login input[type="text"],.login input[type="password"]{
   width:90%;
   padding:5px;
-  margin:3px 0;x
-border: 1px solid #a63d56;
+  margin:3px 0;
+  border: 1px solid #a63d56;
   outline: none !important;
 }
 .signup input[type="text"]{

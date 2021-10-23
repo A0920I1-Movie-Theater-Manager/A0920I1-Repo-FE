@@ -10,39 +10,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 const sharedRoutes: Routes = [];
 
 @NgModule({
-<<<<<<< HEAD
-<<<<<<< HEAD
   declarations: [HeaderComponent, FooterComponent],
-=======
-    declarations: [HeaderComponent, FooterComponent],
->>>>>>> HoangLV_Manage_Employee
   exports: [
     HeaderComponent,
     FooterComponent
   ],
-<<<<<<< HEAD
   imports: [
     CommonModule,
-    RouterModule.forChild(sharedRoutes),
-    FormsModule,
-    MatAutocompleteModule
+    RouterModule.forChild(sharedRoutes)
   ]
-=======
-    declarations: [HeaderComponent, FooterComponent],
-  exports: [
-    FooterComponent,
-    HeaderComponent
-  ],
-=======
->>>>>>> HoangLV_Manage_Employee
-    imports: [
-        CommonModule,
-        RouterModule.forChild(sharedRoutes)
-    ]
-<<<<<<< HEAD
->>>>>>> VietNT_Account_user
-=======
->>>>>>> HoangLV_Manage_Employee
 })
 export class SharedModule {
 }

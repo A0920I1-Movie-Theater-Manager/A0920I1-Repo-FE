@@ -69,8 +69,6 @@ import {AdminModule} from './admin/admin.module';
     ChartModule,
     HttpClientModule,
     MatInputModule,
-    MatDatepickerModule,
-    MatDatepickerModule,
     MatNativeDateModule,
 
     ToastrModule.forRoot({

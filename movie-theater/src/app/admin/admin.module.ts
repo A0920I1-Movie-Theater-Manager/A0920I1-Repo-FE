@@ -97,11 +97,12 @@ const adminRoutes: Routes = [
     EmployeeDetailAdminComponent,
     NotifyEmployeeComponent
   ],
-  exports: [
-    EmployeeListAdminComponent,
-    EmployeeAddAdminComponent,
-    EmployeeDetailAdminComponent
-  ],
+    exports: [
+        EmployeeListAdminComponent,
+        EmployeeAddAdminComponent,
+        EmployeeDetailAdminComponent,
+        NavbarLeftComponent
+    ],
   imports: [
     CommonModule,
     RouterModule.forChild(adminRoutes),

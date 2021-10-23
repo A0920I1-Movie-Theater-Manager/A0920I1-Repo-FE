@@ -1,7 +1,5 @@
 import {AccountRole} from './AccountRole';
 import {Comment} from './Comment';
-import {JsonProperty} from 'jsog-typescript';
-import {MovieShowtime} from './MovieShowtime';
 
 export class Account {
   id: number;
@@ -17,10 +15,11 @@ export class Account {
   gender: string;
   totalPoint: number;
   imageUrl: string;
+  deleted: boolean;
   accountRoles: AccountRole[];
   comments: Comment[];
 
-
+  // tslint:disable-next-line:max-line-length
   constructor(id: number, username: string, accountCode: string, password: string, fullname: string, birthday: string, idCard: string, address: string, phone: string, email: string, gender: string, totalPoint: number, imageUrl: string, accountRoles: AccountRole[], comments: Comment[]) {
     this.id = id;
     this.username = username;
