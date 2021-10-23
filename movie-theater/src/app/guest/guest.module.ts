@@ -18,6 +18,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const guestRoutes: Routes = [
   {path: 'home', component: MovieListComponent},
@@ -48,6 +49,7 @@ const guestRoutes: Routes = [
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule,
+    MatAutocompleteModule,
     RouterModule.forChild(guestRoutes)
   ],
   exports: [RouterModule]

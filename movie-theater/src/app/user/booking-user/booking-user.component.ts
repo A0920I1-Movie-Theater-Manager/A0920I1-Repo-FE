@@ -44,6 +44,7 @@ export class BookingUserComponent implements OnInit {
   booking() {
     console.log(this.bookingForm.value);
   }
+
   // TuHC - chon phim
   onChangeMovie(newMovie) {
     this.movieId = newMovie;
@@ -58,6 +59,7 @@ export class BookingUserComponent implements OnInit {
       this.showtimes = this.jsogService.deserializeArray(data, Showtime);
     });
   }
+
   // TuHC - chon suat chieu
   onChangeShowtime(newShowtime) {
     this.showtimeId = newShowtime;
