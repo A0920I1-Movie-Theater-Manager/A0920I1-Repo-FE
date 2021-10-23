@@ -1,80 +1,51 @@
-<<<<<<< HEAD
-=======
-<body>
->>>>>>> VietNT_Account_user
+<head>
+  <title>A09 Cinema</title>
+  <!-- for-mobile-apps -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="keywords" content="One Movies Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+</head>
+
+
 <!-- header -->
 <div class="header">
   <div class="container">
     <div class="w3layouts_logo">
-<<<<<<< HEAD
-      <a routerLink="home">
+      <a href="../page/index.html">
         <h1>A09<span>Movies</span></h1>
-      </a>
-    </div>
-    <div class="w3_search">
-      <form>
-        <input type="text" name="name" placeholder="Nhập tên phim"
-        [(ngModel)]="keyword" (ngModelChange)="suggestMovie()" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let movie of movieSearches" [value]="movie.title">
-            {{movie.title | titlecase}}
-          </mat-option>
-        </mat-autocomplete>
-        <input type="submit" value="Tìm" (click)="searchMovie()">
-=======
-      <a href="index.html">
-        <h1>One<span>Movies</span></h1>
         <!-- <img src="./images/a07logo.png" alt=""> -->
       </a>
     </div>
     <div class="w3_search">
       <form action="#" method="post">
-        <input type="text" name="Search" placeholder="Search" required="">
-        <input type="submit" value="Go">
->>>>>>> VietNT_Account_user
+        <input type="text" name="Search" placeholder="Nhập tên phim" required="">
+        <input type="submit" value="Tìm">
       </form>
     </div>
     <div class="w3l_sign_in_register">
       <ul>
-<<<<<<< HEAD
         <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
-
-        <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng ký</a></li>
-=======
-        <li><i class="fa fa-phone" aria-hidden="true"></i> (+000) 123 345 653</li>
-        <li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
->>>>>>> VietNT_Account_user
       </ul>
     </div>
     <div class="clearfix"></div>
   </div>
 </div>
 <!-- //header -->
-<<<<<<< HEAD
 <!-- dang nhap-pop-up -->
-=======
-<!-- bootstrap-pop-up -->
->>>>>>> VietNT_Account_user
 <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-<<<<<<< HEAD
         Đăng nhập & Đăng kí
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button>
-=======
-        Sign In & Sign Up
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-          aria-hidden="true">&times;</span></button>
->>>>>>> VietNT_Account_user
       </div>
       <section>
         <div class="modal-body">
           <div class="w3_login_module">
             <div class="module form-module">
               <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-<<<<<<< HEAD
                 <div class="tooltip">Click</div>
               </div>
               <div class="form">
@@ -96,29 +67,6 @@
                 </form>
               </div>
               <div class="cta"><a href="#">Quên mật khẩu</a></div>
-=======
-                <div class="tooltip">Click Me</div>
-              </div>
-              <div class="form">
-                <h3>Login to your account</h3>
-                <form action="#" method="post">
-                  <input type="text" name="Username" placeholder="Username" required="">
-                  <input type="password" name="Password" placeholder="Password" required="">
-                  <input type="submit" value="Login">
-                </form>
-              </div>
-              <div class="form">
-                <h3>Create an account</h3>
-                <form action="#" method="post">
-                  <input type="text" name="Username" placeholder="Username" required="">
-                  <input type="password" name="Password" placeholder="Password" required="">
-                  <input type="email" name="Email" placeholder="Email Address" required="">
-                  <input type="text" name="Phone" placeholder="Phone Number" required="">
-                  <input type="submit" value="Register">
-                </form>
-              </div>
-              <div class="cta"><a href="#">Forgot your password?</a></div>
->>>>>>> VietNT_Account_user
             </div>
           </div>
         </div>
@@ -126,8 +74,6 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-=======
 <script>
   $('.toggle').click(function () {
     // Switches the Icon
@@ -141,8 +87,7 @@
     }, "slow");
   });
 </script>
-<!-- //bootstrap-pop-up -->
->>>>>>> VietNT_Account_user
+<!-- //dang nhap-pop-up -->
 <!-- nav -->
 <div class="movies_nav">
   <div class="container">
@@ -160,101 +105,16 @@
       <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
         <nav>
           <ul class="nav navbar-nav">
-<<<<<<< HEAD
-            <li><a routerLink="home">Trang chủ</a></li>
-            <li><a routerLink="booking">Mua vé</a></li>
-            <li><a routerLink="event">Sự kiện</a></li>
-            <li><a routerLink="news">Góc điện ảnh</a></li>
-            <li><a routerLink="term-customer">Thành viên</a></li>
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Mua vé</a></li>
+            <li><a href="#">Sự kiện</a></li>
+            <li><a href="#">Góc điện ảnh</a></li>
+            <li><a href="#">Thành viên</a></li>
             <li><a href="#">Giá vé</a></li>
-            <li><a routerLink="faq">Hướng dẫn</a></li>
-=======
-            <li class="active"><a href="index.html">Home</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Genres <b
-                class="caret"></b></a>
-              <ul class="dropdown-menu multi-column columns-3">
-                <li>
-                  <div class="col-sm-4">
-                    <ul class="multi-column-dropdown">
-                      <li><a href="genres.html">Action</a></li>
-                      <li><a href="genres.html">Biography</a></li>
-                      <li><a href="genres.html">Crime</a></li>
-                      <li><a href="genres.html">Family</a></li>
-                      <li><a href="horror.html">Horror</a></li>
-                      <li><a href="genres.html">Romance</a></li>
-                      <li><a href="genres.html">Sports</a></li>
-                      <li><a href="genres.html">War</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-4">
-                    <ul class="multi-column-dropdown">
-                      <li><a href="genres.html">Adventure</a></li>
-                      <li><a href="comedy.html">Comedy</a></li>
-                      <li><a href="genres.html">Documentary</a></li>
-                      <li><a href="genres.html">Fantasy</a></li>
-                      <li><a href="genres.html">Thriller</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-4">
-                    <ul class="multi-column-dropdown">
-                      <li><a href="genres.html">Animation</a></li>
-                      <li><a href="genres.html">Costume</a></li>
-                      <li><a href="genres.html">Drama</a></li>
-                      <li><a href="genres.html">History</a></li>
-                      <li><a href="genres.html">Musical</a></li>
-                      <li><a href="genres.html">Psychological</a></li>
-                    </ul>
-                  </div>
-                  <div class="clearfix"></div>
-                </li>
-              </ul>
-            </li>
-            <li><a href="series.html">tv - series</a></li>
-            <li><a href="news.html">news</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Country <b
-                class="caret"></b></a>
-              <ul class="dropdown-menu multi-column columns-3">
-                <li>
-                  <div class="col-sm-4">
-                    <ul class="multi-column-dropdown">
-                      <li><a href="genres.html">Asia</a></li>
-                      <li><a href="genres.html">France</a></li>
-                      <li><a href="genres.html">Taiwan</a></li>
-                      <li><a href="genres.html">United States</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-4">
-                    <ul class="multi-column-dropdown">
-                      <li><a href="genres.html">China</a></li>
-                      <li><a href="genres.html">HongCong</a></li>
-                      <li><a href="genres.html">Japan</a></li>
-                      <li><a href="genres.html">Thailand</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-sm-4">
-                    <ul class="multi-column-dropdown">
-                      <li><a href="genres.html">Euro</a></li>
-                      <li><a href="genres.html">India</a></li>
-                      <li><a href="genres.html">Korea</a></li>
-                      <li><a href="genres.html">United Kingdom</a></li>
-                    </ul>
-                  </div>
-                  <div class="clearfix"></div>
-                </li>
-              </ul>
-            </li>
-            <li><a href="short-codes.html">Short Codes</a></li>
-            <li><a href="list.html">A - z list</a></li>
->>>>>>> VietNT_Account_user
+            <li><a href="#">Hướng dẫn</a></li>
           </ul>
         </nav>
       </div>
     </nav>
   </div>
 </div>
-<<<<<<< HEAD
-<!-- //nav -->
-=======
->>>>>>> VietNT_Account_user

@@ -1,9 +1,5 @@
-import {AccountRole} from './AccountRole';
-import {Comment} from './Comment';
-import {JsonProperty} from 'jsog-typescript';
-import {MovieShowtime} from './MovieShowtime';
 
-export class Account {
+export class CreateEmployeeDTO {
   id: number;
   username: string;
   accountCode: string;
@@ -17,11 +13,9 @@ export class Account {
   gender: string;
   totalPoint: number;
   imageUrl: string;
-  accountRoles: AccountRole[];
-  comments: Comment[];
+  // confirmPassword: string
 
-
-  constructor(id: number, username: string, accountCode: string, password: string, fullname: string, birthday: string, idCard: string, address: string, phone: string, email: string, gender: string, totalPoint: number, imageUrl: string, accountRoles: AccountRole[], comments: Comment[]) {
+  constructor(id: number, username: string, accountCode: string, password: string, fullname: string, birthday: string, idCard: string, address: string, phone: string, email: string, gender: string, totalPoint: number, imageUrl: string) {
     this.id = id;
     this.username = username;
     this.accountCode = accountCode;
@@ -35,7 +29,5 @@ export class Account {
     this.gender = gender;
     this.totalPoint = totalPoint;
     this.imageUrl = imageUrl;
-    this.accountRoles = accountRoles;
-    this.comments = comments;
   }
 }
