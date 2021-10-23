@@ -12,8 +12,13 @@
         [(ngModel)]="keyword" (ngModelChange)="suggestMovie()" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let movie of movieSearches" [value]="movie.title">
-            {{movie.title | titlecase}}
+            <img class="example-option-img" aria-hidden [src]="movie.movieImages[0].imageUrl" height="40">
+            <span>  {{movie.title | titlecase}}</span>
           </mat-option>
+          <mat-option *ngIf="movieSearches?.length == null">
+            <p style="font-style: italic">Không tìm thấy kết quả tìm kiếm</p>
+          </mat-option>
+
         </mat-autocomplete>
         <input type="submit" value="Tìm" (click)="searchMovie()">
       </form>

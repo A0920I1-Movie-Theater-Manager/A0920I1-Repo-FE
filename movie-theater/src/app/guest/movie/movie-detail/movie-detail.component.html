@@ -89,7 +89,9 @@
           </div>
           <div class="media-grids" *ngFor="let comment of comments">
             <div class="media">
-              <h5 *ngIf="comment.seen == 1">{{comment.account.fullname}} <mat-icon style="color: #2E4A84; font-size: 1em">check_circle</mat-icon></h5>
+              <h5 *ngIf="comment.seen == 1">{{comment.account.fullname}}
+                <mat-icon style="color: #2E4A84; font-size: 1em">check_circle</mat-icon>
+              </h5>
               <h5 *ngIf="comment.seen == 0">{{comment.account.fullname}}</h5>
               <div class="media-left">
                 <a href="#">
@@ -105,7 +107,7 @@
             <form [formGroup]="commentForm" (ngSubmit)="addComment()">
               <textarea placeholder="Bình luận" required="" formControlName="content"></textarea>
               <input type="submit" value="Gửi">
-              <div class="clearfix"> </div>
+              <div class="clearfix"></div>
             </form>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Comment} from '../shared/model/entity/Comment';
 
 
 @Injectable({
@@ -37,16 +36,6 @@ export class MovieService {
   // TuHC - search phim
   public searchMovie(keyword: string): Observable<any> {
     return this.httpClient.get(this.MOVIE_URL + '/search-movie?keyword=' + keyword);
-  }
-
-//  TuHC - lay comment cua 1 bo phim
-  public getCommentByMovieId(id: number): Observable<any> {
-    return this.httpClient.get(this.MOVIE_URL + '/get-comment/' + id);
-  }
-
-// TuHC - them comment
-  public addComment(comment: Comment) {
-    return this.httpClient.post(this.MOVIE_URL + '/add-comment', comment);
   }
 
 //  TuHC - lay tat ca phim dang chieu va sap chieu
