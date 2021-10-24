@@ -13,7 +13,9 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
+  constructor(private http: HttpClient
+              , private jwtHelper: JwtHelperService
+  ) { }
 
   login(credentials): Observable<any> {
     return this.http.post(AppConstants.AUTH_API + 'signin', {

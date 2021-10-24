@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {JsogService} from 'jsog-typescript';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
+import {JwtModule} from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,11 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
   ],
   imports: [
     BrowserModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter:  () => sessionStorage.getItem('toke')
+      }
+    }),
     UserModule,
     SharedModule,
     LoginModule,

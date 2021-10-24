@@ -22,7 +22,7 @@ export class AuthGuardService implements CanActivate{
     const tokenPayload = this.jwtHelper.decodeToken(token);
     // console.log(tokenPayload.role);
     if (!this.authService.isUserLoggedIn() || route.data.expectedRole.indexOf(tokenPayload.role) === -1) {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/home');
       return false;
     }
     return true;
