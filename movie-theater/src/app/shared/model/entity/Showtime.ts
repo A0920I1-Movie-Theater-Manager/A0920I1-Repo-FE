@@ -1,6 +1,7 @@
 import {MovieShowtime} from './MovieShowtime';
 import {Screen} from './Screen';
 import {Price} from './Price';
+import {JsonProperty} from 'jsog-typescript';
 
 export class Showtime {
   id: number;

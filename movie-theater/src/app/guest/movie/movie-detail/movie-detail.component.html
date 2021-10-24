@@ -1,1 +1,140 @@
-<p>movie-detail works!</p>
+<div class="single-page-agile-main">
+  <div class="container">
+    <!-- /w3l-medile-movies-grids -->
+    <div class="agileits-single-top">
+      <ol class="breadcrumb">
+        <li><a href="index.html">Trang chủ</a></li>
+        <li class="active">Chi tiết</li>
+      </ol>
+    </div>
+    <div class="single-page-agile-info">
+      <!-- /movie-browse-agile -->
+      <div class="col-sm-8 single-left">
+        <!--begin detail-->
+        <div class="wthree-news-left">
+          <div class="wthree-news-left-img">
+            <div class="song">
+              <div class="song-info">
+                <h2>{{movie.title}}</h2>
+              </div>
+            </div>
+
+            <h4 style="margin: 1em 0">Thông tin chi tiết</h4>
+            <!-- start description-->
+            <div class="description" style="font-size: 1.2rem">
+              <div>
+                <img [src]="movie.movieImages[0].imageUrl" alt=""
+                     style="height: 350px; width: 250px"/>
+              </div>
+              <div>
+                <table class="table table-borderless" style="background: whitesmoke; color: #2d2d2d">
+                  <tbody>
+                  <tr>
+                    <th scope="row" style="width: 30%; background: whitesmoke">Nhà sản xuất:</th>
+                    <td>{{movie.production}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" style="background: white">Thể loại:</th>
+                    <td>
+                      <li *ngFor="let genre of movie.genres" style="list-style-type: none">
+                        <span>{{genre.name}}</span>
+                      </li>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row" style="background: whitesmoke">Đạo diễn:</th>
+                    <td>{{movie.director}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" style="background: white">Diễn viên:</th>
+                    <td>{{movie.cast}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" style="background: whitesmoke">Ngày phát hành:</th>
+                    <td>{{movie.releaseDate | date: 'dd/MM/yyyy'}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- end description-->
+
+            <!--chen video-->
+            <h4 style="margin: 2em 0 1em">Trailer</h4>
+            <div style="text-align: center;">
+              <iframe width="560" height="315" [src]="videoURL()"
+                      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                                        clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+            </div>
+            <!-- chen video-->
+
+            <h4 style="margin: 2em 0 1em 0">Nội dung phim</h4>
+            <div class="w3-agile-news-text">
+              <p style="color: #0a0910; font-size: 17px">
+                {{movie.content}}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <!--end detail-->
+
+        <!--                start comment-->
+        <div class="all-comments">
+          <p style="color: #0a0910; font-size: 17px">Các đánh giá phim được viết sau khi đăng nhập</p>
+          <br>
+          <div>
+            <input type="submit" value="Đăng nhập">
+          </div>
+          <div class="media-grids" *ngFor="let comment of comments">
+            <div class="media">
+              <h5 *ngIf="comment.seen == 1">{{comment.account.fullname}}
+                <mat-icon style="color: #2E4A84; font-size: 1em">check_circle</mat-icon>
+              </h5>
+              <h5 *ngIf="comment.seen == 0">{{comment.account.fullname}}</h5>
+              <div class="media-left">
+                <a href="#">
+                  <img src="./assets/images/user.jpg" title="One movies" alt=" "/>
+                </a>
+              </div>
+              <div class="media-body">
+                <p style="color: #0a0910; font-size: 17px">{{comment.content}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="agile-info-wthree-box">
+            <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+              <textarea placeholder="Bình luận" required="" formControlName="content"></textarea>
+              <input type="submit" value="Gửi">
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!--            end comment-->
+
+      <!--      Phim hay-->
+      <div class="col-md-4 single-right">
+        <h3>Phim hay</h3>
+        <div class="single-grid-right" *ngFor="let movie of movieTopFives">
+          <div class="single-right-grids">
+            <div class="col-md-4 single-right-grid-left">
+              <a routerLink="/movie-detail/{{movie.id}}"><img [src]="movie.movieImages[0].imageUrl" alt=""/></a>
+            </div>
+            <div class="col-md-8 single-right-grid-right">
+              <a routerLink="/movie-detail/{{movie.id}}" class="title">{{movie.title}}</a>
+              <p class="views">1,614,200 lượt xem</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <!--      //Phim hay-->
+      <div class="clearfix"></div>
+    </div>
+    <!-- //movie-browse-agile -->
+  </div>
+  <!-- //w3l-latest-movies-grids -->
+</div>
+

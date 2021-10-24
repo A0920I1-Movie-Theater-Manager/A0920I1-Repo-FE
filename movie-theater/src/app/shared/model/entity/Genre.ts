@@ -1,13 +1,14 @@
-import {GenreMovie} from './GenreMovie';
+import {Movie} from './Movie';
+import {JsonProperty} from 'jsog-typescript';
 
 export class Genre {
   id: number;
   name: string;
-  genreMovies: GenreMovie[];
+  movies: Movie[];
 
-  constructor(id: number, name: string, genreMovies: GenreMovie[]) {
+  constructor(id: number, name: string, movies: Movie[]) {
     this.id = id;
     this.name = name;
-    this.genreMovies = genreMovies;
+    this.movies = movies;
   }
 }

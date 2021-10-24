@@ -2,6 +2,8 @@ import {BookingSeat} from './BookingSeat';
 import {Payment} from './Payment';
 import {Promotion} from './Promotion';
 import {Account} from './Account';
+import {JsonProperty} from 'jsog-typescript';
+import {MovieShowtime} from './MovieShowtime';
 
 export class Booking {
   id: number;

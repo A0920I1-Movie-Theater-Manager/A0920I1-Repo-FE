@@ -1,0 +1,65 @@
+
+<!-- header -->
+<div class="header">
+  <div class="container">
+    <div class="w3layouts_logo">
+      <a routerLink="home">
+        <h1>A09<span>Movies</span></h1>
+      </a>
+    </div>
+    <div class="w3_search">
+      <form>
+        <input type="text" name="name" placeholder="Nhập tên phim"
+        [(ngModel)]="keyword" (ngModelChange)="suggestMovie()" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let movie of movieSearches" [value]="movie.title">
+            <img class="example-option-img" aria-hidden [src]="movie.movieImages[0].imageUrl" height="40">
+            <span>  {{movie.title | titlecase}}</span>
+          </mat-option>
+          <mat-option *ngIf="movieSearches?.length == null">
+            <p style="font-style: italic">Không tìm thấy kết quả tìm kiếm</p>
+          </mat-option>
+        </mat-autocomplete>
+        <input type="submit" value="Tìm" (click)="searchMovie()">
+      </form>
+    </div>
+    <div class="w3l_sign_in_register">
+      <ul>
+        <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng kí</a></li>
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<!-- //header -->
+<!-- nav -->
+<div class="movies_nav">
+  <div class="container">
+    <nav class="navbar navbar-default">
+      <div class="navbar-header navbar-left">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+        <nav>
+          <ul class="nav navbar-nav">
+            <li><a routerLink="home">Trang chủ</a></li>
+            <li><a href="#">Mua vé</a></li>
+            <li><a routerLink="event">Sự kiện</a></li>
+            <li><a routerLink="news">Góc điện ảnh</a></li>
+            <li><a routerLink="term-customer">Thành viên</a></li>
+            <li><a routerLink="home">Giá vé</a></li>
+            <li><a routerLink="term-of-use">Hướng dẫn</a></li>
+          </ul>
+        </nav>
+      </div>
+    </nav>
+  </div>
+</div>

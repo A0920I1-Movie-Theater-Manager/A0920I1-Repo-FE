@@ -1,25 +1,34 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RegisterComponent } from './register/register.component';
-import { PriceListComponent } from './price-list/price-list.component';
-import { PromotionComponent } from './promotion/promotion.component';
-import { PromotionListComponent } from './promotion/promotion-list/promotion-list.component';
-import { PromotionDetailComponent } from './promotion/promotion-detail/promotion-detail.component';
-import { ShowtimeListComponent } from './showtime-list/showtime-list.component';
-import {RouterModule, Routes} from '@angular/router';
-<<<<<<< HEAD
-import { MovieComponent } from './movie/movie.component';
-import { MovieListComponent } from './movie/movie-list/movie-list.component';
-import { MovieSearchComponent } from './movie/movie-search/movie-search.component';
-import { MovieDetailComponent } from './movie/movie-detail/movie-detail.component';
-=======
+
+import {MovieComponent} from './movie/movie.component';
+import {MovieListComponent} from './movie/movie-list/movie-list.component';
+import {MovieSearchComponent} from './movie/movie-search/movie-search.component';
+import {MovieDetailComponent} from './movie/movie-detail/movie-detail.component';
+import {CarouselModule} from 'ngx-owl-carousel-o';
+import {MatIconModule} from '@angular/material/icon';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NotificationRegisterComponent } from './register/notification-register/notification-register.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {RegisterComponent} from './register/register.component';
+import {RouterModule, Routes} from '@angular/router';
+import {NgModule} from '@angular/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
->>>>>>> AnhLT-Login
+import {CommonModule} from '@angular/common';
+import {NotificationRegisterComponent} from './register/notification-register/notification-register.component';
+import {ShowtimeListComponent} from './showtime-list/showtime-list.component';
+import {PriceListComponent} from './price-list/price-list.component';
+import {PromotionComponent} from './promotion/promotion.component';
+import {PromotionListComponent} from './promotion/promotion-list/promotion-list.component';
+import {PromotionDetailComponent} from './promotion/promotion-detail/promotion-detail.component';
 
 const guestRoutes: Routes = [
+  {path: 'home', component: MovieListComponent},
+  {path: '', component: MovieListComponent, pathMatch: 'full'},
+  {path: 'movie-detail/:id', component: MovieDetailComponent},
+  {path: 'movie-search', component: MovieSearchComponent},
   {path: 'register' , component: RegisterComponent}
 ];
 
@@ -31,14 +40,12 @@ const guestRoutes: Routes = [
     PromotionListComponent,
     PromotionDetailComponent,
     ShowtimeListComponent,
-<<<<<<< HEAD
     MovieComponent,
     MovieListComponent,
     MovieSearchComponent,
-    MovieDetailComponent
-=======
+    MovieDetailComponent,
     NotificationRegisterComponent
->>>>>>> AnhLT-Login
+
   ],
   imports: [
     CommonModule,
@@ -46,7 +53,18 @@ const guestRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+    CarouselModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    RouterModule.forChild(guestRoutes)
+  ],
+  exports: [RouterModule]
 })
-export class GuestModule { }
+export class GuestModule {
+}
