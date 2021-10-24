@@ -23,10 +23,14 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+            "styles":[
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts":[
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "movie-theater"
+    }
+  },
+  "defaultProject": "movie-theater",
+  "cli": {
+    "analytics": "e4669d92-5beb-428c-9dc3-357ec099b9d9"
+  }
 }

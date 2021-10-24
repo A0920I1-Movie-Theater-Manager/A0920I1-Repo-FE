@@ -3,14 +3,20 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import {RouterModule, Routes} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const sharedRoutes: Routes = [];
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(sharedRoutes)
-  ]
+    declarations: [HeaderComponent, FooterComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(sharedRoutes),
+        BrowserAnimationsModule
+    ]
 })
 export class SharedModule { }

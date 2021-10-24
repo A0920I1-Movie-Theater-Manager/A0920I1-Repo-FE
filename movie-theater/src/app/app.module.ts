@@ -9,6 +9,9 @@ import {GuestModule} from './guest/guest.module';
 import {EmployeeModule} from './employee/employee.module';
 import {AdminModule} from './admin/admin.module';
 import {AppRoutingModule} from './app-routing.module';
+import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import {AppRoutingModule} from './app-routing.module';
   imports: [
     BrowserModule,
     UserModule,
+    RouterModule,
+    AppRoutingModule,
+    HttpClientModule,
     SharedModule,
     LoginModule,
     GuestModule,
     EmployeeModule,
     AdminModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

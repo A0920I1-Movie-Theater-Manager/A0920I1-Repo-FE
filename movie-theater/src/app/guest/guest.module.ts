@@ -8,7 +8,8 @@ import { PromotionDetailComponent } from './promotion/promotion-detail/promotion
 import { ShowtimeListComponent } from './showtime-list/showtime-list.component';
 import {RouterModule, Routes} from '@angular/router';
 
-const guestRoutes: Routes = [];
+const guestRoutes: Routes = [{path: 'price', component: PriceListComponent},
+                              {path: 'showtime-list', component: ShowtimeListComponent}];
 
 @NgModule({
   declarations: [
