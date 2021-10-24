@@ -24,9 +24,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/login.js",
+              "src/assets/js/detailMovies.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -119,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "movie-theater"
+    }
+  },
+  "defaultProject": "movie-theater",
+  "cli": {
+    "analytics": "59eb9c8f-789d-4d0d-8ab5-c3d5d13f85af"
+  }
 }

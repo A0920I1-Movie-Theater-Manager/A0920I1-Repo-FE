@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ScreenService} from '../../services/ScreenService';
+import {JsogService} from 'jsog-typescript';
+import {Screen} from '../../shared/model/entity/Screen';
+declare const chooseSeat: any;
+
 
 @Component({
   selector: 'app-manage-screen',
@@ -6,10 +12,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-screen.component.css']
 })
 export class ManageScreenComponent implements OnInit {
+  private id: any;
+  screen: Screen;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private screenService: ScreenService,
+    private jsogService: JsogService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe((paramMap: ParamMap)  => {
+      this.id = (paramMap.get('id'));
+      console.log(this.id);
+      this.screenService.findScreenById(this.id).subscribe(
+        (data) => {
+          this.screen = this.jsogService.deserializeObject(data);
+          console.log(this.screen);
+        }
+      );
+    });
+  }
+
+  chooseSeat() {
+    chooseSeat();
+    console.log('choose Seat');
+  }
 }
