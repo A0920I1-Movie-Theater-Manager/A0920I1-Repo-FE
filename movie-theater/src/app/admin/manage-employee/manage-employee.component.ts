@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {EmployeeAccountService} from '../../services/employee-account.service';
 
 @Component({
   selector: 'app-manage-employee',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-employee.component.css']
 })
 export class ManageEmployeeComponent implements OnInit {
+
+
 
   constructor() { }
 

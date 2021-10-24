@@ -1,36 +1,66 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import {UserModule} from './user/user.module';
-import {SharedModule} from './shared/shared.module';
-import {LoginModule} from './login/login.module';
-import {GuestModule} from './guest/guest.module';
-import {EmployeeModule} from './employee/employee.module';
-import {AdminModule} from './admin/admin.module';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {JwtModule} from '@auth0/angular-jwt';
 import {ToastrModule} from 'ngx-toastr';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {environment} from '../environments/environment';
+import {JsogService} from 'jsog-typescript';
+import {CommonModule} from '@angular/common';
+import {AdminModule} from './admin/admin.module';
+import {GuestModule} from './guest/guest.module';
+import {EmployeeModule} from './employee/employee.module';
+import {LoginModule} from './login/login.module';
+import {SharedModule} from './shared/shared.module';
+import {StaticPageModule} from './static-page/static-page.module';
+import {UserModule} from './user/user.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    UserModule,
-    RouterModule,
-    AppRoutingModule,
-    HttpClientModule,
-    SharedModule,
-    LoginModule,
+    AdminModule,
     GuestModule,
     EmployeeModule,
-    AdminModule,
-    AppRoutingModule,
+    LoginModule,
+    SharedModule,
+    StaticPageModule,
+    UserModule,
+    NgbModule,
+    RouterModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => sessionStorage.getItem('toke')
+      }
+    }),
+    AngularFireModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule, // auth
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: false,
+    }),
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [JsogService],
+
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

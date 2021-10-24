@@ -1,0 +1,167 @@
+<div style="margin-right: 0; padding-left: 20px" class="row">
+  <app-navbar-left></app-navbar-left>
+  <div class="col-md-10 nav_content">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <h1 style="margin-bottom: 40px; margin-right: 180px; color: #FF8D1B;">THÔNG TIN CHI TIẾT CỦA PHIM</h1>
+      <!-- Main content -->
+      <section class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Tên phim:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.title| titlecase}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Ngày ra mắt:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.showingFrom | date: 'dd/MM/yyyy'}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Ngày kết thúc:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.showingTo| date: 'dd/MM/yyyy'}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Diễn viên chính:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.cast | titlecase}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Đạo diễn:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.director | titlecase}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Hãng phim:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.production | titlecase}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Thời lượng:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.runningTime}} phút
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Phiên bản:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px" *ngIf="movieDetail.is3D">3D</div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px" *ngIf="!movieDetail.is3D">2D</div>
+                  </div>
+
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Thể loại:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      <ul *ngFor="let items of genres">
+                        <li>{{items.name}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Lịch chiếu:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.releaseDate | date: 'dd/MM/yyyy'}}
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      <ul *ngFor="let items of showtimes">
+                        <li>{{items.showTime}}: {{items.price.price}} đồng</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <h4 class="mb-0">Mô tả nội dung phim:</h4>
+                    </div>
+                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
+                      {{movieDetail.content}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+<!--                      <a class="btn btn-info" routerLink="/register-history/meeting-room/{{meetingDetails.id}}">Xem lịch sử đăng kí</a>-->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-8 p-3">
+              <div class="row">
+                <div class="col-sm-12 justify-content-center" style="padding-bottom: 100px; padding-left: 50px">
+                  <ngb-carousel *ngIf="movieDetail.trailerUrl">
+                    <ng-template ngbSlide>
+                      <div class="picsum-img-wrapper">
+                        <iframe width="560" height="315" [src]="videoURL()"
+                                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                                        clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                      </div>
+                      <div class="carousel-caption">
+                        <h3>{{movieDetail.title | titlecase}}</h3>
+                        <p></p>
+                      </div>
+                    </ng-template>
+                  </ngb-carousel>
+
+                </div>
+                <ngb-carousel *ngIf="images">
+                  <ng-template ngbSlide *ngFor="let image of images; let i = index">
+                    <div class="picsum-img-wrapper">
+                      <img width="600" [src]="image.imageUrl">
+                    </div>
+
+                  </ng-template>
+                </ngb-carousel>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>

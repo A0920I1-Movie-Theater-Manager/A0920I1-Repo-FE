@@ -1,4 +1,6 @@
 import {Booking} from './Booking';
+import {JsonProperty} from 'jsog-typescript';
+import {MovieShowtime} from './MovieShowtime';
 
 export class Payment {
   id: number;
