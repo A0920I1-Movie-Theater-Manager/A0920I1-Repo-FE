@@ -5,7 +5,6 @@ import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './guest/register/register.component';
 import {PageNotFoundComponent} from './static-page/page-not-found/page-not-found.component';
 
-
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
@@ -13,7 +12,6 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {path: '**', component: PageNotFoundComponent}
   ];
-
 
 @NgModule({
   imports: [

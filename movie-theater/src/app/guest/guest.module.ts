@@ -29,8 +29,12 @@ const guestRoutes: Routes = [
   {path: '', component: MovieListComponent, pathMatch: 'full'},
   {path: 'movie-detail/:id', component: MovieDetailComponent},
   {path: 'movie-search', component: MovieSearchComponent},
-  {path: 'register' , component: RegisterComponent}
+  {path: 'register' , component: RegisterComponent},
+  {path: 'price', component: PriceListComponent},
+  {path: 'showtime-list', component: ShowtimeListComponent}
+
 ];
+
 
 @NgModule({
   declarations: [

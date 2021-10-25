@@ -23,12 +23,15 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
+            "styles":[
               "src/styles.css",
               "./node_modules/font-awesome/css/font-awesome.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": [
+            "scripts":[
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/popper.js/dist/umd/popper.js",
+              "node_modules/bootstrap/dist/js/bootstrap.js",
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/js/login.js",
               "src/assets/js/detailMovies.js",
@@ -132,6 +135,7 @@
   },
   "defaultProject": "movie-theater",
   "cli": {
-    "analytics": "59eb9c8f-789d-4d0d-8ab5-c3d5d13f85af"
+    "analytics": "8d936fbd-ad27-4f60-ac49-9d7d6f4bdbb6"
+
   }
 }
