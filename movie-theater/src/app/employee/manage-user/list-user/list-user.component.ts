@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ManagerUserService} from '../../../services/manager-user.service';
 import {Account} from '../../../shared/model/entity/Account';
 import {DeleteUserComponent} from '../delete-user/delete-user.component';
@@ -13,12 +13,13 @@ import {JsogService} from 'jsog-typescript';
 })
 export class ListUserComponent implements OnInit {
   constructor(private managerUserService: ManagerUserService, private dialog: MatDialog, private jsogService: JsogService,
-              private toastrService: ToastrService) { }
+              private toastrService: ToastrService) {
+  }
+
   members: Account[];
   nameMember: string;
   page = 1;
   totalPage: number;
-
   key = 'id';
   reverse = false;
 
@@ -33,9 +34,9 @@ export class ListUserComponent implements OnInit {
     this.managerUserService.findByIdMember(equipmentId).subscribe(data => {
       console.log(data);
       const dialogReg = this.dialog.open(DeleteUserComponent, {
-        width : '500px',
-        data : {data1: data},
-        disableClose : true
+        width: '500px',
+        data: {data1: data},
+        disableClose: true
       });
       dialogReg.afterClosed().subscribe(result => {
         this.ngOnInit();
@@ -47,7 +48,7 @@ export class ListUserComponent implements OnInit {
     this.managerUserService.searchByNameMember(this.nameMember).subscribe(data => {
       console.log(this.nameMember);
       // tslint:disable-next-line:triple-equals
-      if (data.length == 0){
+      if (data.length == 0) {
         this.toastrService.info('Vui lòng nhập tên phù hợp với danh sách!', 'Thông báo');
       }
       this.members = data;
@@ -55,13 +56,15 @@ export class ListUserComponent implements OnInit {
 
     });
   }
+
   paginate(page: number) {
     if (page >= 0 && page < this.totalPage) {
       this.page = page;
       this.ngOnInit();
     }
   }
-  sort(key){
+
+  sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
   }

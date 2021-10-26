@@ -131,7 +131,7 @@ export class AddUserComponent implements OnInit {
   }
 
   onSubmit(createNewMembers: FormGroup) {
-    const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage.name;
+    const imageName = formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US') + this.inputImage;
     const fileRef = this.storage.ref(imageName);
     this.storage.upload(imageName, this.inputImage).snapshotChanges().pipe(
       finalize(() => {
