@@ -18,7 +18,9 @@ import {PromotionAddAdminComponent} from './manage-promotion/promotion-add-admin
 import {PromotionUpdateAdminComponent} from './manage-promotion/promotion-update-admin/promotion-update-admin.component';
 import {PromotionDeleteAdminComponent} from './manage-promotion/promotion-delete-admin/promotion-delete-admin.component';
 import {RouterModule, Routes} from '@angular/router';
-import {NgxPaginationModule} from 'ngx-pagination';
+
+
+
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EmployeeDetailAdminComponent} from './manage-employee/employee-detail-admin/employee-detail-admin.component';
@@ -52,6 +54,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const adminRoutes: Routes = [
   {path: 'list-movie', component: MovieListAdminComponent},
@@ -61,7 +64,9 @@ const adminRoutes: Routes = [
   {path: 'employee-list', component: EmployeeListAdminComponent},
   {path: 'employee-create', component: EmployeeAddAdminComponent},
   {path: 'employee-update/:id', component: EmployeeUpdateAdminComponent},
-  {path: 'employee-detail/:id', component: EmployeeDetailAdminComponent}
+  {path: 'employee-detail/:id', component: EmployeeDetailAdminComponent},
+  {path: 'screens' , component: ScreenListComponent},
+  {path: 'screens/screen-details/:id' , component: ManageScreenComponent}
 ];
 
 @NgModule({
