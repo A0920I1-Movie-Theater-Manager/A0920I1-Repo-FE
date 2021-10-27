@@ -17,7 +17,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 const userRoutes: Routes = [
   {
-    path: 'booking/:idAccount', component: BookingUserComponent
+    path: 'manageBookingUser/:idAccount', component: ManageBookingUserComponent
   },
   {
     path: 'booking', component: BookingUserComponent
