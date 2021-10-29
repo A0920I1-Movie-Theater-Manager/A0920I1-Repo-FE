@@ -8,8 +8,14 @@ import { UpdateUserComponent } from './manage-user/update-user/update-user.compo
 import { DeleteUserComponent } from './manage-user/delete-user/delete-user.component';
 import { ListUserComponent } from './manage-user/list-user/list-user.component';
 import { DetailUserComponent } from './manage-user/detail-user/detail-user.component';
+import {NavbarLeftComponent} from '../admin/navbar-left/navbar-left.component';
 
-const employeeRoutes: Routes = [];
+const employeeRoutes: Routes = [
+  {
+    path: 'h', component: ListUserComponent
+  }
+];
+
 
 @NgModule({
   declarations: [
@@ -19,7 +25,8 @@ const employeeRoutes: Routes = [];
     UpdateUserComponent,
     DeleteUserComponent,
     ListUserComponent,
-    DetailUserComponent],
+    DetailUserComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(employeeRoutes)
