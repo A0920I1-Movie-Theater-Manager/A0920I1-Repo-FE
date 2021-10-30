@@ -164,7 +164,6 @@ const adminRoutes: Routes = [
     FormsModule,
     LoginModule,
     GuestModule,
-    EmployeeModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
     NgxPaginationModule,
@@ -193,7 +192,8 @@ const adminRoutes: Routes = [
     NgbAlertModule,
     NgbCarouselModule,
     MatCardModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    EmployeeModule
   ]
 })
 export class AdminModule {

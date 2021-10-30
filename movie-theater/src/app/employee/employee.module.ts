@@ -28,14 +28,31 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {AppRoutingModule} from '../app-routing.module';
 import {OrderModule} from 'ngx-order-pipe';
 import {NotificationMemberComponent} from './manage-user/notification-member/notification-member.component';
-import {NavbarLeftComponent} from '../admin/navbar-left/navbar-left.component';
-import {AdminModule} from "../admin/admin.module";
+import {NavaEmployeeComponent} from './nava-employee/nava-employee.component';
+import {AuthGuardService} from '../services/AuthGuardService';
+import {Role} from '../common/Role';
 
 const employeeRoutes: Routes = [
-  {path: 'list-member', component: ListUserComponent},
-  {path: 'update-member/:id', component: UpdateUserComponent},
-  {path: 'create-member', component: AddUserComponent},
-  {path: 'detail-member/:id', component: DetailUserComponent}
+  {
+    path: 'list-member', component: ListUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'update-member/:id', component: UpdateUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'create-member', component: AddUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'detail-member/:id', component: DetailUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  }
 ];
 
 @NgModule({
@@ -47,7 +64,11 @@ const employeeRoutes: Routes = [
     DeleteUserComponent,
     ListUserComponent,
     DetailUserComponent,
-    NotificationMemberComponent
+    NotificationMemberComponent,
+    NavaEmployeeComponent
+  ],
+  exports: [
+    NavaEmployeeComponent
   ],
   imports: [
     CommonModule,
@@ -75,7 +96,6 @@ const employeeRoutes: Routes = [
     MatInputModule,
     MatNativeDateModule,
     OrderModule,
-    AdminModule
   ]
 })
 export class EmployeeModule {

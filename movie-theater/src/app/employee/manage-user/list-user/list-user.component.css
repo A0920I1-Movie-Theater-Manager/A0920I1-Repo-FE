@@ -25,4 +25,7 @@
   margin-bottom: 100px;
 }
 
-
+.table > thead > tr > th,
+tbody > tr > td{
+  color: black;
+}

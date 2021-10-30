@@ -9,7 +9,7 @@ import {Price} from '../shared/model/entity/Price';
   providedIn: 'root'
 })
 export class ListPriceService {
-  private readonly API_URL_PRICE_LIST = 'http://localhost:8080/api/prices';
+  private readonly API_URL_PRICE_LIST = 'http://localhost:8080/api/auth/prices';
   constructor(private httpClient: HttpClient) {
   }
   getPrice(): Observable<Price>{
