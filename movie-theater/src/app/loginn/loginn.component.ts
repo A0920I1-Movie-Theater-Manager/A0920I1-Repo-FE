@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {NotificationRegisterComponent} from '../guest/register/notification-register/notification-register.component';
 import {MatDialog} from '@angular/material/dialog';
+import { Location } from '@angular/common';
+
 declare const showPassword: any;
 @Component({
   selector: 'app-loginn',
@@ -27,7 +29,9 @@ export class LoginnComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
-              private userService: UserService) {
+              private userService: UserService,
+              private location: Location
+  ) {
   }
 
   ngOnInit(): void {
@@ -60,7 +64,9 @@ export class LoginnComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.accessToken);
         this.login(data.user);
-        window.location.href = '/';
+        console.log(data.roles);
+        window.location.href = '/cinema';
+        // this.location.back();
       },
       err => {
         this.errorMessage = err.error.message;

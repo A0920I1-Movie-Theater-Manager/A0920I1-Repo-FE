@@ -8,7 +8,6 @@ import {UpdateUserComponent} from './manage-user/update-user/update-user.compone
 import {DeleteUserComponent} from './manage-user/delete-user/delete-user.component';
 import {ListUserComponent} from './manage-user/list-user/list-user.component';
 import {DetailUserComponent} from './manage-user/detail-user/detail-user.component';
-import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {AngularFireModule} from '@angular/fire';
@@ -29,6 +28,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {AppRoutingModule} from '../app-routing.module';
 import {OrderModule} from 'ngx-order-pipe';
 import {NotificationMemberComponent} from './manage-user/notification-member/notification-member.component';
+import {NavbarLeftComponent} from '../admin/navbar-left/navbar-left.component';
+import {AdminModule} from "../admin/admin.module";
 
 const employeeRoutes: Routes = [
   {path: 'list-member', component: ListUserComponent},
@@ -73,7 +74,8 @@ const employeeRoutes: Routes = [
     ChartModule,
     MatInputModule,
     MatNativeDateModule,
-    OrderModule
+    OrderModule,
+    AdminModule
   ]
 })
 export class EmployeeModule {

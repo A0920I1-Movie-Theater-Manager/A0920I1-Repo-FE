@@ -38,7 +38,6 @@ import {authInterceptorProviders} from './_helpers/auth.interceptor';
   imports: [
     CommonModule,
     BrowserModule,
-
     JwtModule.forRoot({
       config: {
         tokenGetter:  () => sessionStorage.getItem('toke')

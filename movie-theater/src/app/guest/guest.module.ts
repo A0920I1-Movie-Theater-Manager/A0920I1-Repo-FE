@@ -25,14 +25,13 @@ import {PromotionListComponent} from './promotion/promotion-list/promotion-list.
 import {PromotionDetailComponent} from './promotion/promotion-detail/promotion-detail.component';
 
 const guestRoutes: Routes = [
-  {path: 'home', component: MovieListComponent},
+  {path: 'cinema', component: MovieListComponent},
   {path: '', component: MovieListComponent, pathMatch: 'full'},
   {path: 'movie-detail/:id', component: MovieDetailComponent},
   {path: 'movie-search', component: MovieSearchComponent},
   {path: 'register' , component: RegisterComponent},
   {path: 'price', component: PriceListComponent},
   {path: 'showtime-list', component: ShowtimeListComponent}
-
 ];
 
 

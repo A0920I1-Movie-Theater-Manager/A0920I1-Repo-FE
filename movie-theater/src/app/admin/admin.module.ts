@@ -20,17 +20,13 @@ import {PromotionDeleteAdminComponent} from './manage-promotion/promotion-delete
 import {RouterModule, Routes} from '@angular/router';
 
 
-
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EmployeeDetailAdminComponent} from './manage-employee/employee-detail-admin/employee-detail-admin.component';
 import {NotifyEmployeeComponent} from './manage-employee/notifyEmployee/notify-employee/notify-employee.component';
-import {BrowserModule} from '@angular/platform-browser';
 import {LoginModule} from '../login/login.module';
 import {GuestModule} from '../guest/guest.module';
 import {EmployeeModule} from '../employee/employee.module';
-import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from '../app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
@@ -55,18 +51,70 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {AuthGuardService} from '../services/AuthGuardService';
+import {Role} from '../common/Role';
 
 const adminRoutes: Routes = [
-  {path: 'list-movie', component: MovieListAdminComponent},
-  {path: 'update-movie/:id', component: MovieUpdateAdminComponent},
-  {path: 'create-movie', component: MovieAddAdminComponent},
-  {path: 'show-details-movie/:id', component: MovieDetailsAdminComponent},
-  {path: 'employee-list', component: EmployeeListAdminComponent},
-  {path: 'employee-create', component: EmployeeAddAdminComponent},
-  {path: 'employee-update/:id', component: EmployeeUpdateAdminComponent},
-  {path: 'employee-detail/:id', component: EmployeeDetailAdminComponent},
-  {path: 'screens' , component: ScreenListComponent},
-  {path: 'screens/screen-details/:id' , component: ManageScreenComponent}
+  {
+    path: 'list-movie',
+    component: MovieListAdminComponent,
+    canActivate: [AuthGuardService],
+    data:  { expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'update-movie/:id',
+    component: MovieUpdateAdminComponent,
+    canActivate: [AuthGuardService],
+    data:  { expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'create-movie',
+    component: MovieAddAdminComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'show-details-movie/:id',
+    component: MovieDetailsAdminComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'employee-list',
+    component: EmployeeListAdminComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'employee-create',
+    component: EmployeeAddAdminComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'employee-update/:id',
+    component: EmployeeUpdateAdminComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'employee-detail/:id',
+    component: EmployeeDetailAdminComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'screens',
+    component: ScreenListComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'screens/screen-details/:id',
+    component: ManageScreenComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_MODERATOR']}
+  }
 ];
 
 @NgModule({

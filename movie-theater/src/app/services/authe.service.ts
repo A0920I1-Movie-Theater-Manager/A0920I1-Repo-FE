@@ -13,8 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient
-              , private jwtHelper: JwtHelperService
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService
   ) { }
 
   login(credentials): Observable<any> {
@@ -43,8 +42,8 @@ export class AuthService {
 
 
   isUserLoggedIn() {
-    const token = sessionStorage.getItem('token');
-
+    const token = sessionStorage.getItem('auth-token');
+    console.log(token);
     if (token) {
       // decode the token to get its payload
       const tokenPayload = this.jwtHelper.decodeToken(token);
@@ -52,13 +51,12 @@ export class AuthService {
       // console.log(!(user === null))
       return !(user === null);
     }
-    return;
-    false;
+    return false;
   }
 
 
   findAccountByUser() {
-    const token = sessionStorage.getItem('token');
+    const token = sessionStorage.getItem('auth-token');
     const tokenPayload = this.jwtHelper.decodeToken(token);
     const username = tokenPayload.sub;
     // console.log(`${this.loginURL + '/findAccount'}?username=${username}`);
