@@ -17,9 +17,8 @@ export class MovieSearchComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe(params => {
-      const keyword = params.get('keyword');
-      console.log(keyword);
+    this.activatedRoute.queryParams.subscribe(params => {
+      const keyword = params.keyword;
       // @ts-ignore
       this.movieService.searchMovie(keyword).subscribe(
         data => {

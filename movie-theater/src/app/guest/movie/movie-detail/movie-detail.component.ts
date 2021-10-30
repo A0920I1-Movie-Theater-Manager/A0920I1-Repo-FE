@@ -6,6 +6,7 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {JsogService} from 'jsog-typescript';
 import {Comment} from '../../../shared/model/entity/Comment';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {CommentService} from '../../../services/comment.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -22,7 +23,7 @@ export class MovieDetailComponent implements OnInit {
 
   constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute,
               public sanitizer: DomSanitizer, private jsogService: JsogService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder, private commentService: CommentService) {
   }
 
   ngOnInit(): void {
@@ -35,9 +36,10 @@ export class MovieDetailComponent implements OnInit {
           return this.movie = this.jsogService.deserializeObject(data, Movie);
         }
       );
-      this.movieService.getCommentByMovieId(id).subscribe(data => {
+      this.commentService.getCommentByMovieId(id).subscribe(data => {
         // @ts-ignore
         this.comments = this.jsogService.deserializeArray(data, Comment);
+        // console.log(this.comments);
       });
     });
     this.movieService.getMovieTopFive().subscribe(data => {
@@ -48,7 +50,7 @@ export class MovieDetailComponent implements OnInit {
     this.commentForm = this.formBuilder.group({
       content: this.formBuilder.control(''),
       account: this.formBuilder.control(''),
-      movie: this.formBuilder.control(this.id),
+      movie: this.formBuilder.control(''),
       seen: this.formBuilder.control('')
     });
   }
@@ -60,9 +62,12 @@ export class MovieDetailComponent implements OnInit {
 
   // TuHC - them moi comment
   addComment() {
+    this.commentForm.patchValue({
+      account: 1
+    });
     this.comment = this.commentForm.value;
-    this.movieService.addComment(this.comment).subscribe(data => {
-      console.log('success');
+    this.commentService.addComment(this.comment).subscribe(data => {
+      this.ngOnInit();
     });
   }
 }

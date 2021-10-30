@@ -8,6 +8,8 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { TermCustomerComponent } from './term-customer/term-customer.component';
 import { TermOfUseComponent } from './term-of-use/term-of-use.component';
 import {RouterModule, Routes} from '@angular/router';
+import { ExamplePageComponent } from './example-page/example-page.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const staticRoutes: Routes = [
   {path: 'about-us', component: AboutUsComponent},
@@ -16,7 +18,8 @@ const staticRoutes: Routes = [
   {path: 'news', component: NewsComponent},
   {path: 'privacy', component: PrivacyComponent},
   {path: 'term-customer', component: TermCustomerComponent},
-  {path: 'term-of-use', component: TermOfUseComponent}
+  {path: 'term-of-use', component: TermOfUseComponent},
+  {path: 'example-page', component: ExamplePageComponent}
 ];
 
 @NgModule({
@@ -27,7 +30,9 @@ const staticRoutes: Routes = [
     NewsComponent,
     PrivacyComponent,
     TermCustomerComponent,
-    TermOfUseComponent],
+    TermOfUseComponent,
+    ExamplePageComponent,
+    PageNotFoundComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(staticRoutes)

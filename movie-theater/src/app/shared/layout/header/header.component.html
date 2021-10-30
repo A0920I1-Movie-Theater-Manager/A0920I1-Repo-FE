@@ -1,3 +1,4 @@
+
 <!-- header -->
 <div class="header">
   <div class="container">
@@ -12,7 +13,11 @@
         [(ngModel)]="keyword" (ngModelChange)="suggestMovie()" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let movie of movieSearches" [value]="movie.title">
-            {{movie.title | titlecase}}
+            <img class="example-option-img" aria-hidden [src]="movie.movieImages[0].imageUrl" height="40">
+            <span>  {{movie.title | titlecase}}</span>
+          </mat-option>
+          <mat-option *ngIf="movieSearches?.length == null">
+            <p style="font-style: italic">Không tìm thấy kết quả tìm kiếm</p>
           </mat-option>
         </mat-autocomplete>
         <input type="submit" value="Tìm" (click)="searchMovie()">
@@ -21,56 +26,13 @@
     <div class="w3l_sign_in_register">
       <ul>
         <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng nhập</a></li>
-
-        <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng ký</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#myModal">Đăng kí</a></li>
       </ul>
     </div>
     <div class="clearfix"></div>
   </div>
 </div>
 <!-- //header -->
-<!-- dang nhap-pop-up -->
-<div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        Đăng nhập & Đăng kí
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <section>
-        <div class="modal-body">
-          <div class="w3_login_module">
-            <div class="module form-module">
-              <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-                <div class="tooltip">Click</div>
-              </div>
-              <div class="form">
-                <h3>Đăng nhập</h3>
-                <form action="#" method="post">
-                  <input type="text" name="Username" placeholder="Tài khoản" required="">
-                  <input type="password" name="Password" placeholder="Mật khẩu" required="">
-                  <input type="submit" value="Đăng nhập">
-                </form>
-              </div>
-              <div class="form">
-                <h3>Tạo tài khoản</h3>
-                <form action="#" method="post">
-                  <input type="text" name="Username" placeholder="Tài khoản" required="">
-                  <input type="password" name="Password" placeholder="Mật khẩu" required="">
-                  <input type="email" name="Email" placeholder="Email" required="">
-                  <input type="text" name="Phone" placeholder="Số điện thoại" required="">
-                  <input type="submit" value="Đăng kí">
-                </form>
-              </div>
-              <div class="cta"><a href="#">Quên mật khẩu</a></div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-</div>
 <!-- nav -->
 <div class="movies_nav">
   <div class="container">
@@ -93,12 +55,11 @@
             <li><a routerLink="event">Sự kiện</a></li>
             <li><a routerLink="news">Góc điện ảnh</a></li>
             <li><a routerLink="term-customer">Thành viên</a></li>
-            <li><a href="#">Giá vé</a></li>
-            <li><a routerLink="faq">Hướng dẫn</a></li>
+            <li><a routerLink="home">Giá vé</a></li>
+            <li><a routerLink="term-of-use">Hướng dẫn</a></li>
           </ul>
         </nav>
       </div>
     </nav>
   </div>
 </div>
-<!-- //nav -->

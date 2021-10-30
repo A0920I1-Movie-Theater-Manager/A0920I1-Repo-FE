@@ -1,1 +1,152 @@
-<p>manage-screen works!</p>
+<div class="">
+  <!-- Content Wrapper. Contains page content -->
+  <h1 class="contentHeader">Chi tiết phòng chiếu</h1>
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid ">
+        <div class="card shadow">
+          <div class="card-body">
+            <div class="details">
+              <span class="details__title">Chi tiết ghế của phòng {{screen.name}}</span>
+              <div class="details__status">
+                <div class="details__status-normal">
+                  <div class="seat"></div>
+                  <span class="details__status-normal-text">Ghế thường</span>
+                </div>
+                <div class="details__status-vip">
+                  <div class="seat" style="background: darkgoldenrod"></div>
+                  <span class="details__status-vip-text">Ghế vip</span>
+                </div>
+              </div>
+            </div>
+            <div class="chair">
+              <table class="chair__table">
+                <tr align="center">
+                  <th></th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                  <th>8</th>
+                  <th>9</th>
+                  <th>10</th>
+                  <th>11</th>
+                  <th>12</th>
+                  <th>13</th>
+                  <th>14</th>
+                </tr>
+                <tr class="chair__row" >
+                  <td class="chair__row-range">A</td>
+                  <td *ngFor="let seat of screen.seats.slice(0,14); let i = index">
+                  <span *ngIf="seat.vip===true && i < 14">
+                      <div (click)="chooseSeat()" class="seat" style="background: darkgoldenrod">
+                        <input  class="choose_chair" hidden [value]="screen.name">
+                      </div>
+                    </span>
+                  <span *ngIf="seat.vip === false && i < 14">
+                    <div (click)="chooseSeat()" class="seat">
+                      <input  class="choose_chair" hidden [value]="screen.name">
+                    </div>
+                    </span>
+                  </td>
+                </tr>
+                <tr class="chair__row" >
+                  <td class="chair__row-range">B</td>
+                  <td *ngFor="let seat of screen.seats.slice(14,28); let i = index">
+                  <span *ngIf="seat.vip===true && i < 14">
+                      <div class="seat" style="background: darkgoldenrod">
+                        <input class="choose_chair" hidden [value]="screen.name">
+                      </div>
+                    </span>
+                    <span *ngIf="seat.vip === false && i< 14">
+                    <div class="seat">
+                      <input class="choose_chair" hidden [value]="screen.name">
+                    </div>
+                    </span>
+                  </td>
+                </tr>
+
+                <tr class="chair__row" >
+                  <td class="chair__row-range">C</td>
+                  <td *ngFor="let seat of screen.seats.slice(28,42); let i = index">
+                  <span *ngIf="seat.vip===true && i < 14">
+                      <div class="seat" style="background: darkgoldenrod">
+                        <input class="choose_chair" hidden [value]="screen.name">
+                      </div>
+                    </span>
+                    <span *ngIf="seat.vip === false && i< 14">
+                    <div class="seat">
+                      <input class="choose_chair" hidden [value]="screen.name">
+                    </div>
+                    </span>
+                  </td>
+                </tr>
+
+                <tr class="chair__row" >
+                  <td class="chair__row-range">D</td>
+                  <td *ngFor="let seat of screen.seats.slice(42,56); let i = index">
+                  <span *ngIf="seat.vip===true && i < 14">
+                      <div class="seat" style="background: darkgoldenrod">
+                        <input class="choose_chair" hidden [value]="screen.name">
+                      </div>
+                    </span>
+                    <span *ngIf="seat.vip === false && i< 14">
+                    <div class="seat">
+                      <input class="choose_chair" hidden [value]="screen.name">
+                    </div>
+                    </span>
+                  </td>
+                </tr>
+
+
+                <tr class="chair__row" >
+                  <td class="chair__row-range">E</td>
+                  <td *ngFor="let seat of screen.seats.slice(56,70); let i = index">
+                  <span *ngIf="seat.vip===true && i < 14">
+                      <div class="seat" style="background: darkgoldenrod">
+                        <input class="choose_chair" hidden [value]="screen.name">
+                      </div>
+                    </span>
+                    <span *ngIf="seat.vip === false && i< 14">
+                    <div class="seat">
+                      <input class="choose_chair" hidden [value]="screen.name">
+                    </div>
+                    </span>
+                  </td>
+                </tr>
+
+                <tr class="chair__row" >
+                  <td class="chair__row-range">F</td>
+                  <td *ngFor="let seat of screen.seats.slice(70,84); let i = index">
+                  <span *ngIf="seat.vip===true && i < 14">
+                      <div class="seat" style="background: darkgoldenrod">
+                        <input class="choose_chair" hidden [value]="screen.name">
+                      </div>
+                    </span>
+                    <span *ngIf="seat.vip === false && i< 14">
+                    <div class="seat">
+                      <input class="choose_chair" hidden [value]="screen.name">
+                    </div>
+                    </span>
+                  </td>
+                </tr>
+
+              </table>
+            </div>
+            <br>
+            <div class="text-center">
+              <button class="btn btn-success" style="margin-right: 15px">Lưu</button>
+              <button class="btn btn-primary">Quay lại</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

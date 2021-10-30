@@ -1,0 +1,105 @@
+import { Component, OnInit } from '@angular/core';
+import {AppConstants} from '../common/app.constants';
+import {AuthService} from '../services/authe.service';
+import {TokenStorageService} from '../services/token-storage.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {UserService} from '../services/user.service';
+import {NotificationRegisterComponent} from '../guest/register/notification-register/notification-register.component';
+import {MatDialog} from '@angular/material/dialog';
+declare const showPassword: any;
+@Component({
+  selector: 'app-loginn',
+  templateUrl: './loginn.component.html',
+  styleUrls: ['./loginn.component.css']
+})
+export class LoginnComponent implements OnInit {
+
+
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  currentUser: any;
+  googleURL = AppConstants.GOOGLE_AUTH_URL;
+  facebookURL = AppConstants.FACEBOOK_AUTH_URL;
+  constructor(private authService: AuthService,
+              private tokenStorage: TokenStorageService,
+              private route: ActivatedRoute,
+              private router: Router,
+              public dialog: MatDialog,
+              private userService: UserService) {
+  }
+
+  ngOnInit(): void {
+    const token: string = this.route.snapshot.queryParamMap.get('token');
+    console.log(token);
+    const error: string = this.route.snapshot.queryParamMap.get('error');
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.currentUser = this.tokenStorage.getUser();
+    } else if (token) {
+      this.tokenStorage.saveToken(token);
+      this.userService.getCurrentUser().subscribe(
+        data => {
+          console.log(data);
+          this.login(data);
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.isLoginFailed = true;
+        }
+      );
+    } else if (error) {
+      this.errorMessage = error;
+      this.isLoginFailed = true;
+    }
+  }
+
+  onSubmit(): void {
+    this.authService.login(this.form).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.login(data.user);
+        window.location.href = '/';
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        console.log(this.errorMessage);
+        // this.router.navigateByUrl('/login'); // bao loi
+        this.isLoginFailed = true;
+        if (this.isLoginFailed){
+          this.notification('Đăng nhập thất bại!');
+        }
+      }
+    );
+  }
+
+  notification(message: string) {
+    const dialogRef = this.dialog.open(NotificationRegisterComponent,
+      {
+        data: {
+          message
+        },
+        width: '400px'
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.ngOnInit();
+    });
+  }
+
+  login(user): void {
+    this.tokenStorage.saveUser(user);
+    this.isLoginFailed = false;
+    this.isLoggedIn = true;
+    this.currentUser = this.tokenStorage.getUser();
+    // window.location.reload();
+
+  }
+
+
+  showPassword() {
+    showPassword();
+  }
+}

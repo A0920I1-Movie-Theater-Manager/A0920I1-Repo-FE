@@ -12,7 +12,6 @@ import {Router} from '@angular/router';
 export class HeaderComponent implements OnInit {
   keyword = '';
   movieSearches: Movie[];
-  movieResult: Movie[];
   constructor(private movieService: MovieService, private jsog: JsogService,
               private router: Router) { }
 
