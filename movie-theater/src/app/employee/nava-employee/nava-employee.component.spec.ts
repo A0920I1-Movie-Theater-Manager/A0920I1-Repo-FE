@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShowtimeListComponent } from './showtime-list.component';
+import { NavaEmployeeComponent } from './nava-employee.component';
 
-describe('ShowtimeListComponent', () => {
-  let component: ShowtimeListComponent;
-  let fixture: ComponentFixture<ShowtimeListComponent>;
+describe('NavaEmployeeComponent', () => {
+  let component: NavaEmployeeComponent;
+  let fixture: ComponentFixture<NavaEmployeeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShowtimeListComponent ]
+      declarations: [ NavaEmployeeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShowtimeListComponent);
+    fixture = TestBed.createComponent(NavaEmployeeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

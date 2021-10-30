@@ -22,24 +22,43 @@ import {SharedModule} from './shared/shared.module';
 import {StaticPageModule} from './static-page/static-page.module';
 import {UserModule} from './user/user.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {LoginnComponent} from './loginn/loginn.component';
+import {HomeComponent} from './home/home.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import {authInterceptorProviders} from './_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginnComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
-    AdminModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter:  () => sessionStorage.getItem('toke')
+      }
+    }),
+    UserModule,
+    SharedModule,
+    LoginModule,
     GuestModule,
     EmployeeModule,
-    LoginModule,
-    SharedModule,
+    AdminModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+
     StaticPageModule,
-    UserModule,
     NgbModule,
     RouterModule,
-    HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => sessionStorage.getItem('toke')
@@ -57,9 +76,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       preventDuplicates: false,
     }),
     AppRoutingModule
+],
+  providers: [authInterceptorProviders,
+  JsogService
   ],
-  providers: [JsogService],
-
   bootstrap: [AppComponent]
 })
 export class AppModule {

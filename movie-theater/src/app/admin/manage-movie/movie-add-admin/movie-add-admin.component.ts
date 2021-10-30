@@ -10,6 +10,7 @@ import {formatDate} from '@angular/common';
 import {Price} from '../../../shared/model/entity/Price';
 import {Movie} from '../../../shared/model/entity/Movie';
 import {JsogService} from 'jsog-typescript';
+import {TokenStorageService} from '../../../services/token-storage.service';
 
 @Component({
   selector: 'app-movie-add-admin',
@@ -23,8 +24,8 @@ export class MovieAddAdminComponent implements OnInit {
     private router: Router,
     private jSogService: JsogService,
     private form: FormBuilder,
-    @Inject(AngularFireStorage) private storage: AngularFireStorage) {}
-
+    @Inject(AngularFireStorage) private storage: AngularFireStorage,
+    private tokenStorageService: TokenStorageService) {}
   genreList: Genre[];
   accountList: Account[];
   defaultImage = 'https://cdn.tgdd.vn/Files/2020/01/14/1231516/top-10-bo-phim-hanh-dong-dang-xem-nhat-moi-thoi-dai--cap-nhat-2020-7.jpg';
@@ -34,7 +35,6 @@ export class MovieAddAdminComponent implements OnInit {
   movieCheck: Movie[];
   showingFroms: any;
   showingTos: any;
-
   public dateNow = new Date();
   public min = new Date();
   // tslint:disable-next-line:variable-name
@@ -208,7 +208,7 @@ export class MovieAddAdminComponent implements OnInit {
     this.getListAllEmployee();
     this.getAllListGenre();
     this.getListALlPrice();
-    // @ts-ignore
+      // @ts-ignore
     // this.createMovie.controls.imageUrl = this.defaultImage;
   }
 

@@ -4,6 +4,7 @@ import {Movie} from '../../../shared/model/entity/Movie';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {JsogService, JsonProperty} from 'jsog-typescript';
 import {MovieTopFive} from '../../../shared/model/dto/MovieTopFive';
+import {TokenStorageService} from "../../../services/token-storage.service";
 
 
 @Component({
@@ -13,8 +14,15 @@ import {MovieTopFive} from '../../../shared/model/dto/MovieTopFive';
 })
 export class MovieListComponent implements OnInit {
   constructor(private movieService: MovieService,
-              private jsogService: JsogService) {
+              private jsogService: JsogService,
+              private tokenStorageService: TokenStorageService) {
   }
+
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  showUserBoard = false;
+  private roles: string[];
 
   movieShowings: Movie[];
   movieComings: Movie[];
@@ -57,7 +65,7 @@ export class MovieListComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     navSpeed: 700,
-    navText: ['<<', '>>' ],
+    navText: ['<<', '>>'],
     // margin: 20,
     responsive: {
       0: {
@@ -76,6 +84,18 @@ export class MovieListComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+      console.log(user);
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      this.showUserBoard = this.roles.includes('ROLE_USER');
+    }
+    // end AnhLT
     this.movieService.getMovieShowing().subscribe(data => {
       // @ts-ignore
       this.movieShowings = this.jsogService.deserializeArray(data, Movie);

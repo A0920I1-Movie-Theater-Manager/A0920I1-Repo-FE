@@ -8,7 +8,6 @@ import {UpdateUserComponent} from './manage-user/update-user/update-user.compone
 import {DeleteUserComponent} from './manage-user/delete-user/delete-user.component';
 import {ListUserComponent} from './manage-user/list-user/list-user.component';
 import {DetailUserComponent} from './manage-user/detail-user/detail-user.component';
-import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
 import {AngularFireModule} from '@angular/fire';
@@ -29,12 +28,31 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {AppRoutingModule} from '../app-routing.module';
 import {OrderModule} from 'ngx-order-pipe';
 import {NotificationMemberComponent} from './manage-user/notification-member/notification-member.component';
+import {NavaEmployeeComponent} from './nava-employee/nava-employee.component';
+import {AuthGuardService} from '../services/AuthGuardService';
+import {Role} from '../common/Role';
 
 const employeeRoutes: Routes = [
-  {path: 'list-member', component: ListUserComponent},
-  {path: 'update-member/:id', component: UpdateUserComponent},
-  {path: 'create-member', component: AddUserComponent},
-  {path: 'detail-member/:id', component: DetailUserComponent}
+  {
+    path: 'list-member', component: ListUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'update-member/:id', component: UpdateUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'create-member', component: AddUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  },
+  {
+    path: 'detail-member/:id', component: DetailUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
+  }
 ];
 
 @NgModule({
@@ -46,7 +64,11 @@ const employeeRoutes: Routes = [
     DeleteUserComponent,
     ListUserComponent,
     DetailUserComponent,
-    NotificationMemberComponent
+    NotificationMemberComponent,
+    NavaEmployeeComponent
+  ],
+  exports: [
+    NavaEmployeeComponent
   ],
   imports: [
     CommonModule,
@@ -73,7 +95,7 @@ const employeeRoutes: Routes = [
     ChartModule,
     MatInputModule,
     MatNativeDateModule,
-    OrderModule
+    OrderModule,
   ]
 })
 export class EmployeeModule {

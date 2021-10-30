@@ -38,7 +38,7 @@ export class AddUserComponent implements OnInit {
               @Inject(AngularFireStorage) private storage: AngularFireStorage, private activatedRoute: ActivatedRoute,
               public dialog: MatDialog,
               private toastrService: ToastrService,
-              private formBuilder: FormBuilder,) {
+              private formBuilder: FormBuilder) {
   }
 
   validationMessage = {
