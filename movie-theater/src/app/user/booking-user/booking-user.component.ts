@@ -7,6 +7,7 @@ import {ShowtimeService} from '../../services/showtime.service';
 import {Showtime} from '../../shared/model/entity/Showtime';
 import {SeatService} from '../../services/seat.service';
 import {Seat} from '../../shared/model/entity/Seat';
+import {TokenStorageService} from "../../services/token-storage.service";
 
 @Component({
   selector: 'app-booking-user',
@@ -24,13 +25,21 @@ export class BookingUserComponent implements OnInit {
   selectedMovie: any;
   seats: any[] = [];
   selectedTasks = {};
+  isLoggedIn = false;
 
   constructor(private movieService: MovieService, private jsogService: JsogService,
               private formBuilder: FormBuilder, private showtimeService: ShowtimeService,
-              private seatService: SeatService) {
+              private seatService: SeatService,
+              private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();  // id
+    }
+
     this.movieService.findAllMovieShowingAndComingSoon().subscribe(data => {
       // @ts-ignore
       this.movies = this.jsogService.deserializeArray(data, Movie);

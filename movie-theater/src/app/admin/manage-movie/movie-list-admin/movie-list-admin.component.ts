@@ -5,6 +5,7 @@ import {ToastrService} from 'ngx-toastr';
 import {JsogService} from 'jsog-typescript';
 import {SearchMovieDTO} from '../../../shared/model/dto/SearchMovieDTO';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {TokenStorageService} from '../../../services/token-storage.service';
 
 @Component({
   selector: 'app-movie-list-admin',
@@ -16,11 +17,14 @@ export class MovieListAdminComponent implements OnInit {
   public page = 1;
   searchMovie: SearchMovieDTO;
   formSearch: FormGroup;
+  user: any;
+  isLoggedIn = false;
 
   constructor(private toastService: ToastrService,
               private movieService: ManagerMovieService,
               private jSogService: JsogService,
-              private form: FormBuilder) { }
+              private form: FormBuilder,
+              private tokenStorageService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.movieService.getListAllMovie().subscribe((data) => {
@@ -34,6 +38,13 @@ export class MovieListAdminComponent implements OnInit {
       releaseDate: [],
       is3D: []
     });
+
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      this.user = this.tokenStorageService.getUser();  // id
+    }
+    console.log(this.user.id);
   }
 
   search(){

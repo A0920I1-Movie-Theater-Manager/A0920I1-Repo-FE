@@ -26,8 +26,8 @@
       style="font-size: 20px">Điểm tích lũy : {{totalpoint}}</span>
       <br>
       <br>
-      <button class="glyphicon glyphicon-log-out   btn btn-primary  "><span
-        style="font-family: TimesNewRoman; font-size: 20px">Đăng xuất</span></button>
+<!--      <button class="glyphicon glyphicon-log-out   btn btn-primary  "><span-->
+<!--        style="font-family: TimesNewRoman; font-size: 20px">Đăng xuất</span></button>-->
 
       <hr style="  border-bottom: 1px solid #000;">
       <div align="center" class="col-md-12">
@@ -36,7 +36,7 @@
         <hr style="  border-bottom: 1px solid #000;">
         <span class="glyphicon glyphicon-calendar" style="font-size: 30px"></span><a href="#">Lịch sử cộng điểm</a>
         <hr style="  border-bottom: 1px solid #000;">
-        <a href="#">Vé đã đặt</a>
+        <a [routerLink]="['/manageBookingUser/', idUpdate] ">Vé đã đặt</a>
         <!-- <hr style="  border-bottom: 1px solid #000;">
          <a href="#">Vé đã hủy</a-->
         <hr style="  border-bottom: 1px solid #000;">

@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
                       <ul *ngFor="let items of genres">
-                        <li>{{items.name}}</li>
+                        <li style="font-size: 16px">{{items.name}}</li>
                       </ul>
                     </div>
                   </div>
@@ -132,9 +132,9 @@
                 <div class="col-sm-12 justify-content-center" style="padding-bottom: 100px; padding-left: 50px">
                   <ngb-carousel *ngIf="movieDetail.trailerUrl">
                     <ng-template ngbSlide>
-                      <div class="picsum-img-wrapper">
+                      <div >
                         <iframe width="560" height="315" [src]="videoURL()"
-                                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;
+                                title="YouTube video player" allow="accelerometer; autoplay;
                                         clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowfullscreen></iframe>
                       </div>
@@ -146,6 +146,7 @@
                   </ngb-carousel>
 
                 </div>
+                <div class="col-sm-12 justify-content-center" style="padding-bottom: 100px; padding-left: 50px">
                 <ngb-carousel *ngIf="images">
                   <ng-template ngbSlide *ngFor="let image of images; let i = index">
                     <div class="picsum-img-wrapper">
@@ -154,6 +155,7 @@
 
                   </ng-template>
                 </ngb-carousel>
+                  </div>
 
               </div>
             </div>

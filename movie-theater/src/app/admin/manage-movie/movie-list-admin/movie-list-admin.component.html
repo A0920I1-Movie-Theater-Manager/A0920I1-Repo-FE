@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-2" style="float: left">
                 <div>
-                  <a style="color: white; border-radius: 9px" class=" btn btn-success" routerLink="/create-movie"><i
+                  <a style="color: white; border-radius: 9px" class=" btn btn-success" [routerLink]="['/create-movie', user.id]"><i
                     class="fa fa-plus-circle" aria-hidden="true"></i> Thêm
                     mới</a>
                 </div>
@@ -96,7 +96,7 @@
                         <td style="text-align: center" *ngIf="movie.is3D === true">3D</td>
                         <td style="text-align: center" *ngIf="movie.is3D === false">2D</td>
                         <td class="text-center">
-                          <a routerLink="/update-movie/{{movie.id}}">
+                          <a routerLink="/update-movie/{{movie.id}}/{{user.id}}">
                       <span class="material-icons">
                         <i style="font-size: 20px; color: #17a2b8" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </span>

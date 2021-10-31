@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class MovieService {
 
-  private readonly MOVIE_URL = 'http://localhost:8080/api/movie';
+  private readonly MOVIE_URL = 'http://localhost:8080/api/auth/movie';
 
   constructor(private httpClient: HttpClient) {
   }

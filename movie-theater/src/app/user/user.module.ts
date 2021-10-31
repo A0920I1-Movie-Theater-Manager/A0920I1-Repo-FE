@@ -25,9 +25,6 @@ const userRoutes: Routes = [
     path: 'updateAccount/:idUpdate', component: UpdateAccountUserComponent
   },
   {
-    path: 'updateAccount', component: UpdateAccountUserComponent
-  },
-  {
     path: 'changePassword/:idUpdate', component: ChangePasswordComponent
   },
   {

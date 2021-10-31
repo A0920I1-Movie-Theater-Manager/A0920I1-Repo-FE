@@ -27,13 +27,14 @@ import {PromotionDetailComponent} from './promotion/promotion-detail/promotion-d
 const guestRoutes: Routes = [
   // TuHC
   {path: 'home', component: MovieListComponent},
-  {path: '', component: MovieListComponent, pathMatch: 'full'},
+  {path: 'cinema', component: MovieListComponent},
   {path: 'movie-detail/:id', component: MovieDetailComponent},
   {path: 'movie-search', component: MovieSearchComponent},
   // TuHC
   {path: 'register' , component: RegisterComponent},
   {path: 'price', component: PriceListComponent},
-  {path: 'showtime-list', component: ShowtimeListComponent}
+  {path: 'showtime-list', component: ShowtimeListComponent},
+  {path: '', component: MovieListComponent, pathMatch: 'full'},
 ];
 @NgModule({
   declarations: [

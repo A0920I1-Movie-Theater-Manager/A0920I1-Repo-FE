@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ManagerMovieService} from '../../../services/manager-movie.service';
 import {ToastrService} from 'ngx-toastr';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Account} from '../../../shared/model/entity/Account';
 import {Genre} from '../../../shared/model/entity/Genre';
@@ -21,10 +21,10 @@ export class MovieAddAdminComponent implements OnInit {
     private movieService: ManagerMovieService,
     private toastService: ToastrService,
     private router: Router,
+    private active: ActivatedRoute,
     private jSogService: JsogService,
     private form: FormBuilder,
     @Inject(AngularFireStorage) private storage: AngularFireStorage) {}
-
   genreList: Genre[];
   accountList: Account[];
   defaultImage = 'https://cdn.tgdd.vn/Files/2020/01/14/1231516/top-10-bo-phim-hanh-dong-dang-xem-nhat-moi-thoi-dai--cap-nhat-2020-7.jpg';
@@ -34,7 +34,7 @@ export class MovieAddAdminComponent implements OnInit {
   movieCheck: Movie[];
   showingFroms: any;
   showingTos: any;
-
+  id: any;
   public dateNow = new Date();
   public min = new Date();
   // tslint:disable-next-line:variable-name
@@ -208,19 +208,26 @@ export class MovieAddAdminComponent implements OnInit {
     this.getListAllEmployee();
     this.getAllListGenre();
     this.getListALlPrice();
-    // @ts-ignore
+    this.active.paramMap.subscribe((paramMap) => {
+      // tslint:disable-next-line:radix
+      this.id = parseInt(paramMap.get('id'));
+      console.log(this.id);
+    });
+      // @ts-ignore
     // this.createMovie.controls.imageUrl = this.defaultImage;
   }
 
   onSubmitCreate() {
     console.log(this.showtimes.value);
-    console.log(this.createMovie.get('title').value);
-    console.log(this.createMovie.value);
     console.log(this.imageUrl);
     this.checkUpLoad = true;
 
+    this.createMovie.patchValue({accountId: this.id});
+    console.log(this.createMovie.get('accountId').value);
 
-    this.movieService.createMovie(this.createMovie.value).subscribe(() => {
+
+    console.log(this.createMovie.value);
+    this.movieService.createMovie(this.createMovie.value, this.id).subscribe(() => {
       this.checkUpLoad = false;
       this.createMovie.controls.imageUrl = this.imageUrl;
       console.log(this.createMovie.controls.imageUrl);
@@ -232,8 +239,6 @@ export class MovieAddAdminComponent implements OnInit {
       return;
     });
 
-    console.log(this.createMovie.controls.showtime.value as FormArray);
-    console.log(this.createMovie.controls.genres.value as FormArray);
 
   }
 
