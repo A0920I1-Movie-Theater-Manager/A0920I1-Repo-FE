@@ -1,16 +1,15 @@
-
 <!-- header -->
 <div class="header">
   <div class="container">
     <div class="w3layouts_logo">
-      <a routerLink="home">
+      <a routerLink="cinema">
         <h1>A09<span>Movies</span></h1>
       </a>
     </div>
     <div class="w3_search">
       <form>
         <input type="text" name="name" placeholder="Nhập tên phim"
-        [(ngModel)]="keyword" (ngModelChange)="suggestMovie()" [matAutocomplete]="auto">
+               [(ngModel)]="keyword" (ngModelChange)="suggestMovie()" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let movie of movieSearches" [value]="movie.title">
             <img class="example-option-img" aria-hidden [src]="movie.movieImages[0].imageUrl" height="40">
@@ -29,33 +28,21 @@
         <li><a href="register" data-toggle="modal" data-target="#myModal">Đăng kí</a></li>
       </ul>
 
-          <ul *ngIf="isLoggedIn">
-            <li ><a [routerLink]="['/updateAccount/',idAccount]">{{ username }}</a></li>
-            <li ><a (click)="logout()">Đăng Xuất</a></li>
-
-
-          </ul>
-
-<!--      <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">-->
-<!--        <li><a href="#" class="nav-link">Danh Sách Phòng Họp</a></li>-->
-<!--        <li class="has-children">-->
-<!--          <a href="/list" class="nav-link" >Phòng Họp</a>-->
-<!--          <ul class="dropdown arrow-top">-->
-<!--            <li><a href="#" class="nav-link">Tìm Kiếm Phòng Họp</a></li>-->
-<!--              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block"-->
-<!--                 >-->
-<!--                <li><a href="#" class="nav-link">Danh Sách Phòng Họp</a></li>-->
-<!--                <li class="has-children">-->
-<!--                  <a href="/list" class="nav-link">Phòng Họp</a>-->
-<!--                  <ul class="dropdown arrow-top">-->
-<!--                    <li><a href="#" class="nav-link">Tìm Kiếm Phòng Họp</a></li>-->
-<!--                  </ul>-->
-<!--                </li>-->
-<!--                <li><a href="#" class="nav-link">Phản hồi</a></li>-->
-<!--              </ul>-->
-<!--          </ul>-->
-<!--        </li>-->
+<!--      <ul *ngIf="isLoggedIn">-->
+<!--        <li><a [routerLink]="['/updateAccount/',idAccount]">{{ username }}</a></li>-->
+<!--        <li><a (click)="logout()">Đăng Xuất</a></li>-->
 <!--      </ul>-->
+
+      <ul *ngIf="isLoggedIn" style="justify-content: center; display: flex">
+          <div class="dropdown" >
+            <button class="dropbtn">{{ username }}</button>
+            <div class="dropdown-content">
+              <a [routerLink]="['/updateAccount/',idAccount]">Thông Tin Cá Nhân</a>
+              <a href="#" (click)="logout()">Đăng Xuất</a>
+            </div>
+          </div>
+      </ul>
+
 
     </div>
     <div class="clearfix"></div>
