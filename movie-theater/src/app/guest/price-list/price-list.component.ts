@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Price} from '../../shared/model/entity/Price';
 import {ListPriceService} from '../../services/list-price.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {JsogService} from "jsog-typescript";
 
 @Component({
   selector: 'app-price-list',
@@ -11,7 +12,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 export class PriceListComponent implements OnInit {
   listPrice: Price[];
 
-  constructor(private priceService: ListPriceService) { }
+  constructor(private priceService: ListPriceService,
+              private jsogService: JsogService) { }
 
   ngOnInit(): void {
     this.getListPrice();
@@ -19,8 +21,10 @@ export class PriceListComponent implements OnInit {
   getListPrice() {
     this.priceService.getPrice().subscribe(
       (data: any) => {
-        this.listPrice = data;
+        // @ts-ignore
+        this.listPrice = this.jsogService.deserializeArray(data, Price);
         console.log(data[0].time.split('h', 1)[0]);
+        console.log(this.listPrice);
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);

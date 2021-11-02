@@ -39,7 +39,7 @@
                     <td class="text-center" *ngIf="(price.day == 3) && price.time.split('h',1)[0] < 17 && (!price.is3D)">{{price.price | number}} VNĐ</td>
                   </ng-container>
                   <ng-container *ngFor="let price of listPrice">
-                    <td class="text-center" *ngIf="(price.day == 6 ) && price.time.split('h',1)[0] < 17 && (!price.is3D)">{{price.price | number}} VNĐ</td>
+                    <td class="text-center" *ngIf="(price.day >= 6 ) && price.time.split('h',1)[0] < 17 && (!price.is3D)">{{price.price | number}} VNĐ</td>
                   </ng-container>
                 </tr>
                 </tbody>
@@ -64,7 +64,7 @@
                     <td class="text-center" *ngIf="(price.day == 3) && price.time.split('h',1)[0] > 17 && (price.is3D)">{{price.price | number}} VNĐ</td>
                   </ng-container>
                   <ng-container *ngFor="let price of listPrice">
-                    <td class="text-center" *ngIf="(price.day == 6 ) && price.time.split('h',1)[0] > 17 && (price.is3D)">{{price.price | number}} VNĐ</td>
+                    <td class="text-center" *ngIf="(price.day >= 6 ) && price.time.split('h',1)[0] > 17 && (price.is3D)">{{price.price | number}} VNĐ</td>
                   </ng-container>
                 </tr>
                 <tr>
