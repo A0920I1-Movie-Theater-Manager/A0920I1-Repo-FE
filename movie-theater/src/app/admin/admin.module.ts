@@ -18,8 +18,6 @@ import {PromotionAddAdminComponent} from './manage-promotion/promotion-add-admin
 import {PromotionUpdateAdminComponent} from './manage-promotion/promotion-update-admin/promotion-update-admin.component';
 import {PromotionDeleteAdminComponent} from './manage-promotion/promotion-delete-admin/promotion-delete-admin.component';
 import {RouterModule, Routes} from '@angular/router';
-
-
 import {MatDialogModule} from '@angular/material/dialog';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EmployeeDetailAdminComponent} from './manage-employee/employee-detail-admin/employee-detail-admin.component';
@@ -40,7 +38,6 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {MatInputModule} from '@angular/material/input';
-import {NavbarLeftComponent} from './navbar-left/navbar-left.component';
 import {MovieDetailsAdminComponent} from './manage-movie/movie-details-admin/movie-details-admin.component';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {MatNativeDateModule} from '@angular/material/core';
@@ -51,32 +48,35 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {NavbarLeftComponent} from './navbar-left/navbar-left.component';
 import {AuthGuardService} from '../services/AuthGuardService';
 import {Role} from '../common/Role';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from '../app-routing.module';
 
 const adminRoutes: Routes = [
   {
     path: 'list-movie',
     component: MovieListAdminComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     data:  { expectedRole: [Role.Admin, Role.User, Role.Mod]}
   },
   {
-    path: 'update-movie/:id',
+    path: 'update-movie/:id/:idAccount', // id movie, id account
     component: MovieUpdateAdminComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     data:  { expectedRole: [Role.Admin, Role.User, Role.Mod]}
   },
   {
-    path: 'create-movie',
+    path: 'create-movie/:id',
     component: MovieAddAdminComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
   },
   {
     path: 'show-details-movie/:id',
     component: MovieDetailsAdminComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
   },
   {
@@ -128,7 +128,6 @@ const adminRoutes: Routes = [
     MovieAddAdminComponent,
     MovieUpdateAdminComponent,
     ManagePromotionComponent,
-    NavbarLeftComponent,
     MovieDetailsAdminComponent,
     ManageEmployeeComponent,
     EmployeeListAdminComponent,
@@ -148,16 +147,19 @@ const adminRoutes: Routes = [
     PromotionUpdateAdminComponent,
     PromotionDeleteAdminComponent,
     EmployeeDetailAdminComponent,
-    NotifyEmployeeComponent
+    NotifyEmployeeComponent,
+    NavbarLeftComponent
   ],
   exports: [
     EmployeeListAdminComponent,
     EmployeeAddAdminComponent,
+    NavbarLeftComponent,
     EmployeeDetailAdminComponent,
-    NavbarLeftComponent
   ],
   imports: [
     CommonModule,
+    BrowserModule,
+    AppRoutingModule,
     RouterModule.forChild(adminRoutes),
     MatDialogModule,
     ReactiveFormsModule,

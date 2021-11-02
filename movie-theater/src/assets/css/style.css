@@ -66,7 +66,7 @@ input[type="submit"],.agileinfo_chat a,.w3ls_footer_grid1_left p a,.w3l_sign_in_
 }
 .w3_search{
   float: left;
-  width: 40%;
+  width: 49%;
   margin-left: 9em;
   margin-top: .7em;
 }
@@ -726,8 +726,8 @@ section#tables  p {
   padding: 15px!important;
 }
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-  font-size: 0.9em;
-  color: #999;
+  font-size: 1em;
+  /*color: #999;*/
   border-top: none !important;
 }
 .tab-content > .active {
@@ -1034,7 +1034,7 @@ h3.head {
     width: 30%;
   }
   .w3_search {
-    margin-left: 4em;
+    margin-left: 6em;
   }
   .w3l-movie-gride-agile1 {
     width: 100% !important;

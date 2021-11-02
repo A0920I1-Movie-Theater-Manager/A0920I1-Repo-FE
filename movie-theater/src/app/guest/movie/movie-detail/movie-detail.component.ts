@@ -39,7 +39,7 @@ export class MovieDetailComponent implements OnInit {
       this.commentService.getCommentByMovieId(id).subscribe(data => {
         // @ts-ignore
         this.comments = this.jsogService.deserializeArray(data, Comment);
-        console.log(this.comments);
+        // console.log(this.comments);
       });
     });
     this.movieService.getMovieTopFive().subscribe(data => {
@@ -50,7 +50,7 @@ export class MovieDetailComponent implements OnInit {
     this.commentForm = this.formBuilder.group({
       content: this.formBuilder.control(''),
       account: this.formBuilder.control(''),
-      movie: this.formBuilder.control(this.id),
+      movie: this.formBuilder.control(''),
       seen: this.formBuilder.control('')
     });
   }
@@ -62,10 +62,12 @@ export class MovieDetailComponent implements OnInit {
 
   // TuHC - them moi comment
   addComment() {
+    this.commentForm.patchValue({
+      account: 1
+    });
     this.comment = this.commentForm.value;
-    console.log(this.comment);
-    // this.commentService.addComment(this.comment).subscribe(data => {
-    //   console.log('success');
-    // });
+    this.commentService.addComment(this.comment).subscribe(data => {
+      this.ngOnInit();
+    });
   }
 }

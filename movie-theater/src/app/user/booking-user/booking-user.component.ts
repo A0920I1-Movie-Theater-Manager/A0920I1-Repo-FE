@@ -37,7 +37,7 @@ export class BookingUserComponent implements OnInit {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();  //id
+      const user = this.tokenStorageService.getUser();  // id
     }
 
     this.movieService.findAllMovieShowingAndComingSoon().subscribe(data => {

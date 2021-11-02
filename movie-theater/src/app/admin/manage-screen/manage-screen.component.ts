@@ -3,6 +3,7 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {ScreenService} from '../../services/ScreenService';
 import {JsogService} from 'jsog-typescript';
 import {Screen} from '../../shared/model/entity/Screen';
+import { Location } from '@angular/common';
 declare const chooseSeat: any;
 
 
@@ -18,7 +19,8 @@ export class ManageScreenComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private screenService: ScreenService,
-    private jsogService: JsogService
+    private jsogService: JsogService,
+    private location: Location
   ) {
   }
 
@@ -38,5 +40,9 @@ export class ManageScreenComponent implements OnInit {
   chooseSeat() {
     chooseSeat();
     console.log('choose Seat');
+  }
+
+  back() {
+    this.location.back();
   }
 }

@@ -40,7 +40,7 @@ import {authInterceptorProviders} from './_helpers/auth.interceptor';
     BrowserModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter:  () => sessionStorage.getItem('toke')
+        tokenGetter: () => sessionStorage.getItem('toke')
       }
     }),
     UserModule,
@@ -55,7 +55,6 @@ import {authInterceptorProviders} from './_helpers/auth.interceptor';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-
     StaticPageModule,
     NgbModule,
     RouterModule,
@@ -76,9 +75,12 @@ import {authInterceptorProviders} from './_helpers/auth.interceptor';
       preventDuplicates: false,
     }),
     AppRoutingModule
-],
+  ],
   providers: [authInterceptorProviders,
-  JsogService
+    JsogService
+  ],
+  exports: [
+
   ],
   bootstrap: [AppComponent]
 })

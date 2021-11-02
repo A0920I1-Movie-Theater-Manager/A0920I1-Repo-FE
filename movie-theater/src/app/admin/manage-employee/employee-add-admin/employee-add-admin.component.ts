@@ -81,7 +81,7 @@ export class EmployeeAddAdminComponent implements OnInit {
     ],
     idCard: [
       {type: 'required', message: 'Vui lòng nhập số CMND.'},
-      {type: 'pattern', message: 'Số CMND gồm 9 số.'},
+      {type: 'pattern', message: 'Số CMND gồm 12 số.'},
     ],
     address: [
       {type: 'required', message: 'Đia chỉ không được để trống!'},
@@ -134,7 +134,7 @@ export class EmployeeAddAdminComponent implements OnInit {
         birthday: new FormControl('', Validators.required),
         idCard: new FormControl(null, [
           Validators.required,
-          Validators.pattern('^[0-9]{9,9}$')
+          Validators.pattern('^[0-9]{12}$')
         ]),
         address: new FormControl(null, [
           Validators.required,

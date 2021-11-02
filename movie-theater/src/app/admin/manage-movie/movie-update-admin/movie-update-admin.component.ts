@@ -37,6 +37,7 @@ export class MovieUpdateAdminComponent implements OnInit {
   checkUpLoad = false;
   priceList: Price[];
   movie: Movie;
+  id: number;
 
   public dateNow = new Date();
 
@@ -181,6 +182,12 @@ export class MovieUpdateAdminComponent implements OnInit {
 
     this.active.paramMap.subscribe((paramMap) => {
       // tslint:disable-next-line:radix
+      this.id = parseInt(paramMap.get('idAccount'));
+      console.log(this.id);
+    });
+
+    this.active.paramMap.subscribe((paramMap) => {
+      // tslint:disable-next-line:radix
       this.idMovie = parseInt(paramMap.get('id'));
       console.log(this.idMovie);
 
@@ -217,12 +224,15 @@ export class MovieUpdateAdminComponent implements OnInit {
     console.log(this.updateMovie.value);
     console.log(this.imageUrl);
 
-    this.movieService.updateMovie(this.updateMovie.value).subscribe(() => {
+    this.updateMovie.patchValue({accountId: this.id});
+    console.log(this.updateMovie.get('accountId').value);
+
+    this.movieService.updateMovie(this.updateMovie.value, this.id).subscribe(() => {
       this.active.paramMap.subscribe((paramMap) => {
         // tslint:disable-next-line:radix
         this.idMovie = parseInt(paramMap.get('id'));
         console.log(this.idMovie);
-        this.router.navigateByUrl('/update-movie/' + this.idMovie);
+        this.router.navigateByUrl('/update-movie/' + this.idMovie + '/' + this.id);
         this.toastService.success('Chỉnh sửa thành công!', 'Thông báo');
       }, error => {
         this.toastService.error('Chỉnh sửa thất bại!', 'Thông báo');

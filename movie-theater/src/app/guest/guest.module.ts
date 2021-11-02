@@ -25,16 +25,17 @@ import {PromotionListComponent} from './promotion/promotion-list/promotion-list.
 import {PromotionDetailComponent} from './promotion/promotion-detail/promotion-detail.component';
 
 const guestRoutes: Routes = [
+  // TuHC
+  {path: 'home', component: MovieListComponent},
   {path: 'cinema', component: MovieListComponent},
-  {path: '', component: MovieListComponent, pathMatch: 'full'},
   {path: 'movie-detail/:id', component: MovieDetailComponent},
   {path: 'movie-search', component: MovieSearchComponent},
+  // TuHC
   {path: 'register' , component: RegisterComponent},
   {path: 'price', component: PriceListComponent},
-  {path: 'showtime-list', component: ShowtimeListComponent}
+  {path: 'showtime-list', component: ShowtimeListComponent},
+  {path: '', component: MovieListComponent, pathMatch: 'full'},
 ];
-
-
 @NgModule({
   declarations: [
     RegisterComponent,
@@ -65,7 +66,6 @@ const guestRoutes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
-    RouterModule.forChild(guestRoutes)
   ],
   exports: [RouterModule]
 })

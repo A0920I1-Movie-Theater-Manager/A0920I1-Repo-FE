@@ -88,7 +88,7 @@
             <pagination-controls (pageChange)="page = $event" style="text-align:center"
                                  previousLabel="Trước" nextLabel="Tiếp"></pagination-controls>
             <div>
-              <ng-container *ngIf="members.length === 0">
+              <ng-container *ngIf="members?.length === 0">
                 <div class="text-center">
                   <h3>Không tìm thấy <b style="color: red">{{nameMember}}</b> trong danh sách.</h3>
                 </div>

@@ -176,24 +176,6 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-md-6 pr-1">
-                          <div class="form-group">
-                            <label>Quyền truy cập<span class="infomation__required" style="color: red">*</span></label>
-                            <select class="form-control" id="role" formControlName="roleId">
-                              <ng-container *ngFor="let role of roles">
-                                <option value="{{role.id}}"> {{role.name}}</option>
-                              </ng-container>
-                            </select>
-                            <ng-container *ngFor="let validation of validationMessage.roleId">
-                              <small class="form-text text-danger"
-                                     *ngIf="createMembers.get('roleId').hasError(validation.type)&& createMembers.get('roleId').dirty">
-                                {{validation.message}}
-                              </small>
-                            </ng-container>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Giới tính <span class="infomation__required" style="color: red">*</span></label>

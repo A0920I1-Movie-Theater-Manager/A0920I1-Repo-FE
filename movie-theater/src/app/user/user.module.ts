@@ -20,6 +20,9 @@ import { VerificationComponent } from './account-user/verification/verification.
 
 const userRoutes: Routes = [
   {
+    path: 'booking', component: BookingUserComponent
+  },
+  {
     path: 'updateAccount/:idUpdate', component: UpdateAccountUserComponent
   },
   {
