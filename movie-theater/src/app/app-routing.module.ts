@@ -10,6 +10,9 @@ import {AuthGuardService} from './services/AuthGuardService';
 const routes: Routes = [
   // {path: '', redirectTo: 'home', pathMatch: 'full'},
   // {path: 'home', component: HomeComponent},
+  // { path: 'login', component: LoginnComponent },
+  // { path: 'register', component: RegisterComponent },
+  // {path: '**', component: PageNotFoundComponent}
   { path: 'login', component: LoginnComponent},
   // { path: 'register', component: RegisterComponent },
   // {path: '*', component: PageNotFoundComponent}

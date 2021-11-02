@@ -19,6 +19,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 const userRoutes: Routes = [
   {
+    path: 'booking', component: BookingUserComponent
+  },
+  {
     path: 'updateAccount/:idUpdate', component: UpdateAccountUserComponent
   },
   {

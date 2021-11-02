@@ -90,7 +90,11 @@
           <div class="media-grids" *ngFor="let comment of comments">
             <div class="media">
               <h5 *ngIf="comment.seen == 1">{{comment.account.fullname}}
-                <mat-icon style="color: #2E4A84; font-size: 1em">check_circle</mat-icon>
+<!--                <mat-icon  >-->
+<!--                  check_circle-->
+<!--                </mat-icon>-->
+                <span class="glyphicon glyphicon-ok-sign" aria-hidden="true" style="color: #2E4A84; font-size: 1em"
+                      data-toggle="tooltip" data-placement="top" title="Đánh giá của người dùng đã xem phim"></span>
               </h5>
               <h5 *ngIf="comment.seen == 0">{{comment.account.fullname}}</h5>
               <div class="media-left">
@@ -105,8 +109,9 @@
           </div>
           <div class="agile-info-wthree-box">
             <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+              <input type="hidden" formControlName="movie" [ngModel]="movie.id">
               <textarea placeholder="Bình luận" required="" formControlName="content"></textarea>
-              <input type="submit" value="Gửi">
+              <input type="submit" value="Gửi" (click)="addComment()">
               <div class="clearfix"></div>
             </form>
           </div>
@@ -137,4 +142,8 @@
   </div>
   <!-- //w3l-latest-movies-grids -->
 </div>
-
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>

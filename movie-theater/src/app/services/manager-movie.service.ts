@@ -24,8 +24,8 @@ export class ManagerMovieService {
   }
 
   // HueHV, phương thức tạo mới 1 bộ phim
-  public createMovie(movie: Movie): Observable<void>{
-    return this.httpClient.post<void>(this.API_URL + '/create-movie', movie);
+  public createMovie(movie: Movie, id: number): Observable<void>{
+    return this.httpClient.post<void>(this.API_URL + '/create-movie/' + id, movie);
   }
 
   public createMovies(movie: Movie, url: any): Observable<void>{
@@ -33,8 +33,8 @@ export class ManagerMovieService {
   }
 
   // HueHV, phương thức chỉnh sửa 1 bộ phim
-  public updateMovie(movie: Movie): Observable<void>{
-    return this.httpClient.patch<void>(this.API_URL + '/update-movie/' + movie.id, movie);
+  public updateMovie(movie: Movie, id: number): Observable<void>{
+    return this.httpClient.patch<void>(this.API_URL + '/update-movie/' + movie.id + '/' + id, movie);
   }
   // HueHV, phương thức thêm ảnh cho 1 bộ phim
   public addImageMovie(movieImage: MovieImage): Observable<void>{

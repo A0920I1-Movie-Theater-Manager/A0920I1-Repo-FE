@@ -1,6 +1,5 @@
 <div style="margin-right: 0" class="row">
   <app-navbar-left></app-navbar-left>
-
   <div class="col-md-10 nav_content">
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -237,24 +236,6 @@
                             <ng-container *ngFor="let validation of validation_messages.content">
                               <small class="form-text text-danger"
                                      *ngIf="updateMovie.get('content').hasError(validation.type)&&(updateMovie.get('content').dirty || updateMovie.get('content').touched)">
-                                {{validation.message}}
-                              </small>
-                            </ng-container>
-                          </div>
-                        </div>
-                        <div class="form-group" style="display: flex">
-                          <label for="employeeId" class="col-sm-2 control-label">Mã NV <span
-                            class="star">*</span></label>
-                          <div class="col-sm-8">
-                            <select class="form-control" id="employeeId" formControlName="accountId">
-                              <option selected>Vui lòng chọn mã nhân viên!</option>
-                              <ng-container *ngFor="let account of accountList">
-                                <option value="{{account.id}}"> {{account.accountCode}}</option>
-                              </ng-container>
-                            </select>
-                            <ng-container *ngFor="let validation of validation_messages.accountId">
-                              <small class="form-text text-danger"
-                                     *ngIf="updateMovie.get('accountId').hasError(validation.type)&&(updateMovie.get('accountId').dirty || updateMovie.get('accountId').touched)">
                                 {{validation.message}}
                               </small>
                             </ng-container>
