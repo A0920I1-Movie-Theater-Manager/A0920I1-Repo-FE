@@ -12,8 +12,6 @@ import {checkDateOfBirth} from '../Validator_User/validatorBirthday';
 import {compareValidator} from '../Validator_User/validatePassword';
 
 
-
-
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
@@ -43,35 +41,43 @@ export class ChangePasswordComponent implements OnInit {
   validationMessage = {
     password: [
       {type: 'required', message: 'Mật khẩu không được để trống.'},
-      {type: 'pattern', message: 'Mật khẩu bao gồm chữ cái đầu viết hoa vsố và phải có kí tự đặc biệt.'},
+      {
+        type: 'pattern',
+        message: 'Vui lòng nhập mật khẩu đúng định dạng trên 8 ký tự gồm chữ hoa,thường và ký tự đặc biệt.'
+      },
     ],
     newPassword: [
       {type: 'required', message: 'Mật khẩu không được để trống.'},
       {type: 'compare', message: 'Mật khẩu mới không được trùng với mật khẩu cũ.'},
-      {type: 'pattern', message: 'Mật khẩu bao gồm chữ cái đầu viết hoa vsố và phải có kí tự đặc biệt.'},
+      {
+        type: 'pattern',
+        message: 'Vui lòng nhập mật khẩu đúng định dạng trên 8 ký tự gồm chữ hoa,thường và ký tự đặc biệt.'
+      }
     ],
     confirmPassword: [
       {type: 'required', message: 'Mật khẩu không được để trống.'},
-      {type: 'compare', message: 'Mật khẩu bao gồm chữ cái đầu viết hoa vsố và phải có kí tự đặc biệt.'},
+      {type: 'compare', message: 'Mật khẩu không khớp xin vui lòng thử lại.'},
     ]
   };
   accountUpdateForm = this.formBuilder.group({
-      id: [('')],
-      accountCode: [('')],
-      username: [('')],
-      password: [(''), [Validators.required, ]],
-      newPassword: ['', Validators.required],
-      totalPoint: [('')],
-      fullname: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/), Validators.minLength(4), Validators.maxLength(20)]],
-      birthday: [(''), [Validators.required]],
-      gender: [(''), [Validators.required]],
-      email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
-      idCard: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9), Validators.pattern('^[0-9]{1,10}$')]],
-      phone: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern('^[0-9]{1,10}$')]],
-      address: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
-      imageUrl: [''],
-      confirmPassword: ['', [compareValidator('newPassword')]],
-    });
+    id: [('')],
+    accountCode: [('')],
+    username: [('')],
+    password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')]],
+    // tslint:disable-next-line:max-line-length
+    newPassword: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')]],
+    totalPoint: [('')],
+    fullname: ['', [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/), Validators.minLength(4), Validators.maxLength(20)]],
+    birthday: [(''), [Validators.required]],
+    gender: [(''), [Validators.required]],
+    email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
+    idCard: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9), Validators.pattern('^[0-9]{1,10}$')]],
+    phone: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern('^[0-9]{1,10}$')]],
+    address: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+    imageUrl: [''],
+    // tslint:disable-next-line:max-line-length
+    confirmPassword: ['', [Validators.required, compareValidator('newPassword')]],
+  });
 
   ngOnInit(): void {
     this.idUpdate = this.activatedRoute.snapshot.params.idUpdate;
@@ -83,8 +89,9 @@ export class ChangePasswordComponent implements OnInit {
           id: [(this.accountUpdate.id)],
           accountCode: [this.accountUpdate.accountCode],
           username: [this.accountUpdate.username],
-          password: ['', Validators.required ],
-           newPassword: ['', Validators.required],
+          // tslint:disable-next-line:max-line-length
+          password: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')]],
+          newPassword: ['', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,32}$')]],
           totalPoint: [this.accountUpdate.totalPoint],
           fullname: [this.accountUpdate.fullname, [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/), Validators.minLength(3), Validators.maxLength(250)]],
           birthday: [this.accountUpdate.birthday, [Validators.required, checkDateOfBirth]],
@@ -94,7 +101,7 @@ export class ChangePasswordComponent implements OnInit {
           phone: [this.accountUpdate.phone, [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern('^[0-9]{1,10}$')]],
           address: [this.accountUpdate.address, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
           imageUrl: [this.accountUpdate.imageUrl],
-          confirmPassword: ['', [compareValidator('newPassword')]],
+          confirmPassword: ['', [Validators.required, compareValidator('newPassword')]],
         },
       );
 

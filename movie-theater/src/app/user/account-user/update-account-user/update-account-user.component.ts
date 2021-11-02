@@ -109,7 +109,7 @@ export class UpdateAccountUserComponent implements OnInit {
         id: [(this.accountUpdate.id)],
         accountCode: [this.accountUpdate.accountCode],
         username: [this.accountUpdate.username],
-        password: [(''), ],
+        password: [this.accountUpdate.password ],
    /*     password: [this.accountUpdate.password, compareValidator('12345')],*/
         totalPoint: [this.accountUpdate.totalPoint],
         fullname: [this.accountUpdate.fullname, [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/), Validators.minLength(3), Validators.maxLength(250)]],

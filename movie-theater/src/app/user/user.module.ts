@@ -14,6 +14,9 @@ import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ChangePasswordComponent } from './account-user/change-password/change-password.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ResetPasswordComponent } from './account-user/reset-password/reset-password.component';
+import { VerifyResetPasswordComponent } from './account-user/verify-reset-password/verify-reset-password.component';
+import { VerificationComponent } from './account-user/verification/verification.component';
 
 const userRoutes: Routes = [
   {
@@ -24,7 +27,12 @@ const userRoutes: Routes = [
   },
   {
     path: 'manageBookingUser/:idAccount', component: ManageBookingUserComponent
-  }
+  },
+  {path: 'reset-password', component: ResetPasswordComponent},
+
+  {path: 'verify-reset-password', component: VerifyResetPasswordComponent},
+
+  {path: 'verification', component: VerificationComponent},
 ];
 
 @NgModule({
@@ -34,7 +42,10 @@ const userRoutes: Routes = [
     UpdateAccountUserComponent,
     ManageBookingUserComponent,
     HistoryPointUserComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ResetPasswordComponent,
+    VerifyResetPasswordComponent,
+    VerificationComponent
   ],
   exports: [
     UpdateAccountUserComponent,
