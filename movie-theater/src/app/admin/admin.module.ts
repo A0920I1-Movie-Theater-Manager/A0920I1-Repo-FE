@@ -58,25 +58,25 @@ const adminRoutes: Routes = [
   {
     path: 'list-movie',
     component: MovieListAdminComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     data:  { expectedRole: [Role.Admin, Role.User, Role.Mod]}
   },
   {
     path: 'update-movie/:id/:idAccount', // id movie, id account
     component: MovieUpdateAdminComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     data:  { expectedRole: [Role.Admin, Role.User, Role.Mod]}
   },
   {
     path: 'create-movie/:id',
     component: MovieAddAdminComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
   },
   {
     path: 'show-details-movie/:id',
     component: MovieDetailsAdminComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
   },
   {

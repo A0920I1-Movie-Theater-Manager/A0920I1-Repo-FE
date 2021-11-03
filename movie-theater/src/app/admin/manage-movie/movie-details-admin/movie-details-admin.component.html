@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
                       <ul *ngFor="let items of genres">
-                        <li style="font-size: 16px">{{items.name}}</li>
+                        <li style="font-size: 20px">{{items.name}}</li>
                       </ul>
                     </div>
                   </div>
@@ -102,11 +102,11 @@
                     <div class="col-sm-7 text-secondary" style="font-size: 20px">
                       {{movieDetail.releaseDate | date: 'dd/MM/yyyy'}}
                     </div>
-                    <div class="col-sm-7 text-secondary" style="font-size: 20px">
-                      <ul *ngFor="let items of showtimes">
-                        <li>{{items.showTime}}: {{items.price.price}} đồng</li>
-                      </ul>
-                    </div>
+<!--                    <div class="col-sm-7 text-secondary" style="font-size: 20px">-->
+<!--                      <ul *ngFor="let items of showtimes">-->
+<!--                        <li>{{items.showTime}}: {{items.price.price}} đồng</li>-->
+<!--                      </ul>-->
+<!--                    </div>-->
                   </div>
                   <hr>
                   <div class="row">

@@ -19,7 +19,7 @@
                 </div>
               </div>
               <div class="col-10" style="float: right; display:flex;" [formGroup]="formSearch" (ngSubmit)="search()">
-                <div class="row-12">
+                <div class="row-12" style="margin-right: 50px">
                   <div class="col-6">
                     <div class="input-group">
                       <label class="input-group-text" for="titleSearch">Tên phim</label>
@@ -28,10 +28,10 @@
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="input-group">
+                    <div class="">
                       <label class="input-group-text" for="releaseDateSearch">Ngày khởi chiếu </label>
-                      <input class="form-control" id="releaseDateSearch" type="date" placeholder=""
-                             formControlName="releaseDate">
+                      <input class="form-control" id="releaseDateSearch" type="date" placeholder="DD/YY/MM"
+                             formControlName="releaseDate" >
                     </div>
                   </div>
                 </div>
@@ -97,7 +97,7 @@
                         <td style="text-align: center" *ngIf="movie.is3D === false">2D</td>
                         <td class="text-center">
                           <a routerLink="/update-movie/{{movie.id}}/{{user.id}}">
-                      <span class="material-icons">
+                      <span class="material-icons" style="margin-right: 8px">
                         <i style="font-size: 20px; color: #17a2b8" class="fa fa-pencil-square-o" aria-hidden="true"></i>
                       </span>
                           </a>

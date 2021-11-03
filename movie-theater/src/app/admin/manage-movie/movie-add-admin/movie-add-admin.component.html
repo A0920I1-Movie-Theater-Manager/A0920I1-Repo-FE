@@ -105,11 +105,11 @@
                           </div>
                         </div>
                         <div class="form-group">
-                          <label for="inputTime" class="col-sm-2 control-label">Thời lượng <span
+                          <label for="inputTime" class="col-sm-2 control-label">Thời lượng<span
                             class="star">*</span></label>
                           <div class="col-sm-8">
                             <input id="inputTime" type="number" class="form-control" formControlName="runningTime"
-                                   placeholder="Nhập thời lượng">
+                                   placeholder="Nhập số phút">
                             <ng-container *ngFor="let validation of validation_messages.runningTime">
                               <small class="form-text text-danger"
                                      *ngIf="createMovie.get('runningTime').hasError(validation.type)&&(createMovie.get('runningTime').dirty || createMovie.get('runningTime').touched)">

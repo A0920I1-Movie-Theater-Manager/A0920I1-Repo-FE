@@ -5,7 +5,7 @@ import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormArray, FormBuilder, FormControl, Validators} from '@angular/forms';
 import {AngularFireStorage} from '@angular/fire/storage';
-import {formatDate} from '@angular/common';
+import {formatDate, Location} from '@angular/common';
 import {Genre} from '../../../shared/model/entity/Genre';
 import {Price} from '../../../shared/model/entity/Price';
 import {Movie} from '../../../shared/model/entity/Movie';
@@ -26,7 +26,8 @@ export class MovieUpdateAdminComponent implements OnInit {
     private jSogService: JsogService,
     private active: ActivatedRoute,
     private form: FormBuilder,
-    @Inject(AngularFireStorage) private storage: AngularFireStorage) { }
+    @Inject(AngularFireStorage) private storage: AngularFireStorage,
+    private location: Location) { }
 
   get showtimes() {
     return this.updateMovie.controls.showtime as FormArray;
@@ -282,4 +283,7 @@ export class MovieUpdateAdminComponent implements OnInit {
   }
 
 
+  back() {
+    this.location.back();
+  }
 }
