@@ -62,4 +62,29 @@ export class AuthService {
     // console.log(`${this.loginURL + '/findAccount'}?username=${username}`);
     return this.http.get<Account>(`${AppConstants.AUTH_API + '/findAccount'}?username=${username}`);
   }
+  verify(code: string): Observable<any> {
+    console.log(code);
+    return this.http.post(AppConstants.AUTH_API_USER + 'verify', {
+      code, httpOptions});
+  }
+
+  verifyPassword(code: string): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API_USER + 'verify-password', {
+      code
+    }, httpOptions);
+  }
+
+  resetPassword(username: string): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API_USER + 'reset-password', {
+      username,
+    }, httpOptions);
+  }
+
+  doResetPassword(password: string, code: string): Observable<any> {
+    return this.http.post(AppConstants.AUTH_API_USER + 'do-reset-password', {
+      password,
+      code
+    }, httpOptions);
+  }
 }
+

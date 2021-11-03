@@ -19,8 +19,6 @@ export class ManageBookingUserComponent implements OnInit {
   inputImage: any = null;
   accountUpdate: Account;
   account: Account[];
-  uploading: boolean;
-  idUpdate: number;
   name: any;
   totalpoint: any;
   url: any;

@@ -1,6 +1,6 @@
 <div style="margin-right: 0px" class="row">
-  <div class="col-md-3 nav_profile" style="background: antiquewhite">
-    <div align="center">
+  <div class="col-md-3 nav_profile" style="background: antiquewhite ; padding-bottom: 10px">
+    <div align="center"><br>
 
       <h2><b>Quản lý tài khoản</b></h2>
       <br>
@@ -11,7 +11,7 @@
                     <span style="margin-top: 20px; "
                           class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
                       <span class="glyphicon glyphicon-camera"></span>Đổi Avatar
-                      <input type="file" name="..." (change)="selectImage($event) "    style="opacity: 0"/>
+                      <input type="file"  name="..." (change)="selectImage($event)  "    style="opacity: 0 ; font-size: 4px"/>
                     </span>
       </div>
 
@@ -22,7 +22,7 @@
       <br>
       <h4 align="center"><b>{{name}}</b></h4> <br>
 
-      <i class="glyphicon glyphicon-star" style="font-size: 20px"></i><span
+      <i class="glyphicon glyphicon-star" style="font-size: 18px"></i><span
       style="font-size: 20px">Điểm tích lũy : {{totalpoint}}</span>
       <br>
       <br>
@@ -31,16 +31,16 @@
 
       <hr style="  border-bottom: 1px solid #000;">
       <div align="center" class="col-md-12">
-        <span class="glyphicon glyphicon-user" style="font-size: 30px"></span><a href="#">Thông tin tài
+        <span class="glyphicon glyphicon-user" style="font-size: 25px"></span><a href="#">Thông tin tài
         khoản</a>
         <hr style="  border-bottom: 1px solid #000;">
-        <span class="glyphicon glyphicon-calendar" style="font-size: 30px"></span><a href="#">Lịch sử cộng điểm</a>
+        <span class="glyphicon glyphicon-calendar" style="font-size: 25px"></span><a href="#">Lịch sử cộng điểm</a>
         <hr style="  border-bottom: 1px solid #000;">
         <a [routerLink]="['/manageBookingUser/', idUpdate] ">Vé đã đặt</a>
         <!-- <hr style="  border-bottom: 1px solid #000;">
          <a href="#">Vé đã hủy</a-->
         <hr style="  border-bottom: 1px solid #000;">
-        <a href="#">Đổi mật khẩu</a>
+        <a  [routerLink]="['/changePassword/', idUpdate]">Đổi mật khẩu</a>
 
       </div>
 
@@ -59,11 +59,12 @@
       <form [formGroup]="accountUpdateForm" (ngSubmit)="updateAccount()">
         <div class="card-body ">
           <div class="row">
+            <div class="form-group">
             <div class="col-sm-3" align="right">
-              <h4 class="mb-0">Họ tên <span style="color: red">*</span>:</h4>
+              <h4 class="mb-0"><b>Họ tên </b><span style="color: red">*</span>:</h4>
             </div>
             <div class="col-sm-6 text-secondary">
-              <div class="form-group">
+
                 <input type="text" class="form-control" placeholder="Họ và tên" formControlName="fullname">
                 <ng-container *ngFor="let validation of validationMessage.fullname">
                   <small class="form-text text-danger"
@@ -76,8 +77,9 @@
           </div>
           <br>
           <div class="row">
+            <div class="form-group">
             <div class="col-sm-3" align="right">
-              <h4 class="mb-0">Ngày sinh<span style="color: red">*</span>:</h4>
+              <h4 class="mb-0"><b>Ngày sinh</b><span style="color: red">*</span>:</h4>
             </div>
             <div class="col-sm-6 text-secondary">
 
@@ -90,11 +92,13 @@
               </ng-container>
             </div>
           </div>
+          </div>
 
           <br>
           <div class="row">
+            <div class="form-group">
             <div class="col-sm-3" align="right">
-              <h4 class="mb-0">Giới tính<span style="color: red">*</span>:</h4>
+              <h4 class="mb-0"><b>Giới tính</b><span style="color: red">*</span>:</h4>
 
             </div>
             <div class="col-sm-6 text-secondary">
@@ -103,10 +107,12 @@
 
             </div>
           </div>
+          </div>
           <br>
           <div class="row">
+            <div class="form-group">
             <div class="col-sm-3" align="right">
-              <h4 class="mb-0">Email:<span style="color: red">*</span></h4>
+              <h4 class="mb-0"><b>Email</b><span style="color: red">*</span>:</h4>
             </div>
             <div class="col-sm-6 text-secondary">
 
@@ -117,16 +123,16 @@
                   {{validation.message}}
                 </small>
               </ng-container>
-
+            </div>
             </div>
           </div>
           <br>
           <div class="row">
+            <div class="form-group">
             <div class="col-sm-3" align="right">
-              <h4 class="mb-0">CMND <span style="color: red">*</span>:</h4>
+              <h4 class="mb-0"><b>CMND</b> <span style="color: red">*</span>:</h4>
             </div>
             <div class="col-sm-6 text-secondary">
-
               <input type="text" class="form-control border-1 shadow-1"
                      placeholder="số chứng minh nhân dân " formControlName="idCard" maxlength="9" minlength="9">
               <ng-container *ngFor="let validation of validationMessage.idCard">
@@ -137,13 +143,14 @@
               </ng-container>
             </div>
           </div>
+          </div>
           <br>
           <div class="row">
+            <div class="form-group">
             <div class="col-sm-3" align="right">
-              <h4 class="mb-0">Số điện thoại <span style="color: red">*</span>:</h4>
+              <h4 class="mb-0"><b>Số điện thoại</b> <span style="color: red">*</span>:</h4>
             </div>
             <div class="col-sm-6 text-secondary">
-
               <input type="text" class="form-control border-1 shadow-1" placeholder="Số điện thoại "
                      formControlName="phone" >
               <ng-container *ngFor="let validation of validationMessage.phone">
@@ -152,13 +159,15 @@
                   {{validation.message}}
                 </small>
               </ng-container>
+            </div>
 
             </div>
           </div>
           <br>
           <div class="row">
+            <div class="form-group">
             <div class="col-sm-3" align="right">
-              <h4 class="mb-0">Địa chỉ <span style="color: red">*</span>:</h4>
+              <h4 class="mb-0"><b>Địa chỉ</b> <span style="color: red">*</span>:</h4>
             </div>
             <div class="col-sm-6 text-secondary">
 
@@ -172,25 +181,8 @@
               </ng-container>
             </div>
           </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-3" align="right">
-              <h4 class="mb-0">Địa chỉ <span style="color: red">*</span>:</h4>
-            </div>
-            <div class="col-sm-6 text-secondary">
-
-              <input type="text" class="form-control border-1 shadow-1" placeholder="Địa chỉ "
-                     formControlName="password" >
-              <ng-container *ngFor="let validation of validationMessage.password">
-                <small class="form-text text-danger"
-                       *ngIf="accountUpdateForm.get('password').hasError(validation.type) && (accountUpdateForm.get('password').dirty || accountUpdateForm.get('password').touched)">
-                  {{validation.message}}
-                </small>
-              </ng-container>
-            </div>
           </div>
           <br>
-
           <div align="center">
             <button class="btn btn-primary" style="font-size: 18px" type="submit"><span>Cập nhật</span></button>
           </div>

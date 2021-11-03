@@ -68,6 +68,7 @@ export class UpdateAccountUserComponent implements OnInit {
       {type: 'maxlength', message: 'CMND có  9 số.'},
     ],
     phone: [
+      {type: 'minlength', message: 'Số điện thoại có  10 số.'},
       {type: 'required', message: 'Số điện thoại không được để trống.'},
       {type: 'maxlength', message: 'Số điện thoại có 10 kí tự.'},
       {type: 'pattern', message: 'không được nhập chữ và số điện thoại có 10 kí tự.'},
@@ -93,7 +94,7 @@ export class UpdateAccountUserComponent implements OnInit {
     gender: [(''), [Validators.required]],
     email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
     idCard: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9), Validators.pattern('^[0-9]{1,10}$')]],
-    phone: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]{1,10}$')]],
+    phone: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern('^[0-9]{1,10}$')]],
     address: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     imageUrl: [''],
   });
@@ -108,15 +109,15 @@ export class UpdateAccountUserComponent implements OnInit {
         id: [(this.accountUpdate.id)],
         accountCode: [this.accountUpdate.accountCode],
         username: [this.accountUpdate.username],
-        password: [(''), ],
+        password: [this.accountUpdate.password ],
    /*     password: [this.accountUpdate.password, compareValidator('12345')],*/
         totalPoint: [this.accountUpdate.totalPoint],
         fullname: [this.accountUpdate.fullname, [Validators.required, Validators.pattern(/^[^`|\~|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\+|\=|\[|\{|\]|\}|\||\\|\'|\<|\,|\.|\>|\?|\/|\""|\;|\:|0-9]*$/), Validators.minLength(3), Validators.maxLength(250)]],
         birthday: [this.accountUpdate.birthday, [Validators.required,  checkDateOfBirth]],
         gender: [this.accountUpdate.gender],
-        email: [this.accountUpdate.email, [Validators.required]],
+        email: [this.accountUpdate.email, [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
         idCard: [this.accountUpdate.idCard, [Validators.required, Validators.maxLength(9), Validators.minLength(9), Validators.pattern('^[0-9]{1,10}$')]],
-        phone: [this.accountUpdate.phone, [Validators.required, Validators.maxLength(10), Validators.pattern('^[0-9]{1,10}$')]],
+        phone: [this.accountUpdate.phone, [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern('^[0-9]{1,10}$')]],
         address: [this.accountUpdate.address, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
         imageUrl: [this.accountUpdate.imageUrl],
       });

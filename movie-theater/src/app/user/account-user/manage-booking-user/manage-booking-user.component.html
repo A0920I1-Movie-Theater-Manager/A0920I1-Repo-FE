@@ -1,51 +1,48 @@
 <div style="margin-right: 0px" class="row">
   <div class="col-md-3 nav_profile" style="background: antiquewhite">
     <div align="center">
+      <br>
 
       <h2><b>Quản lý tài khoản</b></h2>
       <br>
 
-      <form [formGroup]="accountUpdateForm">
-        <img [src]="getImageUrl()" class="img-circle" height="200" width="200" alt="..." rel="nofollow"><br>
-        <div>
+
+      <img [src]="getImageUrl()" class="img-circle" height="200" width="200" alt="..." rel="nofollow"><br>
+      <div>
                     <span style="margin-top: 20px; "
                           class="btn btn-info btn-round btn-default btn-file btn__upload-custom">
                       <span class="glyphicon glyphicon-camera"></span>Đổi Avatar
-                      <input type="file" name="..." (change)="selectImage($event) "    style="opacity: 0"/>
+                      <input type="file"  name="..." (change)="selectImage($event)  "    style="opacity: 0 ; font-size: 4px"/>
                     </span>
-        </div>
+      </div>
 
 
 
 
-        <br>
-        <br>
-        <h4 align="center"><b>{{name}}</b></h4> <br>
+      <br>
+      <br>
+      <h4 align="center"><b>{{name}}</b></h4> <br>
 
-        <i class="glyphicon glyphicon-star" style="font-size: 20px"></i><span
-        style="font-size: 20px">Điểm tích lũy : {{totalpoint}}</span>
-        <br>
-        <br>
-        <button class="glyphicon glyphicon-log-out   btn btn-primary  "><span
-          style="font-family: TimesNewRoman; font-size: 20px">Đăng xuất</span></button>
+      <i class="glyphicon glyphicon-star" style="font-size: 18px"></i><span
+      style="font-size: 20px">Điểm tích lũy : {{totalpoint}}</span>
+      <br>
+      <br>
+      <button class="glyphicon glyphicon-log-out   btn btn-primary  "><span
+        style="font-family: TimesNewRoman; font-size: 20px">Đăng xuất</span></button>
 
+      <hr style="  border-bottom: 1px solid #000;">
+      <div align="center" class="col-md-12">
+        <span class="glyphicon glyphicon-user" style="font-size: 25px"></span><a href="#">Thông tin tài
+        khoản</a>
         <hr style="  border-bottom: 1px solid #000;">
-        <div align="center" class="col-md-12">
-          <span class="glyphicon glyphicon-user" style="font-size: 30px"></span><a routerLink="/updateAccount">Thông tin tài
-          khoản</a>
-          <hr style="  border-bottom: 1px solid #000;">
-          <span class="glyphicon glyphicon-calendar" style="font-size: 30px"></span><a routerLink="#">Lịch sử cộng điểm</a>
-          <hr style="  border-bottom: 1px solid #000;">
-          <a routerLink="/booking">Vé đã đặt</a>
-          <!-- <hr style="  border-bottom: 1px solid #000;">
-           <a href="#">Vé đã hủy</a-->
-          <hr style="  border-bottom: 1px solid #000;">
-          <a routerLink="/changePassword">Đổi mật khẩu</a>
-          <hr style="  border-bottom: 1px solid #000;">
-
-
-        </div>
-      </form>
+        <span class="glyphicon glyphicon-calendar" style="font-size: 25px"></span><a href="#">Lịch sử cộng điểm</a>
+        <hr style="  border-bottom: 1px solid #000;">
+        <a href="#">Vé đã đặt</a>
+        <!-- <hr style="  border-bottom: 1px solid #000;">
+         <a href="#">Vé đã hủy</a-->
+        <hr style="  border-bottom: 1px solid #000;">
+        <a href="#">Đổi mật khẩu</a>
+      </div>
     </div>
   </div>
   <div class="col-md-9 nav_content" style="padding-top: 100px">

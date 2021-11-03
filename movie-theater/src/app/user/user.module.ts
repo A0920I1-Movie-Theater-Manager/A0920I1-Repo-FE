@@ -10,12 +10,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
-import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
-import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ChangePasswordComponent } from './account-user/change-password/change-password.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { ResetPasswordComponent } from './account-user/reset-password/reset-password.component';
+import { VerifyResetPasswordComponent } from './account-user/verify-reset-password/verify-reset-password.component';
+import { VerificationComponent } from './account-user/verification/verification.component';
 
 const userRoutes: Routes = [
   {
@@ -28,11 +29,13 @@ const userRoutes: Routes = [
     path: 'changePassword/:idUpdate', component: ChangePasswordComponent
   },
   {
-    path: 'changePassword', component: ChangePasswordComponent
-  },
-  {
     path: 'manageBookingUser/:idAccount', component: ManageBookingUserComponent
-  }
+  },
+  {path: 'reset-password', component: ResetPasswordComponent},
+
+  {path: 'verify-reset-password', component: VerifyResetPasswordComponent},
+
+  {path: 'verification', component: VerificationComponent},
 ];
 
 @NgModule({
@@ -42,7 +45,10 @@ const userRoutes: Routes = [
     UpdateAccountUserComponent,
     ManageBookingUserComponent,
     HistoryPointUserComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ResetPasswordComponent,
+    VerifyResetPasswordComponent,
+    VerificationComponent
   ],
   exports: [
     UpdateAccountUserComponent,
