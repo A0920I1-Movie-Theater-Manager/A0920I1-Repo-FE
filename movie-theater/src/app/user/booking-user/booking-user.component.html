@@ -1,59 +1,60 @@
-<body>
 <div class="container-fluid">
-  <div class="rows">
-    <div class="" style="width: 50%">
-      <div class="movie-container ">
-        <div>
-          <label>Chọn phim</label>
-          <select [ngModel]="movieId" class="movie" (ngModelChange)="onChangeMovie($event)">
-            <option *ngFor="let movie of movies" style="color: crimson" value="{{movie.id}}">{{movie.title}}</option>
-          </select>
-        </div>
-        <div>
-          <label>Ngày chiếu</label>
-          <mat-form-field appearance="fill">
-            <mat-label></mat-label>
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div>
-          <label>Suất chiếu</label>
-          <select [ngModel]="showtimeId" class="movie" (ngModelChange)="onChangeShowtime($event)">
-            <option *ngFor="let showtime of showtimes" style="color: crimson" value="{{showtime.id}}"
-            >{{showtime.showTime}}</option>
-          </select>
-        </div>
-        <form [formGroup]="bookingForm" (ngSubmit)="booking()">
+  <div class="row" style="margin: 2em">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Chọn phim</label>
+        <select [ngModel]="movieId" class="movie" (ngModelChange)="onChangeMovie($event)" name="movieId"
+                multiple class="form-control" id="exampleFormControlSelect2" style="height: 15em">
+          <option *ngFor="let movie of movies" value="{{movie.id}}" style="font-size: 1.5em">
+            {{movie.title}}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label>Ngày chiếu</label><br>
+        <mat-form-field appearance="fill">
+          <mat-label></mat-label>
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="form-group col-md-6" style="margin: 0">
+        <label>Suất chiếu</label>
+        <select [(ngModel)]="showtimeId" class="form-control " >
+          <option value="{{showtime.id}}" *ngFor="let showtime of showtimes">{{showtime.showTime}}</option>
+        </select>
+      </div>
+    </div>
+    <!--    Trong-->
+    <div class="col-md-2">
 
-        </form>
+    </div>
+    <!--    Trong-->
+
+    <!--    Chon ghe-->
+    <div class="col-md-6" style="align-items: center">
+      <div style="width: 400px; margin: 20px auto; display: block;">
+        <span [ngClass]="{'seat-disabled': true}" style=" margin: 10px;padding: 10px;">Ghế đã đặt</span>
+        <span [ngClass]="{'seat-selected': true}" style=" margin: 10px;padding: 10px;">Ghế đang chọn</span>
+        <span [ngClass]="{'seat-select':true}" style=" margin: 10px;padding: 10px;">Ghế trống</span>
+      </div>
+      <div>
+        <div class="screen">Màn hình</div>
+        <table style="">
+          <tr *ngFor="let row of rows">
+            <td *ngFor="let seat of seats; let i = index">
+              <div (click)="chooseSeat(row+''+seat)" [ngClass]="{'seat-selected' : selectedIdx == row+''+seat, 'seat-select': selectedIdx != row+''+seat}">
+                {{row + '' + seat}}
+              </div>
+            </td>
+          </tr>
+        </table>
+        <button type="button" class="btn btn-lg" (click)="booking()" style="margin: 1em; background: #ff8d1b; color: whitesmoke">Tiếp tục</button>
       </div>
     </div>
-    <div class="" style="width: 50%">
-      <ul class="showcase">
-        <li>
-          <div class="seat"></div>
-          <small>Ghế trống</small>
-        </li>
-        <li>
-          <div class="seat selected"></div>
-          <small>Ghế đang chọn</small>
-        </li>
-        <li>
-          <div class="seat occupied"></div>
-          <small>Ghế đã bán</small>
-        </li>
-      </ul>
-      <div class="container">
-        <div class="screen"></div>
-        <div class="rows" *ngFor="let seat of seats">
-          <div class="seat" style="text-align: center" [ngClass]="{'green':selectedTasks[seat.id]}"
-               (click)="selectedTasks[seat.id]= !selectedTasks[seat.id]">{{seat.name}}</div>
-        </div>
-      </div>
-    </div>
+    <!--    Chon ghe-->
   </div>
 </div>
-</body>
+
 

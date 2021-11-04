@@ -7,6 +7,7 @@ import {JsogService} from 'jsog-typescript';
 import {Comment} from '../../../shared/model/entity/Comment';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CommentService} from '../../../services/comment.service';
+import {AuthService} from '../../../services/authe.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -23,7 +24,8 @@ export class MovieDetailComponent implements OnInit {
 
   constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute,
               public sanitizer: DomSanitizer, private jsogService: JsogService,
-              private formBuilder: FormBuilder, private commentService: CommentService) {
+              private formBuilder: FormBuilder, private commentService: CommentService,
+              public authService: AuthService) {
   }
 
   ngOnInit(): void {

@@ -4,7 +4,8 @@ import {Movie} from '../../../shared/model/entity/Movie';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {JsogService, JsonProperty} from 'jsog-typescript';
 import {MovieTopFive} from '../../../shared/model/dto/MovieTopFive';
-import {TokenStorageService} from "../../../services/token-storage.service";
+import {TokenStorageService} from '../../../services/token-storage.service';
+
 
 
 @Component({
@@ -38,7 +39,6 @@ export class MovieListComponent implements OnInit {
     pullDrag: false,
     dots: true,
     navSpeed: 700,
-    navText: ['', ''],
     // margin: 20,
     responsive: {
       0: {
@@ -65,7 +65,6 @@ export class MovieListComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     navSpeed: 700,
-    navText: ['<<', '>>'],
     // margin: 20,
     responsive: {
       0: {
