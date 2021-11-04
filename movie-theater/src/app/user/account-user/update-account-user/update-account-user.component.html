@@ -103,7 +103,8 @@
             </div>
             <div class="col-sm-6 text-secondary">
               <input type="radio" id="html" name="gender" value="Nam" formControlName="gender"><span for="css">Nam</span>
-                <input type="radio" id="css" name="gender" value="Nữ" formControlName="gender"><span for="css">Nữ</span><br>
+                <input type="radio" id="css" name="gender" value="Nữ" formControlName="gender"><span for="css">Nữ</span>
+                <input type="radio" name="gender" value="Khác" formControlName="gender"><span for="css">Khác</span><br>
 
             </div>
           </div>
@@ -134,7 +135,7 @@
             </div>
             <div class="col-sm-6 text-secondary">
               <input type="text" class="form-control border-1 shadow-1"
-                     placeholder="số chứng minh nhân dân " formControlName="idCard" maxlength="9" minlength="9">
+                     placeholder="số chứng minh nhân dân " formControlName="idCard">
               <ng-container *ngFor="let validation of validationMessage.idCard">
                 <small class="form-text text-danger"
                        *ngIf="accountUpdateForm.get('idCard').hasError(validation.type) && (accountUpdateForm.get('idCard').dirty || accountUpdateForm.get('idCard').touched)">

@@ -19,8 +19,8 @@
 }
 .content{
   position: absolute;
-  top: 210px;
-  left: 509px;
+  top: 30%;
+  left: 40%;
   transform: translate(-50% -50%);
   text-align: center;
   z-index: 999;

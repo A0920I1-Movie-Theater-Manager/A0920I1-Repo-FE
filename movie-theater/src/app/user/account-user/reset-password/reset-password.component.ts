@@ -42,6 +42,7 @@ export class ResetPasswordComponent implements OnInit {
           timeOut: 3000,
           extendedTimeOut: 1500
         });
+        // window.location.reload();
       }
     );
   }

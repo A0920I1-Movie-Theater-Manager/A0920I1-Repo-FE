@@ -53,6 +53,7 @@ import {AuthGuardService} from '../services/AuthGuardService';
 import {Role} from '../common/Role';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from '../app-routing.module';
+import {OrderModule} from 'ngx-order-pipe';
 
 const adminRoutes: Routes = [
   {
@@ -172,7 +173,7 @@ const adminRoutes: Routes = [
     MatButtonModule,
     MatPaginatorModule,
     ToastrModule.forRoot({
-      timeOut: 5000,
+      timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: false,
     }),
@@ -195,7 +196,8 @@ const adminRoutes: Routes = [
     NgbCarouselModule,
     MatCardModule,
     NgxPaginationModule,
-    EmployeeModule
+    EmployeeModule,
+    OrderModule,
   ]
 })
 export class AdminModule {

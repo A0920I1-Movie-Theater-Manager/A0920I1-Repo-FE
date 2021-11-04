@@ -8,5 +8,5 @@ export class AppConstants {
   public static FACEBOOK_AUTH_URL = AppConstants.OAUTH2_URL + 'facebook' + AppConstants.REDIRECT_URL;
   public static GITHUB_AUTH_URL = AppConstants.OAUTH2_URL + 'github' + AppConstants.REDIRECT_URL;
   public static LINKEDIN_AUTH_URL = AppConstants.OAUTH2_URL + 'linkedin' + AppConstants.REDIRECT_URL;
-  public static AUTH_API_USER = 'http://localhost:8080/api/public/';
+  public static AUTH_API_USER = 'http://localhost:8080/api/all/';
 }

@@ -59,25 +59,18 @@
                     <td class="text-left">{{men.phone}}</td>
                     <td class="text-left">{{men.address}}</td>
                     <td class="text-center">
-                      <a (click)="openDialogDelete(men.id)" class="trigger-btn" data-toggle="modal">
-                        <button type="button" class="btn btn-danger"><i
-                          class="fa fa-trash" aria-hidden="true"></i></button>
+                      <a (click)="openDialogDelete(men.id)" class="trigger-btn" data-toggle="modal" >
+                        <i style="font-size: 20px" class="fa fa-trash"></i>
                       </a>
 
                       <a [routerLink]="['/update-member/',men.id]" style="margin: 0 10px 0 10px">
-                        <button type="button" class="btn btn-warning"><i
-                          class="fa fa-pencil-square-o"
-                          aria-hidden="true"></i></button>
+                        <span class="material-icons" style="margin-right: 8px">
+                        <i style="font-size: 20px; " class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </span>
                       </a>
                       <a [routerLink]="['/detail-member/',men.id]">
-                        <button class="btn btn-info">
-                          <svg style="color: white" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                               fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path
-                              d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                          </svg>
-                        </button>
+                        <i style="font-size: 20px;" class="fa fa-info-circle" aria-hidden="true">
+                        </i>
                       </a>
                     </td>
                   </tr>

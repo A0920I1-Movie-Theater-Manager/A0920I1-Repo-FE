@@ -30,7 +30,7 @@ export class UpdateAccountUserComponent implements OnInit {
 
   filePath: string = null;
   inputImage: any = null;
-  accountUpdate: Account
+  accountUpdate: Account;
   account: Account[];
   uploading: boolean;
   idUpdate: number;
@@ -63,20 +63,20 @@ export class UpdateAccountUserComponent implements OnInit {
     ],
     idCard: [
       {type: 'required', message: 'CMND không được để trống.'},
-      {type: 'pattern', message: 'không được nhập chữ và số điện thoại có 9 kí tự.'},
-      {type: 'minlength', message: 'CMND có  9 số.'},
-      {type: 'maxlength', message: 'CMND có  9 số.'},
+      {type: 'pattern', message: 'không được nhập chữ và số điện thoại có 12 số.'},
+      {type: 'minlength', message: 'CMND có  12 số.'},
+      {type: 'maxlength', message: 'CMND có  12 số.'},
     ],
     phone: [
       {type: 'minlength', message: 'Số điện thoại có  10 số.'},
       {type: 'required', message: 'Số điện thoại không được để trống.'},
       {type: 'maxlength', message: 'Số điện thoại có 10 kí tự.'},
-      {type: 'pattern', message: 'không được nhập chữ và số điện thoại có 10 kí tự.'},
+      {type: 'pattern', message: 'Số điện thoại không hợp lệ.'},
     ],
     address: [
       {type: 'required', message: 'Đia chỉ không được để trống.'},
-      {type: 'minlength', message: 'Họ và tên tối thiểu 4 ký tự.'},
-      {type: 'maxlength', message: 'Họ và tên tối đa 20 ký tự.'},
+      {type: 'minlength', message: 'Địa chỉ tối thiểu 4 ký tự.'},
+      {type: 'maxlength', message: 'Địa chỉ tối đa 20 ký tự.'},
     ],
     imageUrl: [
       {type: 'pattern', message: 'Chỉ chấp nhận file jpg, png, jpeg'}
@@ -93,8 +93,8 @@ export class UpdateAccountUserComponent implements OnInit {
     birthday: [(''), [Validators.required]],
     gender: [(''), [Validators.required]],
     email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
-    idCard: ['', [Validators.required, Validators.maxLength(9), Validators.minLength(9), Validators.pattern('^[0-9]{1,10}$')]],
-    phone: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern('^[0-9]{1,10}$')]],
+    idCard: ['', [Validators.required, Validators.maxLength(12), Validators.minLength(12), Validators.pattern(/^[0-9]{1,12}$/)]],
+    phone: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern(/((09|03|07|08|05)+([0-9]{8})\b)/)]],
     address: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     imageUrl: [''],
   });
@@ -116,8 +116,8 @@ export class UpdateAccountUserComponent implements OnInit {
         birthday: [this.accountUpdate.birthday, [Validators.required,  checkDateOfBirth]],
         gender: [this.accountUpdate.gender],
         email: [this.accountUpdate.email, [Validators.required, Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)]],
-        idCard: [this.accountUpdate.idCard, [Validators.required, Validators.maxLength(9), Validators.minLength(9), Validators.pattern('^[0-9]{1,10}$')]],
-        phone: [this.accountUpdate.phone, [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern('^[0-9]{1,10}$')]],
+        idCard: [this.accountUpdate.idCard, [Validators.required, Validators.maxLength(12), Validators.minLength(12), Validators.pattern(/^[0-9]{1,12}$/)]],
+        phone: [this.accountUpdate.phone, [Validators.required, Validators.maxLength(10), Validators.minLength(10), Validators.pattern(/((09|03|07|08|05)+([0-9]{8})\b)/)]],
         address: [this.accountUpdate.address, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
         imageUrl: [this.accountUpdate.imageUrl],
       });
@@ -168,11 +168,11 @@ export class UpdateAccountUserComponent implements OnInit {
       ).subscribe();
     } else {
       if (this.accountUpdateForm.invalid) {
-        this.toastrService.error('Bạn đã  Cập nhận thông tin tài khoản không thành công!', 'Thông báo')
+        this.toastrService.error('Bạn đã  Cập nhận thông tin tài khoản không thành công!', 'Thông báo');
         return;
       }
       this.accountUserService.updateAccountUser(this.accountUpdateForm.value).subscribe((data) => {
-        this.toastrService.success('Bạn đã  Cập nhận thông tin tài khoản  thành công!', 'Thông báo')
+        this.toastrService.success('Bạn đã  Cập nhận thông tin tài khoản  thành công!', 'Thông báo');
         this.router.navigateByUrl('updateAccount/' + this.idUpdate);
       });
     }
