@@ -114,7 +114,7 @@ const adminRoutes: Routes = [
     path: 'screens/screen-details/:id',
     component: ManageScreenComponent,
     canActivate: [AuthGuardService],
-    data: {expectedRole: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_MODERATOR']}
+    data: {expectedRole: [Role.Admin, Role.User, Role.Mod]}
   }
 ];
 

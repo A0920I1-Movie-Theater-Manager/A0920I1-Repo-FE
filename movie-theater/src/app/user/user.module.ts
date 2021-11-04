@@ -12,24 +12,44 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ChangePasswordComponent } from './account-user/change-password/change-password.component';
+import {ChangePasswordComponent} from './account-user/change-password/change-password.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ResetPasswordComponent } from './account-user/reset-password/reset-password.component';
 import { VerifyResetPasswordComponent } from './account-user/verify-reset-password/verify-reset-password.component';
 import { VerificationComponent } from './account-user/verification/verification.component';
+import {ConfirmBookingComponent} from './booking-user/confirm-booking/confirm-booking.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { NgxPayPalModule } from 'ngx-paypal';
+import {AuthGuardService} from "../services/AuthGuardService";
+import {Role} from "../common/Role";
+
 
 const userRoutes: Routes = [
   {
-    path: 'booking', component: BookingUserComponent
+    path: 'booking', component: BookingUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [ Role.User]}
   },
   {
-    path: 'updateAccount/:idUpdate', component: UpdateAccountUserComponent
+    path: 'confirm-booking', component: ConfirmBookingComponent
+    ,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [ Role.User]}
   },
   {
-    path: 'changePassword/:idUpdate', component: ChangePasswordComponent
+    path: 'updateAccount/:idUpdate', component: UpdateAccountUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [ Role.User]}
   },
   {
-    path: 'manageBookingUser/:idAccount', component: ManageBookingUserComponent
+    path: 'changePassword/:idUpdate', component: ChangePasswordComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [ Role.User]}
+  },
+  {
+    path: 'manageBookingUser/:idAccount', component: ManageBookingUserComponent,
+    canActivate: [AuthGuardService],
+    data: {expectedRole: [ Role.User]}
   },
   {path: 'reset-password', component: ResetPasswordComponent},
 
@@ -48,7 +68,8 @@ const userRoutes: Routes = [
     ChangePasswordComponent,
     ResetPasswordComponent,
     VerifyResetPasswordComponent,
-    VerificationComponent
+    VerificationComponent,
+    ConfirmBookingComponent
   ],
   exports: [
     UpdateAccountUserComponent,
@@ -69,6 +90,8 @@ const userRoutes: Routes = [
     }),
     BrowserAnimationsModule,
     NgxPaginationModule,
+    MatRadioModule,
+    NgxPayPalModule
   ]
 })
 export class UserModule {

@@ -4,7 +4,8 @@ import {Movie} from '../../../shared/model/entity/Movie';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {JsogService, JsonProperty} from 'jsog-typescript';
 import {MovieTopFive} from '../../../shared/model/dto/MovieTopFive';
-import {TokenStorageService} from "../../../services/token-storage.service";
+import {TokenStorageService} from '../../../services/token-storage.service';
+
 
 
 @Component({
@@ -39,7 +40,7 @@ export class MovieListComponent implements OnInit {
     dots: true,
     navSpeed: 700,
     navText: ['', ''],
-    // margin: 20,
+    // margin: 611,
     responsive: {
       0: {
         items: 1
@@ -65,7 +66,7 @@ export class MovieListComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     navSpeed: 700,
-    navText: ['<<', '>>'],
+    navText: ['', ''],
     // margin: 20,
     responsive: {
       0: {
@@ -99,14 +100,17 @@ export class MovieListComponent implements OnInit {
     this.movieService.getMovieShowing().subscribe(data => {
       // @ts-ignore
       this.movieShowings = this.jsogService.deserializeArray(data, Movie);
+      console.log(this.movieShowings);
     });
     this.movieService.getMovieComingSoon().subscribe(data => {
       // @ts-ignore
       this.movieComings = this.jsogService.deserializeArray(data, Movie);
+      console.log(this.movieComings);
     });
     this.movieService.getMovieTopFive().subscribe(data => {
       // @ts-ignore
       this.movieTopFives = this.jsogService.deserializeArray(data, Movie);
+      console.log(this.movieTopFives);
     });
   }
 }

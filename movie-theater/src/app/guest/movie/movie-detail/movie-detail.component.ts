@@ -7,6 +7,8 @@ import {JsogService} from 'jsog-typescript';
 import {Comment} from '../../../shared/model/entity/Comment';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CommentService} from '../../../services/comment.service';
+import {AuthService} from '../../../services/authe.service';
+import {TokenStorageService} from '../../../services/token-storage.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -20,13 +22,20 @@ export class MovieDetailComponent implements OnInit {
   comments: Comment[];
   commentForm: FormGroup;
   comment: Comment;
+  isLoggedIn: boolean;
+  idAccount: any;
 
   constructor(private movieService: MovieService, private activatedRoute: ActivatedRoute,
               public sanitizer: DomSanitizer, private jsogService: JsogService,
-              private formBuilder: FormBuilder, private commentService: CommentService) {
+              private formBuilder: FormBuilder, private commentService: CommentService,
+              public authService: AuthService,
+              private tokenStorageService: TokenStorageService) {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    const user = this.tokenStorageService.getUser();
+    this.idAccount = user.id;
     // TuHC
     this.activatedRoute.paramMap.subscribe(params => {
       const id = Number(params.get('id'));
@@ -63,7 +72,7 @@ export class MovieDetailComponent implements OnInit {
   // TuHC - them moi comment
   addComment() {
     this.commentForm.patchValue({
-      account: 1
+      account: this.idAccount
     });
     this.comment = this.commentForm.value;
     this.commentService.addComment(this.comment).subscribe(data => {

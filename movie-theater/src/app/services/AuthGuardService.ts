@@ -3,6 +3,8 @@ import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '
 import {AuthService} from './authe.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {TokenStorageService} from './token-storage.service';
+import {MatDialog} from '@angular/material/dialog';
+import {NotificationRegisterComponent} from '../guest/register/notification-register/notification-register.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +12,12 @@ import {TokenStorageService} from './token-storage.service';
 export class AuthGuardService implements CanActivate{
   private isLoggedIn: boolean;
   private currentUser: any;
-
+  currentRole: any;
+  message = 'Không Thể Truy Cập';
   constructor(private router: Router,
               private authService: AuthService, private jwtHelper: JwtHelperService,
-              private tokenStorageService: TokenStorageService) {
+              private tokenStorageService: TokenStorageService,
+              private dialog: MatDialog) {
   }
 
   // phan quyen
@@ -44,9 +48,25 @@ export class AuthGuardService implements CanActivate{
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0 ; i < this.currentUser.roles.length; i++ ){
       console.log(this.currentUser.roles.length);
-      console.log(route.data.expectedRole.indexOf(this.currentUser.roles.pop()));
-      console.log(route.data.expectedRole.indexOf(this.currentUser.roles.pop()) === -1);
+      this.currentRole = this.currentUser.roles.pop();
+      console.log(this.currentRole);
+      // this.currentUser.roles.
+      console.log(route.data.expectedRole.indexOf(this.currentRole) === -1);
       if (route.data.expectedRole.indexOf(this.currentUser.roles.pop()) === -1){
+        const message = this.message;
+        const dialogRef = this.dialog.open(NotificationRegisterComponent,
+          {
+            data: {
+              message
+            }
+            ,
+            width: '400px'
+          }
+        );
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(`Dialog result: ${result}`);
+          this.router.navigateByUrl('/cinema');
+        });
         console.log('ko du quyen');
         return false;
       }

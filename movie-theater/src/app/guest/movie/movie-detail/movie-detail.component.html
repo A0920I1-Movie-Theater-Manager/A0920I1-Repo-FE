@@ -84,8 +84,8 @@
         <div class="all-comments">
           <p style="color: #0a0910; font-size: 17px">Các đánh giá phim được viết sau khi đăng nhập</p>
           <br>
-          <div>
-            <input type="submit" value="Đăng nhập">
+          <div *ngIf="isLoggedIn">
+            <a routerLink="/login">Đăng nhập</a>
           </div>
           <div class="media-grids" *ngFor="let comment of comments">
             <div class="media">
@@ -107,7 +107,7 @@
               </div>
             </div>
           </div>
-          <div class="agile-info-wthree-box">
+          <div class="agile-info-wthree-box" *ngIf="authService.isUserLoggedIn()">
             <form [formGroup]="commentForm" (ngSubmit)="addComment()">
               <input type="hidden" formControlName="movie" [ngModel]="movie.id">
               <textarea placeholder="Bình luận" required="" formControlName="content"></textarea>

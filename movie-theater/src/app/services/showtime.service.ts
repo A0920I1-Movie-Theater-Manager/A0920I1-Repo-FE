@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ShowtimeService {
-  private readonly SHOWTIME_URL = 'http://localhost:8080/api/showtime';
+  private readonly SHOWTIME_URL = 'http://localhost:8080/api';
 
   constructor(private httpClient: HttpClient) {
   }

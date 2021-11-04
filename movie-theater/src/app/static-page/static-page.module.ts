@@ -19,7 +19,8 @@ const staticRoutes: Routes = [
   {path: 'privacy', component: PrivacyComponent},
   {path: 'term-customer', component: TermCustomerComponent},
   {path: 'term-of-use', component: TermOfUseComponent},
-  {path: 'example-page', component: ExamplePageComponent}
+  {path: 'example-page', component: ExamplePageComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
