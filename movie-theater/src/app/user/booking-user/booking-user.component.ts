@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {MovieService} from '../../services/movie.service';
 import {Movie} from '../../shared/model/entity/Movie';
 import {JsogService} from 'jsog-typescript';
@@ -9,6 +9,7 @@ import {SeatService} from '../../services/seat.service';
 import {Seat} from '../../shared/model/entity/Seat';
 import {SeatDTO} from '../../shared/model/dto/SeatDTO';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 const MAX_SEATS = 8;
 
@@ -17,10 +18,9 @@ const MAX_SEATS = 8;
   templateUrl: './booking-user.component.html',
   styleUrls: ['./booking-user.component.css']
 })
-export class BookingUserComponent implements OnInit {
+export class BookingUserComponent implements OnInit, OnDestroy {
   movies: any[];
   showtimes: any[] = [];
-  bookingForm: FormGroup;
   movieId: number;
   showtimeId: number;
   maxDate: Date;
@@ -29,9 +29,10 @@ export class BookingUserComponent implements OnInit {
   public rows: Array<string>;
   public seats: Array<number>;
   seatChoose = [];
-  seatBooking = [];
+  seatBooking: any[] = [];
   seat: SeatDTO;
   selectedIdx = '';
+  subscription: Subscription;
 
   constructor(private movieService: MovieService, private jsogService: JsogService,
               private formBuilder: FormBuilder, private showtimeService: ShowtimeService,
@@ -43,11 +44,11 @@ export class BookingUserComponent implements OnInit {
       // @ts-ignore
       this.movies = this.jsogService.deserializeArray(data, Movie);
     });
-    this.bookingForm = this.formBuilder.group({
-      seat: this.formBuilder.array([])
-    });
     this.rows = ['A', 'B', 'C', 'D', 'E'];
     this.seats = [1, 2, 3, 4, 5, 6, 7, 8];
+    this.subscription = this.seatService.sharedParam.subscribe(data => {
+      this.seatBooking = data;
+    });
   }
 
 
@@ -88,5 +89,9 @@ export class BookingUserComponent implements OnInit {
     }
     this.seatService.changeParam(this.seatBooking);
     this.router.navigateByUrl('confirm-booking');
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

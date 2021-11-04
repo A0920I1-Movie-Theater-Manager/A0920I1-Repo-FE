@@ -1,31 +1,34 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SeatService} from '../../../services/seat.service';
 import {Time} from '@angular/common';
 import {SeatDTO} from '../../../shared/model/dto/SeatDTO';
 import {IPayPalConfig, ICreateOrderRequest} from 'ngx-paypal';
+import {BookingDTO} from '../../../shared/model/dto/BookingDTO';
+import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-confirm-booking',
   templateUrl: './confirm-booking.component.html',
   styleUrls: ['./confirm-booking.component.scss']
 })
-export class ConfirmBookingComponent implements OnInit {
-  seats: any;
+export class ConfirmBookingComponent implements OnInit, OnDestroy {
+  seats: any[] = [];
   title = '';
   showtime: Time;
   totalPrice = 0;
   public payPalConfig?: IPayPalConfig;
+  bookingDTOs: BookingDTO[] = [];
+  private subscription: Subscription;
 
-  constructor(private seatService: SeatService) {
+  constructor(private seatService: SeatService, private router: Router) {
+    this.subscription = this.seatService.sharedParam.subscribe(data => {
+      this.seats = data;
+    });
   }
 
   ngOnInit(): void {
-    this.seatService.sharedParam.subscribe(data => {
-      this.seats = data;
-      for (const seat of this.seats){
-        console.log(seat.basePrice);
-      }
-    });
+    console.log(this.showPriceTicket());
     this.initConfig();
   }
 
@@ -98,9 +101,14 @@ export class ConfirmBookingComponent implements OnInit {
   // TuHC - hien thi gia ve sau khi dat
   showPriceTicket() {
     let total = 0;
+    console.log(this.seats);
     for (const seat of this.seats) {
       total = total + seat.basePrice + seat.price;
     }
     return total;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

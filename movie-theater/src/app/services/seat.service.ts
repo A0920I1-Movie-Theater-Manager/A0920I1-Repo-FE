@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Subject} from 'rxjs';
+import {SeatDTO} from '../shared/model/dto/SeatDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import {BehaviorSubject, Subject} from 'rxjs';
 export class SeatService {
   private readonly SEAT_URL = 'http://localhost:8080/api/seat';
 
-  private paramSource = new Subject();
+  private paramSource = new BehaviorSubject([]);
   sharedParam = this.paramSource.asObservable();
 
   constructor(private httpClient: HttpClient) {
