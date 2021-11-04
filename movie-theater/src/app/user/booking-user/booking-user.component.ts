@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {MovieService} from '../../services/movie.service';
 import {Movie} from '../../shared/model/entity/Movie';
 import {JsogService} from 'jsog-typescript';
@@ -7,6 +7,10 @@ import {ShowtimeService} from '../../services/showtime.service';
 import {Showtime} from '../../shared/model/entity/Showtime';
 import {SeatService} from '../../services/seat.service';
 import {Seat} from '../../shared/model/entity/Seat';
+import {SeatDTO} from '../../shared/model/dto/SeatDTO';
+import {Router} from '@angular/router';
+
+const MAX_SEATS = 8;
 
 @Component({
   selector: 'app-booking-user',
@@ -22,12 +26,16 @@ export class BookingUserComponent implements OnInit {
   maxDate: Date;
   minDate: Date;
   selectedMovie: any;
-  seats: any[] = [];
-  selectedTasks = {};
+  public rows: Array<string>;
+  public seats: Array<number>;
+  seatChoose = [];
+  seatBooking = [];
+  seat: SeatDTO;
+  selectedIdx = '';
 
   constructor(private movieService: MovieService, private jsogService: JsogService,
               private formBuilder: FormBuilder, private showtimeService: ShowtimeService,
-              private seatService: SeatService) {
+              private seatService: SeatService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -38,12 +46,10 @@ export class BookingUserComponent implements OnInit {
     this.bookingForm = this.formBuilder.group({
       seat: this.formBuilder.array([])
     });
+    this.rows = ['A', 'B', 'C', 'D', 'E'];
+    this.seats = [1, 2, 3, 4, 5, 6, 7, 8];
   }
 
-  // TuHC - dat ve
-  booking() {
-    console.log(this.bookingForm.value);
-  }
 
   // TuHC - chon phim
   onChangeMovie(newMovie) {
@@ -60,12 +66,27 @@ export class BookingUserComponent implements OnInit {
     });
   }
 
-  // TuHC - chon suat chieu
-  onChangeShowtime(newShowtime) {
-    this.showtimeId = newShowtime;
-    this.seatService.getAllSeatByMovieAndShowtime(this.movieId, this.showtimeId).subscribe(data => {
-      // @ts-ignore
-      this.seats = this.jsogService.deserializeArray(data, Seat);
-    });
+  // TuHC - chon ghe
+  chooseSeat(seat: string) {
+    this.selectedIdx = seat;
+    const index: number = this.seatChoose.indexOf(seat);
+    if (index !== -1) {
+      this.seatChoose.splice(index, 1);
+      return;
+    }
+    this.seatChoose.push(seat);
+  }
+
+  // TuHC - dat ve
+  booking() {
+    for (const seat of this.seatChoose) {
+      this.seatService.getSeatBySeatNameAndShowtimeAndMovie(seat, this.showtimeId, this.movieId).subscribe(data => {
+        // @ts-ignore
+        this.seat = this.jsogService.deserialize(data, SeatDTO);
+        this.seatBooking.push(this.seat);
+      });
+    }
+    this.seatService.changeParam(this.seatBooking);
+    this.router.navigateByUrl('confirm-booking');
   }
 }

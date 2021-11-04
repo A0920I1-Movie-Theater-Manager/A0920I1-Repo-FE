@@ -1,87 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing: border-box;
-}
-body{
-  background:#242333;
-  color:#fff;
-  display:flex;
-  flex-direction: row;
+
+table {
+  border: 1px;
+  margin: auto;
+  width: 100%;
+  height: 70%;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: 'lato',sans-serif;
+  border-radius: 10px;
 }
-.movie-container{
-  margin-bottom: 20px;
+
+.seat-select {
+  cursor: pointer;
+  background: rgb(226, 224, 224);
+  border-radius: 3px;
+  text-align: center;
+  color: grey;
 }
-.movie-container .movie{
-  border:none;
-  border-radius:5px;
-  padding:5px 15px;
-  /*appearance: none;*/
-  /*-moz-appearance: none;*/
-  /*-webkit-appearance: none;*/
-  font-size: 14px;
-  margin-left:15px;
+
+.seat-selected {
+  cursor: pointer;
+  background: rgb(74, 158, 74);
+  color: white;
+  border-radius: 3px;
+  text-align: center;
 }
-.showcase{
-  display:flex;
-  justify-content: space-between;
-  margin-bottom:20px;
+
+.seat-disabled {
+  cursor: not-allowed;
+  background: brown;
+  color: white;
+  border-radius: 3px;
+  text-align: center;
 }
-.showcase li{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin:0 5px;
+
+#submitButton {
+  display: block;
+  margin: auto;
+  margin-top: 5px;
+  font-size: 21px;
 }
-.seat{
-  width:33px;
-  height:26px;
-  border-top-left-radius:10px;
-  border-top-right-radius: 10px;
-  background:#777;
-  margin:5px;
-}
-.seat.selected{
-  background:#6fea6f;
-}
-.seat.occupied{
-  background:red;
-}
-.seat:not(.occupied):hover{
-  transform:scale(1.2);
-  cursor:pointer;
-}
-.showcase .seat:not(.occupied):hover{
-  transform:scale(1);
-  cursor:default;
-}
-.seat:nth-of-type(2){
-  margin-right:20px;
-}
-.seat:nth-last-of-type(2){
-  margin-left:20px;
-}
-.rows{
-  display:flex;
-}
-.container{
-  margin-bottom:20px;
-  perspective: 500px;
-}
+
 .screen{
-  width:50%;
-  height:70px;
-  background:#fff;
-  /*transform:rotateX(-45deg);*/
-  box-shadow: 0 3px 10px rgba(255,255,255,0.9);
-  margin-bottom:20px;
-}
-.green{
-  background:#6fea6f;
+  border: 1px solid;
+  background: dimgrey;
+  height: 2em;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+  border-radius: 10px;
+  margin-bottom: 0.5em;
+  margin-top: 2em;
 }

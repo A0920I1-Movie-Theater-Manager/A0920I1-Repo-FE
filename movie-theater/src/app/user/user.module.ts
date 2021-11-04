@@ -10,16 +10,20 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
-import {HttpClientModule} from '@angular/common/http';
 import {ToastrModule} from 'ngx-toastr';
-import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { ChangePasswordComponent } from './account-user/change-password/change-password.component';
+import {ChangePasswordComponent} from './account-user/change-password/change-password.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {ConfirmBookingComponent} from './booking-user/confirm-booking/confirm-booking.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 const userRoutes: Routes = [
   {
     path: 'booking', component: BookingUserComponent
+  },
+  {
+    path: 'confirm-booking', component: ConfirmBookingComponent
   },
   {
     path: 'updateAccount/:idUpdate', component: UpdateAccountUserComponent
@@ -45,7 +49,8 @@ const userRoutes: Routes = [
     UpdateAccountUserComponent,
     ManageBookingUserComponent,
     HistoryPointUserComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ConfirmBookingComponent
   ],
   exports: [
     UpdateAccountUserComponent,
@@ -66,6 +71,8 @@ const userRoutes: Routes = [
     }),
     BrowserAnimationsModule,
     NgxPaginationModule,
+    MatRadioModule,
+    NgxPayPalModule
   ]
 })
 export class UserModule {

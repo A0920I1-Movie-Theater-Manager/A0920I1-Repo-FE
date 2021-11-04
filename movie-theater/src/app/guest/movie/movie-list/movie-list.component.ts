@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MovieService} from '../../../services/movie.service';
 import {Movie} from '../../../shared/model/entity/Movie';
 import {OwlOptions} from 'ngx-owl-carousel-o';
-import {JsogService, JsonProperty} from 'jsog-typescript';
-import {MovieTopFive} from '../../../shared/model/dto/MovieTopFive';
+import {JsogService} from 'jsog-typescript';
 
 
 @Component({
@@ -57,7 +56,7 @@ export class MovieListComponent implements OnInit {
     touchDrag: false,
     pullDrag: false,
     navSpeed: 700,
-    navText: ['<<', '>>' ],
+    navText: ['', '' ],
     // margin: 20,
     responsive: {
       0: {
